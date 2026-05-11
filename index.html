@@ -1,0 +1,1304 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0e1b3a" />
+<title>Piano City Milano 2026 — Programme</title>
+<meta name="description" content="The full Piano City Milano 2026 programme · 275 free concerts across Milan · 14–17 May 2026" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Geist+Mono:wght@400;500&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<style>
+  /* ====== Tokens ====== */
+  :root {
+    /* Palette — light warm paper (50% lighter than previous) · midnight ink · terracotta */
+    --cream: #f8f4ec;
+    --cream-2: #f1ebde;
+    --paper: #fdfbf5;
+    --paper-2: #ffffff;
+    --ink: #0e1b3a;
+    --ink-2: #2a3458;
+    --ink-3: #5c6485;
+    --ink-4: #8b91a8;
+    --rust: #c25e3a;
+    --rust-dark: #9c4625;
+    --brass: #b48a3c;
+    --line: rgba(14, 27, 58, 0.08);
+    --line-strong: rgba(14, 27, 58, 0.18);
+
+    /* District accents (1-9 + 0 = outside) */
+    --m0: #8b91a8;
+    --m1: #0e1b3a;
+    --m2: #4a5a82;
+    --m3: #4f7a4a;
+    --m4: #b48a3c;
+    --m5: #c25e3a;
+    --m6: #7a4a82;
+    --m7: #3d7d7d;
+    --m8: #8c4a2f;
+    --m9: #4a6d2a;
+
+    /* Type — NO italic display this revision */
+    --display: "Bricolage Grotesque", -apple-system, BlinkMacSystemFont, sans-serif;
+    --sans: "Geist", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+    --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px;
+    --sp-5: 20px; --sp-6: 24px; --sp-8: 32px; --sp-10: 40px; --sp-12: 56px;
+    --r-s: 6px; --r-m: 12px; --r-l: 20px;
+    --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background: var(--cream);
+    font-size: 15px;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  input { font: inherit; color: inherit; }
+  a { color: inherit; text-decoration: none; }
+
+  /* Light paper grain — softened for lighter bg */
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(rgba(14, 27, 58, 0.035) 1px, transparent 1px);
+    background-size: 24px 24px;
+    opacity: 0.5;
+    z-index: 0;
+  }
+
+  /* ====== Marquee ====== */
+  .marquee {
+    position: relative; z-index: 2;
+    background: var(--ink);
+    color: var(--cream);
+    overflow: hidden;
+    height: 28px;
+    display: flex;
+    align-items: center;
+  }
+  .marquee__track {
+    display: flex;
+    gap: 36px;
+    white-space: nowrap;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    animation: marquee 42s linear infinite;
+  }
+  .marquee__item::before {
+    content: "♪";
+    color: var(--rust);
+    margin-right: 12px;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ====== Header ====== */
+  .hdr {
+    position: relative; z-index: 2;
+    padding: var(--sp-5) var(--sp-5) var(--sp-3);
+    border-bottom: 1px solid var(--line);
+    background: var(--cream);
+  }
+  .hdr__row {
+    display: flex; align-items: flex-end; justify-content: space-between; gap: var(--sp-3);
+  }
+  .brand {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+  }
+  .brand i {
+    color: var(--rust);
+    font-style: normal;
+    font-weight: 500;
+  }
+  .brand sup {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--ink-3);
+    margin-left: 8px;
+    vertical-align: super;
+    font-weight: 400;
+  }
+  .hdr__meta {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    text-align: right;
+    line-height: 1.4;
+  }
+  .hdr__sub {
+    margin-top: var(--sp-3);
+    font-size: 13.5px;
+    color: var(--ink-2);
+    font-weight: 300;
+  }
+  .hdr__sub strong { font-weight: 600; color: var(--ink); }
+
+  /* ====== Day chips (horizontal scroll) ====== */
+  .days {
+    position: sticky; top: 0; z-index: 20;
+    background: var(--cream);
+    border-bottom: 1px solid var(--line);
+    padding: var(--sp-3) 0 var(--sp-3);
+    box-shadow: 0 8px 12px -10px rgba(14, 27, 58, 0.10);
+  }
+  .days__scroll {
+    display: flex; gap: var(--sp-2);
+    overflow-x: auto;
+    padding: 0 var(--sp-5) var(--sp-1);
+    scrollbar-width: none;
+    scroll-snap-type: x mandatory;
+  }
+  .days__scroll::-webkit-scrollbar { display: none; }
+  .day-chip {
+    flex-shrink: 0;
+    display: inline-flex; flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 14px 9px;
+    border: 1px solid var(--line-strong);
+    border-radius: 12px;
+    background: var(--paper);
+    color: var(--ink);
+    transition: all 180ms var(--ease);
+    scroll-snap-align: start;
+    min-width: 78px;
+    text-align: left;
+  }
+  .day-chip__nome {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .day-chip__num {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.05;
+    margin-top: 2px;
+    letter-spacing: -0.02em;
+  }
+  .day-chip[aria-pressed="true"] {
+    background: var(--ink);
+    color: var(--cream);
+    border-color: var(--ink);
+  }
+  .day-chip[aria-pressed="true"] .day-chip__nome {
+    color: var(--cream-2);
+  }
+  .day-chip--all {
+    align-items: center;
+    flex-direction: row;
+    gap: 6px;
+  }
+  .day-chip--all .day-chip__num {
+    font-size: 14px;
+    font-family: var(--mono);
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+
+  /* ====== Genre quick row (NEW — surfaced filter) ====== */
+  .genres {
+    position: sticky; top: 90px; z-index: 19;
+    background: var(--cream);
+    border-bottom: 1px solid var(--line);
+    padding: var(--sp-2) 0 var(--sp-2);
+  }
+  .genres__scroll {
+    display: flex; gap: 6px;
+    overflow-x: auto;
+    padding: 0 var(--sp-5) 4px;
+    scrollbar-width: none;
+  }
+  .genres__scroll::-webkit-scrollbar { display: none; }
+  .genres__label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--ink-4);
+    text-transform: uppercase;
+    padding: 6px 0 6px var(--sp-5);
+    flex-shrink: 0;
+    align-self: center;
+  }
+  .genre-chip {
+    flex-shrink: 0;
+    padding: 6px 12px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    background: var(--paper);
+    color: var(--ink-2);
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 160ms var(--ease);
+    white-space: nowrap;
+    text-transform: capitalize;
+  }
+  .genre-chip:hover { background: white; }
+  .genre-chip[aria-pressed="true"] {
+    background: var(--rust);
+    color: white;
+    border-color: var(--rust);
+  }
+
+  /* ====== Toolbar (search + filter + view toggle) ====== */
+  .toolbar {
+    position: sticky;
+    top: 138px;
+    z-index: 18;
+    background: var(--cream);
+    padding: var(--sp-3) var(--sp-5) var(--sp-3);
+    display: flex; gap: var(--sp-2);
+    align-items: center;
+    border-bottom: 1px solid var(--line);
+  }
+  .search {
+    flex: 1;
+    position: relative;
+  }
+  .search input {
+    width: 100%;
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 9px 12px 9px 34px;
+    font-size: 14px;
+    transition: border-color 160ms var(--ease);
+  }
+  .search input::placeholder { color: var(--ink-4); }
+  .search input:focus { outline: none; border-color: var(--ink); }
+  .search__icon {
+    position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+    color: var(--ink-4);
+    pointer-events: none;
+  }
+  .tb-btn {
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    width: 38px; height: 38px;
+    border-radius: 10px;
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--ink);
+    position: relative;
+    transition: background 160ms var(--ease), border-color 160ms var(--ease);
+  }
+  .tb-btn:hover { background: white; border-color: var(--line-strong); }
+  .tb-btn[aria-pressed="true"] {
+    background: var(--ink);
+    color: var(--cream);
+    border-color: var(--ink);
+  }
+  .tb-btn__dot {
+    position: absolute; top: 6px; right: 6px;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--rust);
+    display: none;
+  }
+  .tb-btn.has-active .tb-btn__dot { display: block; }
+
+  .view-toggle {
+    display: inline-flex;
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 2px;
+    height: 38px;
+  }
+  .view-toggle button {
+    padding: 0 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    transition: all 160ms var(--ease);
+    display: inline-flex; align-items: center; gap: 5px;
+  }
+  .view-toggle button[aria-pressed="true"] {
+    background: var(--ink);
+    color: var(--cream);
+  }
+
+  /* ====== Count strip ====== */
+  .count-strip {
+    padding: var(--sp-3) var(--sp-5) var(--sp-2);
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: var(--sp-3);
+  }
+  .count-strip__n {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .count-strip__n em {
+    color: var(--rust);
+    font-style: normal;
+  }
+  .count-strip__label {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    margin-left: 8px;
+  }
+  .count-strip__reset {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    border-bottom: 1px solid var(--line-strong);
+    padding-bottom: 1px;
+  }
+  .count-strip__reset:hover { color: var(--rust); border-color: var(--rust); }
+
+  /* ====== List ====== */
+  .list { padding: 0 var(--sp-5) calc(var(--sp-12) + env(safe-area-inset-bottom)); position: relative; z-index: 1; }
+
+  .day-divider {
+    display: flex; align-items: flex-end; gap: var(--sp-3);
+    margin: var(--sp-6) 0 var(--sp-3);
+  }
+  .day-divider__num {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 0.85;
+    color: var(--ink);
+    letter-spacing: -0.03em;
+  }
+  .day-divider__meta {
+    flex: 1;
+    border-top: 1px solid var(--line-strong);
+    padding-top: var(--sp-2);
+  }
+  .day-divider__nome {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    color: var(--ink-3);
+    text-transform: uppercase;
+  }
+  .day-divider__date {
+    font-size: 13px;
+    color: var(--ink-2);
+  }
+
+  .card {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: var(--paper-2);
+    border: 1px solid var(--line);
+    border-radius: var(--r-l);
+    padding: var(--sp-5);
+    margin-bottom: var(--sp-3);
+    position: relative;
+    transition: transform 200ms var(--ease), box-shadow 200ms var(--ease), border-color 200ms var(--ease);
+    animation: card-in 360ms var(--ease) backwards;
+  }
+  .card:hover {
+    box-shadow: 0 16px 30px -22px rgba(14, 27, 58, 0.25);
+    border-color: var(--line-strong);
+    transform: translateY(-1px);
+  }
+  .card.is-active {
+    background: white;
+    border-color: var(--rust);
+    box-shadow: 0 0 0 1px var(--rust) inset, 0 16px 30px -22px rgba(194, 94, 58, 0.4);
+  }
+  @keyframes card-in {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .card__chips {
+    display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2);
+    margin-bottom: var(--sp-3);
+  }
+  .pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    border-radius: 999px;
+  }
+  .pill--date {
+    background: var(--ink);
+    color: var(--cream);
+  }
+  .pill--time {
+    background: var(--cream-2);
+    color: var(--ink);
+    padding-left: 10px;
+  }
+  .pill--tipo {
+    color: var(--ink-2);
+    border: 1px solid var(--line-strong);
+    background: transparent;
+  }
+  .pill--tipo strong { color: var(--rust); font-weight: 500; }
+  .pill--zona {
+    color: white;
+    padding-left: 10px;
+  }
+  .pill--zona[data-z="0"] { background: var(--m0); }
+  .pill--zona[data-z="1"] { background: var(--m1); }
+  .pill--zona[data-z="2"] { background: var(--m2); }
+  .pill--zona[data-z="3"] { background: var(--m3); }
+  .pill--zona[data-z="4"] { background: var(--m4); }
+  .pill--zona[data-z="5"] { background: var(--m5); }
+  .pill--zona[data-z="6"] { background: var(--m6); }
+  .pill--zona[data-z="7"] { background: var(--m7); }
+  .pill--zona[data-z="8"] { background: var(--m8); }
+  .pill--zona[data-z="9"] { background: var(--m9); }
+
+  .card__title {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 26px;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin: 0 0 var(--sp-2);
+  }
+  .card__genre {
+    font-size: 14px;
+    color: var(--ink-2);
+    margin-bottom: var(--sp-3);
+    text-transform: capitalize;
+  }
+  .card__address {
+    display: flex; align-items: flex-start; gap: 8px;
+    font-size: 13.5px;
+    color: var(--ink-2);
+    line-height: 1.4;
+    margin-bottom: var(--sp-3);
+  }
+  .card__address svg {
+    flex-shrink: 0;
+    color: var(--rust);
+    margin-top: 2px;
+  }
+  .card__address strong { color: var(--ink); font-weight: 600; display: block; }
+
+  .card__actions {
+    display: flex; gap: var(--sp-2);
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 10px 16px;
+    border-radius: 999px;
+    transition: all 180ms var(--ease);
+    border: 1px solid transparent;
+  }
+  .btn--primary {
+    background: var(--rust);
+    color: white;
+  }
+  .btn--primary:hover {
+    background: var(--rust-dark);
+    transform: translateY(-1px);
+  }
+  .btn--ghost {
+    color: var(--ink);
+    border-color: var(--line-strong);
+  }
+  .btn--ghost:hover {
+    background: var(--ink);
+    color: var(--cream);
+    border-color: var(--ink);
+  }
+  .btn svg { transition: transform 200ms var(--ease); }
+  .btn:hover svg { transform: translateX(2px); }
+
+  /* ====== Bottom sheet ====== */
+  .sheet-backdrop {
+    position: fixed; inset: 0;
+    background: rgba(14, 27, 58, 0.45);
+    backdrop-filter: blur(2px);
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 220ms var(--ease);
+  }
+  .sheet-backdrop.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .sheet {
+    position: fixed; left: 0; right: 0; bottom: 0;
+    z-index: 101;
+    background: var(--cream);
+    border-radius: 22px 22px 0 0;
+    max-height: 85vh;
+    overflow-y: auto;
+    transform: translateY(100%);
+    transition: transform 320ms var(--ease);
+    padding-bottom: calc(var(--sp-6) + env(safe-area-inset-bottom));
+    box-shadow: 0 -20px 50px -20px rgba(14, 27, 58, 0.25);
+  }
+  .sheet.is-open { transform: translateY(0); }
+  .sheet__handle {
+    width: 38px; height: 4px;
+    background: var(--line-strong);
+    border-radius: 2px;
+    margin: 10px auto var(--sp-3);
+  }
+  .sheet__header {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 0 var(--sp-5) var(--sp-3);
+    border-bottom: 1px solid var(--line);
+  }
+  .sheet__title {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .sheet__close {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    padding: 6px 10px;
+  }
+  .sheet__close:hover { color: var(--rust); }
+  .sheet__group { padding: var(--sp-4) var(--sp-5) var(--sp-2); }
+  .sheet__label {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    color: var(--ink-3);
+    text-transform: uppercase;
+    margin-bottom: var(--sp-2);
+  }
+  .pill-row { display: flex; flex-wrap: wrap; gap: 6px; }
+  .pill-btn {
+    padding: 7px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    font-size: 13px;
+    color: var(--ink-2);
+    background: var(--paper);
+    transition: all 160ms var(--ease);
+    display: inline-flex; align-items: center; gap: 6px;
+    text-transform: capitalize;
+  }
+  .pill-btn:hover { background: white; }
+  .pill-btn[aria-pressed="true"] {
+    background: var(--ink);
+    color: var(--cream);
+    border-color: var(--ink);
+  }
+  .pill-btn .dot {
+    display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+  }
+  .pill-btn[data-z="0"] .dot { background: var(--m0); }
+  .pill-btn[data-z="1"] .dot { background: var(--m1); }
+  .pill-btn[data-z="2"] .dot { background: var(--m2); }
+  .pill-btn[data-z="3"] .dot { background: var(--m3); }
+  .pill-btn[data-z="4"] .dot { background: var(--m4); }
+  .pill-btn[data-z="5"] .dot { background: var(--m5); }
+  .pill-btn[data-z="6"] .dot { background: var(--m6); }
+  .pill-btn[data-z="7"] .dot { background: var(--m7); }
+  .pill-btn[data-z="8"] .dot { background: var(--m8); }
+  .pill-btn[data-z="9"] .dot { background: var(--m9); }
+
+  .sheet__footer {
+    position: sticky; bottom: 0;
+    background: var(--cream);
+    padding: var(--sp-3) var(--sp-5) var(--sp-4);
+    display: flex; gap: var(--sp-2);
+    border-top: 1px solid var(--line);
+  }
+  .sheet__footer .btn { flex: 1; justify-content: center; }
+
+  /* ====== Empty state ====== */
+  .empty {
+    text-align: center;
+    padding: var(--sp-12) var(--sp-5);
+  }
+  .empty__icon {
+    font-family: var(--display);
+    font-size: 80px;
+    font-weight: 700;
+    color: var(--line-strong);
+    line-height: 0.9;
+    margin-bottom: var(--sp-3);
+  }
+  .empty__title {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin-bottom: var(--sp-2);
+  }
+  .empty__hint {
+    font-size: 14px;
+    color: var(--ink-2);
+    margin-bottom: var(--sp-5);
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ====== Map ====== */
+  .map-wrap {
+    display: none;
+    position: relative;
+    height: calc(100vh - 290px);
+    min-height: 420px;
+    margin: 0 var(--sp-5);
+    border-radius: var(--r-l);
+    overflow: hidden;
+    border: 1px solid var(--line-strong);
+    z-index: 1;
+  }
+  .view-map .map-wrap { display: block; }
+  .view-map .list { display: none; }
+  .view-map .count-strip { display: none; }
+  #map { height: 100%; background: var(--cream-2); }
+  .leaflet-container {
+    font-family: var(--sans);
+    background: var(--cream-2);
+  }
+  .leaflet-popup-content-wrapper {
+    border-radius: 14px;
+    box-shadow: 0 16px 36px -16px rgba(14, 27, 58, 0.3);
+    background: var(--paper-2);
+    border: 1px solid var(--line-strong);
+  }
+  .leaflet-popup-content { margin: 14px 16px; font-size: 13px; line-height: 1.45; min-width: 200px; }
+  .leaflet-popup-tip { background: var(--paper-2); }
+  .pop-time {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--rust);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .pop-title {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+    margin: 0 0 4px;
+    line-height: 1.15;
+  }
+  .pop-venue { color: var(--ink-2); font-size: 12px; margin-bottom: 6px; }
+  .pop-actions { display: flex; gap: 6px; margin-top: 8px; }
+  .pop-actions .btn { font-size: 11px; padding: 6px 10px; }
+
+  /* Custom pin */
+  .pcm-pin {
+    width: 24px; height: 24px;
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    border: 2px solid var(--paper-2);
+    box-shadow: 0 4px 10px rgba(14, 27, 58, 0.25);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .pcm-pin::after {
+    content: "♪";
+    color: white;
+    transform: rotate(45deg);
+    font-size: 11px;
+    line-height: 1;
+  }
+
+  /* ====== Desktop ====== */
+  @media (min-width: 760px) {
+    .hdr { padding: var(--sp-6) var(--sp-8) var(--sp-4); }
+    .brand { font-size: 44px; }
+    .toolbar, .days__scroll, .genres__scroll, .count-strip, .list { padding-left: var(--sp-8); padding-right: var(--sp-8); }
+    .genres__label { padding-left: var(--sp-8); }
+    .map-wrap { margin: 0 var(--sp-8); }
+    .list-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--sp-3);
+    }
+    .list-grid .card { margin-bottom: 0; }
+    .day-divider { grid-column: 1 / -1; }
+  }
+  @media (min-width: 1100px) {
+    .list-grid { grid-template-columns: repeat(3, 1fr); }
+    .brand { font-size: 56px; }
+    .map-wrap { height: calc(100vh - 320px); }
+  }
+
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
+</style>
+</head>
+<body>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span class="marquee__item">Piano City Milano · 16th Edition · 15–17 May 2026</span>
+    <span class="marquee__item">Over 250 free concerts across 140 venues</span>
+    <span class="marquee__item">Preview 14 May · Anfiteatro del Liberty</span>
+    <span class="marquee__item">Piano City Milano · 16th Edition · 15–17 May 2026</span>
+    <span class="marquee__item">Over 250 free concerts across 140 venues</span>
+    <span class="marquee__item">Preview 14 May · Anfiteatro del Liberty</span>
+  </div>
+</div>
+
+<header class="hdr">
+  <div class="hdr__row">
+    <div class="brand">
+      Piano<i> City</i>
+      <sup>16th · 2026</sup>
+    </div>
+    <div class="hdr__meta">
+      Full programme<br/>14 → 17 May
+    </div>
+  </div>
+  <div class="hdr__sub">
+    Every concert across Milan. <strong id="event-total">— events</strong>, filterable by day, district, and genre.
+  </div>
+</header>
+
+<nav class="days" aria-label="Filter by day">
+  <div class="days__scroll" id="day-chips">
+    <button class="day-chip day-chip--all" data-day="all" aria-pressed="true">
+      <span class="day-chip__nome">All</span>
+      <span class="day-chip__num" id="day-all-count">—</span>
+    </button>
+    <button class="day-chip" data-day="14" aria-pressed="false">
+      <span class="day-chip__nome">Thu · Preview</span>
+      <span class="day-chip__num">14</span>
+    </button>
+    <button class="day-chip" data-day="15" aria-pressed="false">
+      <span class="day-chip__nome">Fri · Opening</span>
+      <span class="day-chip__num">15</span>
+    </button>
+    <button class="day-chip" data-day="16" aria-pressed="false">
+      <span class="day-chip__nome">Sat</span>
+      <span class="day-chip__num">16</span>
+    </button>
+    <button class="day-chip" data-day="17" aria-pressed="false">
+      <span class="day-chip__nome">Sun · Closing</span>
+      <span class="day-chip__num">17</span>
+    </button>
+  </div>
+</nav>
+
+<nav class="genres" aria-label="Filter by genre">
+  <div class="genres__scroll" id="genre-chips">
+    <span class="genres__label">Genre</span>
+    <button class="genre-chip" data-genre="all" aria-pressed="true">All</button>
+    <!-- populated by JS -->
+  </div>
+</nav>
+
+<section class="toolbar" aria-label="Tools">
+  <div class="search">
+    <svg class="search__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <circle cx="7" cy="7" r="5" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M11 11l3 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    <input type="search" id="q" placeholder="Search artist, venue, or title" aria-label="Search events" />
+  </div>
+
+  <button class="tb-btn" id="filter-btn" aria-label="More filters" type="button">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <path d="M2 4h12M4 8h8M6 12h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    </svg>
+    <span class="tb-btn__dot" aria-hidden="true"></span>
+  </button>
+
+  <div class="view-toggle" role="tablist" aria-label="View">
+    <button id="view-list" aria-pressed="true" type="button">
+      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 4h10M3 8h10M3 12h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      List
+    </button>
+    <button id="view-map" aria-pressed="false" type="button">
+      <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 14s5-5 5-9a5 5 0 10-10 0c0 4 5 9 5 9z M8 7.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linejoin="round"/></svg>
+      Map
+    </button>
+  </div>
+</section>
+
+<div class="count-strip">
+  <div>
+    <span class="count-strip__n"><em id="result-n">—</em></span>
+    <span class="count-strip__label" id="result-label">events</span>
+  </div>
+  <button class="count-strip__reset" id="reset-all" type="button">Reset all</button>
+</div>
+
+<main>
+  <div class="map-wrap" id="map-wrap"><div id="map"></div></div>
+  <div class="list" id="list" role="list"></div>
+</main>
+
+<div class="sheet-backdrop" id="sheet-bd"></div>
+<aside class="sheet" id="sheet" aria-label="Filters">
+  <div class="sheet__handle" aria-hidden="true"></div>
+  <header class="sheet__header">
+    <div class="sheet__title">More filters</div>
+    <button class="sheet__close" id="sheet-close" type="button">Close</button>
+  </header>
+
+  <div class="sheet__group">
+    <div class="sheet__label">District (Municipio)</div>
+    <div class="pill-row" id="zone-pills"></div>
+  </div>
+
+  <div class="sheet__group">
+    <div class="sheet__label">Category</div>
+    <div class="pill-row" id="tipo-pills"></div>
+  </div>
+
+  <div class="sheet__group">
+    <div class="sheet__label">Time of day</div>
+    <div class="pill-row" id="time-pills">
+      <button class="pill-btn" data-time="all" aria-pressed="true">All</button>
+      <button class="pill-btn" data-time="morning" aria-pressed="false">Morning · before 12</button>
+      <button class="pill-btn" data-time="afternoon" aria-pressed="false">Afternoon · 12–18</button>
+      <button class="pill-btn" data-time="evening" aria-pressed="false">Evening · 18–22</button>
+      <button class="pill-btn" data-time="night" aria-pressed="false">Late night · after 22</button>
+    </div>
+  </div>
+
+  <div class="sheet__group">
+    <div class="sheet__label">Reservation</div>
+    <div class="pill-row" id="prenota-pills">
+      <button class="pill-btn" data-prenota="all" aria-pressed="true">All</button>
+      <button class="pill-btn" data-prenota="yes" aria-pressed="false">Reservation required</button>
+      <button class="pill-btn" data-prenota="no" aria-pressed="false">Free entry</button>
+    </div>
+  </div>
+
+  <footer class="sheet__footer">
+    <button class="btn btn--ghost" id="sheet-reset" type="button">Reset</button>
+    <button class="btn btn--primary" id="sheet-apply" type="button">
+      Show <span id="sheet-apply-n">—</span> events
+    </button>
+  </footer>
+</aside>
+
+<script>
+// Auto-generated from https://pianocitymilano.it/programma/ — full programme.
+window.PCM_EVENTS = [{"id":6081,"tipo":["CITY","ANTEPRIMA"],"generi":["musiche originali"],"giorno":"14","giorno_nome":"THU","ora":"21:00","titolo":"Olivia Belli","pianisti":"","link_prenotazione":"https://link.dice.fm/Rf4cb04ed944","zona":1,"nome_spazio":"L'anfiteatro del Liberty","indirizzo":"Piazza del Liberty 1, Milano","lat":45.46557,"lon":9.194018,"spazio_id":852,"event_url":"https://pianocitymilano.it/programma/?spazio_id=852"},{"id":6092,"tipo":["SOUNDSCAPE"],"generi":["musiche originali"],"giorno":"15","giorno_nome":"FRI","ora":"00:20","titolo":"Thomas Umbaca","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"L'anfiteatro del Liberty","indirizzo":"Piazza del Liberty 1, Milano","lat":45.46557,"lon":9.194018,"spazio_id":852,"event_url":"https://pianocitymilano.it/programma/?spazio_id=852"},{"id":6216,"tipo":["CITY","KIDS"],"generi":[],"giorno":"15","giorno_nome":"FRI","ora":"09:00","titolo":"Concerti nelle Scuole dell'Infanzia","pianisti":"Fabio Arisi, Mell Morcone, Francesca Signorini ed Elena Zuccotto","link_prenotazione":null,"zona":0,"nome_spazio":"","indirizzo":"Scuole Infanzia, Milano","lat":null,"lon":null,"spazio_id":1711,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1711"},{"id":6121,"tipo":["FUORI PORTA"],"generi":["colonne sonore"],"giorno":"15","giorno_nome":"FRI","ora":"12:00","titolo":"Claudio Maviglia","pianisti":"","link_prenotazione":null,"zona":0,"nome_spazio":"Aeroporto di Milano Linate","indirizzo":"Sala d'aspetto a lato del Check-In n. 9, Segrate","lat":45.4451,"lon":9.2767,"spazio_id":2048,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2048"},{"id":6071,"tipo":["GUEST"],"generi":["classica","impro"],"giorno":"15","giorno_nome":"FRI","ora":"15:00","titolo":"Massimo Urban","pianisti":"","link_prenotazione":null,"zona":0,"nome_spazio":"FAZIOLI Showroom Milano","indirizzo":"Via Conservatorio 17, Milano","lat":null,"lon":null,"spazio_id":2003,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2003"},{"id":6175,"tipo":["CITY"],"generi":["musiche originali","classica"],"giorno":"15","giorno_nome":"FRI","ora":"18:00","titolo":"Eduardo Elia Amore","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Edicola Civic Garibaldi","indirizzo":"Corso Garibaldi 83, Milano","lat":45.4795,"lon":9.1864,"spazio_id":2190,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2190"},{"id":6167,"tipo":["CITY","PIANO READING"],"generi":["jazz"],"giorno":"15","giorno_nome":"FRI","ora":"19:00","titolo":"Marco Rossari e Pietro Aloi","pianisti":"\"Animalia\"","link_prenotazione":null,"zona":5,"nome_spazio":"Fondazione Prada","indirizzo":"Largo Isarco 2, Milano","lat":45.4407,"lon":9.2086,"spazio_id":1358,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1358"},{"id":6201,"tipo":["Inaugurazione","PIANO CENTER"],"generi":["musiche originali"],"giorno":"15","giorno_nome":"FRI","ora":"21:00","titolo":"Sofiane Pamart","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"GAM Main Stage","indirizzo":"Ingresso da Via Palestro, 18 e da Via Marina, Milano","lat":45.471112,"lon":9.199053,"spazio_id":363,"event_url":"https://pianocitymilano.it/programma/?spazio_id=363"},{"id":5902,"tipo":["GUEST"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"07:00","titolo":"Zharko Paunov","pianisti":"\"Concerto all'alba: musiche sull'acqua\"","link_prenotazione":null,"zona":0,"nome_spazio":"Laghetto di San Donato Milanese","indirizzo":"Via I Maggio 9, San Donato Milanese","lat":null,"lon":null,"spazio_id":2128,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2128"},{"id":6218,"tipo":["GUEST"],"generi":["classica","pop"],"giorno":"16","giorno_nome":"SAT","ora":"09:30","titolo":"Anniversaries","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Università Cattolica del Sacro Cuore, Aula Magna","indirizzo":"Largo A. Gemelli 1, Milano","lat":45.457,"lon":9.1736,"spazio_id":1469,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1469"},{"id":6219,"tipo":["GUEST"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"10:00","titolo":"Michele Fedrigotti","pianisti":"","link_prenotazione":null,"zona":7,"nome_spazio":"Cortile LCA Moscova","indirizzo":"Via della Moscova 18, Milano","lat":null,"lon":null,"spazio_id":2195,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2195"},{"id":5997,"tipo":["GUEST"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"10:30","titolo":"Qianyu Guo-Deniz Ulualp","pianisti":"\"C'era una volta...\"","link_prenotazione":null,"zona":0,"nome_spazio":"Mile School","indirizzo":"via Olgiati 14, Milano","lat":null,"lon":null,"spazio_id":2136,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2136"},{"id":6119,"tipo":["CITY","PIANO LESSON"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"10:30","titolo":"\"Valzer e Sonate tra gli Elfi e le Fate\"","pianisti":"Omaggio a Carl Maria von Weber nel bicentenario della morte","link_prenotazione":null,"zona":1,"nome_spazio":"Ex Cinema Orchidea","indirizzo":"Via Terraggio 3, Milano","lat":45.4654,"lon":9.1782,"spazio_id":2172,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2172"},{"id":6192,"tipo":["PIANO CENTER"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"10:30","titolo":"Giulio Libero Consoli","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"GAM Piano Giardino","indirizzo":"Ingresso da Via Palestro, 18 e da Via Marina, Milano","lat":45.4727,"lon":9.2009,"spazio_id":2012,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2012"},{"id":6157,"tipo":["CITY","PIANO LESSON"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"10:30","titolo":"Ingrid Carbone","pianisti":"\"L’universo femminile  tra le note di Schubert, Liszt e Leoncavallo\"","link_prenotazione":null,"zona":8,"nome_spazio":"CASVA - Centro di Alti Studi sulle Arti Visive","indirizzo":"Via Isernia 5, Milano","lat":null,"lon":null,"spazio_id":2185,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2185"},{"id":6156,"tipo":["CITY"],"generi":["classica","contemporanea"],"giorno":"16","giorno_nome":"SAT","ora":"10:30","titolo":"Chiara Schmidt","pianisti":"\"Liebe und Leben\"","link_prenotazione":null,"zona":1,"nome_spazio":"","indirizzo":"Corso di Porta Vigentina 31, Milano","lat":null,"lon":null,"spazio_id":2184,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2184"},{"id":6148,"tipo":["CITY"],"generi":["colonne sonore"],"giorno":"16","giorno_nome":"SAT","ora":"10:30","titolo":"Duo Adami-Chiarella","pianisti":"\"Musica e film\"","link_prenotazione":null,"zona":7,"nome_spazio":"Giardino Gabriella Bortolon","indirizzo":"Via Pompeo Marchesi 7, Milano","lat":null,"lon":null,"spazio_id":2179,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2179"},{"id":6151,"tipo":["CITY"],"generi":["leggera"],"giorno":"16","giorno_nome":"SAT","ora":"10:30","titolo":"Danilo Remo Venturoli","pianisti":"\"Omaggio a Umberto Bindi\"","link_prenotazione":null,"zona":5,"nome_spazio":"Casa dell'Accoglienza Enzo Jannacci","indirizzo":"Viale Ortles 69, Milano","lat":45.4452,"lon":9.2003,"spazio_id":2061,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2061"},{"id":6143,"tipo":["CITY"],"generi":["leggera","pop"],"giorno":"16","giorno_nome":"SAT","ora":"10:30","titolo":"Andrea Giovanni Pogliani","pianisti":"\"Maledetti cantautori\"","link_prenotazione":null,"zona":0,"nome_spazio":"Biblioteca Calvairate","indirizzo":"Piazzale F. Martini 16, Milano","lat":null,"lon":null,"spazio_id":1909,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1909"},{"id":5867,"tipo":["house"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"11:00","titolo":"Nevenca Damiani di Vergada","pianisti":"\"Amore, sentimenti e poesia... in musica!\"","link_prenotazione":null,"zona":6,"nome_spazio":"Zona 6","indirizzo":"Washington, Milano","lat":null,"lon":null,"spazio_id":1492,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1492"},{"id":6038,"tipo":["GUEST"],"generi":["classica","contemporanea"],"giorno":"16","giorno_nome":"SAT","ora":"11:00","titolo":"The PianoLinkers","pianisti":"\"Anteprima MiAmOr Music Festival - Top Amateurs e i grandi concerti per pianoforte e orchestra | Prova aperta / lezione-concerto\"","link_prenotazione":null,"zona":1,"nome_spazio":"PianoLink STUDIOS","indirizzo":"Via Forze Armate 1, Milano","lat":45.448,"lon":9.138,"spazio_id":1873,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1873"},{"id":6247,"tipo":["KIDS","PIANO LESSON"],"generi":[],"giorno":"16","giorno_nome":"SAT","ora":"11:00","titolo":"Mozart che fa cose","pianisti":"La musica riempie ciò che non si vede","link_prenotazione":null,"zona":2,"nome_spazio":"Parco Trotter","indirizzo":"Via Giacosa 46, Milano","lat":45.4936,"lon":9.224,"spazio_id":2210,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2210"},{"id":6220,"tipo":["GUEST"],"generi":["jazz"],"giorno":"16","giorno_nome":"SAT","ora":"11:00","titolo":"Giovanni Cristino","pianisti":"","link_prenotazione":null,"zona":7,"nome_spazio":"Cortile LCA Moscova","indirizzo":"Via della Moscova 18, Milano","lat":null,"lon":null,"spazio_id":2195,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2195"},{"id":6107,"tipo":["CITY"],"generi":["impro","jazz"],"giorno":"16","giorno_nome":"SAT","ora":"11:00","titolo":"Sachiko Nakajima","pianisti":"\"Japanese Folk Reimagined\"","link_prenotazione":null,"zona":3,"nome_spazio":"Politecnico di Milano - Giardino di Leonardo","indirizzo":"Piazza Leonardo da Vinci 32, Milano","lat":45.4783,"lon":9.2272,"spazio_id":2169,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2169"},{"id":6246,"tipo":["GUEST"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"11:00","titolo":"\"Weaving the Notes\"","pianisti":"","link_prenotazione":null,"zona":0,"nome_spazio":"Spazio Vitale Barberis Canonico","indirizzo":"Via Solferino 23, Milano","lat":null,"lon":null,"spazio_id":2155,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2155"},{"id":5879,"tipo":["PIANO CENTER"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"11:20","titolo":"Duo Intreccio - Giorgia Marletta e Francesco Gaspardone","pianisti":"\"La natura racconta: l'ascolto della natura attraverso lo sguardo dell'infanzia\"","link_prenotazione":null,"zona":1,"nome_spazio":"GAM Piano Laghetto","indirizzo":"Ingresso da Via Palestro, 18 e da Via Marina, Milano","lat":45.471112,"lon":9.199053,"spazio_id":361,"event_url":"https://pianocitymilano.it/programma/?spazio_id=361"},{"id":5900,"tipo":["GUEST"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"11:30","titolo":"Pierino e il lupo","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Università Cattolica del Sacro Cuore, Aula Magna","indirizzo":"Largo A. Gemelli 1, Milano","lat":45.457,"lon":9.1736,"spazio_id":1469,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1469"},{"id":5661,"tipo":["GUEST"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"11:30","titolo":"Katarzyna Preisner-Luca Girlanda","pianisti":"Un legame musicale: maestro ed allievo","link_prenotazione":null,"zona":4,"nome_spazio":"Teatro Oscar Danza Oscar","indirizzo":"Via Lattanzio 60 B 60 B, Milano","lat":45.4528,"lon":9.2125,"spazio_id":2099,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2099"},{"id":6108,"tipo":["CITY"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"11:30","titolo":"\"Liszt 140 - Poemi Sinfonici 1 e 2\"","pianisti":"Poemi Sinfonici 1 e 2 - Duo Ad Parnassum","link_prenotazione":null,"zona":1,"nome_spazio":"Rotonda della Besana","indirizzo":"Via E. Besana 12, Milano","lat":45.4603,"lon":9.205373,"spazio_id":1566,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1566"},{"id":5687,"tipo":["GUEST"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"11:30","titolo":"Ex studenti del Liceo \"Quasimodo\" in concerto","pianisti":"Liceo \"Quasimodo\" in musica","link_prenotazione":null,"zona":0,"nome_spazio":"Aula Galli \"Liceo Quasimodo\"","indirizzo":"via Volta 25 (ingresso pza Camillo Formenti) 25, Magenta (MI)","lat":null,"lon":null,"spazio_id":2095,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2095"},{"id":6149,"tipo":["CITY"],"generi":["jazz"],"giorno":"16","giorno_nome":"SAT","ora":"11:30","titolo":"Noa Fort","pianisti":"","link_prenotazione":"https://link.dice.fm/Fbd938c296fc","zona":1,"nome_spazio":"Casa delle Donne","indirizzo":"Via Marsala 10, Milano","lat":45.4775,"lon":9.2017,"spazio_id":2182,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2182"},{"id":5963,"tipo":["GUEST"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"11:30","titolo":"Simone Ivaldi","pianisti":"\"Poesie russe\"","link_prenotazione":null,"zona":9,"nome_spazio":"Museo \"Casa della memoria\"","indirizzo":"Via Confalonieri 14, Milano","lat":null,"lon":null,"spazio_id":1975,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1975"},{"id":6168,"tipo":["CITY"],"generi":["colonne sonore"],"giorno":"16","giorno_nome":"SAT","ora":"12:00","titolo":"Carlo Morena","pianisti":"\"Cinematico, un omaggio alla storia del Cinema\"","link_prenotazione":null,"zona":5,"nome_spazio":"Parco Chiesa Rossa","indirizzo":"Via San Domenico Savio 3, Milano","lat":45.430548,"lon":9.174353,"spazio_id":1530,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1530"},{"id":6210,"tipo":["CITY","PIANO LESSON"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"12:00","titolo":"Emauele Ferrari","pianisti":"\"Tra estro e passione: Brahms\"","link_prenotazione":null,"zona":8,"nome_spazio":"CASVA - Centro di Alti Studi sulle Arti Visive","indirizzo":"Via Isernia 5, Milano","lat":null,"lon":null,"spazio_id":2185,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2185"},{"id":6161,"tipo":["CITY","PIANO READING"],"generi":["classica","contemporanea"],"giorno":"16","giorno_nome":"SAT","ora":"12:00","titolo":"Pietro Beltrani e Giacomo Sangiorgi","pianisti":"\"Il piano di Agatha Christie\"","link_prenotazione":null,"zona":8,"nome_spazio":"Milano Certosa Distict - Ex Koelliker","indirizzo":"Caravaggio 30, Milano","lat":null,"lon":null,"spazio_id":2186,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2186"},{"id":6221,"tipo":["GUEST"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"12:00","titolo":"Alberto Chines","pianisti":"","link_prenotazione":null,"zona":7,"nome_spazio":"Cortile LCA Moscova","indirizzo":"Via della Moscova 18, Milano","lat":null,"lon":null,"spazio_id":2195,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2195"},{"id":6154,"tipo":["CITY"],"generi":["classica","moderna"],"giorno":"16","giorno_nome":"SAT","ora":"12:00","titolo":"Yazan Greselin","pianisti":"\"Da Bach ai giorni nostri\"","link_prenotazione":null,"zona":1,"nome_spazio":"Grand Hotel et De Milan","indirizzo":"Via A. Manzoni 29, Milano","lat":45.4685,"lon":9.1916,"spazio_id":2181,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2181"},{"id":6124,"tipo":["CITY"],"generi":["rock","pop"],"giorno":"16","giorno_nome":"SAT","ora":"12:00","titolo":"Arturo Stàlteri","pianisti":"\"The Peace Concert\"","link_prenotazione":null,"zona":9,"nome_spazio":"Area Mameli","indirizzo":"Viale Suzzani 96/98, Milano","lat":null,"lon":null,"spazio_id":2198,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2198"},{"id":5962,"tipo":["GUEST"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"12:00","titolo":"Gabriele Pedone","pianisti":"Recital per pianoforte – “Sogni, Ombre e Visioni”","link_prenotazione":null,"zona":4,"nome_spazio":"Circolo Arci Mondini, Sala Polifunzionale","indirizzo":"Via Freiköfel 1, Milano","lat":45.4858,"lon":9.235,"spazio_id":1616,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1616"},{"id":6193,"tipo":["PIANO CENTER"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"12:10","titolo":"Konstantin Emelyanov","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"GAM Piano Giardino","indirizzo":"Ingresso da Via Palestro, 18 e da Via Marina, Milano","lat":45.4727,"lon":9.2009,"spazio_id":2012,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2012"},{"id":6110,"tipo":["CITY"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"12:30","titolo":"\"Franz Liszt: i Poemi Sinfonici a quattro mani\"","pianisti":"Poemi Sinfonici 3, 4, 5 e 6 - Roberto Franca e Alessandro Di Lorenzo","link_prenotazione":null,"zona":1,"nome_spazio":"Rotonda della Besana","indirizzo":"Via E. Besana 12, Milano","lat":45.4603,"lon":9.205373,"spazio_id":1566,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1566"},{"id":6158,"tipo":["CITY"],"generi":["impro"],"giorno":"16","giorno_nome":"SAT","ora":"13:30","titolo":"Alberto Forino","pianisti":"\"Holding Egos\"","link_prenotazione":null,"zona":8,"nome_spazio":"CASVA - Centro di Alti Studi sulle Arti Visive","indirizzo":"Via Isernia 5, Milano","lat":null,"lon":null,"spazio_id":2185,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2185"},{"id":6112,"tipo":["CITY"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"13:30","titolo":"\"Franz Liszt: i Poemi Sinfonici a quattro mani\"","pianisti":"Poemi Sinfonici 7, 8 e 9 - Federico Ceriani e Irina Kravchenko","link_prenotazione":null,"zona":1,"nome_spazio":"Rotonda della Besana","indirizzo":"Via E. Besana 12, Milano","lat":45.4603,"lon":9.205373,"spazio_id":1566,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1566"},{"id":6116,"tipo":["CITY"],"generi":["world music","jazz"],"giorno":"16","giorno_nome":"SAT","ora":"14:00","titolo":"Lorenzo Tosarelli","pianisti":"\"Omaggio a Guinga\"","link_prenotazione":null,"zona":9,"nome_spazio":"Paolo Pini","indirizzo":"Via Ippocrate, Milano","lat":null,"lon":null,"spazio_id":2171,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2171"},{"id":6045,"tipo":[],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"14:00","titolo":"Komitas Primavera","pianisti":"","link_prenotazione":null,"zona":0,"nome_spazio":"Fondazione Pasquinelli","indirizzo":"Corso Magenta 42, Milano","lat":null,"lon":null,"spazio_id":2149,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2149"},{"id":6104,"tipo":["CITY"],"generi":["classica","musiche originali"],"giorno":"16","giorno_nome":"SAT","ora":"14:00","titolo":"Gabriele Rossi","pianisti":"\"Concerto in due atti, atto I\"","link_prenotazione":null,"zona":5,"nome_spazio":"Parco Alessandrina Ravizza","indirizzo":"Viale Toscana, Milano","lat":45.4475,"lon":9.1956,"spazio_id":2167,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2167"},{"id":6068,"tipo":["GUEST"],"generi":["jazz"],"giorno":"16","giorno_nome":"SAT","ora":"14:00","titolo":"Simone Daclon","pianisti":"“Weaving the Notes”","link_prenotazione":null,"zona":0,"nome_spazio":"Spazio Vitale Barberis Canonico","indirizzo":"Via Solferino 23, Milano","lat":null,"lon":null,"spazio_id":2155,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2155"},{"id":6222,"tipo":[],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"14:00","titolo":"Irene Accardo","pianisti":"","link_prenotazione":null,"zona":6,"nome_spazio":"Officina 440","indirizzo":"Via Tolstoj 24/7, Milano","lat":45.4477,"lon":9.162,"spazio_id":2196,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2196"},{"id":6118,"tipo":["CITY","PIANO LESSON"],"generi":[],"giorno":"16","giorno_nome":"SAT","ora":"14:30","titolo":"Claudio Dauelsberg","pianisti":"LABORATORIO - \"Il pianoforte è un'orchestra\"","link_prenotazione":null,"zona":7,"nome_spazio":"mare culturale urbano - cascina torrette","indirizzo":"Via G. Gabetti 15, Milano","lat":45.46818,"lon":9.122639,"spazio_id":339,"event_url":"https://pianocitymilano.it/programma/?spazio_id=339"},{"id":5778,"tipo":["GUEST"],"generi":["alternative rock"],"giorno":"16","giorno_nome":"SAT","ora":"14:30","titolo":"Valerio Rifici","pianisti":"\"ALTERNATIVE ROCK MINI-BOOK\"","link_prenotazione":null,"zona":1,"nome_spazio":"Milano World School","indirizzo":"Via Della Chiusa 9, Milano","lat":45.4571,"lon":9.186,"spazio_id":2102,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2102"},{"id":6070,"tipo":["house"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"14:30","titolo":"Francesco Libetta","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Zona 1","indirizzo":"Castello, Milano","lat":null,"lon":null,"spazio_id":2156,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2156"},{"id":6135,"tipo":["CITY"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"14:30","titolo":"\"Franz Liszt: i Poemi Sinfonici a quattro mani\"","pianisti":"Poemi Sinfonici 10, 11, 12 e 13 - Carlotta Nicole Lusa e Marino Nahon","link_prenotazione":null,"zona":1,"nome_spazio":"Rotonda della Besana","indirizzo":"Via E. Besana 12, Milano","lat":45.4603,"lon":9.205373,"spazio_id":1566,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1566"},{"id":6101,"tipo":["CITY"],"generi":["jazz"],"giorno":"16","giorno_nome":"SAT","ora":"14:30","titolo":"Gaetano Liguori","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Carcere di San Vittore","indirizzo":"Piazza G. Filangieri 2, Milano","lat":45.4596,"lon":9.1675,"spazio_id":2165,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2165"},{"id":6199,"tipo":["PIANO CENTER"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"14:50","titolo":"Mila Gostijanović","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"GAM Piano Laghetto","indirizzo":"Ingresso da Via Palestro, 18 e da Via Marina, Milano","lat":45.471112,"lon":9.199053,"spazio_id":361,"event_url":"https://pianocitymilano.it/programma/?spazio_id=361"},{"id":6170,"tipo":["CITY"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"15:00","titolo":"\"Ravel in movimento I\"","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Auditorium Lattuada","indirizzo":"Corso di Porta Vigentina 15/a, Milano","lat":45.454,"lon":9.1989,"spazio_id":2067,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2067"},{"id":6159,"tipo":["CITY","PIANO LESSON"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"15:00","titolo":"Jorge Juárez Alvarez","pianisti":"\"Ricordi di Milano - le musiche di Giulio Ricordi\"","link_prenotazione":null,"zona":8,"nome_spazio":"CASVA - Centro di Alti Studi sulle Arti Visive","indirizzo":"Via Isernia 5, Milano","lat":null,"lon":null,"spazio_id":2185,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2185"},{"id":6041,"tipo":["GUEST"],"generi":["classica","contemporanea"],"giorno":"16","giorno_nome":"SAT","ora":"15:00","titolo":"Pianisti della scuola Mondomusica","pianisti":"\"Il pianoforte conquista i bambini\"","link_prenotazione":null,"zona":8,"nome_spazio":"Villa Scheibler","indirizzo":"Via Felice Orsini 21, Milano","lat":null,"lon":null,"spazio_id":2148,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2148"},{"id":6085,"tipo":[],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"15:00","titolo":"Edoardo Riganti Fulginei","pianisti":"","link_prenotazione":"https://eventi.volvocaritalia.com/piano-city-milano-edoardo-riganti-fulginei?utm_medium=web&utm_content=event_web_1x1_vsm-event-sitoweb&utm_campaign=it_event_awareness_2605_masterbrand_other_evento-vsm-pianocity16maggio&utm_source=volvo","zona":9,"nome_spazio":"Volvo Studio Milano","indirizzo":"Viale della Liberazione angolo Via Melchiorre Gioia, Milano","lat":45.482574,"lon":9.193199,"spazio_id":380,"event_url":"https://pianocitymilano.it/programma/?spazio_id=380"},{"id":6223,"tipo":["GUEST"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"15:00","titolo":"Ben Abraham","pianisti":"","link_prenotazione":null,"zona":6,"nome_spazio":"Officina 440","indirizzo":"Via Tolstoj 24/7, Milano","lat":45.4477,"lon":9.162,"spazio_id":2196,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2196"},{"id":6136,"tipo":["CITY"],"generi":["musiche originali"],"giorno":"16","giorno_nome":"SAT","ora":"15:00","titolo":"Gianluca Mancini","pianisti":"","link_prenotazione":"https://link.dice.fm/bd10b3fd20d9","zona":1,"nome_spazio":"Indigo Hotel Milan","indirizzo":"Corso Monforte 27, Milano","lat":45.4677,"lon":9.2025,"spazio_id":2041,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2041"},{"id":5618,"tipo":["house"],"generi":["impro","ragtime","jazz"],"giorno":"16","giorno_nome":"SAT","ora":"15:30","titolo":"Valerio Stroppa","pianisti":"","link_prenotazione":null,"zona":7,"nome_spazio":"Zona 7","indirizzo":"San Siro, Milano","lat":null,"lon":null,"spazio_id":1812,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1812"},{"id":6117,"tipo":["CITY","PIANO LESSON"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"15:30","titolo":"\"Fiabe e tormenti: il pianoforte racconta\"","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Ex Cinema Orchidea","indirizzo":"Via Terraggio 3, Milano","lat":45.4654,"lon":9.1782,"spazio_id":2172,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2172"},{"id":6073,"tipo":["GUEST"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"15:30","titolo":"Pianisti che studiano, vivono o lavorano a Rho","pianisti":"","link_prenotazione":null,"zona":0,"nome_spazio":"Piazza Visconti","indirizzo":"Piazza Visconti 1, Rho","lat":null,"lon":null,"spazio_id":2101,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2101"},{"id":6178,"tipo":["CITY"],"generi":["contemporanea"],"giorno":"16","giorno_nome":"SAT","ora":"15:30","titolo":"Silvia Di Chiara","pianisti":"","link_prenotazione":null,"zona":8,"nome_spazio":"Museo Don Gnocchi - Fondazione Don Gnocchi","indirizzo":"Via Capecelatro 66, Milano","lat":null,"lon":null,"spazio_id":2037,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2037"},{"id":6194,"tipo":["PIANO CENTER"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"15:40","titolo":"Axel Trolese","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"GAM Piano Giardino","indirizzo":"Ingresso da Via Palestro, 18 e da Via Marina, Milano","lat":45.4727,"lon":9.2009,"spazio_id":2012,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2012"},{"id":5927,"tipo":["GUEST"],"generi":["classica","contemporanea"],"giorno":"16","giorno_nome":"SAT","ora":"16:00","titolo":"Studenti Humanitas University","pianisti":"\"Notes across the campus\"","link_prenotazione":null,"zona":0,"nome_spazio":"Humanitas University","indirizzo":"Via R. L. Montalcini 4, Pieve Emanuele","lat":null,"lon":null,"spazio_id":1444,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1444"},{"id":6243,"tipo":["GUEST"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"16:00","titolo":"Bruno Maria Billone e Antonio Alessandri","pianisti":"\"Mamma oca e gli otto balli\"","link_prenotazione":null,"zona":3,"nome_spazio":"Libera Scuola Rudolf Steiner","indirizzo":"Via T. Pini 1, Milano","lat":45.4521,"lon":9.1505,"spazio_id":1118,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1118"},{"id":6115,"tipo":["CITY"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"16:00","titolo":"\"Spazio ai giovani talenti della zona San Siro\"","pianisti":"","link_prenotazione":null,"zona":7,"nome_spazio":"Spazio Case Nuove","indirizzo":"Via Paravia, Ingresso da angolo Via Don Gnocchi 22, Milano","lat":null,"lon":null,"spazio_id":2170,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2170"},{"id":6141,"tipo":["CITY"],"generi":["classica","jazz"],"giorno":"16","giorno_nome":"SAT","ora":"16:00","titolo":"Yasuyo Segawa","pianisti":"\"Resonating into the future: Classic-Jazz-Opera for the left hand\"","link_prenotazione":null,"zona":1,"nome_spazio":"Istituto Neurologico Carlo Besta","indirizzo":"Via G. Celoria 11, Milano","lat":45.4825,"lon":9.23,"spazio_id":1295,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1295"},{"id":6152,"tipo":["CITY"],"generi":["classica","contemporanea"],"giorno":"16","giorno_nome":"SAT","ora":"16:00","titolo":"Andrea Carcano e Corrado Greco","pianisti":"","link_prenotazione":"https://link.dice.fm/R7ea5b1d982a","zona":1,"nome_spazio":"Casa di Riposo per Musicisti - Fondazione Giuseppe Verdi","indirizzo":"Piazza Buonarroti 29, Milano","lat":45.4669,"lon":9.153,"spazio_id":2116,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2116"},{"id":6224,"tipo":["GUEST"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"16:00","titolo":"Luigi Palombi","pianisti":"","link_prenotazione":null,"zona":6,"nome_spazio":"Officina 440","indirizzo":"Via Tolstoj 24/7, Milano","lat":45.4477,"lon":9.162,"spazio_id":2196,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2196"},{"id":5777,"tipo":["GUEST"],"generi":["rock","pop","soul","jazz"],"giorno":"16","giorno_nome":"SAT","ora":"16:00","titolo":"Damien Finch","pianisti":"\"Sounds of the seventies\"","link_prenotazione":null,"zona":1,"nome_spazio":"Milano World School","indirizzo":"Via Della Chiusa 9, Milano","lat":45.4571,"lon":9.186,"spazio_id":2102,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2102"},{"id":6179,"tipo":["CITY"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"16:00","titolo":"\"Ravel in movimento II\"","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Auditorium Lattuada","indirizzo":"Corso di Porta Vigentina 15/a, Milano","lat":45.454,"lon":9.1989,"spazio_id":2067,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2067"},{"id":6123,"tipo":["CITY"],"generi":["pop","jazz"],"giorno":"16","giorno_nome":"SAT","ora":"16:00","titolo":"Edoardo Vilella","pianisti":"","link_prenotazione":null,"zona":9,"nome_spazio":"Area Mameli","indirizzo":"Viale Suzzani 96/98, Milano","lat":null,"lon":null,"spazio_id":2198,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2198"},{"id":6129,"tipo":["CITY"],"generi":["musiche originali"],"giorno":"16","giorno_nome":"SAT","ora":"16:00","titolo":"D Flat","pianisti":"","link_prenotazione":null,"zona":7,"nome_spazio":"Sheraton Milan San Siro","indirizzo":"Via Caldera 3, Milano","lat":45.47849,"lon":9.103123,"spazio_id":955,"event_url":"https://pianocitymilano.it/programma/?spazio_id=955"},{"id":5689,"tipo":["GUEST"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"16:00","titolo":"Simone Zorini","pianisti":"\"INCANDESCENZE LIQUIDE\"","link_prenotazione":null,"zona":1,"nome_spazio":"Chiesa Cristiana Protestante in Milano","indirizzo":"Via M. De Marchi 9, Milano","lat":45.4768,"lon":9.2057,"spazio_id":1803,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1803"},{"id":6039,"tipo":["GUEST"],"generi":["classica","ragtime"],"giorno":"16","giorno_nome":"SAT","ora":"16:00","titolo":"Valentina Pasculli e i Pianisti di Baggio","pianisti":"","link_prenotazione":null,"zona":0,"nome_spazio":"Biblioteca di Baggio","indirizzo":"Via Pistoia 10, Milano","lat":null,"lon":null,"spazio_id":2146,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2146"},{"id":6228,"tipo":["CITY"],"generi":["classica","moderna"],"giorno":"16","giorno_nome":"SAT","ora":"16:00","titolo":"Ryota Kikuchi","pianisti":"","link_prenotazione":null,"zona":7,"nome_spazio":"mare culturale urbano - cascina torrette","indirizzo":"Via G. Gabetti 15, Milano","lat":45.46818,"lon":9.122639,"spazio_id":339,"event_url":"https://pianocitymilano.it/programma/?spazio_id=339"},{"id":6230,"tipo":["CITY"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"16:00","titolo":"Marco Federico Maria Drufuca  e Omar Al Deek","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Piazze Sonore","indirizzo":"Via Savarè 1, Milano","lat":null,"lon":null,"spazio_id":2203,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2203"},{"id":5763,"tipo":["GUEST"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"16:00","titolo":"Bruno Maria Billone e Antonio Alessandri","pianisti":"\"Mamma oca e gli otto balli\"","link_prenotazione":null,"zona":3,"nome_spazio":"Libera Scuola Rudolf Steiner","indirizzo":"Via T. Pini 1, Milano","lat":45.4521,"lon":9.1505,"spazio_id":1117,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1117"},{"id":5894,"tipo":["GUEST"],"generi":["jazz","musiche originali"],"giorno":"16","giorno_nome":"SAT","ora":"16:00","titolo":"Alessio Magliari","pianisti":"","link_prenotazione":null,"zona":4,"nome_spazio":"OttavaNota","indirizzo":"Via M. Bruto 24, Milano","lat":45.4444,"lon":9.1968,"spazio_id":1154,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1154"},{"id":5724,"tipo":["house"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"16:30","titolo":"Cecilia Ferreri","pianisti":"","link_prenotazione":null,"zona":9,"nome_spazio":"Zona 9","indirizzo":"Porta Venezia, Milano","lat":null,"lon":null,"spazio_id":2108,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2108"},{"id":5958,"tipo":["GUEST"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"16:30","titolo":"Roberto De Leonardis","pianisti":"\"Le Grandi Sonate per Pianoforte\"","link_prenotazione":null,"zona":5,"nome_spazio":"Parrocchia San Gottardo al Corso","indirizzo":"Via San Gottardo 6, Milano","lat":45.4502,"lon":9.1825,"spazio_id":2207,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2207"},{"id":6160,"tipo":["CITY"],"generi":["contemporanea"],"giorno":"16","giorno_nome":"SAT","ora":"16:30","titolo":"Veronique Vanhoucke","pianisti":"\"Ensor on the beach\"","link_prenotazione":null,"zona":8,"nome_spazio":"CASVA - Centro di Alti Studi sulle Arti Visive","indirizzo":"Via Isernia 5, Milano","lat":null,"lon":null,"spazio_id":2185,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2185"},{"id":6137,"tipo":["CITY"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"17:00","titolo":"\"Franz Liszt: le Sinfonie a due pianoforti\"","pianisti":"Sinfonia Faust - Gaston Polle Ansaldi e Matteo Chiambretto","link_prenotazione":null,"zona":1,"nome_spazio":"Rotonda della Besana","indirizzo":"Via E. Besana 12, Milano","lat":45.4603,"lon":9.205373,"spazio_id":1566,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1566"},{"id":6227,"tipo":["CITY"],"generi":["musiche originali","neoclassical","elettronica"],"giorno":"16","giorno_nome":"SAT","ora":"17:00","titolo":"Mattia Vlad Morleo","pianisti":"","link_prenotazione":null,"zona":0,"nome_spazio":"Agnona Showroom","indirizzo":"Via Archimede 53, Milano","lat":45.4674,"lon":9.1971,"spazio_id":1923,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1923"},{"id":5909,"tipo":["GUEST"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"17:00","titolo":"Gioia Soletto-Edoardo Fadda","pianisti":"\"C'era una volta\"","link_prenotazione":null,"zona":0,"nome_spazio":"Comune Arese","indirizzo":"Piazza carlo Alberto dalla Chiesa 2, Arese","lat":null,"lon":null,"spazio_id":2122,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2122"},{"id":6098,"tipo":["CITY"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"17:00","titolo":"Giuseppe Guarrera","pianisti":"\"Omaggio ad Alfred Brendel\"","link_prenotazione":null,"zona":0,"nome_spazio":"Teatro alla Scala - Ridotto dei Palchi","indirizzo":"Piazza della Scala 1, Milano","lat":null,"lon":null,"spazio_id":2164,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2164"},{"id":6105,"tipo":["CITY"],"generi":["musiche originali"],"giorno":"16","giorno_nome":"SAT","ora":"17:00","titolo":"Andor Sanderson","pianisti":"\"Fragments\"","link_prenotazione":null,"zona":6,"nome_spazio":"Stazione di Milano Porta Genova","indirizzo":"Piazzale Stazione Porta Genova, Milano","lat":null,"lon":null,"spazio_id":2168,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2168"},{"id":6181,"tipo":["CITY"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"17:00","titolo":"\"Introspezione\"","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Auditorium Lattuada","indirizzo":"Corso di Porta Vigentina 15/a, Milano","lat":45.454,"lon":9.1989,"spazio_id":2067,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2067"},{"id":6055,"tipo":["GUEST"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"17:00","titolo":"Pier Francesco Forlenza","pianisti":"“Spain”","link_prenotazione":null,"zona":5,"nome_spazio":"Laboratorio pianoforti Griffa","indirizzo":"Via San Rocco 5, Milano","lat":45.449603,"lon":9.200703,"spazio_id":322,"event_url":"https://pianocitymilano.it/programma/?spazio_id=322"},{"id":5810,"tipo":["house"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"17:00","titolo":"Angela Lazzaroni e Chiara Nicora","pianisti":"\"Vienna tra '700 e '800\"","link_prenotazione":null,"zona":9,"nome_spazio":"Zona 9","indirizzo":"Dergano, Milano","lat":null,"lon":null,"spazio_id":1629,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1629"},{"id":6042,"tipo":["GUEST"],"generi":["impro"],"giorno":"16","giorno_nome":"SAT","ora":"17:00","titolo":"Pianisti della scuola Mondomusica","pianisti":"Il pianoforte chiama? Gli adolescenti rispondono","link_prenotazione":null,"zona":8,"nome_spazio":"Villa Scheibler","indirizzo":"Via Felice Orsini 21, Milano","lat":null,"lon":null,"spazio_id":2148,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2148"},{"id":6244,"tipo":["GUEST"],"generi":["elettronica"],"giorno":"16","giorno_nome":"SAT","ora":"17:00","titolo":"Esther Flückiger","pianisti":"\"Electronic Waves & Female Keys\"","link_prenotazione":null,"zona":9,"nome_spazio":"AGON","indirizzo":"Viale Sarca 336, Milano","lat":null,"lon":null,"spazio_id":1487,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1487"},{"id":5613,"tipo":["house"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"17:00","titolo":"Raffaele Figini","pianisti":"","link_prenotazione":null,"zona":5,"nome_spazio":"Zona 5","indirizzo":"Giambologna, Milano","lat":null,"lon":null,"spazio_id":960,"event_url":"https://pianocitymilano.it/programma/?spazio_id=960"},{"id":6162,"tipo":["CITY"],"generi":["colonne sonore"],"giorno":"16","giorno_nome":"SAT","ora":"17:00","titolo":"Domenico Balducci","pianisti":"\"Omaggio a Joe Hisaishi\"","link_prenotazione":null,"zona":8,"nome_spazio":"Milano Certosa District - La Forgiatura","indirizzo":"Via Varesina 162, Milano","lat":null,"lon":null,"spazio_id":2020,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2020"},{"id":5918,"tipo":["house"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"17:00","titolo":"Duo Giotti","pianisti":"\"Il giardino segreto\"","link_prenotazione":null,"zona":8,"nome_spazio":"Zona 8","indirizzo":"Domodossola, Milano","lat":null,"lon":null,"spazio_id":2120,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2120"},{"id":6225,"tipo":["GUEST"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"17:00","titolo":"Silvia Cattaneo","pianisti":"“Hommages”","link_prenotazione":null,"zona":6,"nome_spazio":"Officina 440","indirizzo":"Via Tolstoj 24/7, Milano","lat":45.4477,"lon":9.162,"spazio_id":2196,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2196"},{"id":6134,"tipo":["CITY"],"generi":["leggera"],"giorno":"16","giorno_nome":"SAT","ora":"17:00","titolo":"Dario Lutrino","pianisti":"\"Il sogno, l’amore, il cielo\"","link_prenotazione":"https://link.dice.fm/B92a63b59bba","zona":1,"nome_spazio":"Château Monfort","indirizzo":"Corso Concordia 1, Milano","lat":45.4685,"lon":9.2061,"spazio_id":2175,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2175"},{"id":6195,"tipo":["PIANO CENTER"],"generi":["jazz"],"giorno":"16","giorno_nome":"SAT","ora":"17:10","titolo":"Enrico Intra","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"GAM Piano Giardino","indirizzo":"Ingresso da Via Palestro, 18 e da Via Marina, Milano","lat":45.4727,"lon":9.2009,"spazio_id":2012,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2012"},{"id":6059,"tipo":["GUEST"],"generi":["contemporanea"],"giorno":"16","giorno_nome":"SAT","ora":"17:30","titolo":"Mattia Barbagallo","pianisti":"\"Outside Time\"","link_prenotazione":null,"zona":6,"nome_spazio":"Spazio Bianca","indirizzo":"Via Bianca Ceva 20, Milano","lat":null,"lon":null,"spazio_id":2152,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2152"},{"id":6145,"tipo":["CITY"],"generi":["contemporanea"],"giorno":"16","giorno_nome":"SAT","ora":"17:30","titolo":"Ji Liu","pianisti":"\"Low: from Bowie to Glass\"","link_prenotazione":null,"zona":9,"nome_spazio":"BiM Milano","indirizzo":"Viale Piero e Alberto Pirelli 10, Milano","lat":null,"lon":null,"spazio_id":2060,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2060"},{"id":6095,"tipo":["FUORI PORTA"],"generi":["musiche originali","pop"],"giorno":"16","giorno_nome":"SAT","ora":"17:30","titolo":"Gabriele Rossi","pianisti":"\"Concerto in due atti, atto II\"","link_prenotazione":null,"zona":0,"nome_spazio":"Serravalle Outlet","indirizzo":"Via della Moda 1, Serravalle Scrivia","lat":null,"lon":null,"spazio_id":2163,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2163"},{"id":5757,"tipo":["house"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"17:30","titolo":"Vincenzo Culotta","pianisti":"La trama sonora dell’invisibile. Viaggio tra echi, riflessi e miraggi","link_prenotazione":null,"zona":4,"nome_spazio":"Zona 4","indirizzo":"Calvairate, Milano","lat":null,"lon":null,"spazio_id":1680,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1680"},{"id":6215,"tipo":["GUEST"],"generi":["classica","musiche originali","jazz"],"giorno":"16","giorno_nome":"SAT","ora":"18:00","titolo":"Lorenzo Palermo","pianisti":"","link_prenotazione":null,"zona":0,"nome_spazio":"Auditorium Casa della Musica","indirizzo":"Via Giacomo Matteotti 9, Cesano Boscone","lat":null,"lon":null,"spazio_id":2157,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2157"},{"id":6127,"tipo":["CITY"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"18:00","titolo":"Guido Orso Coppin","pianisti":"","link_prenotazione":null,"zona":7,"nome_spazio":"Ippodromo Snai San Siro - Fontana","indirizzo":"Piazzale dello Sport 16, Milano","lat":null,"lon":null,"spazio_id":1910,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1910"},{"id":6163,"tipo":["CITY"],"generi":["musiche originali"],"giorno":"16","giorno_nome":"SAT","ora":"18:00","titolo":"Francesco Lettieri","pianisti":"","link_prenotazione":null,"zona":8,"nome_spazio":"Milano Certosa District - La Forgiatura","indirizzo":"Via Varesina 162, Milano","lat":null,"lon":null,"spazio_id":2020,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2020"},{"id":6211,"tipo":["GUEST"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"18:00","titolo":"Giovani Pianisti del Liceo Carlo Tenca","pianisti":"Il pianoforte tra intimismo da camera e sperimentazioni sonore","link_prenotazione":null,"zona":1,"nome_spazio":"Liceo Carlo Tenca, Aula Magna","indirizzo":"Bastioni di Porta Volta 16, Milano","lat":null,"lon":null,"spazio_id":1011,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1011"},{"id":6069,"tipo":["GUEST"],"generi":["classica","jazz"],"giorno":"16","giorno_nome":"SAT","ora":"18:00","titolo":"Francesco Grillo","pianisti":"“Weaving the Notes”","link_prenotazione":null,"zona":1,"nome_spazio":"Spazio Vitale Barberis Canonico","indirizzo":"Via Solferino 23, Milano","lat":45.477405,"lon":9.187809,"spazio_id":760,"event_url":"https://pianocitymilano.it/programma/?spazio_id=760"},{"id":5655,"tipo":["GUEST"],"generi":["neoclassical","musiche originali"],"giorno":"16","giorno_nome":"SAT","ora":"18:00","titolo":"Roberto Binetti","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Chiesa Cristiana Protestante in Milano","indirizzo":"Via M. De Marchi 9, Milano","lat":45.4768,"lon":9.2057,"spazio_id":1803,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1803"},{"id":6114,"tipo":["CITY"],"generi":["world music"],"giorno":"16","giorno_nome":"SAT","ora":"18:00","titolo":"Duo pianistico Sugiko Chinen & Luca Arnaldo Maria Colombo","pianisti":"\"Four Seasons Four Hands - Musica del XX secolo dal Giappone al Sudamerica\"","link_prenotazione":null,"zona":7,"nome_spazio":"Spazio Case Nuove","indirizzo":"Via Paravia, Ingresso da angolo Via Don Gnocchi 22, Milano","lat":null,"lon":null,"spazio_id":2170,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2170"},{"id":6131,"tipo":["CITY"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"18:00","titolo":"Cinzia Dato","pianisti":"","link_prenotazione":"https://link.dice.fm/y8de0968c715","zona":1,"nome_spazio":"Senato Hotel Milano","indirizzo":"Via Senato 22, Milano","lat":45.47147,"lon":9.196412,"spazio_id":1336,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1336"},{"id":5725,"tipo":["CITY"],"generi":["musiche originali"],"giorno":"16","giorno_nome":"SAT","ora":"18:00","titolo":"Davide Santacolomba","pianisti":"","link_prenotazione":null,"zona":7,"nome_spazio":"mare culturale urbano - cascina torrette","indirizzo":"Via G. Gabetti 15, Milano","lat":45.46818,"lon":9.122639,"spazio_id":339,"event_url":"https://pianocitymilano.it/programma/?spazio_id=339"},{"id":6084,"tipo":["CITY"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"18:00","titolo":"Bruno Canino","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Cineteca Milano Arlecchino","indirizzo":"Via San Pietro all'Orto 9, Milano","lat":45.4665,"lon":9.1953,"spazio_id":2161,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2161"},{"id":5975,"tipo":["GUEST"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"18:00","titolo":"Christopher Ewers e Michael Kuhun","pianisti":"\"Il pianoforte tra duo e solista nel Romanticismo\"","link_prenotazione":null,"zona":1,"nome_spazio":"CDQ Garibaldi","indirizzo":"Corso Garibaldi 27, Milano","lat":45.4763,"lon":9.1854,"spazio_id":1628,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1628"},{"id":6034,"tipo":["GUEST"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"18:00","titolo":"Thomas Amato e Andrea Brunetta","pianisti":"","link_prenotazione":null,"zona":0,"nome_spazio":"Salone dell’Associazione Musicale Gaffurio","indirizzo":"Via Solferino 20, Lodi","lat":null,"lon":null,"spazio_id":2145,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2145"},{"id":5776,"tipo":["GUEST"],"generi":["classica","rock","pop"],"giorno":"16","giorno_nome":"SAT","ora":"18:00","titolo":"Stefano Meani","pianisti":"\"FUGHE & SONGS\"","link_prenotazione":null,"zona":1,"nome_spazio":"Milano World School","indirizzo":"Via Della Chiusa 9, Milano","lat":45.4571,"lon":9.186,"spazio_id":2102,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2102"},{"id":6053,"tipo":["house"],"generi":["musiche originali"],"giorno":"16","giorno_nome":"SAT","ora":"18:00","titolo":"Alessio Nelli","pianisti":"","link_prenotazione":null,"zona":3,"nome_spazio":"Zona 3","indirizzo":"Piola, Milano","lat":null,"lon":null,"spazio_id":1350,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1350"},{"id":5733,"tipo":["GUEST"],"generi":["jazz"],"giorno":"16","giorno_nome":"SAT","ora":"18:00","titolo":"Luca Cacucciolo","pianisti":"\"RACCONTI ALL' ANICE\"","link_prenotazione":null,"zona":0,"nome_spazio":"SALA CONSILIARE COMUNE DI PIOLTELLO","indirizzo":"VIA CARLO CATTANEO 1, PIOLTELLO","lat":null,"lon":null,"spazio_id":2109,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2109"},{"id":5907,"tipo":["GUEST"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"18:00","titolo":"Eleonora M Ravasi - Fabrizio Castiglioni","pianisti":"\"Dialoghi viennesi per duo pianistico\"","link_prenotazione":null,"zona":0,"nome_spazio":"Hall Clinica Polispecialistica San Carlo","indirizzo":"Via Ospedale 21, Paderno Dugnano (MI)","lat":null,"lon":null,"spazio_id":1869,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1869"},{"id":6182,"tipo":["CITY"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"18:00","titolo":"\"Sonate\"","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Auditorium Lattuada","indirizzo":"Corso di Porta Vigentina 15/a, Milano","lat":45.454,"lon":9.1989,"spazio_id":2067,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2067"},{"id":5801,"tipo":["GUEST"],"generi":["contemporanea","jazz"],"giorno":"16","giorno_nome":"SAT","ora":"18:30","titolo":"Florin Daniel Coltro Campi - Paolo Carugati","pianisti":"\"Il tempo tra le mani\"","link_prenotazione":null,"zona":0,"nome_spazio":"Municipio di Appiano Gentile","indirizzo":"Via Baradello 4, Appiano Gentile","lat":null,"lon":null,"spazio_id":1862,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1862"},{"id":6122,"tipo":["CITY"],"generi":["rock","pop"],"giorno":"16","giorno_nome":"SAT","ora":"18:30","titolo":"Marco Bottazzi","pianisti":"\"Genesis in un piano\"","link_prenotazione":null,"zona":9,"nome_spazio":"Area Mameli","indirizzo":"Viale Suzzani 96/98, Milano","lat":null,"lon":null,"spazio_id":2198,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2198"},{"id":5705,"tipo":["house"],"generi":["jazz"],"giorno":"16","giorno_nome":"SAT","ora":"18:30","titolo":"Marco Cairone","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Zona 1","indirizzo":"De Amicis, Milano","lat":null,"lon":null,"spazio_id":1781,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1781"},{"id":6111,"tipo":["CITY"],"generi":["elettronica","musiche originali"],"giorno":"16","giorno_nome":"SAT","ora":"18:30","titolo":"Alessandro Sgobbio","pianisti":"\"Piano Music 3\"","link_prenotazione":null,"zona":4,"nome_spazio":"Teatro Franco Parenti, Bagni Misteriosi","indirizzo":"Via Pier Lombardo 14, Milano","lat":45.4555,"lon":9.205,"spazio_id":2069,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2069"},{"id":6139,"tipo":["CITY"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"18:30","titolo":"\"Franz Liszt: le Sinfonie a due pianoforti\"","pianisti":"\"Sinfonia Dante - Daniele Fasani e Gianluca Faragli \r\nCon la partecipazione del Coro I Giovani dell’Orchestra Sinfonica di Milano, diretti da Maria Teresa Tramontin\"","link_prenotazione":null,"zona":1,"nome_spazio":"Rotonda della Besana","indirizzo":"Via E. Besana 12, Milano","lat":45.4603,"lon":9.205373,"spazio_id":1566,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1566"},{"id":6138,"tipo":["CITY"],"generi":["jazz"],"giorno":"16","giorno_nome":"SAT","ora":"18:30","titolo":"Rocco De Rosa","pianisti":"","link_prenotazione":null,"zona":2,"nome_spazio":"Hilton Milan","indirizzo":"Via L. Galvani 12, Milano","lat":45.486258,"lon":9.200022,"spazio_id":1346,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1346"},{"id":5758,"tipo":["house"],"generi":["contemporanea","impro"],"giorno":"16","giorno_nome":"SAT","ora":"18:30","titolo":"Giovanni Falascone","pianisti":"\"Corrispondenze\"","link_prenotazione":null,"zona":4,"nome_spazio":"Zona 4","indirizzo":"Calvairate, Milano","lat":null,"lon":null,"spazio_id":1680,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1680"},{"id":6125,"tipo":["CITY"],"generi":["flamenco"],"giorno":"16","giorno_nome":"SAT","ora":"18:30","titolo":"Andrés Barrios","pianisti":"\"Marea Viva\"","link_prenotazione":"https://redazione.iulm.it/wps/wcm/connect/iulm/it/news-ed-eventi/news/andres-barrios-concerto-flamenco-piano-city?wcmitemid=0df32791-08ff-46b0-88dd-68e4a5f677db&wcmitemisdraft=true&WCM_Page.ResetAll=TRUE&CACHE=NONE&CONTENTCACHE=NONE&CONNECTORCACHE=NONE&SRV=Page","zona":6,"nome_spazio":"IULM Università - Giardino del Roseto","indirizzo":"Via C. Bo 1, Milano","lat":null,"lon":null,"spazio_id":2049,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2049"},{"id":5998,"tipo":["house"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"18:30","titolo":"Serena Costa","pianisti":"","link_prenotazione":null,"zona":7,"nome_spazio":"Zona 7","indirizzo":"Washington, Milano","lat":null,"lon":null,"spazio_id":2137,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2137"},{"id":6048,"tipo":["GUEST"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"19:00","titolo":"Mattia Scravaglieri","pianisti":"\"Sogno d'un valzer\"","link_prenotazione":null,"zona":6,"nome_spazio":"Corte dei Miracoli","indirizzo":"Via Mortara 4, Milano","lat":null,"lon":null,"spazio_id":1291,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1291"},{"id":6184,"tipo":["CITY"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"19:00","titolo":"\"Variazione e trascrizione: mutare senza cancellare\"","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Auditorium Lattuada","indirizzo":"Corso di Porta Vigentina 15/a, Milano","lat":45.454,"lon":9.1989,"spazio_id":2067,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2067"},{"id":5882,"tipo":["PIANO CENTER"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"19:00","titolo":"Ginevra Costantini Negri ed Elena Chiavegato","pianisti":"\"Dancing Queens\"","link_prenotazione":null,"zona":1,"nome_spazio":"GAM Piano Laghetto","indirizzo":"via Marina, Milano","lat":null,"lon":null,"spazio_id":2013,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2013"},{"id":6083,"tipo":["CITY","PIANO LESSON"],"generi":["musiche originali"],"giorno":"16","giorno_nome":"SAT","ora":"19:00","titolo":"PierC","pianisti":"In dialogo con Samuele Valori (Billboard Italia)","link_prenotazione":"https://eventi.volvocaritalia.com/piano-city-milano-pierc-piano-lesson?utm_medium=web&utm_content=event_web_1x1_vsm-event-sitoweb&utm_campaign=it_event_awareness_2605_masterbrand_other_evento-vsm-pianolesson16maggio&utm_source=volvo","zona":9,"nome_spazio":"Volvo Studio Milano","indirizzo":"Viale della Liberazione angolo Via Melchiorre Gioia, Milano","lat":45.482574,"lon":9.193199,"spazio_id":380,"event_url":"https://pianocitymilano.it/programma/?spazio_id=380"},{"id":6126,"tipo":["CITY"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"19:00","titolo":"Guido Orso Coppin","pianisti":"","link_prenotazione":null,"zona":7,"nome_spazio":"Ippodromo Snai San Siro - Fontana","indirizzo":"Piazzale dello Sport 16, Milano","lat":null,"lon":null,"spazio_id":1910,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1910"},{"id":6146,"tipo":["CITY"],"generi":["musiche originali"],"giorno":"16","giorno_nome":"SAT","ora":"19:45","titolo":"Sonic Twins","pianisti":"","link_prenotazione":"https://link.dice.fm/D08267daf39e","zona":5,"nome_spazio":"I Mirador - 21 House of Stories Navigli","indirizzo":"Via Privata Fratelli Angelo e Mario Bettinelli 3, Milano","lat":null,"lon":null,"spazio_id":2178,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2178"},{"id":6196,"tipo":["PIANO CENTER"],"generi":["leggera","jazz"],"giorno":"16","giorno_nome":"SAT","ora":"19:50","titolo":"Danilo Blaiotta","pianisti":"\"Around Paolo Conte\"","link_prenotazione":null,"zona":1,"nome_spazio":"GAM Piano Giardino","indirizzo":"Ingresso da Via Palestro, 18 e da Via Marina, Milano","lat":45.4727,"lon":9.2009,"spazio_id":2012,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2012"},{"id":6056,"tipo":["GUEST"],"generi":["contemporanea"],"giorno":"16","giorno_nome":"SAT","ora":"20:00","titolo":"Riccardo Zangirolami","pianisti":"\"Riccardo Zangirolami Plays the Movies\"","link_prenotazione":null,"zona":5,"nome_spazio":"Laboratorio pianoforti Griffa","indirizzo":"Via San Rocco 5, Milano","lat":45.449603,"lon":9.200703,"spazio_id":322,"event_url":"https://pianocitymilano.it/programma/?spazio_id=322"},{"id":6226,"tipo":["GUEST"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"20:00","titolo":"Isaac Rogers","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Studio Irvine, Architecture and Design Studio","indirizzo":"Via della Moscova 7, Milano","lat":45.4801,"lon":9.1894,"spazio_id":2197,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2197"},{"id":6185,"tipo":["CITY"],"generi":["jazz"],"giorno":"16","giorno_nome":"SAT","ora":"20:00","titolo":"\"Jazz!\"","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Auditorium Lattuada","indirizzo":"Corso di Porta Vigentina 15/a, Milano","lat":45.454,"lon":9.1989,"spazio_id":2067,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2067"},{"id":6130,"tipo":["CITY"],"generi":["colonne sonore"],"giorno":"16","giorno_nome":"SAT","ora":"20:00","titolo":"Marcelo Cesena","pianisti":"\"From Hollywood to Cinecittà\"","link_prenotazione":"https://link.dice.fm/Uc54122a72fa","zona":1,"nome_spazio":"Senato Hotel Milano","indirizzo":"Via Senato 22, Milano","lat":45.47147,"lon":9.196412,"spazio_id":1336,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1336"},{"id":6043,"tipo":["GUEST"],"generi":["classica","contemporanea"],"giorno":"16","giorno_nome":"SAT","ora":"20:00","titolo":"Pianisti della scuola Mondomusica","pianisti":"Musica in Villa","link_prenotazione":null,"zona":8,"nome_spazio":"Villa Scheibler","indirizzo":"Via Felice Orsini 21, Milano","lat":null,"lon":null,"spazio_id":2148,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2148"},{"id":6190,"tipo":["CITY"],"generi":["contemporanea"],"giorno":"16","giorno_nome":"SAT","ora":"20:00","titolo":"\"L’Integrale degli studi per pianoforte di Gyorgy Ligeti e 30 composizioni di giovani compositori\"","pianisti":"Studenti delle classi di composizione del Conservatorio di Milano","link_prenotazione":null,"zona":1,"nome_spazio":"Conservatorio G. Verdi di Milano - Sala Colonne","indirizzo":"Via Conservatorio 12, Milano","lat":null,"lon":null,"spazio_id":2193,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2193"},{"id":5857,"tipo":["GUEST"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"20:30","titolo":"Federico Costa","pianisti":"\"Danze di ieri, danze di oggi\"","link_prenotazione":null,"zona":2,"nome_spazio":"Heracles Gymnasium","indirizzo":"Via Padova 21, Milano","lat":null,"lon":null,"spazio_id":1642,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1642"},{"id":5729,"tipo":["GUEST"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"20:30","titolo":"Giovanni Nesi","pianisti":"\"Recital pianistico per sola mano sinistra\"","link_prenotazione":null,"zona":1,"nome_spazio":"Tempio Valdese di Milano","indirizzo":"via Francesco Sforza 12/A, Milano","lat":null,"lon":null,"spazio_id":1951,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1951"},{"id":6060,"tipo":["GUEST"],"generi":["musiche originali"],"giorno":"16","giorno_nome":"SAT","ora":"21:00","titolo":"Giovanni Bergamini","pianisti":"“Shapes/Forme”","link_prenotazione":null,"zona":6,"nome_spazio":"Corte dei Miracoli","indirizzo":"via Mortara 4, Milano","lat":null,"lon":null,"spazio_id":1292,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1292"},{"id":6209,"tipo":["PIANO CENTER"],"generi":["musiche originali"],"giorno":"16","giorno_nome":"SAT","ora":"21:00","titolo":"AyseDeniz","pianisti":"\"Frozen In Time\"","link_prenotazione":null,"zona":1,"nome_spazio":"GAM Main Stage","indirizzo":"Ingresso da Via Palestro, 18 e da Via Marina, Milano","lat":45.471112,"lon":9.199053,"spazio_id":363,"event_url":"https://pianocitymilano.it/programma/?spazio_id=363"},{"id":6113,"tipo":["CITY"],"generi":["world music"],"giorno":"16","giorno_nome":"SAT","ora":"21:00","titolo":"Duo pianistico Valero-Rodríguez","pianisti":"\"La Voce della Spagna - Musiche della grande tradizione iberica\"","link_prenotazione":null,"zona":7,"nome_spazio":"Spazio Case Nuove","indirizzo":"Via Paravia, Ingresso da angolo Via Don Gnocchi 22, Milano","lat":null,"lon":null,"spazio_id":2170,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2170"},{"id":5956,"tipo":["GUEST"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"21:00","titolo":"Vito\tSaulle","pianisti":"Recital per pianoforte - \"Percorsi del virtuosismo espressivo\"","link_prenotazione":null,"zona":4,"nome_spazio":"Circolo Arci Mondini, Sala Polifunzionale","indirizzo":"Via Freiköfel 1, Milano","lat":45.4858,"lon":9.235,"spazio_id":1616,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1616"},{"id":6174,"tipo":["CITY"],"generi":["musiche originali"],"giorno":"16","giorno_nome":"SAT","ora":"21:00","titolo":"Davide \"Boosta\" Dileo","pianisti":"\"Contro la guerra. In ricordo di Gino Strada\"","link_prenotazione":null,"zona":1,"nome_spazio":"Casa EMERGENCY","indirizzo":"Via Santa Croce 19, Milano","lat":45.4581,"lon":9.1843,"spazio_id":1271,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1271"},{"id":6231,"tipo":["GUEST"],"generi":["jazz"],"giorno":"16","giorno_nome":"SAT","ora":"21:00","titolo":"Enrico Pesce","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Studio Irvine, Architecture and Design Studio","indirizzo":"Via della Moscova 7, Milano","lat":45.4801,"lon":9.1894,"spazio_id":2197,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2197"},{"id":6061,"tipo":["GUEST"],"generi":["classica","tango","contemporanea"],"giorno":"16","giorno_nome":"SAT","ora":"21:00","titolo":"Ilenia Stella","pianisti":"Parte I: Introduzione a Il Cantico della musica, per l’ottavo centenario della morte di San Francesco","link_prenotazione":null,"zona":0,"nome_spazio":"Chiesa di San Francesco d’Assisi al Fopponino","indirizzo":"Via Paolo Giovio 41, Milano","lat":null,"lon":null,"spazio_id":2153,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2153"},{"id":5754,"tipo":["GUEST"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"21:00","titolo":"Wakana Marlene Tanaka","pianisti":"","link_prenotazione":null,"zona":0,"nome_spazio":"Villa Alari","indirizzo":"Via Camillo Benso di Cavour 8, Cernusco sul Naviglio","lat":null,"lon":null,"spazio_id":2209,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2209"},{"id":5979,"tipo":["GUEST"],"generi":["classica"],"giorno":"16","giorno_nome":"SAT","ora":"21:00","titolo":"Manuel Tévar","pianisti":"“Hope for Peace”","link_prenotazione":null,"zona":1,"nome_spazio":"CDQ Garibaldi","indirizzo":"Corso Garibaldi 27, Milano","lat":45.4763,"lon":9.1854,"spazio_id":1628,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1628"},{"id":6212,"tipo":["PIANO CENTER"],"generi":["musiche originali"],"giorno":"16","giorno_nome":"SAT","ora":"22:00","titolo":"Gaël Rakotondrabe","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"GAM Main Stage","indirizzo":"Ingresso da Via Palestro, 18 e da Via Marina, Milano","lat":45.471112,"lon":9.199053,"spazio_id":363,"event_url":"https://pianocitymilano.it/programma/?spazio_id=363"},{"id":6202,"tipo":["PIANO CENTER"],"generi":["world music","jazz"],"giorno":"16","giorno_nome":"SAT","ora":"23:00","titolo":"Bachar Mar-Khalifé e Rami Khalifé","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"GAM Main Stage","indirizzo":"Ingresso da Via Palestro, 18 e da Via Marina, Milano","lat":45.471112,"lon":9.199053,"spazio_id":363,"event_url":"https://pianocitymilano.it/programma/?spazio_id=363"},{"id":6203,"tipo":["PIANO CENTER","PIANO NIGHT"],"generi":["elettronica"],"giorno":"16","giorno_nome":"SAT","ora":"24:00","titolo":"Stegonaute","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"GAM Main Stage","indirizzo":"Ingresso da Via Palestro, 18 e da Via Marina, Milano","lat":45.471112,"lon":9.199053,"spazio_id":363,"event_url":"https://pianocitymilano.it/programma/?spazio_id=363"},{"id":6080,"tipo":["CITY","ALBA"],"generi":["musiche originali"],"giorno":"17","giorno_nome":"SUN","ora":"06:00","titolo":"Snorri Hallgrímsson","pianisti":"","link_prenotazione":null,"zona":8,"nome_spazio":"Velodromo Maspes-Vigorelli","indirizzo":"Via Arona 19, Milano","lat":null,"lon":null,"spazio_id":2160,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2160"},{"id":6164,"tipo":["CITY"],"generi":["musiche originali"],"giorno":"17","giorno_nome":"SUN","ora":"09:00","titolo":"Skùmaskot","pianisti":"","link_prenotazione":null,"zona":2,"nome_spazio":"","indirizzo":"Via Chavez, Milano","lat":null,"lon":null,"spazio_id":2187,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2187"},{"id":6079,"tipo":["CITY","KIDS"],"generi":["contemporanea"],"giorno":"17","giorno_nome":"SUN","ora":"10:00","titolo":"Laboratorio Toy Piano","pianisti":"\"In C\"","link_prenotazione":null,"zona":9,"nome_spazio":"Volvo Studio Milano","indirizzo":"Viale della Liberazione angolo Via Melchiorre Gioia, Milano","lat":45.482574,"lon":9.193199,"spazio_id":380,"event_url":"https://pianocitymilano.it/programma/?spazio_id=380"},{"id":6099,"tipo":["CITY"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"10:00","titolo":"Duo Bonardi-Zullo","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Rotonda della Besana","indirizzo":"Via E. Besana 12, Milano","lat":45.4603,"lon":9.205373,"spazio_id":1566,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1566"},{"id":6186,"tipo":["CITY"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"10:00","titolo":"\"I verdi talenti del Verdi\"","pianisti":"Mattinata con i giovani pianisti del Conservatorio di Milano","link_prenotazione":null,"zona":0,"nome_spazio":"Conservatorio di Milano, Sala Puccini","indirizzo":"Via Conservatorio 12, Milano","lat":null,"lon":null,"spazio_id":1710,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1710"},{"id":5696,"tipo":["PIANO CENTER"],"generi":["contemporanea","classica"],"giorno":"17","giorno_nome":"SUN","ora":"10:30","titolo":"Aki Kuroda","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"GAM Piano Giardino","indirizzo":"Ingresso da Via Palestro, 18 e da Via Marina, Milano","lat":45.4727,"lon":9.2009,"spazio_id":2012,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2012"},{"id":6155,"tipo":["CITY","PIANO LESSON"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"10:30","titolo":"\"Sotto il cielo di Spagna - parte I\"","pianisti":"Omaggio a De Falla a 150 anni dalla nascita con Pianofriends","link_prenotazione":null,"zona":1,"nome_spazio":"","indirizzo":"Castello Sforzesco, Corte Ducale, Milano","lat":null,"lon":null,"spazio_id":2065,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2065"},{"id":5740,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"10:30","titolo":"Lisa Pozzi","pianisti":"\"Piano City Milano a Busto Arsizio: Lisa Pozzi\"","link_prenotazione":null,"zona":0,"nome_spazio":"Santuario di Santa Maria","indirizzo":"Piazza S. Maria, Busto Arsizio","lat":null,"lon":null,"spazio_id":1415,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1415"},{"id":6075,"tipo":["CITY"],"generi":["contemporanea"],"giorno":"17","giorno_nome":"SUN","ora":"11:00","titolo":"Carlo Boccadoro","pianisti":"\"Italia-Germania 5-3\"","link_prenotazione":null,"zona":8,"nome_spazio":"ADI Design Museum","indirizzo":"Piazza Compasso d'Oro 1, Ingresso Via Ceresio 7, Milano","lat":45.483126,"lon":9.179488,"spazio_id":1512,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1512"},{"id":5973,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"11:00","titolo":"Ingrid Cusidò","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"CDQ Garibaldi","indirizzo":"Corso Garibaldi 27, Milano","lat":45.4763,"lon":9.1854,"spazio_id":1628,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1628"},{"id":6089,"tipo":["CITY"],"generi":["pop"],"giorno":"17","giorno_nome":"SUN","ora":"11:00","titolo":"Fabrizio Grecchi","pianisti":"\"Beatles Piano Solo\"","link_prenotazione":null,"zona":4,"nome_spazio":"Fontana di Via Benedetto Marcello","indirizzo":"Via Benedetto Marcello 3, Milano","lat":null,"lon":null,"spazio_id":2162,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2162"},{"id":6240,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"11:00","titolo":"Winnie Wen","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Portrait Milano - Piazza del Quadrilatero","indirizzo":"Corso Venezia 11, Via Sant'Andrea 10, Milano","lat":45.469,"lon":9.198,"spazio_id":1891,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1891"},{"id":6086,"tipo":["CITY"],"generi":["colonne sonore","musiche originali"],"giorno":"17","giorno_nome":"SUN","ora":"11:00","titolo":"Angelo Trabace","pianisti":"\"Orfeo\"","link_prenotazione":null,"zona":0,"nome_spazio":"Armani / Silos","indirizzo":"Via Bergognone 40, Milano","lat":45.4503,"lon":9.1656,"spazio_id":1899,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1899"},{"id":6047,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"11:00","titolo":"Francesco Galeotti-Ivan Andriola","pianisti":"\"ARMONIE DEL MATTINO\"","link_prenotazione":null,"zona":5,"nome_spazio":"Cascina Campazzo","indirizzo":"Via M. Dudovich 10, Milano","lat":null,"lon":null,"spazio_id":1412,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1412"},{"id":6169,"tipo":["CITY","PIANO LESSON"],"generi":["world music","jazz"],"giorno":"17","giorno_nome":"SUN","ora":"11:00","titolo":"Bachar Mar-Khalifé","pianisti":"Con la partecipazione della autrice e conduttrice radiofonica RAI Marzia Puleo","link_prenotazione":"https://link.dice.fm/Yc2989162ff9 I","zona":1,"nome_spazio":"Sala Polifunzionale – Fondazione Giangiacomo Feltrinelli","indirizzo":"Viale Pasubio 5, Milano","lat":null,"lon":null,"spazio_id":2188,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2188"},{"id":5824,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"11:00","titolo":"Nareh Arghamanyan","pianisti":"","link_prenotazione":null,"zona":3,"nome_spazio":"Palazzo Invernizzi","indirizzo":"Corso Venezia 32, Milano","lat":45.4738,"lon":9.2024,"spazio_id":2112,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2112"},{"id":6078,"tipo":["CITY","KIDS"],"generi":["contemporanea"],"giorno":"17","giorno_nome":"SUN","ora":"11:00","titolo":"Laboratorio Toy Piano","pianisti":"\"In C\"","link_prenotazione":null,"zona":9,"nome_spazio":"Volvo Studio Milano","indirizzo":"Viale della Liberazione angolo Via Melchiorre Gioia, Milano","lat":45.482574,"lon":9.193199,"spazio_id":380,"event_url":"https://pianocitymilano.it/programma/?spazio_id=380"},{"id":6057,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"11:00","titolo":"Monica Zhang","pianisti":"\"Accostamenti e suggestioni sonore\"","link_prenotazione":null,"zona":5,"nome_spazio":"Laboratorio pianoforti Griffa","indirizzo":"Via San Rocco 5, Milano","lat":45.449603,"lon":9.200703,"spazio_id":322,"event_url":"https://pianocitymilano.it/programma/?spazio_id=322"},{"id":6100,"tipo":["CITY"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"11:00","titolo":"Duo Tolomelli-Castellani","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Rotonda della Besana","indirizzo":"Via E. Besana 12, Milano","lat":45.4603,"lon":9.205373,"spazio_id":1566,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1566"},{"id":6044,"tipo":["GUEST"],"generi":[],"giorno":"17","giorno_nome":"SUN","ora":"11:00","titolo":"Pianisti della Scuola Mondomusica","pianisti":"","link_prenotazione":null,"zona":8,"nome_spazio":"Villa Scheibler","indirizzo":"Via Felice Orsini 21, Milano","lat":null,"lon":null,"spazio_id":2148,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2148"},{"id":5736,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"11:00","titolo":"Lorenzo Adamo - Martino Detto","pianisti":"\"Concerti in collaborazione con Musica nell'Aria\"","link_prenotazione":null,"zona":1,"nome_spazio":"Locanda alla mano","indirizzo":"Piazza del Cannone parco Sempione 1, Milano","lat":null,"lon":null,"spazio_id":1832,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1832"},{"id":6035,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"11:00","titolo":"Gianluigi Arbughi, Elena Sfondrini e Giovanni Grassotti","pianisti":"","link_prenotazione":null,"zona":0,"nome_spazio":"Salone dell’Associazione Musicale Gaffurio","indirizzo":"Via Solferino 20, Lodi","lat":null,"lon":null,"spazio_id":2145,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2145"},{"id":6200,"tipo":["PIANO CENTER"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"11:20","titolo":"Davide Conte","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"GAM Piano Laghetto","indirizzo":"Ingresso da Via Palestro, 18 e da Via Marina, Milano","lat":45.471112,"lon":9.199053,"spazio_id":361,"event_url":"https://pianocitymilano.it/programma/?spazio_id=361"},{"id":5967,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"11:30","titolo":"Antonio De Vanna","pianisti":"\"Ritratti pianistici\"","link_prenotazione":null,"zona":9,"nome_spazio":"Museo \"Casa della memoria\"","indirizzo":"Via Confalonieri 14, Milano","lat":null,"lon":null,"spazio_id":1975,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1975"},{"id":6153,"tipo":["CITY"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"11:30","titolo":"Corinna Cesarotto","pianisti":"","link_prenotazione":null,"zona":2,"nome_spazio":"Cascina Turro","indirizzo":"Piazzale Governo Provvisorio 9, Milano","lat":null,"lon":null,"spazio_id":2183,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2183"},{"id":6133,"tipo":["CITY"],"generi":["classica","contemporanea"],"giorno":"17","giorno_nome":"SUN","ora":"12:00","titolo":"Quartetto Piano Piano","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Rotonda della Besana","indirizzo":"Via E. Besana 12, Milano","lat":45.4603,"lon":9.205373,"spazio_id":1566,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1566"},{"id":6128,"tipo":["CITY"],"generi":["jazz"],"giorno":"17","giorno_nome":"SUN","ora":"12:00","titolo":"Mattia Niniano","pianisti":"","link_prenotazione":null,"zona":2,"nome_spazio":"The Westin Palace, Milan","indirizzo":"Piazza della Repubblica 20, Milano","lat":45.4778,"lon":9.1972,"spazio_id":2174,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2174"},{"id":6087,"tipo":["CITY"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"12:00","titolo":"Luca Ciammarughi e Andrea Scalzo","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Museo Bagatti Valsecchi","indirizzo":"Via Gesù 5, Milano","lat":45.4691,"lon":9.1939,"spazio_id":1596,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1596"},{"id":6150,"tipo":["CITY"],"generi":["classica","jazz"],"giorno":"17","giorno_nome":"SUN","ora":"12:00","titolo":"Beatrice Nicholas","pianisti":"\"Beethoven to Boogie\"","link_prenotazione":null,"zona":1,"nome_spazio":"Grand Hotel et De Milan","indirizzo":"Via A. Manzoni 29, Milano","lat":45.4685,"lon":9.1916,"spazio_id":2181,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2181"},{"id":5923,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"12:00","titolo":"Davide Macaluso","pianisti":"","link_prenotazione":null,"zona":8,"nome_spazio":"Associazione Masada","indirizzo":"Via C. Espinasse 41, Milano","lat":null,"lon":null,"spazio_id":1236,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1236"},{"id":6232,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"12:00","titolo":"Elisa D'Auria","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Flagship Store Steinway & Sons Milano","indirizzo":"Largo Donegani 3, Milano","lat":45.4793,"lon":9.1985,"spazio_id":2204,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2204"},{"id":5838,"tipo":["PIANO CENTER"],"generi":["classica","contemporanea"],"giorno":"17","giorno_nome":"SUN","ora":"12:10","titolo":"Ilaria Brognara","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"GAM Piano Giardino","indirizzo":"Ingresso da Via Palestro, 18 e da Via Marina, Milano","lat":45.4727,"lon":9.2009,"spazio_id":2012,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2012"},{"id":6077,"tipo":["CITY"],"generi":["contemporanea"],"giorno":"17","giorno_nome":"SUN","ora":"12:30","titolo":"\"Kurtág 100\"","pianisti":"","link_prenotazione":null,"zona":8,"nome_spazio":"ADI Design Museum","indirizzo":"Piazza Compasso d'Oro 1, Ingresso Via Ceresio 7, Milano","lat":45.483126,"lon":9.179488,"spazio_id":1512,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1512"},{"id":6076,"tipo":["CITY","KIDS"],"generi":["contemporanea"],"giorno":"17","giorno_nome":"SUN","ora":"12:30","titolo":"Laboratorio Toy Piano","pianisti":"\"In C\"","link_prenotazione":null,"zona":9,"nome_spazio":"Volvo Studio Milano","indirizzo":"Viale della Liberazione angolo Via Melchiorre Gioia, Milano","lat":45.482574,"lon":9.193199,"spazio_id":380,"event_url":"https://pianocitymilano.it/programma/?spazio_id=380"},{"id":6197,"tipo":["PIANO CENTER"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"13:00","titolo":"Francesco Libetta & friends","pianisti":"\"Napoleone e altri eroi\"","link_prenotazione":null,"zona":1,"nome_spazio":"GAM Piano Laghetto","indirizzo":"Ingresso da Via Palestro, 18 e da Via Marina, Milano","lat":45.471112,"lon":9.199053,"spazio_id":361,"event_url":"https://pianocitymilano.it/programma/?spazio_id=361"},{"id":6132,"tipo":["CITY"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"13:00","titolo":"Mario Panciroli","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Museo Bagatti Valsecchi","indirizzo":"Via Gesù 5, Milano","lat":45.469417,"lon":9.195033,"spazio_id":837,"event_url":"https://pianocitymilano.it/programma/?spazio_id=837"},{"id":6233,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"13:00","titolo":"Milena Kharaneka","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Flagship Store Steinway & Sons Milano","indirizzo":"Largo Donegani 3, Milano","lat":45.4793,"lon":9.1985,"spazio_id":2204,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2204"},{"id":6234,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"14:00","titolo":"Xing Chang","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Flagship Store Steinway & Sons Milano","indirizzo":"Largo Donegani 3, Milano","lat":45.4793,"lon":9.1985,"spazio_id":2204,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2204"},{"id":6103,"tipo":["CITY","PIANO LESSON"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"14:00","titolo":"\"I concerti per pianoforte e orchestra\"","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Rotonda della Besana","indirizzo":"Via E. Besana 12, Milano","lat":45.4603,"lon":9.205373,"spazio_id":1566,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1566"},{"id":6008,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"14:00","titolo":"Allievi dei Corsi Preaccademici della Fondazione Musicale Vincenzo Appiani","pianisti":"","link_prenotazione":null,"zona":0,"nome_spazio":"Portici Arengario","indirizzo":"Piazza Roma 1, Monza","lat":null,"lon":null,"spazio_id":2144,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2144"},{"id":6088,"tipo":["CITY"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"14:30","titolo":"Wataru Mashimo","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Museo Bagatti Valsecchi","indirizzo":"Via Gesù 5, Milano","lat":45.4691,"lon":9.1939,"spazio_id":1600,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1600"},{"id":6207,"tipo":["CITY","PIANO LESSON"],"generi":[],"giorno":"17","giorno_nome":"SUN","ora":"14:30","titolo":"Enzo Beacco e Orazio Sciortino","pianisti":"\"Galassia Pianoforte\"","link_prenotazione":null,"zona":8,"nome_spazio":"ADI Design Museum","indirizzo":"Piazza Compasso d'Oro 1, Ingresso Via Ceresio 7, Milano","lat":45.483126,"lon":9.179488,"spazio_id":1512,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1512"},{"id":6120,"tipo":["CITY"],"generi":["pop"],"giorno":"17","giorno_nome":"SUN","ora":"14:30","titolo":"Pietro Formai","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Centro Milano Donna","indirizzo":"Via Dogana 2, Milano","lat":null,"lon":null,"spazio_id":2173,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2173"},{"id":5916,"tipo":["PIANO CENTER"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"14:50","titolo":"Simone Mao","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"GAM Piano Giardino","indirizzo":"Ingresso da Via Palestro, 18 e da Via Marina, Milano","lat":45.4727,"lon":9.2009,"spazio_id":2012,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2012"},{"id":5789,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"15:00","titolo":"Takahiro Yoshikawa","pianisti":"","link_prenotazione":null,"zona":3,"nome_spazio":"Palazzo Invernizzi","indirizzo":"Corso Venezia 32, Milano","lat":45.4738,"lon":9.2024,"spazio_id":2112,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2112"},{"id":6172,"tipo":["CITY"],"generi":["musiche originali","jazz"],"giorno":"17","giorno_nome":"SUN","ora":"15:00","titolo":"Nico Morelli","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Casa EMERGENCY","indirizzo":"Via Santa Croce 19, Milano","lat":45.4581,"lon":9.1843,"spazio_id":1271,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1271"},{"id":6074,"tipo":["house"],"generi":["musiche originali"],"giorno":"17","giorno_nome":"SUN","ora":"15:00","titolo":"Simone Cernuschi","pianisti":"","link_prenotazione":null,"zona":2,"nome_spazio":"Zona 2","indirizzo":"NoLo, Milano","lat":null,"lon":null,"spazio_id":2158,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2158"},{"id":6187,"tipo":["CITY"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"15:00","titolo":"\"Forme classiche e reminiscenze del passato\"","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Auditorium Lattuada","indirizzo":"Corso di Porta Vigentina 15/a, Milano","lat":45.454,"lon":9.1989,"spazio_id":2067,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2067"},{"id":6165,"tipo":["CITY","PIANO LESSON"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"15:30","titolo":"\"Sotto il cielo di Spagna - parte II\"","pianisti":"Omaggio a De Falla a 150 anni dalla nascita con Pianofriends","link_prenotazione":null,"zona":1,"nome_spazio":"Rotonda della Besana","indirizzo":"Via E. Besana 12, Milano","lat":45.4603,"lon":9.205373,"spazio_id":1566,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1566"},{"id":6144,"tipo":["CITY"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"15:30","titolo":"Antonio Davì","pianisti":"\"Pianoforte senza confini\"","link_prenotazione":"https://link.dice.fm/qb66d340d119","zona":1,"nome_spazio":"Event Room Brera - Casa Brera, a Luxury Collection Hotel, Milan","indirizzo":"Piazzetta M. Bossi 2, Milano","lat":null,"lon":null,"spazio_id":2177,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2177"},{"id":6046,"tipo":["GUEST"],"generi":["tango","classica","contemporanea"],"giorno":"17","giorno_nome":"SUN","ora":"15:30","titolo":"Ilenia Stella","pianisti":"\"Parte II: Il Cantico della musica, Suite per l’ottavo centenario della morte di San Francesco\"","link_prenotazione":null,"zona":7,"nome_spazio":"Pio Albergo Trivulzio","indirizzo":"Via Trivulzio 15, Milano","lat":null,"lon":null,"spazio_id":2150,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2150"},{"id":6147,"tipo":["CITY"],"generi":["colonne sonore"],"giorno":"17","giorno_nome":"SUN","ora":"15:30","titolo":"Nicolas Horvath","pianisti":"\"Assassin's Creed: The Piano Collection\"","link_prenotazione":null,"zona":5,"nome_spazio":"Torri bianche del Gratosoglio","indirizzo":"Via Michele Saponaro, Via dei Missaglia, Milano","lat":null,"lon":null,"spazio_id":2180,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2180"},{"id":6066,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"15:30","titolo":"Manuel Fierro","pianisti":"","link_prenotazione":null,"zona":6,"nome_spazio":"Centro Politerapico Ribor","indirizzo":"Viale Famagosta 50, Milano","lat":45.4419,"lon":9.1573,"spazio_id":1798,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1798"},{"id":5881,"tipo":["house"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"16:00","titolo":"Duo Tallarini-Gandini","pianisti":"","link_prenotazione":null,"zona":2,"nome_spazio":"Zona 2","indirizzo":"Turro, Milano","lat":null,"lon":null,"spazio_id":2113,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2113"},{"id":6082,"tipo":["CITY","PIANO LESSON"],"generi":["musiche originali"],"giorno":"17","giorno_nome":"SUN","ora":"16:00","titolo":"Sergio Cammarriere","pianisti":"In dialogo con Hamilton Santià (Rolling Stone Italia)","link_prenotazione":"https://eventi.volvocaritalia.com/piano-city-milano-sergio-cammariere-piano-lesson?utm_medium=web&utm_content=event_web_1x1_vsm-event-sitoweb&utm_campaign=it_event_awareness_2605_masterbrand_other_evento-vsm-pianolesson17maggio&utm_source=volvo","zona":9,"nome_spazio":"Volvo Studio Milano","indirizzo":"Viale della Liberazione angolo Via Melchiorre Gioia, Milano","lat":45.482574,"lon":9.193199,"spazio_id":380,"event_url":"https://pianocitymilano.it/programma/?spazio_id=380"},{"id":6102,"tipo":["CITY"],"generi":["rock","pop"],"giorno":"17","giorno_nome":"SUN","ora":"16:00","titolo":"Ettore Bove","pianisti":"\"La musica è follia\"","link_prenotazione":null,"zona":2,"nome_spazio":"Casa di riposo RSA Pindaro Anteo Impresa Sociale","indirizzo":"Via Pindaro 44, None","lat":null,"lon":null,"spazio_id":2166,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2166"},{"id":6093,"tipo":["CITY"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"16:00","titolo":"Eliana Grasso","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Museo Bagatti Valsecchi","indirizzo":"Via Gesù 5, Milano","lat":45.4691,"lon":9.1939,"spazio_id":1600,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1600"},{"id":6188,"tipo":["CITY"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"16:00","titolo":"\"Percorsi musicali dal Barocco al contemporaneo\"","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Auditorium Lattuada","indirizzo":"Corso di Porta Vigentina 15/a, Milano","lat":45.454,"lon":9.1989,"spazio_id":2067,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2067"},{"id":5741,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"16:00","titolo":"Fabio Panella","pianisti":"\"Piano City Milano a Busto Arsizio: Fabio Panella\"","link_prenotazione":null,"zona":0,"nome_spazio":"Santuario di Santa Maria","indirizzo":"Piazza S. Maria, Busto Arsizio","lat":null,"lon":null,"spazio_id":1415,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1415"},{"id":5908,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"16:00","titolo":"Ario Nikolaus Von Gayling Westphal Sgroi","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Chiesa Cristiana Protestante in Milano","indirizzo":"Via M. De Marchi 9, Milano","lat":45.4768,"lon":9.2057,"spazio_id":1803,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1803"},{"id":6206,"tipo":["CITY","PIANO LESSON"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"16:00","titolo":"Luca Mosca","pianisti":"\"Il clavicembalo ben temperato\"","link_prenotazione":null,"zona":8,"nome_spazio":"ADI Design Museum","indirizzo":"Piazza Compasso d'Oro 1, Ingresso Via Ceresio 7, Milano","lat":45.483126,"lon":9.179488,"spazio_id":1512,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1512"},{"id":6090,"tipo":["CITY"],"generi":["contemporanea"],"giorno":"17","giorno_nome":"SUN","ora":"16:00","titolo":"Federico Bricchetto","pianisti":"\"Miniatures and form\"","link_prenotazione":null,"zona":1,"nome_spazio":"","indirizzo":"Castello Sforzesco, Corte Ducale, Milano","lat":null,"lon":null,"spazio_id":2065,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2065"},{"id":5623,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"16:00","titolo":"Andrea Tamburelli","pianisti":"\"Viaggio nell'Ottocento\"","link_prenotazione":null,"zona":0,"nome_spazio":"Chiesa di Sant'Andrea","indirizzo":"Via Agnese Pasta 49, Melzo","lat":null,"lon":null,"spazio_id":2097,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2097"},{"id":6040,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"16:00","titolo":"Michelle Candotti","pianisti":"\"Armonie all’aperto\"","link_prenotazione":null,"zona":0,"nome_spazio":"Piazza Segni","indirizzo":"Piazza Antonio Segni, Seregno","lat":null,"lon":null,"spazio_id":2147,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2147"},{"id":6140,"tipo":["CITY"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"16:30","titolo":"Alessandro Commellato","pianisti":"\"Broadwood Beethoven\"","link_prenotazione":"https://link.dice.fm/yd263804fc7e","zona":0,"nome_spazio":"Excelsior Hotel Gallia","indirizzo":"Piazza Duca D'Aosta 9, Milano","lat":45.4858,"lon":9.2052,"spazio_id":2066,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2066"},{"id":6010,"tipo":["PIANO CENTER"],"generi":["musiche originali","jazz"],"giorno":"17","giorno_nome":"SUN","ora":"16:30","titolo":"Gisela Mabel","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"GAM Piano Laghetto","indirizzo":"Ingresso da Via Palestro, 18 e da Via Marina, Milano","lat":45.471112,"lon":9.199053,"spazio_id":361,"event_url":"https://pianocitymilano.it/programma/?spazio_id=361"},{"id":6062,"tipo":["house"],"generi":["pop","jazz"],"giorno":"17","giorno_nome":"SUN","ora":"16:30","titolo":"Laura Fedele","pianisti":"\"Give Peace a Chance\"","link_prenotazione":null,"zona":2,"nome_spazio":"Zona 2","indirizzo":"Casoretto, Milano","lat":null,"lon":null,"spazio_id":1615,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1615"},{"id":6171,"tipo":["CITY"],"generi":["leggera"],"giorno":"17","giorno_nome":"SUN","ora":"16:30","titolo":"Luca Bombardi","pianisti":"\"La canzone napoletana al pianoforte\"","link_prenotazione":null,"zona":6,"nome_spazio":"Fondazione Biffi - Residenza Villa Antonietta","indirizzo":"Via dei Ciclamini 34, Milano","lat":null,"lon":null,"spazio_id":2189,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2189"},{"id":6239,"tipo":["GUEST"],"generi":["jazz"],"giorno":"17","giorno_nome":"SUN","ora":"17:00","titolo":"Bas Bulteel","pianisti":"\"Improvised textures\"","link_prenotazione":null,"zona":1,"nome_spazio":"Portrait Milano - Piazza del Quadrilatero","indirizzo":"Corso Venezia 11, Via Sant'Andrea 10, Milano","lat":45.469,"lon":9.198,"spazio_id":1891,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1891"},{"id":6097,"tipo":["CITY"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"17:00","titolo":"Daniele Martinelli","pianisti":"","link_prenotazione":null,"zona":0,"nome_spazio":"Teatro alla Scala - Ridotto dei Palchi","indirizzo":"Piazza della Scala 1, Milano","lat":null,"lon":null,"spazio_id":2164,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2164"},{"id":6058,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"17:00","titolo":"Tatiana Larionova","pianisti":"\"Racconti di viaggio\"","link_prenotazione":null,"zona":5,"nome_spazio":"Laboratorio pianoforti Griffa","indirizzo":"Via San Rocco 5, Milano","lat":45.449603,"lon":9.200703,"spazio_id":322,"event_url":"https://pianocitymilano.it/programma/?spazio_id=322"},{"id":6036,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"17:00","titolo":"Chiara Nicora - Ferdinando Baroffio","pianisti":"","link_prenotazione":null,"zona":0,"nome_spazio":"Salone dell’Associazione Musicale Gaffurio","indirizzo":"Via Solferino 20, Lodi","lat":null,"lon":null,"spazio_id":2145,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2145"},{"id":6166,"tipo":["CITY"],"generi":["classica","contemporanea"],"giorno":"17","giorno_nome":"SUN","ora":"17:00","titolo":"Puiu Piano Duo","pianisti":"\"Il giro del mondo in 88 tasti\"","link_prenotazione":null,"zona":1,"nome_spazio":"Rotonda della Besana","indirizzo":"Via E. Besana 12, Milano","lat":45.4603,"lon":9.205373,"spazio_id":1566,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1566"},{"id":5834,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"17:00","titolo":"Duo pianistico Defilippis - Tornabene","pianisti":"\"ITINERARI ROMANTICI – fra intimismo, virtuosismo e maestosità\"","link_prenotazione":null,"zona":0,"nome_spazio":"Centro Commerciale Fiordaliso","indirizzo":"Via Eugenio Curiel 25, Rozzano","lat":null,"lon":null,"spazio_id":1447,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1447"},{"id":5786,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"17:00","titolo":"Pianisti della Civica Scuola di Musica Antonia Pozzi","pianisti":"\"Festa per Ravel\r\nMusiche di Maurice Ravel e degli amici compositori della Parigi di inizio ‘900\"","link_prenotazione":null,"zona":0,"nome_spazio":"Sala delle Libere Stelle","indirizzo":"Via Dante Alighieri 5, Corsico","lat":null,"lon":null,"spazio_id":1452,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1452"},{"id":6180,"tipo":["CITY"],"generi":["elettronica","musiche originali"],"giorno":"17","giorno_nome":"SUN","ora":"17:00","titolo":"Alberto Bof","pianisti":"“The Distance Between Us”","link_prenotazione":null,"zona":2,"nome_spazio":"Piscina Cozzi","indirizzo":"Via Tunisia 35, Milano","lat":null,"lon":null,"spazio_id":2191,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2191"},{"id":6183,"tipo":["CITY"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"17:00","titolo":"\"Per fare un bosco, ci vuole un piano\"","pianisti":"Il Conservatorio per Piano City Milano, aspettando il Bosco della Musica","link_prenotazione":null,"zona":4,"nome_spazio":"","indirizzo":"Piazza Tina Modotti, Milano","lat":null,"lon":null,"spazio_id":2192,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2192"},{"id":6189,"tipo":["CITY"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"17:00","titolo":"\"Da Bach a Scriabin: un viaggio pianistico dal Barocco al primo Novecento I\"","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Auditorium Lattuada","indirizzo":"Corso di Porta Vigentina 15/a, Milano","lat":45.454,"lon":9.1989,"spazio_id":2067,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2067"},{"id":6198,"tipo":["PIANO CENTER"],"generi":["contemporanea"],"giorno":"17","giorno_nome":"SUN","ora":"17:20","titolo":"Leo Gevisser","pianisti":"\"Son continu\"","link_prenotazione":null,"zona":1,"nome_spazio":"GAM Piano Giardino","indirizzo":"Ingresso da Via Palestro, 18 e da Via Marina, Milano","lat":45.4727,"lon":9.2009,"spazio_id":2012,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2012"},{"id":6091,"tipo":["CITY"],"generi":["musiche originali"],"giorno":"17","giorno_nome":"SUN","ora":"17:30","titolo":"Thomas Umbaca","pianisti":"\"Waiting For Music To Surprise Me Again\"","link_prenotazione":null,"zona":5,"nome_spazio":"Biblioteca del Grano di Milano","indirizzo":"Via Vaiano Valle 49, Milano","lat":null,"lon":null,"spazio_id":1928,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1928"},{"id":6208,"tipo":["CITY"],"generi":["contemporanea"],"giorno":"17","giorno_nome":"SUN","ora":"17:30","titolo":"“Quel che accade nei sogni...\"","pianisti":"Omaggio a Hans Werner Henze nel centenario della nascita","link_prenotazione":null,"zona":1,"nome_spazio":"Museo Bagatti Valsecchi","indirizzo":"Via Gesù 5, Milano","lat":45.469417,"lon":9.195033,"spazio_id":837,"event_url":"https://pianocitymilano.it/programma/?spazio_id=837"},{"id":6067,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"17:30","titolo":"Giovanni Cantarelli","pianisti":"","link_prenotazione":null,"zona":6,"nome_spazio":"Centro Politerapico Ribor","indirizzo":"Viale Famagosta 50, Milano","lat":45.4419,"lon":9.1573,"spazio_id":1798,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1798"},{"id":6094,"tipo":["FUORI PORTA"],"generi":["jazz"],"giorno":"17","giorno_nome":"SUN","ora":"17:30","titolo":"Alice Albicini","pianisti":"\"One more, once - il jazz nella swing era\"","link_prenotazione":null,"zona":0,"nome_spazio":"Serravalle Outlet","indirizzo":"Via della Moda 1, Serravalle Scrivia","lat":null,"lon":null,"spazio_id":2163,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2163"},{"id":6217,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"18:00","titolo":"Giovani pianisti dell'Auditorium Ottavanota","pianisti":"","link_prenotazione":null,"zona":0,"nome_spazio":"Auditorium Ottavanota","indirizzo":"Via Marco Bruto 24, Milano","lat":null,"lon":null,"spazio_id":2141,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2141"},{"id":6006,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"18:00","titolo":"Michael Jennings","pianisti":"","link_prenotazione":null,"zona":0,"nome_spazio":"Chiesa Protestante di Milano, Via Marco de Marchi 9","indirizzo":"Via Marco de Marchi 9, Milano","lat":null,"lon":null,"spazio_id":2142,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2142"},{"id":6054,"tipo":["house"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"18:00","titolo":"Ignas Maknickas","pianisti":"","link_prenotazione":null,"zona":4,"nome_spazio":"Zona 4","indirizzo":"Risorgimento, Milano","lat":null,"lon":null,"spazio_id":969,"event_url":"https://pianocitymilano.it/programma/?spazio_id=969"},{"id":5769,"tipo":["house"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"18:00","titolo":"Duo Bellorini-Rastelli","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Zona 1","indirizzo":"Colonne di San Lorenzo, Milano","lat":null,"lon":null,"spazio_id":2110,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2110"},{"id":6205,"tipo":["CITY"],"generi":["contemporanea","elettronica"],"giorno":"17","giorno_nome":"SUN","ora":"18:00","titolo":"Enrico Gabrielli","pianisti":"“Brian Eno’s Music For Airports”","link_prenotazione":null,"zona":8,"nome_spazio":"ADI Design Museum","indirizzo":"Piazza Compasso d'Oro 1, Ingresso Via Ceresio 7, Milano","lat":45.483126,"lon":9.179488,"spazio_id":1512,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1512"},{"id":5831,"tipo":["GUEST"],"generi":["contemporanea"],"giorno":"17","giorno_nome":"SUN","ora":"18:00","titolo":"Diego Petrella","pianisti":"\"Varnelis Variations\"","link_prenotazione":null,"zona":9,"nome_spazio":"AGON","indirizzo":"Viale Sarca 336, Milano","lat":null,"lon":null,"spazio_id":1487,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1487"},{"id":5742,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"18:00","titolo":"Yaryna Burlak","pianisti":"\"Piano City Milano a Busto Arsizio: Yaryna Burlak - Dialoghi del Tempo\"","link_prenotazione":null,"zona":0,"nome_spazio":"Santuario di Santa Maria","indirizzo":"Piazza S. Maria, Busto Arsizio","lat":null,"lon":null,"spazio_id":1415,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1415"},{"id":6235,"tipo":["GUEST"],"generi":["jazz","musiche originali"],"giorno":"17","giorno_nome":"SUN","ora":"18:00","titolo":"Andrea Servidio","pianisti":"","link_prenotazione":null,"zona":6,"nome_spazio":"Ex-Fornace Gola","indirizzo":"Alzaia Naviglio Pavese 16, Milano","lat":45.4486,"lon":9.1727,"spazio_id":2205,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2205"},{"id":5971,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"18:00","titolo":"Michel Bourdoncle","pianisti":"Recital pianistico “Orizzonti pianistici del Novecento”","link_prenotazione":null,"zona":1,"nome_spazio":"CDQ Garibaldi","indirizzo":"Corso Garibaldi 27, Milano","lat":45.4763,"lon":9.1854,"spazio_id":1628,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1628"},{"id":6173,"tipo":["CITY"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"18:00","titolo":"\"Da Bach a Scriabin: un viaggio pianistico dal Barocco al primo Novecento II\"","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Auditorium Lattuada","indirizzo":"Corso di Porta Vigentina 15/a, Milano","lat":45.454,"lon":9.1989,"spazio_id":2067,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2067"},{"id":6142,"tipo":["CITY"],"generi":["colonne sonore"],"giorno":"17","giorno_nome":"SUN","ora":"18:30","titolo":"Luca Amitrano","pianisti":"\"Omaggio al cinema\"","link_prenotazione":"https://link.dice.fm/v1b5ee92679b","zona":8,"nome_spazio":"Enterprise Hotel","indirizzo":"Corso Sempione 91, Milano","lat":45.4905,"lon":9.1644,"spazio_id":2176,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2176"},{"id":6065,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"18:30","titolo":"Ivano Palma","pianisti":"\"La Classica allo Sporting\"","link_prenotazione":null,"zona":1,"nome_spazio":"Sporting Club Monza","indirizzo":"Viale Brianza 39, Monza","lat":null,"lon":null,"spazio_id":1782,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1782"},{"id":6109,"tipo":["CITY"],"generi":["elettronica","musiche originali"],"giorno":"17","giorno_nome":"SUN","ora":"18:30","titolo":"Ze in the clouds","pianisti":"","link_prenotazione":null,"zona":4,"nome_spazio":"Teatro Franco Parenti, Bagni Misteriosi","indirizzo":"Via Pier Lombardo 14, Milano","lat":45.4555,"lon":9.205,"spazio_id":2069,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2069"},{"id":6050,"tipo":["GUEST"],"generi":["contemporanea","musiche originali"],"giorno":"17","giorno_nome":"SUN","ora":"18:30","titolo":"Pietro Galizzi","pianisti":"“Pazzo Di Te”","link_prenotazione":null,"zona":0,"nome_spazio":"Show Room De Padova","indirizzo":"Via Santa Cecilia 7, Milano","lat":null,"lon":null,"spazio_id":2151,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2151"},{"id":5781,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"19:00","titolo":"Davide Cerullo","pianisti":"","link_prenotazione":null,"zona":8,"nome_spazio":"SALA TORRETTA VILLA SCHEIBLER","indirizzo":"VIA FELICE ORSINI 21, MILANO","lat":null,"lon":null,"spazio_id":1956,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1956"},{"id":6176,"tipo":["CITY"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"19:00","titolo":"\"Classicismo e Romanticismo\"","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Auditorium Lattuada","indirizzo":"Corso di Porta Vigentina 15/a, Milano","lat":45.454,"lon":9.1989,"spazio_id":2067,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2067"},{"id":6096,"tipo":["CITY"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"19:00","titolo":"Duo Antonia Miller-Cristina Marton Argerich","pianisti":"\"A lˋUngarese\"","link_prenotazione":null,"zona":1,"nome_spazio":"Museo Bagatti Valsecchi","indirizzo":"Via Gesù 5, Milano","lat":45.4691,"lon":9.1939,"spazio_id":1600,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1600"},{"id":5953,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"19:00","titolo":"Duo Macle","pianisti":"Recital per pianoforte a quattro mani – “Caleidoscopio musicale”","link_prenotazione":null,"zona":4,"nome_spazio":"Circolo Arci Mondini, Sala Polifunzionale","indirizzo":"Via Freiköfel 1, Milano","lat":45.4858,"lon":9.235,"spazio_id":1616,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1616"},{"id":6106,"tipo":["CITY"],"generi":["contemporanea","elettronica"],"giorno":"17","giorno_nome":"SUN","ora":"19:00","titolo":"Andrea Rebaudengo e Bruna Di Virgilio","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Rotonda della Besana","indirizzo":"Via E. Besana 12, Milano","lat":45.4603,"lon":9.205373,"spazio_id":1566,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1566"},{"id":5946,"tipo":[],"generi":["elettronica","jazz"],"giorno":"17","giorno_nome":"SUN","ora":"19:00","titolo":"Giacomo Zorzi e Marco Zoppi","pianisti":"","link_prenotazione":null,"zona":7,"nome_spazio":"mare culturale urbano - cascina torrette","indirizzo":"Via G. Gabetti 15, Milano","lat":45.46818,"lon":9.122639,"spazio_id":339,"event_url":"https://pianocitymilano.it/programma/?spazio_id=339"},{"id":6236,"tipo":["GUEST"],"generi":["neoclassical"],"giorno":"17","giorno_nome":"SUN","ora":"19:00","titolo":"GéNIA","pianisti":"","link_prenotazione":null,"zona":6,"nome_spazio":"Ex-Fornace Gola","indirizzo":"Alzaia Naviglio Pavese 16, Milano","lat":45.4486,"lon":9.1727,"spazio_id":2205,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2205"},{"id":6241,"tipo":["PIANO CENTER"],"generi":["classica","jazz"],"giorno":"17","giorno_nome":"SUN","ora":"19:00","titolo":"Andrea Bacchetti e Dado Moroni","pianisti":"\"Two Pianos One Soul\"","link_prenotazione":null,"zona":1,"nome_spazio":"GAM Main Stage","indirizzo":"Ingresso da Via Palestro, 18 e da Via Marina, Milano","lat":45.471112,"lon":9.199053,"spazio_id":363,"event_url":"https://pianocitymilano.it/programma/?spazio_id=363"},{"id":6191,"tipo":["house"],"generi":["contemporanea"],"giorno":"17","giorno_nome":"SUN","ora":"19:30","titolo":"Duo Novalis","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Zona 1","indirizzo":"De Amicis, Milano","lat":null,"lon":null,"spazio_id":2194,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2194"},{"id":6238,"tipo":["GUEST"],"generi":["rock","pop"],"giorno":"17","giorno_nome":"SUN","ora":"19:30","titolo":"Francesco Parrino","pianisti":"\"Pop Shuffle\"","link_prenotazione":null,"zona":1,"nome_spazio":"Portrait Milano - Piazza del Quadrilatero","indirizzo":"Corso Venezia 11, Via Sant'Andrea 10, Milano","lat":45.469,"lon":9.198,"spazio_id":1891,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1891"},{"id":6051,"tipo":["GUEST"],"generi":["musiche originali","contemporanea"],"giorno":"17","giorno_nome":"SUN","ora":"20:00","titolo":"Francesco Maria Mancarella","pianisti":"\"What I Felt. Composizioni originali dell’Artista\"","link_prenotazione":null,"zona":5,"nome_spazio":"Laboratorio pianoforti Griffa","indirizzo":"Via San Rocco 5, Milano","lat":45.449603,"lon":9.200703,"spazio_id":322,"event_url":"https://pianocitymilano.it/programma/?spazio_id=322"},{"id":6177,"tipo":["CITY"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"20:00","titolo":"\"Tra ‘800 e ‘900\"","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"Auditorium Lattuada","indirizzo":"Corso di Porta Vigentina 15/a, Milano","lat":45.454,"lon":9.1989,"spazio_id":2067,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2067"},{"id":6237,"tipo":["GUEST"],"generi":["jazz"],"giorno":"17","giorno_nome":"SUN","ora":"20:00","titolo":"Klaus Bellavitis","pianisti":"\"Ritratti musicali, ritratti di vita della fotografa Donata Zanotti\"","link_prenotazione":null,"zona":6,"nome_spazio":"Ex-Fornace Gola","indirizzo":"Alzaia Naviglio Pavese 16, Milano","lat":45.4486,"lon":9.1727,"spazio_id":2205,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2205"},{"id":6213,"tipo":["PIANO CENTER"],"generi":["jazz"],"giorno":"17","giorno_nome":"SUN","ora":"20:00","titolo":"Zoe Rahman","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"GAM Main Stage","indirizzo":"Ingresso da Via Palestro, 18 e da Via Marina, Milano","lat":45.471112,"lon":9.199053,"spazio_id":363,"event_url":"https://pianocitymilano.it/programma/?spazio_id=363"},{"id":5743,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"20:30","titolo":"Matteo Pisciotta","pianisti":"\"Piano City Milano a Busto Arsizio: Matteo Pisciotta\"","link_prenotazione":null,"zona":0,"nome_spazio":"Santuario di Santa Maria","indirizzo":"Piazza S. Maria, Busto Arsizio","lat":null,"lon":null,"spazio_id":1415,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1415"},{"id":5709,"tipo":["GUEST"],"generi":["classica","jazz","opera"],"giorno":"17","giorno_nome":"SUN","ora":"20:45","titolo":"Duo Gioacchino Rossini","pianisti":"\"6…l’armonia che ritorna L’esoterismo del numero 6 nell’ armonia musicale\"","link_prenotazione":null,"zona":0,"nome_spazio":"Rocca Viscontea","indirizzo":"Piazza Risorgimento 24, Lacchiarella","lat":null,"lon":null,"spazio_id":2103,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2103"},{"id":6214,"tipo":["PIANO CENTER"],"generi":["musiche originali","jazz"],"giorno":"17","giorno_nome":"SUN","ora":"21:00","titolo":"Wayne Horvitz","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"GAM Main Stage","indirizzo":"Ingresso da Via Palestro, 18 e da Via Marina, Milano","lat":45.471112,"lon":9.199053,"spazio_id":363,"event_url":"https://pianocitymilano.it/programma/?spazio_id=363"},{"id":5599,"tipo":[],"generi":["musiche originali"],"giorno":"17","giorno_nome":"SUN","ora":"21:00","titolo":"Piotr Paduszyński","pianisti":"","link_prenotazione":null,"zona":7,"nome_spazio":"mare culturale urbano - cascina torrette","indirizzo":"Via G. Gabetti 15, Milano","lat":45.46818,"lon":9.122639,"spazio_id":339,"event_url":"https://pianocitymilano.it/programma/?spazio_id=339"},{"id":5980,"tipo":["GUEST"],"generi":["classica"],"giorno":"17","giorno_nome":"SUN","ora":"21:00","titolo":"Aleami Piano Duo","pianisti":"\"Rendez-vous en Pologne\"","link_prenotazione":null,"zona":1,"nome_spazio":"CDQ Garibaldi","indirizzo":"Corso Garibaldi 27, Milano","lat":45.4763,"lon":9.1854,"spazio_id":1628,"event_url":"https://pianocitymilano.it/programma/?spazio_id=1628"},{"id":5960,"tipo":["GUEST"],"generi":["neoclassical"],"giorno":"17","giorno_nome":"SUN","ora":"21:00","titolo":"Riccardo Roveda","pianisti":"","link_prenotazione":null,"zona":9,"nome_spazio":"Alveare culturale ETS","indirizzo":"via Carlo Imbonati 12, Milano","lat":null,"lon":null,"spazio_id":2131,"event_url":"https://pianocitymilano.it/programma/?spazio_id=2131"},{"id":6204,"tipo":["PIANO CENTER"],"generi":["musiche originali","jazz"],"giorno":"17","giorno_nome":"SUN","ora":"22:00","titolo":"Tigran","pianisti":"","link_prenotazione":null,"zona":1,"nome_spazio":"GAM Main Stage","indirizzo":"Ingresso da Via Palestro, 18 e da Via Marina, Milano","lat":45.471112,"lon":9.199053,"spazio_id":363,"event_url":"https://pianocitymilano.it/programma/?spazio_id=363"}];
+</script>
+<script>
+/* =========================================================
+   Piano City Milano — Full Programme 2026
+   ========================================================= */
+
+const EVENTS = window.PCM_EVENTS || [];
+
+const DAY_LABELS = {
+  "14": { name: "Thursday", date: "14 May 2026", note: "Preview" },
+  "15": { name: "Friday",   date: "15 May 2026", note: "Opening" },
+  "16": { name: "Saturday", date: "16 May 2026", note: "" },
+  "17": { name: "Sunday",   date: "17 May 2026", note: "Closing" },
+};
+
+const ZONE_LABELS = {
+  0: "Outside Milan",
+  1: "Centro · Brera · Duomo",
+  2: "Stazione Centrale · Loreto",
+  3: "Città Studi · Lambrate",
+  4: "Forlanini · Vittoria",
+  5: "Vigentino · Chiaravalle",
+  6: "Lorenteggio · Barona",
+  7: "San Siro · Baggio · De Angeli",
+  8: "Fiera · Gallaratese · Certosa",
+  9: "Bicocca · Niguarda · Garibaldi",
+};
+
+const TIPO_LABELS = {
+  "CITY": "City",
+  "GUEST": "Guest",
+  "ANTEPRIMA": "Preview",
+  "PIANO CENTER": "Piano Center",
+  "PIANO LESSON": "Piano Lesson",
+  "PIANO NIGHT": "Piano Night",
+  "PIANO READING": "Piano Reading",
+  "SOUNDSCAPE": "Soundscape",
+  "KIDS": "Kids",
+  "ALBA": "Dawn",
+  "FUORI PORTA": "Out of town",
+  "Inaugurazione": "Inauguration",
+  "house": "House concert",
+};
+
+const GENRE_LABELS = {
+  "classica": "classical",
+  "contemporanea": "contemporary",
+  "elettronica": "electronic",
+  "musiche originali": "original",
+  "colonne sonore": "soundtracks",
+  "leggera": "easy listening",
+  "moderna": "modern",
+  "impro": "improvisation",
+  "neoclassical": "neoclassical",
+  "flamenco": "flamenco",
+  "jazz": "jazz",
+  "pop": "pop",
+  "rock": "rock",
+  "soul": "soul",
+  "world music": "world music",
+  "alternative rock": "alternative rock",
+};
+
+const state = {
+  day: "all", zona: "all", genre: "all", tipo: "all",
+  time: "all", prenota: "all", q: "", view: "list", activeId: null,
+};
+
+function bucketTime(ora) {
+  const h = parseInt(ora.slice(0, 2), 10);
+  if (h < 12) return "morning";
+  if (h < 18) return "afternoon";
+  if (h < 22) return "evening";
+  return "night";
+}
+function uniqueSorted(arr) {
+  return Array.from(new Set(arr)).sort((a, b) => a.localeCompare(b, "en"));
+}
+function escapeHtml(s) {
+  return String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
+}
+function pluralize(n) { return n === 1 ? "event" : "events"; }
+
+function filtered() {
+  const q = state.q.trim().toLowerCase();
+  return EVENTS.filter(e => {
+    if (state.day !== "all" && e.giorno !== state.day) return false;
+    if (state.zona !== "all" && e.zona !== parseInt(state.zona, 10)) return false;
+    if (state.genre !== "all" && !(e.generi || []).includes(state.genre)) return false;
+    if (state.tipo !== "all" && !(e.tipo || []).includes(state.tipo)) return false;
+    if (state.time !== "all" && bucketTime(e.ora) !== state.time) return false;
+    if (state.prenota === "yes" && !e.link_prenotazione) return false;
+    if (state.prenota === "no" && e.link_prenotazione) return false;
+    if (q) {
+      const hay = `${e.titolo} ${e.nome_spazio} ${e.indirizzo} ${(e.tipo||[]).join(' ')} ${(e.generi||[]).join(' ')}`.toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
+}
+
+function renderList() {
+  const list = filtered();
+  const el = document.getElementById("list");
+  document.getElementById("result-n").textContent = list.length;
+  document.getElementById("result-label").textContent = pluralize(list.length);
+  document.getElementById("sheet-apply-n").textContent = list.length;
+
+  if (list.length === 0) {
+    el.classList.remove("list-grid");
+    el.innerHTML = `
+      <div class="empty">
+        <div class="empty__icon">∅</div>
+        <div class="empty__title">No events match</div>
+        <div class="empty__hint">Try widening the day, district, or genre, or reset the filters.</div>
+        <button class="btn btn--primary" onclick="resetAll()">Reset filters</button>
+      </div>`;
+    return;
+  }
+
+  el.classList.add("list-grid");
+
+  let html = "";
+  let lastDay = null;
+  let cardIdx = 0;
+  for (const e of list) {
+    if (e.giorno !== lastDay) {
+      const lbl = DAY_LABELS[e.giorno] || { name: e.giorno_nome, date: e.giorno, note: "" };
+      html += `
+        <div class="day-divider">
+          <div class="day-divider__num">${e.giorno}</div>
+          <div class="day-divider__meta">
+            <div class="day-divider__nome">${escapeHtml(lbl.name)}${lbl.note ? " · " + escapeHtml(lbl.note) : ""}</div>
+            <div class="day-divider__date">${escapeHtml(lbl.date)}</div>
+          </div>
+        </div>`;
+      lastDay = e.giorno;
+      cardIdx = 0;
+    }
+    cardIdx++;
+    const tipoStr = (e.tipo || []).map(t => `<strong>${escapeHtml(TIPO_LABELS[t] || t)}</strong>`).join(" · ");
+    const genreStr = (e.generi || []).map(g => GENRE_LABELS[g] || g).join(" · ") || "&nbsp;";
+    const isActive = state.activeId === e.id;
+    const delay = Math.min(cardIdx * 30, 240);
+    const districtTxt = e.zona === 0 ? "Outside" : `District ${e.zona}`;
+    html += `
+      <button class="card ${isActive ? 'is-active' : ''}" data-id="${e.id}" style="animation-delay:${delay}ms" role="listitem">
+        <div class="card__chips">
+          <span class="pill pill--date">${e.giorno_nome} ${e.giorno}</span>
+          <span class="pill pill--time">${escapeHtml(e.ora)}</span>
+          <span class="pill pill--zona" data-z="${e.zona}">${districtTxt}</span>
+          ${tipoStr ? `<span class="pill pill--tipo">${tipoStr}</span>` : ""}
+        </div>
+        <h3 class="card__title">${escapeHtml(e.titolo)}</h3>
+        <div class="card__genre">${escapeHtml(genreStr)}</div>
+        <div class="card__address">
+          <svg width="14" height="16" viewBox="0 0 14 16" fill="none" aria-hidden="true">
+            <path d="M7 15s5-5 5-9A5 5 0 002 6c0 4 5 9 5 9z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" fill="currentColor" fill-opacity="0.15"/>
+            <circle cx="7" cy="6" r="1.7" fill="currentColor"/>
+          </svg>
+          <span>
+            <strong>${escapeHtml(e.nome_spazio)}</strong>
+            ${escapeHtml(e.indirizzo)}
+          </span>
+        </div>
+        <div class="card__actions">
+          ${e.link_prenotazione ? `
+            <a class="btn btn--primary" href="${escapeHtml(e.link_prenotazione)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
+              Reserve
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>` : ""}
+          <a class="btn btn--ghost" href="${escapeHtml(e.event_url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
+            Details
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M3 6h6M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </button>`;
+  }
+  el.innerHTML = html;
+
+  el.querySelectorAll(".card").forEach(c => {
+    c.addEventListener("click", ev => {
+      if (ev.target.closest("a")) return;
+      selectEvent(parseInt(c.dataset.id, 10), { scrollMap: true });
+    });
+  });
+}
+
+/* ========== Map ========== */
+const map = L.map("map", { zoomControl: true }).setView([45.464, 9.190], 13);
+L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+  maxZoom: 19,
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+}).addTo(map);
+
+function getCss(name) {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
+const ZONE_COLOR = {
+  0: getCss("--m0"), 1: getCss("--m1"), 2: getCss("--m2"),
+  3: getCss("--m3"), 4: getCss("--m4"), 5: getCss("--m5"),
+  6: getCss("--m6"), 7: getCss("--m7"), 8: getCss("--m8"), 9: getCss("--m9"),
+};
+function buildIcon(zona) {
+  return L.divIcon({
+    className: "",
+    html: `<div class="pcm-pin" style="background:${ZONE_COLOR[zona] || ZONE_COLOR[0]}"></div>`,
+    iconSize: [24, 24], iconAnchor: [12, 24], popupAnchor: [0, -22],
+  });
+}
+
+const markers = new Map();
+function renderMarkers() {
+  const list = filtered();
+  const visible = new Set(list.map(e => e.id));
+  for (const [id, m] of markers) {
+    if (!visible.has(id)) { map.removeLayer(m); markers.delete(id); }
+  }
+  list.forEach(e => {
+    if (markers.has(e.id) || !e.lat || !e.lon) return;
+    const m = L.marker([e.lat, e.lon], { icon: buildIcon(e.zona), title: e.titolo })
+      .bindPopup(buildPopup(e), { closeButton: false, maxWidth: 280, autoPan: true })
+      .on("click", () => selectEvent(e.id));
+    m.addTo(map);
+    markers.set(e.id, m);
+  });
+  if (list.length > 0 && hasAnyFilter()) {
+    const group = L.featureGroup(Array.from(markers.values()).filter(Boolean));
+    if (group.getLayers().length) {
+      map.fitBounds(group.getBounds().pad(0.18), { animate: true, maxZoom: 16 });
+    }
+  }
+}
+function hasAnyFilter() {
+  return state.day !== "all" || state.zona !== "all" || state.genre !== "all" ||
+         state.tipo !== "all" || state.time !== "all" || state.prenota !== "all" || state.q !== "";
+}
+function buildPopup(e) {
+  const reserve = e.link_prenotazione
+    ? `<a class="btn btn--primary" href="${e.link_prenotazione}" target="_blank" rel="noopener">Reserve</a>` : "";
+  const dist = e.zona === 0 ? "Outside" : `District ${e.zona}`;
+  return `
+    <div class="pop-time">${e.giorno_nome} ${e.giorno} · ${e.ora} · ${dist}</div>
+    <h3 class="pop-title">${escapeHtml(e.titolo)}</h3>
+    <div class="pop-venue"><strong>${escapeHtml(e.nome_spazio)}</strong><br/>${escapeHtml(e.indirizzo)}</div>
+    <div class="pop-actions">
+      ${reserve}
+      <a class="btn btn--ghost" href="${e.event_url}" target="_blank" rel="noopener">Details</a>
+    </div>`;
+}
+
+function selectEvent(id) {
+  state.activeId = id;
+  const e = EVENTS.find(x => x.id === id);
+  if (!e) return;
+  renderList();
+  if (state.view === "map") {
+    const m = markers.get(id);
+    if (m) { map.setView([e.lat, e.lon], Math.max(map.getZoom(), 16), { animate: true }); m.openPopup(); }
+  }
+}
+
+/* ========== Filter wiring ========== */
+function bindChips(containerId, key) {
+  const c = document.getElementById(containerId);
+  c.addEventListener("click", e => {
+    const b = e.target.closest("[data-" + key + "]");
+    if (!b) return;
+    c.querySelectorAll("[data-" + key + "]").forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+    state[key] = b.dataset[key];
+    refresh();
+    updateFilterDot();
+  });
+}
+function refresh() { renderList(); renderMarkers(); }
+function updateFilterDot() {
+  const btn = document.getElementById("filter-btn");
+  const hasFilter = state.zona !== "all" || state.tipo !== "all" ||
+                    state.time !== "all" || state.prenota !== "all";
+  btn.classList.toggle("has-active", hasFilter);
+}
+
+bindChips("day-chips", "day");
+bindChips("time-pills", "time");
+bindChips("prenota-pills", "prenota");
+
+let qT;
+document.getElementById("q").addEventListener("input", e => {
+  clearTimeout(qT);
+  qT = setTimeout(() => { state.q = e.target.value; refresh(); }, 140);
+});
+
+/* ========== Sheet ========== */
+const sheet = document.getElementById("sheet");
+const bd = document.getElementById("sheet-bd");
+function openSheet() { sheet.classList.add("is-open"); bd.classList.add("is-open"); document.body.style.overflow = "hidden"; }
+function closeSheet() { sheet.classList.remove("is-open"); bd.classList.remove("is-open"); document.body.style.overflow = ""; }
+document.getElementById("filter-btn").addEventListener("click", openSheet);
+document.getElementById("sheet-close").addEventListener("click", closeSheet);
+document.getElementById("sheet-apply").addEventListener("click", closeSheet);
+bd.addEventListener("click", closeSheet);
+document.getElementById("sheet-reset").addEventListener("click", resetAll);
+
+/* ========== View toggle ========== */
+function setView(v) {
+  state.view = v;
+  document.body.classList.toggle("view-map", v === "map");
+  document.getElementById("view-list").setAttribute("aria-pressed", v === "list");
+  document.getElementById("view-map").setAttribute("aria-pressed", v === "map");
+  if (v === "map") setTimeout(() => map.invalidateSize(), 80);
+}
+document.getElementById("view-list").addEventListener("click", () => setView("list"));
+document.getElementById("view-map").addEventListener("click", () => setView("map"));
+
+function resetAll() {
+  state.day = "all"; state.zona = "all"; state.genre = "all";
+  state.tipo = "all"; state.time = "all"; state.prenota = "all"; state.q = "";
+  state.activeId = null;
+  document.getElementById("q").value = "";
+  document.querySelectorAll("[data-day], [data-zona], [data-genre], [data-tipo], [data-time], [data-prenota]").forEach(el => {
+    const key = ["day","zona","genre","tipo","time","prenota"].find(k => k in el.dataset);
+    el.setAttribute("aria-pressed", el.dataset[key] === "all" ? "true" : "false");
+  });
+  map.setView([45.464, 9.190], 13, { animate: true });
+  refresh();
+  updateFilterDot();
+}
+document.getElementById("reset-all").addEventListener("click", resetAll);
+
+/* ========== Populate filters from data ========== */
+(function initDynamicFilters() {
+  const zonesPresent = Array.from(new Set(EVENTS.map(e => e.zona))).sort((a, b) => a - b);
+  const zoneEl = document.getElementById("zone-pills");
+  zoneEl.innerHTML = `<button class="pill-btn" data-zona="all" aria-pressed="true">All</button>` +
+    zonesPresent.map(z => {
+      const label = z === 0 ? "Outside Milan" : `M${z} · ${escapeHtml(ZONE_LABELS[z] || '')}`;
+      return `<button class="pill-btn" data-zona="${z}" aria-pressed="false" data-z="${z}"><span class="dot"></span>${label}</button>`;
+    }).join("");
+
+  // Genre quick row (in main toolbar area)
+  const genresAll = uniqueSorted(EVENTS.flatMap(e => e.generi || []));
+  const genreEl = document.getElementById("genre-chips");
+  // Keep the static "Genre" label + All button, then append data-driven chips
+  const existingAll = genreEl.querySelector('[data-genre="all"]');
+  genresAll.forEach(g => {
+    const btn = document.createElement("button");
+    btn.className = "genre-chip";
+    btn.dataset.genre = g;
+    btn.setAttribute("aria-pressed", "false");
+    btn.textContent = GENRE_LABELS[g] || g;
+    genreEl.appendChild(btn);
+  });
+
+  // Tipo
+  const tipiAll = uniqueSorted(EVENTS.flatMap(e => e.tipo || []));
+  const tipoEl = document.getElementById("tipo-pills");
+  tipoEl.innerHTML = `<button class="pill-btn" data-tipo="all" aria-pressed="true">All</button>` +
+    tipiAll.map(t => `<button class="pill-btn" data-tipo="${escapeHtml(t)}" aria-pressed="false">${escapeHtml(TIPO_LABELS[t] || t)}</button>`).join("");
+
+  bindChips("zone-pills", "zona");
+  bindChips("tipo-pills", "tipo");
+  bindChips("genre-chips", "genre");
+
+  document.getElementById("day-all-count").textContent = EVENTS.length;
+  document.getElementById("event-total").textContent = `${EVENTS.length} events`;
+})();
+
+refresh();
+</script>
+</body>
+</html>
