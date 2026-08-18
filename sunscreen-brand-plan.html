@@ -1,0 +1,1549 @@
+<title>Pale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+<style>
+:root{
+  --ground:#EDEEEF; --surface:#FCFCFB; --surface-2:#F4F5F6; --surface-3:#E7E9EA;
+  --ink:#14171B; --ink-2:#474C54; --muted:#767C85;
+  --rule:#D8DBDD; --rule-strong:#BAC0C4;
+  --accent:#2B4FE0; --accent-soft:rgba(43,79,224,.10); --accent-mid:rgba(43,79,224,.22);
+  --burn:#E8452F; --burn-soft:rgba(232,69,47,.10);
+  --c1:#2B4FE0; --c2:#E8452F; --c3:#12946B; --c4:#BC820C; --c5:#7B4FD4;
+  --shadow:0 1px 2px rgba(20,23,27,.05), 0 8px 24px -12px rgba(20,23,27,.16);
+  --measure:68ch;
+  --sans:"Familjen Grotesk",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0E1013; --surface:#16191D; --surface-2:#1C2026; --surface-3:#242930;
+    --ink:#E9EBEE; --ink-2:#B2B8C0; --muted:#858C95;
+    --rule:#282D33; --rule-strong:#3A4049;
+    --accent:#6688FF; --accent-soft:rgba(102,136,255,.13); --accent-mid:rgba(102,136,255,.26);
+    --burn:#E8604C; --burn-soft:rgba(232,96,76,.14);
+    --c1:#6688FF; --c2:#E8604C; --c3:#1FA075; --c4:#B5871A; --c5:#9478E8;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0E1013; --surface:#16191D; --surface-2:#1C2026; --surface-3:#242930;
+  --ink:#E9EBEE; --ink-2:#B2B8C0; --muted:#858C95;
+  --rule:#282D33; --rule-strong:#3A4049;
+  --accent:#6688FF; --accent-soft:rgba(102,136,255,.13); --accent-mid:rgba(102,136,255,.26);
+  --burn:#E8604C; --burn-soft:rgba(232,96,76,.14);
+  --c1:#6688FF; --c2:#E8604C; --c3:#1FA075; --c4:#B5871A; --c5:#9478E8;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.7);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:var(--serif); font-size:17px; line-height:1.62;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+h1,h2,h3,h4,.sans{font-family:var(--sans)}
+h2,h3,h4{text-wrap:balance; line-height:1.18; margin:0}
+a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent-mid)}
+a:hover{border-bottom-color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:2px}
+sup a{border:0; font-family:var(--mono); font-size:.62em; padding:0 .12em; vertical-align:super}
+
+/* ---------- shell ---------- */
+.shell{max-width:1320px; margin:0 auto; padding:0 clamp(18px,4vw,44px)}
+.layout{display:grid; grid-template-columns:1fr; gap:0}
+@media (min-width:1080px){
+  .layout{grid-template-columns:236px minmax(0,1fr); gap:clamp(36px,5vw,80px)}
+}
+
+/* ---------- nav rail ---------- */
+.rail{display:none}
+@media (min-width:1080px){
+  .rail{
+    display:block; position:sticky; top:0; align-self:start;
+    height:100vh; overflow-y:auto; padding:38px 0 60px;
+    border-right:1px solid var(--rule); scrollbar-width:thin;
+  }
+}
+.rail-mark{font-family:var(--sans); font-weight:700; font-size:19px; letter-spacing:.14em; margin-bottom:4px}
+.rail-sub{font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:26px}
+.rail ol{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:1px}
+.rail a{
+  display:grid; grid-template-columns:26px 1fr; gap:8px; align-items:baseline;
+  font-family:var(--sans); font-size:13.5px; line-height:1.32; color:var(--ink-2);
+  padding:6px 10px 6px 0; border:0; border-left:2px solid transparent; padding-left:10px;
+  transition:color .15s, border-color .15s, background .15s;
+}
+.rail a .n{font-family:var(--mono); font-size:10px; color:var(--muted); letter-spacing:.04em}
+.rail a:hover{color:var(--ink); background:var(--accent-soft)}
+.rail a.on{color:var(--accent); border-left-color:var(--accent); font-weight:600}
+.rail a.on .n{color:var(--accent)}
+
+/* ---------- main column ---------- */
+main{padding:0 0 120px; min-width:0}
+section{padding:52px 0 8px; scroll-margin-top:24px}
+section:first-of-type{padding-top:0}
+.measure{max-width:var(--measure)}
+.measure p{margin:0 0 1.05em}
+p{margin:0 0 1.05em}
+
+.eyebrow{
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--muted); display:flex; align-items:center; gap:10px; margin-bottom:16px;
+}
+.eyebrow::after{content:""; flex:1; height:1px; background:var(--rule)}
+h2{font-size:clamp(26px,3.4vw,36px); font-weight:700; letter-spacing:-.022em; margin-bottom:14px}
+h3{font-size:clamp(18px,2vw,21px); font-weight:600; letter-spacing:-.012em; margin:34px 0 10px}
+h4{font-size:15px; font-weight:600; letter-spacing:-.005em; margin:22px 0 6px}
+.lede{font-size:clamp(18px,2.1vw,20.5px); line-height:1.52; color:var(--ink-2); max-width:60ch}
+
+/* ---------- cover ---------- */
+.cover{padding:clamp(44px,7vw,80px) 0 20px; border-bottom:1px solid var(--rule)}
+.cover-mark{
+  font-family:var(--sans); font-weight:700; letter-spacing:.2em;
+  font-size:clamp(46px,10vw,104px); line-height:.92; margin:0 0 6px;
+}
+.cover-rule{display:flex; align-items:center; gap:14px; margin:22px 0 30px}
+.cover-rule span{font-family:var(--mono); font-size:10.5px; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); white-space:nowrap}
+.cover-rule::before,.cover-rule::after{content:""; height:1px; background:var(--rule-strong); flex:1}
+.cover h1{
+  font-size:clamp(27px,4.2vw,44px); font-weight:600; letter-spacing:-.026em;
+  line-height:1.12; margin:0 0 20px; max-width:19ch; text-wrap:balance;
+}
+.cover h1 em{font-style:normal; color:var(--accent)}
+.covergrid{display:grid; gap:clamp(24px,4vw,56px); grid-template-columns:1fr}
+@media (min-width:760px){.covergrid{grid-template-columns:1.15fr .85fr; align-items:end}}
+
+/* ---------- stat tiles ---------- */
+.stats{display:grid; gap:1px; background:var(--rule); border:1px solid var(--rule); grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); margin:26px 0}
+.stat{background:var(--surface); padding:18px 18px 16px}
+.stat .v{font-family:var(--sans); font-weight:700; font-size:clamp(26px,3.6vw,34px); line-height:1; letter-spacing:-.03em; font-variant-numeric:tabular-nums}
+.stat .v.b{color:var(--burn)} .stat .v.a{color:var(--accent)}
+.stat .k{font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-top:9px; line-height:1.45}
+
+/* ---------- provenance chips ---------- */
+.chip{
+  font-family:var(--mono); font-size:9px; letter-spacing:.11em; text-transform:uppercase;
+  padding:2.5px 6px; border-radius:2px; white-space:nowrap; vertical-align:1px;
+  border:1px solid; display:inline-block; line-height:1.3;
+}
+.chip.src{color:var(--accent); border-color:var(--accent-mid); background:var(--accent-soft)}
+.chip.mod{color:var(--muted); border-color:var(--rule-strong); background:var(--surface-2)}
+.chip.warn{color:var(--burn); border-color:var(--burn); background:var(--burn-soft)}
+
+/* ---------- figures ---------- */
+figure{margin:30px 0; background:var(--surface); border:1px solid var(--rule); box-shadow:var(--shadow)}
+.fig-head{padding:16px 20px 12px; border-bottom:1px solid var(--rule); display:flex; gap:14px; justify-content:space-between; align-items:flex-start; flex-wrap:wrap}
+.fig-head h4{margin:0; font-size:14.5px; letter-spacing:-.004em}
+.fig-num{font-family:var(--mono); font-size:9.5px; letter-spacing:.13em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:5px}
+.fig-body{padding:20px; overflow-x:auto}
+figcaption{padding:0 20px 16px; font-size:13.5px; line-height:1.55; color:var(--muted); max-width:78ch}
+figcaption b{color:var(--ink-2); font-weight:600}
+.legend{display:flex; flex-wrap:wrap; gap:8px 18px; padding:0 20px 16px; font-family:var(--sans); font-size:12.5px; color:var(--ink-2)}
+.legend i{display:inline-block; width:11px; height:11px; border-radius:2px; margin-right:7px; vertical-align:-1px}
+
+/* ---------- tables ---------- */
+.tw{overflow-x:auto; margin:26px 0; border:1px solid var(--rule); background:var(--surface); box-shadow:var(--shadow)}
+table{border-collapse:collapse; width:100%; font-family:var(--sans); font-size:13.5px; min-width:560px}
+th,td{text-align:left; padding:10px 14px; border-bottom:1px solid var(--rule); vertical-align:top; line-height:1.44}
+thead th{
+  font-family:var(--mono); font-size:9.5px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--muted); font-weight:500; background:var(--surface-2); border-bottom:1px solid var(--rule-strong);
+  white-space:nowrap;
+}
+caption{caption-side:top}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:var(--surface-2)}
+td.num,th.num{text-align:right; font-variant-numeric:tabular-nums; font-family:var(--mono); font-size:12.5px; white-space:nowrap}
+td.name{font-weight:600; color:var(--ink); white-space:nowrap}
+tr.total td{border-top:1px solid var(--rule-strong); font-weight:700; background:var(--surface-2)}
+tr.hero td{background:var(--accent-soft)}
+tr.hero td.name{color:var(--accent)}
+.bar-cell{position:relative; min-width:104px}
+.bar-cell .bg{position:absolute; left:14px; top:50%; transform:translateY(-50%); height:7px; border-radius:0 2px 2px 0; background:var(--accent); opacity:.85}
+.bar-cell .lab{position:relative; font-family:var(--mono); font-size:11.5px; padding-left:0}
+
+/* ---------- callouts ---------- */
+.note{
+  border-left:2px solid var(--accent); background:var(--accent-soft);
+  padding:16px 20px; margin:26px 0; font-size:15.5px; line-height:1.58; max-width:74ch;
+}
+.note.risk{border-left-color:var(--burn); background:var(--burn-soft)}
+.note h4{margin:0 0 6px; font-size:13px; font-family:var(--mono); font-weight:500; letter-spacing:.1em; text-transform:uppercase; color:var(--accent)}
+.note.risk h4{color:var(--burn)}
+.note p:last-child{margin-bottom:0}
+
+.cards{display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(248px,1fr)); margin:26px 0}
+.card{background:var(--surface); border:1px solid var(--rule); padding:18px; box-shadow:var(--shadow)}
+.card h4{margin:0 0 8px; font-size:15px}
+.card p{font-size:14px; line-height:1.55; color:var(--ink-2); margin:0 0 .8em}
+.card p:last-child{margin:0}
+.card .tag{font-family:var(--mono); font-size:9.5px; letter-spacing:.11em; text-transform:uppercase; color:var(--muted); display:block; margin-bottom:9px}
+
+ul.tight,ol.tight{margin:0 0 1.1em; padding-left:1.15em; max-width:var(--measure)}
+ul.tight li,ol.tight li{margin-bottom:.42em; padding-left:.2em}
+ul.tight li::marker{color:var(--accent)}
+dl.spec{margin:20px 0; display:grid; grid-template-columns:auto 1fr; gap:0; border-top:1px solid var(--rule); font-size:14px}
+dl.spec dt{font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); padding:9px 20px 9px 0; border-bottom:1px solid var(--rule); white-space:nowrap}
+dl.spec dd{margin:0; padding:9px 0; border-bottom:1px solid var(--rule); font-family:var(--sans); font-size:13.5px}
+
+/* ---------- mockups ---------- */
+.mock{background:var(--surface-2); border:1px solid var(--rule); padding:clamp(16px,3vw,32px); margin:26px 0; box-shadow:var(--shadow)}
+.mock-grid{display:grid; gap:clamp(16px,3vw,28px); grid-template-columns:1fr}
+@media (min-width:720px){.mock-grid.two{grid-template-columns:1fr 1fr}}
+@media (min-width:640px){.mock-grid.three{grid-template-columns:repeat(3,1fr)}}
+.mock svg{display:block; width:100%; height:auto}
+.mock-cap{font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-top:12px; text-align:center}
+.svg-ink{fill:var(--ink)} .svg-line{stroke:var(--ink); fill:none} .svg-muted{fill:var(--muted)}
+
+/* ---------- misc ---------- */
+.toggle{
+  position:fixed; top:14px; right:14px; z-index:50; width:34px; height:34px; border-radius:50%;
+  border:1px solid var(--rule-strong); background:var(--surface); color:var(--ink-2);
+  cursor:pointer; font-size:14px; line-height:1; display:grid; place-items:center; box-shadow:var(--shadow);
+}
+.toggle:hover{color:var(--accent); border-color:var(--accent)}
+.srcs{font-size:13.5px; line-height:1.55; counter-reset:s}
+.srcs li{margin-bottom:8px; color:var(--ink-2)}
+.srcs a{word-break:break-word}
+.end{margin-top:60px; padding-top:22px; border-top:1px solid var(--rule); font-family:var(--mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted)}
+.tip{
+  position:fixed; pointer-events:none; z-index:60; background:var(--ink); color:var(--ground);
+  font-family:var(--mono); font-size:11.5px; line-height:1.5; padding:7px 10px; border-radius:3px;
+  opacity:0; transition:opacity .12s; max-width:250px; box-shadow:0 4px 16px rgba(0,0,0,.28);
+}
+.tip.on{opacity:1}
+.tip b{font-weight:600; color:#fff}
+:root[data-theme="dark"] .tip b,:root:not([data-theme="light"]) .tip b{color:var(--ground)}
+@media (prefers-reduced-motion:reduce){*{animation:none!important; transition:none!important; scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style>
+
+<button class="toggle" id="tg" aria-label="Toggle colour theme">◐</button>
+<div class="tip" id="tip" role="status" aria-live="polite"></div>
+
+<div class="shell">
+<div class="layout">
+
+<nav class="rail" aria-label="Contents">
+  <div class="rail-mark">PALE</div>
+  <div class="rail-sub">Venture dossier · v1.0</div>
+  <ol id="nav">
+    <li><a href="#thesis"><span class="n">01</span><span>Thesis</span></a></li>
+    <li><a href="#problem"><span class="n">02</span><span>The problem</span></a></li>
+    <li><a href="#customer"><span class="n">03</span><span>Two buyers</span></a></li>
+    <li><a href="#world"><span class="n">04</span><span>How the world sells it</span></a></li>
+    <li><a href="#steal"><span class="n">05</span><span>Packaging steal sheet</span></a></li>
+    <li><a href="#options"><span class="n">06</span><span>Eight formats</span></a></li>
+    <li><a href="#product"><span class="n">07</span><span>The product</span></a></li>
+    <li><a href="#mockups"><span class="n">08</span><span>Mockups</span></a></li>
+    <li><a href="#brand"><span class="n">09</span><span>Brand</span></a></li>
+    <li><a href="#sizing"><span class="n">10</span><span>Market sizing</span></a></li>
+    <li><a href="#comps"><span class="n">11</span><span>Global comparables</span></a></li>
+    <li><a href="#gtm"><span class="n">12</span><span>Go to market</span></a></li>
+    <li><a href="#competition"><span class="n">13</span><span>Competition</span></a></li>
+    <li><a href="#financials"><span class="n">14</span><span>Financials</span></a></li>
+    <li><a href="#risks"><span class="n">15</span><span>Risks</span></a></li>
+    <li><a href="#sources"><span class="n">16</span><span>Sources</span></a></li>
+  </ol>
+</nav>
+
+<main>
+
+<!-- ============ COVER ============ -->
+<header class="cover">
+  <div class="cover-mark">PALE</div>
+  <div class="cover-rule"><span>Venture dossier</span></div>
+  <div class="covergrid">
+    <div>
+      <h1>A sun protection <em>instrument</em> for men who have never once tanned.</h1>
+      <p class="lede">Northern European men buy almost no sunscreen, apply a quarter of what the label was tested at, and cannot reach their own backs. They do not want a cosmetic. They will buy a tool.</p>
+    </div>
+    <div>
+      <dl class="spec" style="margin:0">
+        <dt>Category</dt><dd>Sun protection · hardware &amp; refill</dd>
+        <dt>Markets</dt><dd>10 Northern European, D2C first</dd>
+        <dt>Hero SKU</dt><dd>PALE R1 Applicator + C150 cartridge</dd>
+        <dt>Ask</dt><dd>€4.5m seed · 30-month runway</dd>
+        <dt>Prepared</dt><dd>August 2026</dd>
+      </dl>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 01 THESIS ============ -->
+<section id="thesis">
+  <div class="eyebrow">01 — Thesis</div>
+  <div class="measure">
+    <h2>The category sells lotion. The problem is dose.</h2>
+    <p>Sun protection factor is measured in a lab at an application density of <b>2 mg/cm²</b>. Under real conditions people apply between <b>0.39 and 1.0 mg/cm²</b> — roughly 20–50% of the tested amount.<sup><a href="#s1">1</a></sup> Because protection falls off exponentially rather than linearly, that shortfall is not a 50% loss. At 1.0 mg/cm² an SPF 50 product delivers about SPF 7; at 0.5 mg/cm² it delivers under SPF 3.<sup><a href="#s2">2</a></sup></p>
+    <p>Every brand in the category competes on the number printed on the bottle. Almost none of them competes on whether that number survives contact with a human being. That gap is the entire opportunity: <b>a delivery mechanism that meters a correct dose is worth more than a better formula</b>, because it multiplies the performance of a formula that already exists.</p>
+    <p>Aim it at the population with the worst behaviour and the highest biological risk — fair-skinned Northern European men on a Mediterranean holiday — and the product stops being a cosmetic. It becomes equipment.</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="v b">18.7%</div><div class="k">of European men use sunscreen, against 70.1% of women<sup><a href="#s3">3</a></sup></div></div>
+    <div class="stat"><div class="v b">SPF 7</div><div class="k">what SPF 50 actually delivers at half the tested dose<sup><a href="#s2">2</a></sup></div></div>
+    <div class="stat"><div class="v a">54.2</div><div class="k">melanoma cases per 100k Dutch men — highest in the EU<sup><a href="#s4">4</a></sup></div></div>
+    <div class="stat"><div class="v a">96.8m</div><div class="k">tourists into Spain in 2025, a record<sup><a href="#s5">5</a></sup></div></div>
+  </div>
+
+  <div class="measure">
+    <h3>What we are building</h3>
+    <p><b>PALE R1</b> — a telescoping applicator with a swappable roller head and a mechanically metered cartridge. Each press of the thumb trigger releases a measured quantity. The handle extends to 520 mm so a man can cover his own back. The formula lays down with a blue cast that fades clear in about sixty seconds, so missed patches are visible while there is still time to fix them.</p>
+    <p>Hardware once, cartridges forever. He buys an instrument; she buys the refills before the next trip.</p>
+  </div>
+</section>
+
+<!-- ============ 02 PROBLEM ============ -->
+<section id="problem">
+  <div class="eyebrow">02 — The problem</div>
+  <div class="measure">
+    <h2>Three failures, one mechanism</h2>
+    <p>The category's failures are not failures of chemistry. European sunscreens are excellent — the EU permits more than thirty UV filters, considerably more than the United States.<sup><a href="#s6">6</a></sup> The failures are all in the handoff between the bottle and the skin.</p>
+  </div>
+
+  <figure>
+    <div class="fig-head">
+      <div><span class="fig-num">Figure 1 · Sourced</span><h4>Protection collapses long before the dose does</h4></div>
+      <span class="chip src">Sourced</span>
+    </div>
+    <div class="fig-body"><div id="ch-dose"></div></div>
+    <div class="legend">
+      <span><i style="background:var(--c1)"></i>Realised SPF from an SPF 50 product</span>
+      <span><i style="background:var(--c2)"></i>Observed real-world application range</span>
+    </div>
+    <figcaption>Realised protection follows <span style="font-family:var(--mono);font-size:12px">SPF<sub>label</sub><sup>(dose/2)</sup></span>. The shaded band is where people actually live: 0.39–1.0 mg/cm².<sup><a href="#s1">1</a></sup> <b>An SPF 50 bottle used normally is an SPF 3–7 product.</b> Moving a user from 0.75 to 1.8 mg/cm² — which is a mechanical problem, not a chemical one — takes them from roughly SPF 4 to roughly SPF 33 with no change to the formula.</figcaption>
+  </figure>
+
+  <div class="cards">
+    <div class="card">
+      <span class="tag">Failure 01 · Dose</span>
+      <h4>Nobody measures anything</h4>
+      <p>A correct full-body application is about 36 g. Nobody pours 36 g out of a bottle. There is no unit, no marking, no feedback, and no way to know you got it wrong until the evening.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Failure 02 · Reach</span>
+      <h4>The back needs a second person</h4>
+      <p>The shoulders, upper back and neck take the most direct overhead sun and are the only areas a person cannot see or comfortably reach. This is why sunscreen application is socially negotiated, and why the partner is structurally part of the product.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Failure 03 · Identity</span>
+      <h4>It reads as cosmetics</h4>
+      <p>Pastel bottles, floral scent, the beauty aisle. Fewer than one in five European men engage with the category at all.<sup><a href="#s3">3</a></sup> The barrier is not price or knowledge. It is that the object is coded as not-for-him.</p>
+    </div>
+  </div>
+
+  <figure>
+    <div class="fig-head">
+      <div><span class="fig-num">Figure 2 · Sourced</span><h4>The gender gap in sunscreen use is the largest in personal care</h4></div>
+      <span class="chip src">Sourced</span>
+    </div>
+    <div class="fig-body"><div id="ch-gender"></div></div>
+    <figcaption>European men use sunscreen at under a third of the female rate.<sup><a href="#s3">3</a></sup> US data shows the same shape: 29% of men never wear it against 13% of women.<sup><a href="#s7">7</a></sup> <b>The addressable behaviour change is enormous precisely because the baseline is so poor.</b></figcaption>
+  </figure>
+
+  <div class="measure">
+    <h3>And the biology is against them</h3>
+    <p>Fitzpatrick I–II skin — burns easily, tans minimally or never — is the dominant phototype across Scandinavia, the Netherlands, Ireland and northern Germany. The consequence is measurable and severe: the EU countries with the highest melanoma incidence are Denmark, the Netherlands, Sweden, Finland and Germany, not the sunny ones.<sup><a href="#s4">4</a></sup> Dutch men record over 54.2 cases per 100,000 and Danish women approximately 51 per 100,000 — the highest figures in the Union.<sup><a href="#s4">4</a></sup></p>
+    <p>The mechanism is intermittent intense exposure. A population that sees little UV for ten months and then absorbs a fortnight of Mediterranean sun in a concentrated burst is running the single worst exposure pattern for melanoma risk. <b>Our customer's holiday is the risk event.</b> That is also, commercially, why the purchase has a date attached to it.</p>
+  </div>
+</section>
+
+<!-- ============ 03 CUSTOMER ============ -->
+<section id="customer">
+  <div class="eyebrow">03 — Two buyers</div>
+  <div class="measure">
+    <h2>The user and the instigator are different people</h2>
+    <p>This is the most important commercial fact in the brief and it dictates almost every downstream decision. The person who <em>uses</em> sunscreen in this household is not reliably the person who <em>buys</em> it, and is almost never the person who decides it is needed. With men at 18.7% category engagement and women at 70.1%,<sup><a href="#s3">3</a></sup> the purchase in a mixed household is overwhelmingly initiated by the partner.</p>
+    <p>A brand that speaks only to him never gets bought. A brand that speaks only to her gets bought once and then resented. <b>The product has to be a gift he is actually pleased to receive.</b></p>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <span class="tag">Persona A · The user</span>
+      <h4>Joost, 41 — Utrecht</h4>
+      <p>Project manager. Fitzpatrick II. Owns a bike computer, a coffee grinder and four running watches. Has strong opinions about equipment and none whatsoever about skincare.</p>
+      <p>Goes to the Algarve for ten days each July with his partner and two children. Applies sunscreen once, at 11am, badly, from whatever bottle is in the bag. Burns on day two, blames the wind, and spends day three in a t-shirt.</p>
+      <p><b>What moves him:</b> a specification. Dose per press, coverage rate, reach in millimetres. He will read a diagram he would never read a paragraph about.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Persona B · The instigator</span>
+      <h4>Sanne, 39 — Utrecht</h4>
+      <p>Buys the family's sun protection, packs it, and applies it to two children and one adult man. Has asked him to do his own back for eleven years.</p>
+      <p>Reads ingredient lists. Knows the Netherlands has a melanoma problem — has probably had a mole checked. Her motivation is not vanity or nagging; it is that she can see the back of his neck and he cannot.</p>
+      <p><b>What moves her:</b> evidence that it works, and relief from being the application service. She is the buyer of the hardware and the subscriber to the refills.</p>
+    </div>
+  </div>
+
+  <div class="tw">
+    <table>
+      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 1 · Who does what in the purchase — and what the product must do for each</caption>
+      <thead><tr><th>Stage</th><th>Typically him</th><th>Typically her</th><th>What PALE must do</th></tr></thead>
+      <tbody>
+        <tr><td class="name">Recognises need</td><td>Rarely</td><td>Almost always</td><td>Give her a specific, evidenced reason this product is different from nagging</td></tr>
+        <tr><td class="name">Researches</td><td>Only if it is a device</td><td>Reads reviews, ingredients</td><td>Publish the dose mechanism and the test data openly</td></tr>
+        <tr><td class="name">Pays</td><td>For the hardware, if framed as kit</td><td>For the first purchase and refills</td><td>Two entry points: gift bundle and self-purchase</td></tr>
+        <tr><td class="name">Applies</td><td>Fronts only, badly</td><td>His back, every time</td><td>Give him the reach so she stops being the applicator</td></tr>
+        <tr><td class="name">Reapplies</td><td>Essentially never</td><td>Prompts him</td><td>Dose counter makes reapplication a visible, countable act</td></tr>
+        <tr><td class="name">Repurchases</td><td>No</td><td>Before the next trip</td><td>Subscription anchored to the booked holiday, not the calendar</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note">
+    <h4>The purchase window</h4>
+    <p>Sun care is not bought when it is needed. It is bought <b>two to six weeks before departure</b>, alongside the suitcase, the adaptor and the travel insurance — or in the airport, at panic prices, having forgotten. The trip booking is the trigger event, which makes the acquisition problem a targeting problem rather than a seasonal one: reach the household in the fortnight after they book.</p>
+  </div>
+</section>
+
+<!-- ============ 04 WORLD ============ -->
+<section id="world">
+  <div class="eyebrow">04 — How the world sells it</div>
+  <div class="measure">
+    <h2>Six markets, six different products called sunscreen</h2>
+    <p>Northern Europe treats sun protection as holiday equipment: a large bottle, bought once a year, used on a beach. Almost nowhere else in the world does it that way, and the differences are instructive about both format and ritual.</p>
+  </div>
+
+  <div class="tw">
+    <table>
+      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 2 · What each market has already proved</caption>
+      <thead><tr><th>Market</th><th>Dominant format</th><th>Ritual</th><th>What it proves for us</th></tr></thead>
+      <tbody>
+        <tr><td class="name">South Korea</td><td>Sun sticks, cushion compacts, sun pads, powders</td><td>Daily, reapplied over makeup, carried in a pocket</td><td>Format innovation drives category growth. Sticks and cushions exist because they solved <em>reapplication</em>, not protection.<sup><a href="#s8">8</a></sup></td></tr>
+        <tr><td class="name">Japan</td><td>Fluid milks, sprays for skin and hair, high PA ratings</td><td>Daily, year-round, anti-ageing framing</td><td>A sunscreen can be sold as maintenance rather than holiday kit. Anessa is the No.1 sun care brand in Asia on that basis.<sup><a href="#s9">9</a></sup></td></tr>
+        <tr><td class="name">Australia</td><td>Large-format lotions, roll-ons, workplace dispensers</td><td>Institutional — schools, worksites, sport</td><td>Per-capita consumption reaches 400–500 ml a year.<sup><a href="#s10">10</a></sup> Volume follows ritual and infrastructure, not awareness.</td></tr>
+        <tr><td class="name">Brazil</td><td>Multifunctional lotions, sachets, drugstore economy packs</td><td>Everyday, urban, price-tiered</td><td>Consumption sits at 120–150 ml per capita against Australia's 400–500.<sup><a href="#s10">10</a></sup> The ceiling is distribution and unit price, not desire.</td></tr>
+        <tr><td class="name">Gulf states</td><td>High-SPF, whitening-adjacent, prestige dermocosmetic</td><td>Avoidance-led; sun is something to be shielded from</td><td>Premium pricing is available where the product is framed as protective rather than recreational.</td></tr>
+        <tr><td class="name">Northern Europe</td><td>200 ml bottles and sprays, SPF 30–50</td><td>Once a year, in a suitcase</td><td>The lowest-frequency, lowest-engagement pattern in the developed world — and therefore the one with the most headroom.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note">
+    <h4>The one Northern European exception worth studying</h4>
+    <p>Denmark's <b>Riemann P20</b> has sold since 1979 on a single mechanical promise — one application, ten hours' protection<sup><a href="#s11">11</a></sup> — rather than on a formula story or a lifestyle. It is a fixture of Nordic travel retail. It proves the target customer will pay for <em>a claim about application behaviour</em>. P20 removed the need to reapply; we are removing the need to guess the dose and the need for a second person. Same instinct, next mechanism.</p>
+  </div>
+</section>
+
+<!-- ============ 05 STEAL SHEET ============ -->
+<section id="steal">
+  <div class="eyebrow">05 — Packaging steal sheet</div>
+  <div class="measure">
+    <h2>Nothing here was invented in cosmetics</h2>
+    <p>Every mechanism in the R1 is proven at scale somewhere else. That is the point: this is an integration risk, not an invention risk.</p>
+  </div>
+
+  <div class="tw">
+    <table>
+      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 3 · Cross-industry precedents and what transfers</caption>
+      <thead><tr><th>Industry</th><th>Precedent</th><th>What transfers</th></tr></thead>
+      <tbody>
+        <tr><td class="name">Wet shaving</td><td>Gillette, Harry's, Dollar Shave Club</td><td>The whole business architecture: a durable handle at near-cost, a consumable at ~77% gross margin, and a subscription attached to it.<sup><a href="#s12">12</a></sup> Also the cultural permission — men already own a handle-and-cartridge bathroom object.</td></tr>
+        <tr><td class="name">Diabetes care</td><td>Insulin pens, auto-injectors</td><td>Mechanical dose metering with an audible click and a counter window. Proof that a dial-a-dose mechanism can be manufactured cheaply, used one-handed, and trusted.</td></tr>
+        <tr><td class="name">Coffee</td><td>Nespresso capsules</td><td>The sealed pre-dosed unit as both a UX and a margin device. Also that consumers accept a hardware purchase to unlock a consumable system.</td></tr>
+        <tr><td class="name">Decorating</td><td>Paint rollers, edging pads, extension poles</td><td>Roller geometry for even film thickness on large surfaces, and the telescoping pole as the accepted answer to "I cannot reach that".</td></tr>
+        <tr><td class="name">Self-tanning</td><td>Application mitts, back applicators</td><td>The market has already accepted a tool for applying lotion to a body, and specifically for applying it to a back. Precedent for the behaviour.</td></tr>
+        <tr><td class="name">Hair colour &amp; surgical prep</td><td>Tinted developers, coloured antiseptic skin prep</td><td>Temporary visible pigment as a coverage-verification system. Surgeons use tinted chlorhexidine for exactly the reason we want it: so you can see what you have covered.</td></tr>
+        <tr><td class="name">Deodorant</td><td>Stick and roll-on architecture</td><td>Twist-advance and rolling-ball delivery under a body-contact hygiene standard, at commodity cost.</td></tr>
+        <tr><td class="name">Hospitality &amp; FMCG</td><td>Compostable single-dose pods, monodose sachets</td><td>Refill supply chain in pod and stick-pack formats, plus compostable film options for the travel SKU.<sup><a href="#s13">13</a></sup></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note risk">
+    <h4>Prior art to clear before filing</h4>
+    <p>The tinted-fade idea is not novel in itself — <b>US 6,290,936</b> covers a sunscreen with a disappearing colour indicator using water-soluble dyes.<sup><a href="#s14">14</a></sup> Colour-change UV indicator stickers are also an established consumer product. Our defensible position is therefore <b>not</b> the tint; it is the metering mechanism, the head geometry, and the cartridge-to-applicator interface. Freedom-to-operate work on the dosing mechanism should be commissioned before tooling.</p>
+  </div>
+</section>
+
+<!-- ============ 06 OPTIONS ============ -->
+<section id="options">
+  <div class="eyebrow">06 — Eight formats</div>
+  <div class="measure">
+    <h2>Everything we considered, and why the applicator won</h2>
+    <p>The brief was to reimagine application, not to make a nicer bottle. Eight mechanisms were worked up far enough to cost and score. All eight are shown here so the recommendation can be argued with rather than taken on trust — only the winner is developed into mockups.</p>
+    <p>Each was scored 1–5 against the six criteria that actually decide this: whether it fixes the dose problem, whether it reaches the back, whether a man will pick it up, whether it generates recurring revenue, how hard the regulatory path is, and how fast it reaches market.</p>
+  </div>
+
+  <div class="mock">
+    <div class="mock-grid three" id="format-icons"></div>
+  </div>
+
+  <div class="tw">
+    <table>
+      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 4 · Format scoring — 1 (poor) to 5 (excellent) <span class="chip mod" style="margin-left:8px">Modelled judgement</span></caption>
+      <thead><tr>
+        <th>Format</th><th class="num">Dose</th><th class="num">Back</th><th class="num">Male appeal</th><th class="num">Refill econ.</th><th class="num">Reg. path</th><th class="num">Speed</th><th>Total</th>
+      </tr></thead>
+      <tbody id="score-body"></tbody>
+    </table>
+  </div>
+
+  <h3>The eight, in detail</h3>
+  <div class="cards">
+    <div class="card" style="border-color:var(--accent); border-width:2px">
+      <span class="tag" style="color:var(--accent)">01 · Selected — 27/30</span>
+      <h4>Cartridge applicator tool</h4>
+      <p>Telescoping handle, swappable roller head, mechanically metered sealed cartridge. Fixes all three failures at once and is the only option that fixes reach.</p>
+      <p><b>Precedent:</b> razor handle-and-blade, insulin pen metering, paint roller. <b>COGS:</b> ~€6.20 hardware, ~€3.40 cartridge. <b>Risk:</b> hardware price is a barrier to trial.</p>
+    </div>
+    <div class="card">
+      <span class="tag">02 · Fallback — 22/30</span>
+      <h4>Single-dose pods</h4>
+      <p>One pod, one correct dose, in a pocket carrier. Kills under-application with no moving parts and no tooling risk, and travels perfectly.</p>
+      <p><b>Why not:</b> no answer to the back, no hardware moat, and trivially copied by an incumbent within a season. <b>Held as the fallback</b> if hardware price testing fails.</p>
+    </div>
+    <div class="card">
+      <span class="tag">07 · 20/30</span>
+      <h4>Applicator mitt</h4>
+      <p>A shaped mitt or long-strap back applicator, lifted straight from self-tanning. Cheap, fast, no regulatory novelty, solves reach.</p>
+      <p><b>Why not:</b> it does not meter, so it fixes the second-most-important problem while leaving the first untouched. Also reads as a beauty accessory. Viable as a low-cost accessory SKU.</p>
+    </div>
+    <div class="card">
+      <span class="tag">04 · 19/30</span>
+      <h4>Metered device with UV sensor</h4>
+      <p>Electronic dosing plus real UV-exposure tracking telling him when to reapply. The strongest gadget pull of the eight and the best data story.</p>
+      <p><b>Why not:</b> batteries, water ingress, sand, and a bill of materials several times the R1's, for a benefit a printed dose counter mostly delivers. Revisit as a v3 premium tier.</p>
+    </div>
+    <div class="card">
+      <span class="tag">05 · 17/30</span>
+      <h4>Leave-on shower application</h4>
+      <p>Applied like a body wash in the shower before leaving, rinsing off the carrier and leaving the filter film. Genuinely solves reach and habit — you already wash your own back.</p>
+      <p><b>Why not:</b> substantivity through rinsing is a severe formulation problem, and any residual-film claim is hard to evidence under ISO water-resistance protocols.</p>
+    </div>
+    <div class="card">
+      <span class="tag">06 · 17/30</span>
+      <h4>Colour-indicating mousse</h4>
+      <p>A whipped mousse that goes on visibly tinted and fades. Fast to market, no hardware, immediately legible benefit.</p>
+      <p><b>Why not:</b> it is a formula, not a system — no recurring hardware lock-in, existing prior art on the tint,<sup><a href="#s14">14</a></sup> and still applied by hand. Retained as the <em>tint technology inside</em> the R1 cartridge rather than as its own product.</p>
+    </div>
+    <div class="card">
+      <span class="tag">03 · 14/30</span>
+      <h4>Dry activated sheets</h4>
+      <p>Compressed dry sheets, each a measured dose, activated with water or sweat. Plastic-free, liquid-free, unrestricted in hand luggage, and radically different on shelf.</p>
+      <p><b>Why not:</b> the hardest formulation risk of the eight. Achieving a uniform, photostable film at 2 mg/cm² from a dry substrate is unproven, and SPF testing would likely fail first pass.</p>
+    </div>
+    <div class="card">
+      <span class="tag">08 · 10/30</span>
+      <h4>Wearable patch or clip-on reservoir</h4>
+      <p>A body-worn reservoir dispensing continuously, or a patch releasing filters over time.</p>
+      <p><b>Why not:</b> transdermal-adjacent delivery moves the product toward a medicinal classification in the EU, filters are surface-active by design, and there is no credible path to even coverage. Rejected outright.</p>
+    </div>
+  </div>
+
+  <div class="note risk">
+    <h4>The strongest case against the recommendation</h4>
+    <p>The R1 asks a man who currently spends <b>€12 on a bottle at the airport</b> to spend <b>€34 on a device</b> before he has any evidence it works. In a category bought once a year under mild guilt, that is a real conversion barrier, and it is the single assumption most likely to break the model. It should be tested with a landing-page price test <em>before</em> tooling is cut, because tooling is the point of no return.</p>
+    <p>If trial conversion at €34 comes in below roughly 1.4%, the correct move is to fall back to <b>single-dose pods</b> (option 02): the same dose thesis, the same clinical claim, no hardware, and a fraction of the capital at risk. Alternatively, subsidise the hardware to €19 and recover it across cartridges — the razor playbook proper.</p>
+  </div>
+</section>
+
+<!-- ============ 07 PRODUCT ============ -->
+<section id="product">
+  <div class="eyebrow">07 — The product</div>
+  <div class="measure">
+    <h2>PALE R1 Applicator and C150 cartridge</h2>
+    <p>The design brief was written against the three failures. Every feature below traces to one of them, and anything that traced to none of them was removed.</p>
+  </div>
+
+  <h3>How it works</h3>
+  <div class="cards">
+    <div class="card">
+      <span class="tag">Mechanism 01</span>
+      <h4>Metered dose, counted</h4>
+      <p>A ratcheted piston drives the cartridge. Each thumb-trigger press advances one detent and delivers <b>1.4 ml</b> into the roller feed with an audible click. A mechanical counter window shows presses remaining in the current zone dose.</p>
+      <p>Eight presses covers back and shoulders at approximately 2 mg/cm². The user is not asked to judge anything — the instruction is a number.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Mechanism 02</span>
+      <h4>Reach without a second person</h4>
+      <p>The handle telescopes from <b>320 mm to 520 mm</b> and locks at three positions. The head pivots through 40° against a detented joint so the roller stays flat against the shoulder blade at full extension.</p>
+      <p>This is the feature she is buying. It is also the feature that makes it a tool rather than a cosmetic.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Mechanism 03</span>
+      <h4>Coverage you can see</h4>
+      <p>A water-soluble blue pigment in the cartridge lays down a visible film that fades to clear in roughly sixty seconds as the emulsion sets. Missed patches are obvious during the window when they can still be fixed.</p>
+      <p>Borrowed from surgical skin prep, where tinting exists for precisely this reason.</p>
+    </div>
+  </div>
+
+  <h3>Specification</h3>
+  <dl class="spec">
+    <dt>Hardware</dt><dd>PALE R1 · glass-filled PP body, TPE grip, anodised aluminium extension tube, stainless ratchet spring</dd>
+    <dt>Length</dt><dd>320 mm closed · 520 mm extended · 3 lock positions</dd>
+    <dt>Heads</dt><dd>R-70 roller (70 mm, body and back) · P-25 precision pad (25 mm, face, ears, scalp line, tops of feet)</dd>
+    <dt>Dose</dt><dd>1.4 ml per press · mechanical counter · audible detent</dd>
+    <dt>Cartridge</dt><dd>PALE C150 · 150 ml sealed PP cartridge, foil-pierced on first insertion</dd>
+    <dt>Coverage</dt><dd>≈13 correct-dose applications of back, shoulders, chest and neck — <b>one cartridge ≈ one week's holiday</b></dd>
+    <dt>Formula</dt><dd>SPF 50+ · broad spectrum · UVA-PF ≥ ⅓ SPF per EU recommendation · hybrid organic/mineral filter system · water resistant to ISO 16217</dd>
+    <dt>Tint</dt><dd>Water-soluble blue indicator, fade to clear ≈60 s</dd>
+    <dt>Testing</dt><dd>ISO 24444 in vivo SPF · ISO 24443 in vitro UVA-PF · CPSR and CPNP notification under Regulation (EC) 1223/2009</dd>
+  </dl>
+
+  <div class="note">
+    <h4>A regulatory advantage that falls out of the format</h4>
+    <p>Nano zinc oxide and nano titanium dioxide are authorised EU filters at up to 25%, but each carries an explicit condition barring use where the lungs could be exposed — which excludes them from sprayable formats.<sup><a href="#s6">6</a></sup> Creams, sticks and roll-ons are unaffected. <b>Our format can use the full mineral filter toolkit that the fastest-growing competing format legally cannot.</b> For a customer base with Fitzpatrick I–II skin and a partner reading ingredient lists, that is a real positioning asset rather than a technicality.</p>
+  </div>
+
+  <h3>The range</h3>
+  <div class="tw">
+    <table>
+      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 5 · SKU ladder and pricing <span class="chip mod" style="margin-left:8px">Modelled</span></caption>
+      <thead><tr><th>SKU</th><th>What it is</th><th class="num">RRP</th><th class="num">COGS</th><th class="num">GM%</th><th>Role</th></tr></thead>
+      <tbody>
+        <tr class="hero"><td class="name">R1 Applicator</td><td>Hardware, two heads, one C150 cartridge, case</td><td class="num">€34.00</td><td class="num">€9.60</td><td class="num">71.8%</td><td>Entry · the gift</td></tr>
+        <tr><td class="name">C150 twin-pack</td><td>Two 150 ml cartridges</td><td class="num">€22.00</td><td class="num">€6.80</td><td class="num">69.1%</td><td>The engine</td></tr>
+        <tr><td class="name">Holiday Pack</td><td>Two cartridges, travel case, lip SPF</td><td class="num">€28.00</td><td class="num">€8.90</td><td class="num">68.2%</td><td>Pre-trip bundle</td></tr>
+        <tr><td class="name">Subscription</td><td>Two cartridges shipped per booked trip</td><td class="num">€19.00</td><td class="num">€6.80</td><td class="num">64.2%</td><td>Retention</td></tr>
+        <tr><td class="name">P-25 Face Stick</td><td>Standalone precision stick, SPF 50+</td><td class="num">€16.00</td><td class="num">€5.20</td><td class="num">67.5%</td><td>AOV lift</td></tr>
+        <tr><td class="name">After-sun C150</td><td>Cartridge, same applicator, repair formula</td><td class="num">€12.00</td><td class="num">€3.90</td><td class="num">67.5%</td><td>Attach · evening ritual</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="measure" style="font-size:14px;color:var(--muted)">COGS are modelled from published injection-moulding benchmarks<sup><a href="#s15">15</a></sup> and bulk emulsion costs at a 50,000-unit first run, and should be treated as planning figures pending supplier quotation. They exclude tooling, which is capitalised separately.</p>
+</section>
+
+<!-- ============ 08 MOCKUPS ============ -->
+<section id="mockups">
+  <div class="eyebrow">08 — Mockups</div>
+  <div class="measure">
+    <h2>What it looks like</h2>
+    <p>Concept renders, not engineering drawings. Proportions are to the specification above; the industrial design language is deliberately instrument-like — matte body, machined extension, one accent, no gloss and no gradient.</p>
+  </div>
+
+  <div class="mock">
+    <div class="mock-grid two">
+      <div>
+        <div id="mk-tool"></div>
+        <div class="mock-cap">R1 Applicator · front elevation, extended</div>
+      </div>
+      <div>
+        <div id="mk-cart"></div>
+        <div class="mock-cap">C150 cartridge · sectional view, metering path</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mock">
+    <div id="mk-seq"></div>
+    <div class="mock-cap">Coverage verification · tint laid down, gap visible, film faded clear</div>
+  </div>
+
+  <div class="mock">
+    <div class="mock-grid two">
+      <div>
+        <div id="mk-carton"></div>
+        <div class="mock-cap">R1 retail carton · shelf face</div>
+      </div>
+      <div>
+        <div id="mk-refill"></div>
+        <div class="mock-cap">C150 twin-pack · subscription carton</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 BRAND ============ -->
+<section id="brand">
+  <div class="eyebrow">09 — Brand</div>
+  <div class="measure">
+    <h2>Cheeky to him, clinical to her, from the same wordmark</h2>
+    <p>The dual-buyer problem is solved in the brand rather than in two separate campaigns. The name carries the joke; everything underneath it is deadpan and evidenced. He reads it as self-aware. She reads it as a straight description of his skin type.</p>
+  </div>
+
+  <div class="tw">
+    <table>
+      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 6 · Name shortlist</caption>
+      <thead><tr><th>Name</th><th>Reads to him</th><th>Reads to her</th><th>Verdict</th></tr></thead>
+      <tbody>
+        <tr class="hero"><td class="name">PALE</td><td>Owns the insult before anyone else can use it</td><td>A literal, accurate phototype descriptor</td><td><b>Recommended.</b> Works in English across the Nordics and NL. Common-word trademark risk in Class 3 — expect to register a compound such as PALE STANDARD or PALE CO.</td></tr>
+        <tr><td class="name">MEDIUM RARE</td><td>Very funny, extremely shareable</td><td>Frames burning as the joke, not the risk</td><td>Strongest viral name, weakest clinical spine. Undermines the evidence position.</td></tr>
+        <tr><td class="name">NOON</td><td>Neutral, premium, a little abstract</td><td>Clear reference to peak UV</td><td>Elegant and highly registrable, but carries none of the humour the brief asks for.</td></tr>
+        <tr><td class="name">FACTOR</td><td>Technical, familiar</td><td>Familiar</td><td>Generic and near-impossible to own in this category.</td></tr>
+        <tr><td class="name">MILKBOTTLE</td><td>British slang for very pale legs — lands hard in the UK</td><td>Affectionate</td><td>Does not survive translation outside the UK and Ireland.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Positioning statement</h3>
+  <div class="note">
+    <p style="font-size:17px"><b>For fair-skinned men who go south once a year and burn every time</b>, PALE is a sun protection instrument rather than a cosmetic — it measures the dose, reaches the back, and shows you what you missed, so that the number on the label is the number on your skin.</p>
+  </div>
+
+  <h3>Voice, both registers</h3>
+  <div class="cards">
+    <div class="card">
+      <span class="tag">Front of pack · to him</span>
+      <p style="font-size:16px;font-family:var(--sans)">"You have never tanned. You are not going to start in Alicante."</p>
+      <p style="font-size:16px;font-family:var(--sans)">"Eight presses. Do your own back. Stop asking."</p>
+      <p style="font-size:16px;font-family:var(--sans)">"Engineered for skin the colour of the inside of a bread roll."</p>
+    </div>
+    <div class="card">
+      <span class="tag">Back of pack · to her</span>
+      <p style="font-size:15px;font-family:var(--sans)">"SPF is tested at 2 mg/cm². Most people apply a quarter of that, which turns SPF 50 into roughly SPF 3. The R1 meters 1.4 ml per press so the dose is not a guess."</p>
+      <p style="font-size:15px;font-family:var(--sans)">"Denmark and the Netherlands have the highest melanoma incidence in the EU. This is a product for that fact."</p>
+    </div>
+  </div>
+
+  <h3>Identity</h3>
+  <dl class="spec">
+    <dt>Wordmark</dt><dd>Familjen Grotesk, 700 weight, wide tracking, always uppercase, never locked to a symbol</dd>
+    <dt>Palette</dt><dd>Cobalt <span style="font-family:var(--mono);font-size:12px">#2B4FE0</span> — the tint, the protected state. Burn red <span style="font-family:var(--mono);font-size:12px">#E8452F</span> is reserved for the failure state and never used decoratively. Cool paper grey and cold near-black carry everything else.</dd>
+    <dt>Photography</dt><dd>Clinical and unflattering. Real Northern European skin at close range — freckles, moles, tan lines at the sleeve. No golden hour, no models, no beach.</dd>
+    <dt>Tone rule</dt><dd>The joke is always about him and never about the risk. Burn statistics are stated flat, without exclamation.</dd>
+  </dl>
+
+  <div class="note risk">
+    <h4>Claim discipline</h4>
+    <p>The European Commission explicitly discourages "sunblock", "total protection", "100% protection" and "all-day protection", none of which are supported by photostability or substantivity data.<sup><a href="#s6">6</a></sup> None of these appear anywhere in the brand language, and the SPF number must always be accompanied by its protection category ("very high"). The tint must never be described as indicating <em>protection</em> — only <em>coverage</em>, which is what it actually shows.</p>
+  </div>
+</section>
+
+<!-- ============ 10 SIZING ============ -->
+<section id="sizing">
+  <div class="eyebrow">10 — Market sizing</div>
+  <div class="measure">
+    <h2>€1.83bn addressable, €570m servable, €11.5m targeted</h2>
+    <p>Built bottom-up from population and per-capita spend rather than taken from a top-line analyst figure, so every input can be argued with individually. The European sunscreen market is independently valued at roughly <b>USD 4.24bn in 2025</b>,<sup><a href="#s16">16</a></sup> with EU sun protection specifically at <b>€2.6–3.0bn</b> and per-capita sun care spend of <b>€8–11</b>.<sup><a href="#s16">16</a></sup> Our ten-market build reconciles to that.</p>
+  </div>
+
+  <h3>TAM — sun protection retail value, ten Northern European markets</h3>
+  <div class="tw">
+    <table>
+      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 7 · TAM build <span class="chip src" style="margin-left:8px">Population sourced</span> <span class="chip mod" style="margin-left:4px">Per-capita modelled</span></caption>
+      <thead><tr><th>Market</th><th class="num">Population (m)</th><th class="num">Sun protection €/capita</th><th class="num">Value (€m)</th><th>Why this per-capita figure</th></tr></thead>
+      <tbody>
+        <tr><td class="name">Germany</td><td class="num">83.5</td><td class="num">8.00</td><td class="num">668.0</td><td>Largest EU sun care market at 20.5% share<sup><a href="#s16">16</a></sup></td></tr>
+        <tr><td class="name">United Kingdom</td><td class="num">68.3</td><td class="num">7.50</td><td class="num">512.3</td><td>16.9% of European share; high holiday incidence<sup><a href="#s16">16</a></sup></td></tr>
+        <tr><td class="name">Poland</td><td class="num">36.5</td><td class="num">3.20</td><td class="num">116.8</td><td>Lower spend base, fast-growing outbound travel</td></tr>
+        <tr><td class="name">Netherlands</td><td class="num">17.9</td><td class="num">8.20</td><td class="num">146.8</td><td>Highest EU male melanoma incidence drives awareness<sup><a href="#s4">4</a></sup></td></tr>
+        <tr><td class="name">Belgium</td><td class="num">11.7</td><td class="num">7.80</td><td class="num">91.3</td><td>Comparable profile to the Netherlands</td></tr>
+        <tr><td class="name">Sweden</td><td class="num">10.6</td><td class="num">9.20</td><td class="num">97.5</td><td>High income, strong public health campaigning</td></tr>
+        <tr><td class="name">Denmark</td><td class="num">5.9</td><td class="num">9.60</td><td class="num">56.6</td><td>Highest EU female melanoma incidence<sup><a href="#s4">4</a></sup></td></tr>
+        <tr><td class="name">Finland</td><td class="num">5.6</td><td class="num">8.40</td><td class="num">47.0</td><td>Top-five EU melanoma incidence<sup><a href="#s4">4</a></sup></td></tr>
+        <tr><td class="name">Norway</td><td class="num">5.5</td><td class="num">10.20</td><td class="num">56.1</td><td>Highest income per head; heavy Canaries travel</td></tr>
+        <tr><td class="name">Ireland</td><td class="num">5.3</td><td class="num">7.00</td><td class="num">37.1</td><td>Very high Fitzpatrick I–II share</td></tr>
+        <tr class="total"><td class="name">TAM</td><td class="num">250.8</td><td class="num">7.29</td><td class="num">1,829.5</td><td>Blended per-capita, ten markets</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>SAM — the men we can actually sell to</h3>
+  <div class="tw">
+    <table>
+      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 8 · SAM funnel <span class="chip mod" style="margin-left:8px">Modelled from sourced inputs</span></caption>
+      <thead><tr><th>Step</th><th class="num">Rate</th><th class="num">Population</th><th>Basis</th></tr></thead>
+      <tbody>
+        <tr><td class="name">Ten-market population</td><td class="num">—</td><td class="num">250.8m</td><td>Table 7</td></tr>
+        <tr><td class="name">Adult men, 18–65</td><td class="num">31%</td><td class="num">77.7m</td><td>Standard demographic share for these markets</td></tr>
+        <tr><td class="name">Take ≥1 Southern European sun holiday a year</td><td class="num">35%</td><td class="num">27.2m</td><td>Spain alone received 96.8m tourists in 2025 (UK 19.1m, Germany 12.1m);<sup><a href="#s5">5</a></sup> Dutch residents made 27.3m outbound trips<sup><a href="#s20">20</a></sup></td></tr>
+        <tr><td class="name">Fitzpatrick I–II phototype</td><td class="num">55%</td><td class="num">15.0m</td><td>Dominant phototype across Scandinavia, NL, IE, northern DE</td></tr>
+        <tr class="total"><td class="name">SAM value at €38 steady-state annual spend</td><td class="num">—</td><td class="num">€570m</td><td>1.8 refill packs a year at €22, net of hardware</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <figure>
+    <div class="fig-head">
+      <div><span class="fig-num">Figure 3 · Modelled</span><h4>TAM, SAM and the year-three target</h4></div>
+      <span class="chip mod">Modelled</span>
+    </div>
+    <div class="fig-body"><div id="ch-tam"></div></div>
+    <figcaption>Year-three revenue of <b>€11.5m</b> is <b>2.0% of SAM value</b> and represents roughly <b>145,000 customers, or 0.96% of the 15.0m reachable men</b>. The two percentages differ because SAM value uses a steady-state €38 per head while a first-year customer spends €61.60 including hardware.</figcaption>
+  </figure>
+
+  <div class="note">
+    <h4>Sanity check against the top-down figure</h4>
+    <p>Our ten markets hold about 56% of the EU-plus-UK population and skew wealthy and sun-anxious. A €1.83bn share of a €2.6–3.0bn EU sun protection market plus the UK is internally consistent — slightly above population share, as it should be. If anything the TAM is conservative for Poland, where per-capita spend is rising fastest.</p>
+  </div>
+</section>
+
+<!-- ============ 11 COMPS ============ -->
+<section id="comps">
+  <div class="eyebrow">11 — Global comparables</div>
+  <div class="measure">
+    <h2>What the rest of the world already proved</h2>
+    <p>Deliberately not a US-and-Europe list. The instructive precedents for format sit in Asia, the precedents for ritual sit in Australia, and the precedent for the business model does not sit in sun care at all.</p>
+  </div>
+
+  <div class="tw">
+    <table>
+      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 9 · Comparable set — challengers, incumbents, and the model we are actually copying</caption>
+      <thead><tr><th>Brand</th><th>Home</th><th>Position</th><th class="num">Typical price</th><th>The transferable lesson</th></tr></thead>
+      <tbody>
+        <tr><td class="name">Riemann P20</td><td>Denmark</td><td>Mechanical claim — one application, ten hours<sup><a href="#s11">11</a></sup></td><td class="num">€22 / 200ml</td><td><b>The closest analogue.</b> Nordic customers already pay a premium for a claim about application behaviour rather than formula.</td></tr>
+        <tr><td class="name">Vacation Inc.</td><td>United States</td><td>Retro humour, nostalgia, scent-led</td><td class="num">€24 / 177ml</td><td>Profitable, >$21.2m raised, revenue projected to roughly double to ~$80m.<sup><a href="#s17">17</a></sup> Proof that voice alone can build a sun care brand — and that it is now a crowded lane.</td></tr>
+        <tr><td class="name">Ultra Violette</td><td>Australia</td><td>"Skinscreen" — SPF as skincare</td><td class="num">€38 / 50ml</td><td>Took $10m from Aria Growth Partners and entered 592 Sephora doors at $22–40.<sup><a href="#s18">18</a></sup> Reframing the category changes the price ceiling.</td></tr>
+        <tr><td class="name">Naked Sundays</td><td>Australia</td><td>Reapplication-first, mists and sticks</td><td class="num">€26 / 100ml</td><td>~$33m net sales projected.<sup><a href="#s18">18</a></sup> A whole brand built on the reapplication problem — adjacent to ours, and evidence the wedge works.</td></tr>
+        <tr><td class="name">Bondi Sands</td><td>Australia</td><td>Mass-accessible sun and tan</td><td class="num">€14 / 150ml</td><td>Acquired by Kao in 2023. Strategic buyers are actively acquiring in this category, which matters for exit.</td></tr>
+        <tr><td class="name">Anessa</td><td>Japan</td><td>Technical performance, daily use</td><td class="num">€28 / 60ml</td><td>No.1 sun care brand in Asia by retail value.<sup><a href="#s9">9</a></sup> Sun care sustains premium pricing when sold as engineering, not indulgence.</td></tr>
+        <tr><td class="name">Beauty of Joseon</td><td>South Korea</td><td>Format-led — sticks, cushions, pads</td><td class="num">€12 / 50ml</td><td>Format is the product.<sup><a href="#s8">8</a></sup> Korean sun sticks exist because they solved carrying and reapplying, not filtering.</td></tr>
+        <tr><td class="name">La Roche-Posay Anthelios</td><td>France</td><td>Dermatological, pharmacy channel</td><td class="num">€24 / 200ml</td><td>The credibility benchmark the instigator already trusts. This is who we must sound as rigorous as.</td></tr>
+        <tr><td class="name">Nivea Sun</td><td>Germany</td><td>Mass incumbent</td><td class="num">€11 / 200ml</td><td>The default in every target market and the real competitor. Beiersdorf can copy any formula in a season — but not a hardware install base.</td></tr>
+        <tr><td class="name">Cancer Council</td><td>Australia</td><td>Institutional, public-health</td><td class="num">€10 / 200ml</td><td>Ritual and infrastructure — dispensers at pools, schools, worksites — is what produces 400–500ml per capita.<sup><a href="#s10">10</a></sup></td></tr>
+        <tr class="hero"><td class="name">Harry's</td><td>United States</td><td>Handle-and-cartridge grooming</td><td class="num">€2.30 / blade</td><td><b>The model we are actually copying.</b> ~77% gross margin on refills, 42% subscription attach at activation, 3.1 refills per customer per year, ~$850–950m revenue.<sup><a href="#s12">12</a></sup></td></tr>
+        <tr><td class="name">Bulldog / Estrid</td><td>UK / Sweden</td><td>Male- and gender-first personal care</td><td class="num">€8–16</td><td>Men enter avoided categories through objects that look like equipment and language that refuses to be earnest.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <figure>
+    <div class="fig-head">
+      <div><span class="fig-num">Figure 4 · Modelled from listed retail prices</span><h4>Price per 100 ml — body formats across markets</h4></div>
+      <span class="chip mod">Modelled</span>
+    </div>
+    <div class="fig-body"><div id="ch-price"></div></div>
+    <figcaption>Prices are typical European retail, converted and rounded; face-format products are excluded because their per-ml pricing (Ultra Violette ≈ €76/100ml, Anessa ≈ €47/100ml) compresses the body scale. <b>The C150 cartridge lands at €7.33 per 100ml</b> — below every premium body sunscreen and only marginally above supermarket mass. The premium sits in the hardware and the system, not in the consumable, which is exactly how the razor model is supposed to feel.</figcaption>
+  </figure>
+</section>
+
+<!-- ============ 12 GTM ============ -->
+<section id="gtm">
+  <div class="eyebrow">12 — Go to market</div>
+  <div class="measure">
+    <h2>Sell to the booking, not to the season</h2>
+    <p>The category's defining commercial problem is that demand arrives in an eight-week window and disappears. The counter is to attach acquisition to an event that happens all year — the trip booking — rather than to the weather.</p>
+  </div>
+
+  <figure>
+    <div class="fig-head">
+      <div><span class="fig-num">Figure 5 · Modelled</span><h4>Category seasonality, and where gifting flattens it</h4></div>
+      <span class="chip mod">Modelled</span>
+    </div>
+    <div class="fig-body"><div id="ch-season"></div></div>
+    <figcaption>Northern European sun care demand indexed by month. <b>Roughly 73% of the year's revenue lands between May and August.</b> The December bump is the single most valuable structural feature available to us: a €34 hardware object is a genuinely good Christmas and Father's Day present, and the instigator is already a gift-buyer. Gifting converts a dead quarter into a hardware acquisition channel that seeds the following summer's cartridge revenue.</figcaption>
+  </figure>
+
+  <h3>Channel sequence</h3>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Phase</th><th>Channel</th><th>Markets</th><th>Why here, why now</th></tr></thead>
+      <tbody>
+        <tr><td class="name">Year 1</td><td>D2C only</td><td>NL, SE, DK, NO, DE</td><td>Highest melanoma awareness and highest per-capita spend. Owning the data on trial conversion matters more than volume while the hardware price is still being validated.</td></tr>
+        <tr><td class="name">Year 2</td><td>D2C + Nordic pharmacy pilot</td><td>+ UK, IE, BE</td><td>Apotek and drogisterij distribution buys the clinical credibility the instigator is looking for. Pharmacy is where she already trusts the shelf.</td></tr>
+        <tr><td class="name">Year 3</td><td>+ Travel retail, outdoor, department</td><td>+ FI, PL</td><td>Airside is the panic-purchase moment and the highest-margin impulse shelf in the category. An instrument sells better next to headphones than next to sun lotion.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Acquisition mechanics</h3>
+  <ul class="tight">
+    <li><b>Booking-triggered targeting.</b> Partnerships and lookalike targeting against people who have just booked a Mediterranean package — TUI, Ving, Sunweb, Jet2 audiences — reaching the household in the two to six week pre-trip window rather than in July.</li>
+    <li><b>The gift bundle as the instigator's entry point.</b> A boxed R1 with two cartridges, positioned for Father's Day, Christmas and "we've just booked". She is the buyer; he is the recipient; the cartridge subscription is the tail.</li>
+    <li><b>Demonstration is the creative.</b> The dose collapse in Figure 1 is a fifteen-second video. So is a man doing his own back. Neither needs a model, a beach, or a media budget to be legible.</li>
+    <li><b>Subscription anchored to trips, not months.</b> "Two cartridges before your next holiday" is a proposition that matches how the customer actually lives; a monthly sunscreen box does not.</li>
+    <li><b>Resort and beach club dispensers.</b> Wall-mounted R1 stations at Balearic and Canarian resorts, seeded free. This is the Australian institutional playbook<sup><a href="#s10">10</a></sup> applied where our customer already is, and it makes trial physical.</li>
+  </ul>
+</section>
+
+<!-- ============ 13 COMPETITION ============ -->
+<section id="competition">
+  <div class="eyebrow">13 — Competition</div>
+  <div class="measure">
+    <h2>The empty quadrant, and who could fill it</h2>
+  </div>
+
+  <figure>
+    <div class="fig-head">
+      <div><span class="fig-num">Figure 6 · Modelled</span><h4>Positioning — cosmetic to instrument, mass to premium</h4></div>
+      <span class="chip mod">Modelled</span>
+    </div>
+    <div class="fig-body"><div id="ch-map"></div></div>
+    <figcaption>Almost the entire category clusters on the cosmetic axis and competes on formula, scent and finish. <b>Riemann P20 is the only established brand meaningfully to the right</b>, and it got there with a claim rather than a mechanism. The upper-right quadrant — premium, unmistakably equipment — is currently empty.</figcaption>
+  </figure>
+
+  <h3>Who kills this</h3>
+  <div class="cards">
+    <div class="card">
+      <span class="tag">Threat 01 · Severe</span>
+      <h4>Beiersdorf or L'Oréal ship a metered applicator</h4>
+      <p>Both have the tooling capital, the filter IP and the shelf. If Nivea Sun launches a metered roller at €16, our hardware advantage evaporates in one season.</p>
+      <p><b>Defence:</b> the install base and the cartridge interface. Move fast on design registration, and make the R1 good enough that switching means abandoning a device you already own. Speed matters more than secrecy.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Threat 02 · Moderate</span>
+      <h4>An Australian challenger arrives first</h4>
+      <p>Ultra Violette and Naked Sundays are both funded and both expanding internationally.<sup><a href="#s18">18</a></sup> Naked Sundays is already built on the reapplication problem — one step from ours.</p>
+      <p><b>Defence:</b> they are aimed at women and at faces. The male-instrument position is genuinely awkward for a brand whose equity is skincare.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Threat 03 · Moderate</span>
+      <h4>Vacation extends into Europe with humour</h4>
+      <p>Vacation owns cheeky sun care in the US and is profitable at scale.<sup><a href="#s17">17</a></sup> If it lands in Europe it takes the tonal territory.</p>
+      <p><b>Defence:</b> tone is not our moat and never should be. The mechanism is. A brand cannot ship a dose counter by being funnier.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Threat 04 · Structural</span>
+      <h4>The customer simply does not care</h4>
+      <p>The most likely failure is not a competitor. It is 18.7% category engagement<sup><a href="#s3">3</a></sup> proving to be a preference rather than a barrier — men who genuinely do not mind burning.</p>
+      <p><b>Defence:</b> sell through the instigator, which is why she is designed into the product rather than into the ad campaign.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 14 FINANCIALS ============ -->
+<section id="financials">
+  <div class="eyebrow">14 — Financials</div>
+  <div class="measure">
+    <h2>Good gross margin, honest payback problem</h2>
+    <p>Every figure below is modelled. The assumptions are exposed in full so they can be attacked individually rather than defended as a package.</p>
+  </div>
+
+  <h3>Unit economics</h3>
+  <div class="tw">
+    <table>
+      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 10 · First-year customer, and the three-year contribution <span class="chip mod" style="margin-left:8px">Modelled</span></caption>
+      <thead><tr><th>Line</th><th class="num">Year 1</th><th class="num">Repeat year</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr><td class="name">Revenue per customer</td><td class="num">€61.60</td><td class="num">€39.60</td><td>Y1: R1 €34 + one twin-pack €22 + 35% attach of a €16 accessory. Repeat: 1.8 twin-packs</td></tr>
+        <tr><td class="name">Product COGS</td><td class="num">−€18.22</td><td class="num">−€12.24</td><td>Hardware €9.60, cartridge pack €6.80, accessory attach €1.82</td></tr>
+        <tr><td class="name">Fulfilment &amp; payments</td><td class="num">−€10.06</td><td class="num">−€6.80</td><td>€3.90 per order, 2.4% payment fees</td></tr>
+        <tr class="total"><td class="name">Contribution</td><td class="num">€33.32</td><td class="num">€20.56</td><td>54.1% of revenue in year one</td></tr>
+        <tr><td class="name">Less CAC</td><td class="num">−€28.00</td><td class="num">—</td><td>Blended paid + organic, seasonal CPM premium included</td></tr>
+        <tr class="total"><td class="name">Year-one profit per customer</td><td class="num">€5.32</td><td class="num">—</td><td>Payback inside the first purchase — just</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note risk">
+    <h4>The number that decides the business</h4>
+    <p>Three-year LTV on contribution is <b>€48.74</b> against a CAC of <b>€28.00</b> — a ratio of <b>1.74:1</b>, well below the 3:1 that D2C investors underwrite. This is the honest central finding of the model, and it is a structural consequence of the category: sun care is bought once or twice a year by a customer who forgets you in between.</p>
+    <p>It is fixable, but only by pulling all three levers together — not one.</p>
+  </div>
+
+  <div class="tw">
+    <table>
+      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 11 · What has to be true to reach 3:1 <span class="chip mod" style="margin-left:8px">Sensitivity</span></caption>
+      <thead><tr><th>Scenario</th><th class="num">Y2 repeat</th><th class="num">Packs/yr</th><th class="num">CAC</th><th class="num">3-yr LTV</th><th class="num">LTV:CAC</th></tr></thead>
+      <tbody>
+        <tr><td class="name">Base case</td><td class="num">45%</td><td class="num">1.8</td><td class="num">€28</td><td class="num">€48.74</td><td class="num">1.74</td></tr>
+        <tr><td class="name">+ subscription lifts retention</td><td class="num">60%</td><td class="num">1.8</td><td class="num">€28</td><td class="num">€53.88</td><td class="num">1.92</td></tr>
+        <tr><td class="name">+ range lifts frequency</td><td class="num">60%</td><td class="num">2.4</td><td class="num">€28</td><td class="num">€61.42</td><td class="num">2.19</td></tr>
+        <tr class="hero"><td class="name">+ gifting and referral cut CAC</td><td class="num">60%</td><td class="num">2.4</td><td class="num">€22</td><td class="num">€61.42</td><td class="num"><b>2.79</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="measure" style="font-size:14px;color:var(--muted)">Even the fully optimistic case lands just under 3:1. The conclusion is not that the business fails — it is that <b>this is a gross-margin retail business with a subscription attached, not a subscription business</b>, and it should be capitalised and measured as one. Harry's reaches 3.1 refills per customer per year;<sup><a href="#s12">12</a></sup> a sunscreen cannot, because holidays are not beards.</p>
+
+  <h3>Three-year P&amp;L</h3>
+  <figure>
+    <div class="fig-head">
+      <div><span class="fig-num">Figure 7 · Modelled</span><h4>Revenue, gross profit and EBITDA</h4></div>
+      <span class="chip mod">Modelled</span>
+    </div>
+    <div class="fig-body"><div id="ch-pnl"></div></div>
+    <div class="legend">
+      <span><i style="background:var(--c1)"></i>Revenue</span>
+      <span><i style="background:var(--c3)"></i>Gross profit</span>
+      <span><i style="background:var(--c2)"></i>EBITDA</span>
+    </div>
+    <figcaption>Losses narrow to near-breakeven in year three as the repeat base compounds and wholesale volume absorbs fixed cost. <b>Cumulative EBITDA loss across the three years is €2.76m.</b></figcaption>
+  </figure>
+
+  <div class="tw">
+    <table>
+      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 12 · P&amp;L, € millions <span class="chip mod" style="margin-left:8px">Modelled</span></caption>
+      <thead><tr><th>Line</th><th class="num">Year 1</th><th class="num">Year 2</th><th class="num">Year 3</th></tr></thead>
+      <tbody>
+        <tr><td class="name">New customers</td><td class="num">22,000</td><td class="num">58,000</td><td class="num">112,000</td></tr>
+        <tr><td class="name">Repeat customers</td><td class="num">—</td><td class="num">9,900</td><td class="num">32,700</td></tr>
+        <tr><td class="name">D2C revenue</td><td class="num">1.36</td><td class="num">3.96</td><td class="num">8.40</td></tr>
+        <tr><td class="name">Wholesale &amp; travel retail</td><td class="num">—</td><td class="num">0.56</td><td class="num">3.10</td></tr>
+        <tr class="total"><td class="name">Total revenue</td><td class="num">1.36</td><td class="num">4.52</td><td class="num">11.50</td></tr>
+        <tr><td class="name">Gross profit</td><td class="num">0.95</td><td class="num">3.02</td><td class="num">7.28</td></tr>
+        <tr><td class="name">Gross margin</td><td class="num">70.0%</td><td class="num">66.9%</td><td class="num">63.3%</td></tr>
+        <tr><td class="name">Fulfilment &amp; payments</td><td class="num">−0.22</td><td class="num">−0.44</td><td class="num">−0.90</td></tr>
+        <tr><td class="name">Marketing</td><td class="num">−0.62</td><td class="num">−1.70</td><td class="num">−3.13</td></tr>
+        <tr><td class="name">Team</td><td class="num">−0.72</td><td class="num">−1.48</td><td class="num">−2.44</td></tr>
+        <tr><td class="name">Product, testing &amp; regulatory</td><td class="num">−0.35</td><td class="num">−0.30</td><td class="num">−0.35</td></tr>
+        <tr><td class="name">Overheads</td><td class="num">−0.22</td><td class="num">−0.42</td><td class="num">−0.72</td></tr>
+        <tr class="total"><td class="name">EBITDA</td><td class="num">−1.18</td><td class="num">−1.32</td><td class="num">−0.26</td></tr>
+        <tr><td class="name">Headcount (FTE)</td><td class="num">8</td><td class="num">16</td><td class="num">26</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>The ask</h3>
+  <div class="stats">
+    <div class="stat"><div class="v a">€4.5m</div><div class="k">seed round</div></div>
+    <div class="stat"><div class="v">30 mo</div><div class="k">runway to operating breakeven</div></div>
+    <div class="stat"><div class="v">€2.76m</div><div class="k">cumulative EBITDA loss funded</div></div>
+    <div class="stat"><div class="v">€1.30m</div><div class="k">peak inventory &amp; working capital</div></div>
+  </div>
+  <div class="measure">
+    <p>The round funds cumulative operating losses of €2.76m, peak net working capital of €1.30m — this is a physical-goods business with a seasonal inventory build ahead of every summer — and €0.44m of contingency. Tooling and first-round ISO 24444 and 24443 testing sit inside year-one product spend; commercial in vivo SPF testing is genuinely expensive, with consortium data putting a single SPF sample at around €25,000.<sup><a href="#s19">19</a></sup></p>
+    <p><b>Milestones this round must buy:</b> validated hardware price elasticity before tooling is cut; production tooling and a 50,000-unit first run; full CPSR and CPNP notification; 22,000 year-one customers across five markets; and a signed Nordic pharmacy listing to open year two.</p>
+  </div>
+</section>
+
+<!-- ============ 15 RISKS ============ -->
+<section id="risks">
+  <div class="eyebrow">15 — Risks</div>
+  <div class="measure"><h2>What actually goes wrong</h2></div>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Risk</th><th>Severity</th><th>Assessment and mitigation</th></tr></thead>
+      <tbody>
+        <tr><td class="name">Hardware price kills trial</td><td><span class="chip warn">Critical</span></td><td>€34 against a €12 bottle, in a low-involvement category. <b>Test with a live price ladder before cutting tooling.</b> Fallback is single-dose pods or a €19 subsidised handle recovered across cartridges.</td></tr>
+        <tr><td class="name">Seasonality and cash</td><td><span class="chip warn">Critical</span></td><td>~73% of revenue in four months against year-round fixed cost and a pre-season inventory build. Mitigated by the gifting quarter, Southern Hemisphere or Canaries winter demand, and a working capital facility sized to peak stock rather than average.</td></tr>
+        <tr><td class="name">LTV:CAC below 3:1</td><td><span class="chip warn">Serious</span></td><td>Structural to the category. Capitalise it as a margin business; make subscription attach the single most important operating metric from launch.</td></tr>
+        <tr><td class="name">Octocrylene restriction</td><td><span class="chip warn">Serious</span></td><td>ECHA is considering a French dossier to restrict octocrylene at ≥0.001% w/w under REACH, with a 24-month transition if adopted.<sup><a href="#s6">6</a></sup> <b>Formulate without it from day one.</b> A reformulation after tooling and testing is a six-figure event.</td></tr>
+        <tr><td class="name">Tooling and mechanism failure</td><td><span class="chip warn">Serious</span></td><td>A metering ratchet that jams in sand, salt or 38°C heat destroys the product's entire premise. Budget for two prototype rounds and salt-spray, sand-ingress and thermal cycling before committing to production tooling.</td></tr>
+        <tr><td class="name">Incumbent fast-follow</td><td><span class="chip warn">Serious</span></td><td>Beiersdorf can copy this in a season. Design registrations and FTO on the dosing mechanism, plus speed to install base, are the only real defences.</td></tr>
+        <tr><td class="name">Dose claim cannot be substantiated</td><td><span class="chip warn">Moderate</span></td><td>The claim that metering raises applied dose needs its own user study, not just the SPF test. Commission it early — it is both the marketing asset and the regulatory backstop.</td></tr>
+        <tr><td class="name">Hygiene of a shared roller</td><td><span class="chip warn">Moderate</span></td><td>A rolling head on multiple family members raises contamination questions. Requires preservative efficacy testing to ISO 11930 and a replaceable head sold as a consumable.</td></tr>
+        <tr><td class="name">Trademark on a common word</td><td><span class="chip warn">Low</span></td><td>"PALE" in Class 3 will be contested. Clear early and expect to register a compound mark.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note">
+    <h4>The three things to do first</h4>
+    <ol class="tight" style="margin-bottom:0">
+      <li><b>Price-test the hardware</b> with a live landing page and real payment intent, before any tooling spend. This single number decides whether the recommended format survives.</li>
+      <li><b>Commission freedom-to-operate</b> on the metering mechanism, and formulate octocrylene-free from the first bench sample.</li>
+      <li><b>Run the applied-dose user study</b> — twenty subjects, R1 against a bottle, measured by weight. If metering does not measurably raise applied dose, there is no business here and it is far cheaper to learn that now.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ 16 SOURCES ============ -->
+<section id="sources">
+  <div class="eyebrow">16 — Sources</div>
+  <div class="measure">
+    <p style="font-size:14.5px;color:var(--muted)">Figures marked <span class="chip src">Sourced</span> trace to the references below. Figures marked <span class="chip mod">Modelled</span> are our own estimates built on stated assumptions and should be treated as planning figures, not findings. Market-research aggregator values vary materially between publishers; where they disagree, the more conservative figure has been used.</p>
+    <ol class="srcs">
+      <li id="s1">Petersen B, Wulf HC. <i>Application of sunscreen — theory and reality.</i> Photodermatol Photoimmunol Photomed, 2014. <a href="https://pubmed.ncbi.nlm.nih.gov/24313722/">pubmed.ncbi.nlm.nih.gov/24313722</a></li>
+      <li id="s2">Lab Muffin Beauty Science. <i>How SPF changes with how much sunscreen you use.</i> <a href="https://labmuffin.com/spf-changes-how-much-sunscreen-use/">labmuffin.com</a></li>
+      <li id="s3">Attitudes and behaviors regarding sun exposure in Japan compared to Europe and North America. PMC11484126. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11484126/">ncbi.nlm.nih.gov</a></li>
+      <li id="s4">Euronews Health. <i>Skin cancer: Which EU countries have the highest melanoma incidence and mortality rates?</i> <a href="https://www.euronews.com/health/2023/07/19/skin-cancer-which-eu-countries-have-the-highest-melanoma-incidence-and-mortality-rates">euronews.com</a></li>
+      <li id="s5">INE (Spain). <i>Tourist Movements at Borders (FRONTUR), December 2025 and Year 2025.</i> <a href="https://www.ine.es/dyngs/Prensa/en/FRONTUR1225.htm">ine.es</a></li>
+      <li id="s6">Obelis, <i>Mineral vs Chemical Sunscreens: Safety and EU Rules 2026</i> (<a href="https://www.obelis.net/news/mineral-vs-chemical-sunscreens-safety-eu-rules-2026/">obelis.net</a>); NATRUE, <i>EU Sunscreen Regulation: UV Filters, SPF Testing &amp; Compliance</i> (<a href="https://natrue.org/eu-sunscreen-regulation-uv-filters-spf-testing/">natrue.org</a>).</li>
+      <li id="s7">Statista / NHIS, frequency of body sunscreen use by gender. <a href="https://www.statista.com/statistics/1395395/frequency-of-use-of-body-sunscreen-in-the-us-by-gender">statista.com</a></li>
+      <li id="s8">Mintel, <i>12 innovative suncare products from around the world</i> (<a href="https://www.mintel.com/insights/beauty-and-personal-care/12-innovative-suncare-products-from-around-the-world/">mintel.com</a>); Sourcing Lab, <i>Sunscreen Manufacturing — South Korea Trends</i>.</li>
+      <li id="s9">Shiseido Company, ANESSA brand page — No.1 sun care brand in Asia, Euromonitor Beauty and Personal Care 2025 edition, retail value 2024. <a href="https://corp.shiseido.com/en/brands/anessa/">corp.shiseido.com</a></li>
+      <li id="s10">Expert Market Research / Grand View Research, Brazil and Latin America sun care market reports, including per-capita consumption comparisons. <a href="https://www.grandviewresearch.com/horizon/outlook/sun-care-cosmetics-market/brazil">grandviewresearch.com</a></li>
+      <li id="s11">Riemann P20 — company and product information, Hillerød, Denmark. <a href="https://www.riemanncompany.com/our-brands/">riemanncompany.com</a></li>
+      <li id="s12">Harry's DTC economics and refill margin analysis. <a href="https://www.latterly.org/harrys-marketing-strategy/">latterly.org</a>; <a href="https://www.capitalletter.com/p/2b-dtc-razor-company">capitalletter.com</a></li>
+      <li id="s13">Sincla, <i>Single-Dose Packaging: Types, Uses &amp; Sustainable Alternatives</i> (<a href="https://www.sincla.com/en/blog/single-dose-packaging-types-sectors-of-use-and-sustainable-alternatives">sincla.com</a>); INVpack refillable pod and stick-pack systems.</li>
+      <li id="s14">US Patent 6,290,936 — <i>Sunscreen with disappearing color indicator.</i> <a href="https://patents.justia.com/patent/6290936">patents.justia.com/patent/6290936</a></li>
+      <li id="s15">Plastic injection moulding cost benchmarks. <a href="https://www.plasticmoulds.net/plastic-mold-tool-cost">plasticmoulds.net</a>; <a href="https://rayleap.com/2025-injection-molding-costs-save-40-60-in-china-vs-usa-europe-real-case/">rayleap.com</a></li>
+      <li id="s16">Europe sunscreen and sun care market sizing. <a href="https://www.marketdataforecast.com/market-reports/europe-sunscreen-market">marketdataforecast.com</a>; <a href="https://www.grandviewresearch.com/horizon/outlook/sun-care-cosmetics-market/europe">grandviewresearch.com</a>; <a href="https://www.indexbox.io/store/european-union-sun-care-tanning-market-analysis-forecast-size-trends-and-insights/">indexbox.io</a></li>
+      <li id="s17">Vacation Inc. funding and revenue. <a href="https://beautymatter.com/articles/vacation-land-investment-from-vmg-partners">beautymatter.com</a>; <a href="https://www.inc.com/jennifer-conrad/vacations-80-million-sunscreen-brand-is-surfing-on-more-than-just-vibes/91181448">inc.com</a></li>
+      <li id="s18">Beauty Independent, on Naked Sundays' Ulta partnership and Australian sun care expansion, including Ultra Violette's $10m Aria Growth Partners investment and Sephora distribution. <a href="https://www.beautyindependent.com/ulta-beauty-partnership-naked-sundays-australian-sun-care-brand-expanding-stateside/">beautyindependent.com</a></li>
+      <li id="s19">Pissavini M et al., <i>Are there alternatives to the traditional in-vivo SPF test (ISO 24444)?</i> Int J Cosmet Sci, 2025 — ALT-SPF consortium cost data. <a href="https://onlinelibrary.wiley.com/doi/10.1111/ics.70026?af=R">onlinelibrary.wiley.com</a></li>
+      <li id="s20">Tourism Analytics, Netherlands residents outbound international trips. <a href="https://tourismanalytics.com/netherlandsoutbound.html">tourismanalytics.com</a></li>
+    </ol>
+    <div class="end">PALE · Venture dossier v1.0 · Prepared August 2026 · All financial figures modelled</div>
+  </div>
+</section>
+
+</main>
+</div>
+</div>
+
+<script>
+(function(){
+"use strict";
+var root=document.documentElement, tg=document.getElementById('tg');
+tg.addEventListener('click',function(){
+  var cur=root.getAttribute('data-theme');
+  if(!cur){cur=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}
+  root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+  setTimeout(drawAll,30);
+});
+
+/* ---------- tooltip ---------- */
+var tip=document.getElementById('tip');
+function showTip(e,html){tip.innerHTML=html;tip.classList.add('on');moveTip(e);}
+function moveTip(e){
+  var x=e.clientX+14,y=e.clientY+14;
+  var r=tip.getBoundingClientRect();
+  if(x+r.width>innerWidth-10)x=e.clientX-r.width-14;
+  if(y+r.height>innerHeight-10)y=e.clientY-r.height-14;
+  tip.style.left=x+'px';tip.style.top=y+'px';
+}
+function hideTip(){tip.classList.remove('on');}
+function bind(el,html){
+  el.style.cursor='crosshair';
+  el.addEventListener('mouseenter',function(e){showTip(e,html);});
+  el.addEventListener('mousemove',moveTip);
+  el.addEventListener('mouseleave',hideTip);
+}
+function cv(n){return getComputedStyle(root).getPropertyValue(n).trim();}
+function el(t,a){var e=document.createElementNS('http://www.w3.org/2000/svg',t);for(var k in a)e.setAttribute(k,a[k]);return e;}
+function svg(w,h){var s=el('svg',{viewBox:'0 0 '+w+' '+h,width:'100%',role:'img'});s.style.maxWidth=w+'px';s.style.height='auto';s.style.display='block';return s;}
+function svgVB(x,y,w,h){var s=el('svg',{viewBox:x+' '+y+' '+w+' '+h,width:'100%',role:'img'});s.style.maxWidth=w+'px';s.style.height='auto';s.style.display='block';return s;}
+function txt(s,x,y,str,o){o=o||{};var t=el('text',{x:x,y:y,fill:o.fill||cv('--muted'),'font-size':o.size||11,'text-anchor':o.anchor||'start','font-family':o.mono===false?cv('--sans')||'sans-serif':'IBM Plex Mono, monospace','font-weight':o.weight||400});t.textContent=str;if(o.tabular!==false)t.setAttribute('style','font-variant-numeric:tabular-nums');s.appendChild(t);return t;}
+function eur(n){return '€'+n.toFixed(n<10?2:n<100?1:0).replace(/\.0$/,'');}
+
+/* =========== FIG 1 · dose curve =========== */
+function chDose(){
+  var host=document.getElementById('ch-dose');host.innerHTML='';
+  var W=760,H=356,L=54,R=18,T=34,B=48, pw=W-L-R, ph=H-T-B;
+  var s=svg(W,H);
+  var xs=function(d){return L+(d/2.2)*pw;}, ys=function(v){return T+ph-(v/50)*ph;};
+  // observed band
+  s.appendChild(el('rect',{x:xs(0.39),y:T,width:xs(1.0)-xs(0.39),height:ph,fill:cv('--c2'),opacity:.10}));
+  s.appendChild(el('line',{x1:xs(0.39),y1:T,x2:xs(0.39),y2:T+ph,stroke:cv('--c2'),'stroke-width':1,'stroke-dasharray':'3 3',opacity:.6}));
+  s.appendChild(el('line',{x1:xs(1.0),y1:T,x2:xs(1.0),y2:T+ph,stroke:cv('--c2'),'stroke-width':1,'stroke-dasharray':'3 3',opacity:.6}));
+  txt(s,(xs(0.39)+xs(1.0))/2,T+14,'REAL-WORLD RANGE',{anchor:'middle',size:9,fill:cv('--c2')});
+  // gridlines
+  [0,10,20,30,40,50].forEach(function(v){
+    s.appendChild(el('line',{x1:L,y1:ys(v),x2:W-R,y2:ys(v),stroke:cv('--rule'),'stroke-width':1}));
+    txt(s,L-8,ys(v)+3.5,v===0?'0':'SPF '+v,{anchor:'end',size:10});
+  });
+  // curve
+  var pts=[],d;
+  for(d=0;d<=2.001;d+=0.01){pts.push([xs(d),ys(Math.pow(50,d/2))]);}
+  var path='M'+pts.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1);}).join('L');
+  s.appendChild(el('path',{d:path+'L'+xs(2)+','+(T+ph)+'L'+xs(0)+','+(T+ph)+'Z',fill:cv('--c1'),opacity:.10}));
+  s.appendChild(el('path',{d:path,stroke:cv('--c1'),'stroke-width':2.2,fill:'none','stroke-linecap':'round'}));
+  // axes
+  s.appendChild(el('line',{x1:L,y1:T+ph,x2:W-R,y2:T+ph,stroke:cv('--rule-strong'),'stroke-width':1}));
+  [0,0.5,1,1.5,2].forEach(function(v){txt(s,xs(v),T+ph+18,v.toFixed(1),{anchor:'middle',size:10});});
+  txt(s,L+pw/2,T+ph+38,'APPLIED DOSE — mg/cm²',{anchor:'middle',size:9.5});
+  // markers, labels staggered so the two low points do not collide
+  [[0.75,'Typical male application',-1,-16],[1.0,'Half the tested dose',1,-34],[2.0,'The dose SPF is tested at',-1,22]].forEach(function(m){
+    var v=Math.pow(50,m[0]/2), x=xs(m[0]), y=ys(v);
+    var c=el('circle',{cx:x,cy:y,r:5,fill:cv('--surface'),stroke:cv('--c1'),'stroke-width':2.2});
+    s.appendChild(c);
+    bind(c,'<b>'+m[1]+'</b><br>'+m[0].toFixed(2)+' mg/cm² → SPF '+v.toFixed(1));
+    var lx=x+m[2]*10, ly=y+m[3];
+    s.appendChild(el('line',{x1:x,y1:y-6,x2:lx,y2:ly+5,stroke:cv('--rule-strong'),'stroke-width':1}));
+    txt(s,lx,ly,'SPF '+v.toFixed(v<10?1:0),{anchor:m[2]<0?'end':'start',size:11.5,fill:cv('--ink'),weight:600});
+    txt(s,lx,ly+12,m[1],{anchor:m[2]<0?'end':'start',size:9,fill:cv('--muted')});
+  });
+  host.appendChild(s);
+}
+
+/* =========== FIG 2 · gender =========== */
+function chGender(){
+  var host=document.getElementById('ch-gender');host.innerHTML='';
+  var data=[{k:'Women, Europe',v:70.1,c:'--c1'},{k:'All adults, Europe',v:45.7,c:'--c5'},{k:'Men, Europe',v:18.7,c:'--c2'}];
+  var W=680,H=176,L=168,R=54,T=14, bh=34, gap=14;
+  var s=svg(W,H), pw=W-L-R;
+  data.forEach(function(d,i){
+    var y=T+i*(bh+gap), w=(d.v/100)*pw;
+    s.appendChild(el('rect',{x:L,y:y,width:pw,height:bh,fill:cv('--surface-3'),rx:2}));
+    var r=el('rect',{x:L,y:y,width:w,height:bh,fill:cv(d.c),rx:2});
+    s.appendChild(r);
+    bind(r,'<b>'+d.k+'</b><br>'+d.v+'% report using sunscreen');
+    txt(s,L-12,y+bh/2+4,d.k,{anchor:'end',size:12,fill:cv('--ink'),mono:false});
+    txt(s,L+w+10,y+bh/2+4,d.v+'%',{size:13,fill:cv('--ink'),weight:600});
+  });
+  host.appendChild(s);
+}
+
+/* =========== FIG 3 · TAM =========== */
+function chTam(){
+  var host=document.getElementById('ch-tam');host.innerHTML='';
+  var data=[
+    {k:'TAM · sun protection, 10 markets',v:1829.5,c:'--c1',n:'250.8m people'},
+    {k:'SAM · fair-skinned men who go south',v:570,c:'--c5',n:'15.0m men'},
+    {k:'SOM · year-three revenue',v:11.5,c:'--c3',n:'≈145k customers'}
+  ];
+  var W=680,H=210,L=16,R=16,T=16,bh=48,gap=18;
+  var s=svg(W,H), pw=W-L-R, max=data[0].v;
+  data.forEach(function(d,i){
+    var y=T+i*(bh+gap), w=Math.max((d.v/max)*pw,3);
+    var r=el('rect',{x:L,y:y,width:w,height:bh,fill:cv(d.c),rx:2});
+    s.appendChild(r);
+    bind(r,'<b>'+d.k+'</b><br>€'+d.v.toFixed(1)+'m · '+d.n);
+    txt(s,L+12,y+21,d.k,{size:12,fill:i===0?'#fff':cv('--ink'),mono:false,weight:600});
+    txt(s,L+12,y+38,'€'+(d.v>=1000?(d.v/1000).toFixed(2)+'bn':d.v.toFixed(1)+'m')+'  ·  '+d.n,{size:11,fill:i===0?'rgba(255,255,255,.82)':cv('--muted')});
+  });
+  // relabel narrow bars outside
+  host.appendChild(s);
+  var bars=s.querySelectorAll('rect');
+  data.forEach(function(d,i){
+    if(d.v/max<0.34){
+      var y=T+i*(bh+gap), w=Math.max((d.v/max)*pw,3);
+      var ts=s.querySelectorAll('text');
+      ts[i*2].setAttribute('x',L+w+12); ts[i*2].setAttribute('fill',cv('--ink'));
+      ts[i*2+1].setAttribute('x',L+w+12); ts[i*2+1].setAttribute('fill',cv('--muted'));
+    }
+  });
+}
+
+/* =========== FIG 4 · price per 100ml =========== */
+function chPrice(){
+  var host=document.getElementById('ch-price');host.innerHTML='';
+  var data=[
+    {k:'Nivea Sun (supermarket)',v:5.50,c:'--c4'},
+    {k:'Garnier Ambre Solaire',v:6.00,c:'--c4'},
+    {k:'PALE C150 cartridge',v:7.33,c:'--c1'},
+    {k:'Nivea Sun (airport)',v:9.00,c:'--c4'},
+    {k:'Bondi Sands',v:9.33,c:'--c4'},
+    {k:'Riemann P20',v:11.00,c:'--c4'},
+    {k:'La Roche-Posay Anthelios',v:12.00,c:'--c4'},
+    {k:'Vacation Classic',v:13.56,c:'--c4'}
+  ];
+  var W=680,H=data.length*30+34,L=192,R=58,T=10, bh=20, gap=10;
+  var s=svg(W,H), pw=W-L-R, max=15;
+  data.forEach(function(d,i){
+    var y=T+i*(bh+gap), w=(d.v/max)*pw, own=d.c==='--c1';
+    var r=el('rect',{x:L,y:y,width:w,height:bh,fill:cv(d.c),rx:2,opacity:own?1:.82});
+    s.appendChild(r);
+    bind(r,'<b>'+d.k+'</b><br>€'+d.v.toFixed(2)+' per 100 ml');
+    txt(s,L-12,y+bh/2+4,d.k,{anchor:'end',size:11.5,fill:own?cv('--c1'):cv('--ink'),mono:false,weight:own?600:400});
+    txt(s,L+w+9,y+bh/2+4,'€'+d.v.toFixed(2),{size:11,fill:own?cv('--c1'):cv('--muted'),weight:own?600:400});
+  });
+  host.appendChild(s);
+}
+
+/* =========== FIG 5 · seasonality =========== */
+function chSeason(){
+  var host=document.getElementById('ch-season');host.innerHTML='';
+  var m=['J','F','M','A','M','J','J','A','S','O','N','D'],
+      full=['January','February','March','April','May','June','July','August','September','October','November','December'],
+      v=[3,2,3,6,12,18,22,15,7,4,3,5];
+  var W=680,H=250,L=40,R=16,T=16,B=44, pw=W-L-R, ph=H-T-B;
+  var s=svg(W,H), max=24;
+  [0,5,10,15,20].forEach(function(g){
+    var y=T+ph-(g/max)*ph;
+    s.appendChild(el('line',{x1:L,y1:y,x2:W-R,y2:y,stroke:cv('--rule'),'stroke-width':1}));
+    txt(s,L-8,y+3.5,g+'%',{anchor:'end',size:10});
+  });
+  var bw=pw/12;
+  v.forEach(function(val,i){
+    var h=(val/max)*ph, x=L+i*bw+3, y=T+ph-h;
+    var peak=i>=4&&i<=7, gift=i===11;
+    var r=el('rect',{x:x,y:y,width:bw-6,height:h,rx:2,fill:cv(peak?'--c1':gift?'--c5':'--c4'),opacity:peak?1:gift?1:.5});
+    s.appendChild(r);
+    bind(r,'<b>'+full[i]+'</b><br>'+val+'% of annual revenue');
+    txt(s,L+i*bw+bw/2,T+ph+17,m[i],{anchor:'middle',size:10});
+  });
+  txt(s,L+bw*6,T+18,'73% of revenue, May–August',{anchor:'middle',size:10,fill:cv('--c1'),weight:600});
+  txt(s,L+bw*11.5,T+ph-((5/max)*ph)-12,'gifting',{anchor:'end',size:9.5,fill:cv('--c5'),weight:600});
+  s.appendChild(el('line',{x1:L,y1:T+ph,x2:W-R,y2:T+ph,stroke:cv('--rule-strong'),'stroke-width':1}));
+  host.appendChild(s);
+}
+
+/* =========== FIG 6 · positioning =========== */
+function chMap(){
+  var host=document.getElementById('ch-map');host.innerHTML='';
+  var W=680,H=430,L=54,R=24,T=24,B=52, pw=W-L-R, ph=H-T-B;
+  var s=svg(W,H);
+  var pts=[
+    {n:'Nivea Sun',x:12,y:12},{n:'Garnier',x:14,y:16},{n:'Cancer Council',x:26,y:14},
+    {n:'Bondi Sands',x:20,y:38},{n:'Vacation',x:22,y:56},{n:'Naked Sundays',x:38,y:62},
+    {n:'Ultra Violette',x:26,y:78},{n:'Anessa',x:44,y:80},{n:'La Roche-Posay',x:34,y:70},
+    {n:'Riemann P20',x:64,y:48},
+    {n:'PALE',x:86,y:76,own:true}
+  ];
+  s.appendChild(el('rect',{x:L+pw*0.5,y:T,width:pw*0.5,height:ph*0.5,fill:cv('--accent'),opacity:.05}));
+  [0.25,0.5,0.75].forEach(function(f){
+    s.appendChild(el('line',{x1:L+pw*f,y1:T,x2:L+pw*f,y2:T+ph,stroke:cv('--rule'),'stroke-width':1}));
+    s.appendChild(el('line',{x1:L,y1:T+ph*f,x2:W-R,y2:T+ph*f,stroke:cv('--rule'),'stroke-width':1}));
+  });
+  s.appendChild(el('rect',{x:L,y:T,width:pw,height:ph,fill:'none',stroke:cv('--rule-strong'),'stroke-width':1}));
+  txt(s,L+pw*0.75,T+18,'OPEN QUADRANT',{anchor:'middle',size:9.5,fill:cv('--accent')});
+  pts.forEach(function(p){
+    var x=L+(p.x/100)*pw, y=T+ph-(p.y/100)*ph;
+    var c=el('circle',{cx:x,cy:y,r:p.own?8:5.5,fill:p.own?cv('--c1'):cv('--muted'),stroke:cv('--surface'),'stroke-width':2});
+    s.appendChild(c);
+    bind(c,'<b>'+p.n+'</b>');
+    txt(s,x+(p.x>70?-12:11),y+3.5,p.n,{anchor:p.x>70?'end':'start',size:10.5,fill:p.own?cv('--c1'):cv('--ink-2'),mono:false,weight:p.own?600:400});
+  });
+  txt(s,L,T+ph+22,'← reads as cosmetic',{size:9.5});
+  txt(s,W-R,T+ph+22,'reads as equipment →',{anchor:'end',size:9.5});
+  txt(s,L,T+ph+40,'MASS',{size:9.5});
+  var rot=txt(s,0,0,'PREMIUM →',{size:9.5});
+  rot.setAttribute('transform','translate('+(L-32)+','+(T+ph)+') rotate(-90)');
+  host.appendChild(s);
+}
+
+/* =========== FIG 7 · P&L =========== */
+function chPnl(){
+  var host=document.getElementById('ch-pnl');host.innerHTML='';
+  var years=['Year 1','Year 2','Year 3'];
+  var series=[{k:'Revenue',c:'--c1',v:[1.36,4.52,11.50]},{k:'Gross profit',c:'--c3',v:[0.95,3.02,7.28]},{k:'EBITDA',c:'--c2',v:[-1.18,-1.32,-0.26]}];
+  var W=680,H=320,L=52,R=16,T=18,B=48, pw=W-L-R, ph=H-T-B;
+  var s=svg(W,H), max=12, min=-2, span=max-min;
+  var ys=function(v){return T+ph-((v-min)/span)*ph;};
+  [-2,0,2,4,6,8,10,12].forEach(function(g){
+    var y=ys(g);
+    s.appendChild(el('line',{x1:L,y1:y,x2:W-R,y2:y,stroke:g===0?cv('--rule-strong'):cv('--rule'),'stroke-width':1}));
+    txt(s,L-8,y+3.5,(g<0?'−':'')+'€'+Math.abs(g)+'m',{anchor:'end',size:10});
+  });
+  var gw=pw/3, bw=(gw-30)/3;
+  years.forEach(function(yr,i){
+    series.forEach(function(se,j){
+      var v=se.v[i], x=L+i*gw+15+j*bw, top=ys(Math.max(v,0)), h=Math.abs(ys(v)-ys(0));
+      var r=el('rect',{x:x+1,y:top,width:bw-2,height:Math.max(h,2),rx:2,fill:cv(se.c)});
+      s.appendChild(r);
+      bind(r,'<b>'+yr+' · '+se.k+'</b><br>'+(v<0?'−':'')+'€'+Math.abs(v).toFixed(2)+'m');
+      if(j===2)txt(s,x+bw/2,ys(v)+13,'−€'+Math.abs(v).toFixed(2)+'m',{anchor:'middle',size:9.5,fill:cv('--c2'),weight:600});
+      if(j===0)txt(s,x+bw/2,top-6,'€'+v.toFixed(2)+'m',{anchor:'middle',size:9.5,fill:cv('--ink'),weight:600});
+    });
+    txt(s,L+i*gw+gw/2,T+ph+34,yr,{anchor:'middle',size:11,fill:cv('--ink'),mono:false});
+  });
+  host.appendChild(s);
+}
+
+/* =========== format score table + icons =========== */
+var FORMATS=[
+  {n:'Cartridge applicator tool',s:[5,5,5,5,4,3],hero:true},
+  {n:'Single-dose pods',s:[5,1,3,4,5,4]},
+  {n:'Applicator mitt',s:[2,4,2,2,5,5]},
+  {n:'Metered device + UV sensor',s:[4,3,5,3,3,1]},
+  {n:'Leave-on shower application',s:[2,5,4,2,2,2]},
+  {n:'Colour-indicating mousse',s:[2,1,3,2,4,5]},
+  {n:'Dry activated sheets',s:[3,2,3,3,2,1]},
+  {n:'Wearable patch / reservoir',s:[1,2,3,2,1,1]}
+];
+function scoreTable(){
+  var tb=document.getElementById('score-body');tb.innerHTML='';
+  FORMATS.slice().sort(function(a,b){return b.s.reduce(function(x,y){return x+y;},0)-a.s.reduce(function(x,y){return x+y;},0);})
+  .forEach(function(f){
+    var tot=f.s.reduce(function(x,y){return x+y;},0);
+    var tr=document.createElement('tr');
+    if(f.hero)tr.className='hero';
+    var h='<td class="name">'+f.n+'</td>';
+    f.s.forEach(function(v){h+='<td class="num">'+v+'</td>';});
+    h+='<td class="bar-cell"><span class="bg" style="width:'+(tot/30*88)+'px"></span><span class="lab" style="padding-left:'+(tot/30*88+8)+'px">'+tot+'/30</span></td>';
+    tr.innerHTML=h;tb.appendChild(tr);
+  });
+}
+
+/* =========== schematic icons for the eight formats =========== */
+function fmtIcons(){
+  var host=document.getElementById('format-icons');host.innerHTML='';
+  var ink=cv('--ink-2'), acc=cv('--c1'), sur=cv('--surface');
+  var defs=[
+    ['Cartridge applicator','<rect x="52" y="18" width="36" height="14" rx="7"/><line x1="70" y1="32" x2="70" y2="46"/><rect x="62" y="46" width="16" height="40" rx="4"/><line x1="66" y1="56" x2="74" y2="56"/><line x1="66" y1="62" x2="74" y2="62"/><circle cx="70" cy="74" r="4"/>',true],
+    ['Single-dose pods','<rect x="44" y="34" width="22" height="30" rx="4"/><rect x="74" y="34" width="22" height="30" rx="4"/><line x1="44" y1="44" x2="66" y2="44"/><line x1="74" y1="44" x2="96" y2="44"/><path d="M52 72h36"/>'],
+    ['Applicator mitt','<path d="M50 40h30a10 10 0 0 1 10 10v22a8 8 0 0 1-8 8H58a8 8 0 0 1-8-8z"/><path d="M50 52H42a6 6 0 0 0 0 12h8"/>'],
+    ['Metered device + sensor','<rect x="54" y="26" width="32" height="52" rx="6"/><rect x="61" y="34" width="18" height="12" rx="2"/><circle cx="70" cy="60" r="7"/><path d="M70 20v-6M60 22l-3-5M80 22l3-5"/>'],
+    ['Shower application','<path d="M56 22h28l-4 10H60z"/><path d="M62 40v6M70 40v10M78 40v6M66 54v6M74 56v6"/><path d="M52 74h36"/>'],
+    ['Colour-indicating mousse','<path d="M58 30c0-6 24-6 24 0v6H58z"/><path d="M56 40h28l-4 38H60z"/><circle cx="64" cy="54" r="3"/><circle cx="74" cy="62" r="3"/><circle cx="70" cy="48" r="2"/>'],
+    ['Dry activated sheets','<rect x="46" y="30" width="34" height="40" rx="3"/><rect x="54" y="38" width="34" height="40" rx="3"/><line x1="60" y1="50" x2="82" y2="50"/><line x1="60" y1="58" x2="82" y2="58"/>'],
+    ['Wearable reservoir','<circle cx="70" cy="52" r="18"/><rect x="62" y="44" width="16" height="16" rx="3"/><path d="M52 52H36M88 52h16"/>']
+  ];
+  defs.forEach(function(d){
+    var wrap=document.createElement('div');
+    var s=svg(140,104);
+    var g=el('g',{stroke:d[2]?acc:ink,fill:'none','stroke-width':2,'stroke-linecap':'round','stroke-linejoin':'round',opacity:d[2]?1:.7});
+    g.innerHTML=d[1];
+    s.appendChild(g);
+    wrap.appendChild(s);
+    var c=document.createElement('div');
+    c.className='mock-cap';c.textContent=d[0];
+    if(d[2])c.style.color=cv('--c1');
+    wrap.appendChild(c);
+    host.appendChild(wrap);
+  });
+}
+
+/* =========== product mockups =========== */
+function mockTool(){
+  var host=document.getElementById('mk-tool');host.innerHTML='';
+  var ink=cv('--ink'), mut=cv('--muted'), acc=cv('--c1'), sur=cv('--surface'), rl=cv('--rule-strong');
+  var s=svgVB(-118,0,650,660);
+  var g=el('g',{});
+  function add(t,a){var e=el(t,a);g.appendChild(e);return e;}
+  // roller head
+  add('rect',{x:120,y:52,width:150,height:52,rx:26,fill:sur,stroke:ink,'stroke-width':2.5});
+  [148,176,204,232].forEach(function(x){add('line',{x1:x,y1:60,x2:x,y2:96,stroke:rl,'stroke-width':2,'stroke-linecap':'round'});});
+  add('rect',{x:168,y:100,width:54,height:26,rx:5,fill:sur,stroke:ink,'stroke-width':2.5});
+  // pivot
+  add('circle',{cx:195,cy:136,r:13,fill:sur,stroke:ink,'stroke-width':2.5});
+  add('circle',{cx:195,cy:136,r:4,fill:ink});
+  add('path',{d:'M170 122a34 34 0 0 1 50 0',stroke:acc,'stroke-width':2,fill:'none','stroke-dasharray':'3 4'});
+  // body
+  add('rect',{x:172,y:149,width:46,height:200,rx:10,fill:sur,stroke:ink,'stroke-width':2.5});
+  // tinted cartridge window
+  add('rect',{x:183,y:166,width:24,height:120,rx:5,fill:acc,opacity:.20,stroke:acc,'stroke-width':1.5});
+  add('rect',{x:183,y:166,width:24,height:30,rx:5,fill:sur});
+  add('line',{x1:183,y1:196,x2:207,y2:196,stroke:acc,'stroke-width':2});
+  // dose counter window
+  add('rect',{x:180,y:298,width:30,height:20,rx:3,fill:cv('--ground'),stroke:ink,'stroke-width':2});
+  var t=el('text',{x:195,y:313,fill:acc,'font-size':13,'text-anchor':'middle','font-family':'IBM Plex Mono, monospace','font-weight':600});t.textContent='08';g.appendChild(t);
+  // trigger
+  add('path',{d:'M218 236h22a9 9 0 0 1 9 9v26a9 9 0 0 1-9 9h-22z',fill:acc,stroke:ink,'stroke-width':2.5});
+  add('line',{x1:228,y1:250,x2:240,y2:250,stroke:sur,'stroke-width':2,'stroke-linecap':'round'});
+  add('line',{x1:228,y1:258,x2:240,y2:258,stroke:sur,'stroke-width':2,'stroke-linecap':'round'});
+  add('line',{x1:228,y1:266,x2:240,y2:266,stroke:sur,'stroke-width':2,'stroke-linecap':'round'});
+  // extension tube
+  add('rect',{x:179,y:349,width:32,height:150,rx:7,fill:cv('--surface-3'),stroke:ink,'stroke-width':2.5});
+  [382,414,446].forEach(function(y){add('line',{x1:179,y1:y,x2:211,y2:y,stroke:rl,'stroke-width':2});});
+  // lock collar
+  add('rect',{x:172,y:344,width:46,height:14,rx:4,fill:sur,stroke:ink,'stroke-width':2.5});
+  // grip
+  add('rect',{x:174,y:499,width:42,height:96,rx:12,fill:sur,stroke:ink,'stroke-width':2.5});
+  for(var i=0;i<7;i++){add('line',{x1:181,y1:512+i*11,x2:209,y2:512+i*11,stroke:rl,'stroke-width':2,'stroke-linecap':'round'});}
+  // wordmark
+  var w=el('text',{x:195,y:583,fill:ink,'font-size':11,'text-anchor':'middle','font-family':'Familjen Grotesk, sans-serif','font-weight':700,'letter-spacing':'2.5'});w.textContent='PALE';g.appendChild(w);
+  s.appendChild(g);
+  // callouts
+  var calls=[
+    [126,78,'R-70 roller head · 70 mm'],
+    [155,136,'40° detented pivot'],
+    [140,226,'C150 cartridge, tinted'],
+    [252,258,'Thumb trigger · 1.4 ml / press'],
+    [140,308,'Dose counter'],
+    [150,424,'Telescopes 320 → 520 mm'],
+    [144,547,'TPE grip']
+  ];
+  calls.forEach(function(c){
+    var right=c[0]>230;
+    s.appendChild(el('line',{x1:c[0],y1:c[1],x2:right?c[0]+58:c[0]-52,y2:c[1],stroke:mut,'stroke-width':1}));
+    s.appendChild(el('circle',{cx:c[0],cy:c[1],r:2.5,fill:mut}));
+    txt(s,right?c[0]+64:c[0]-58,c[1]+4,c[2],{anchor:right?'start':'end',size:12,fill:mut});
+  });
+  host.appendChild(s);
+}
+
+function mockCart(){
+  var host=document.getElementById('mk-cart');host.innerHTML='';
+  var ink=cv('--ink'), mut=cv('--muted'), acc=cv('--c1'), sur=cv('--surface'), rl=cv('--rule-strong');
+  var s=svgVB(-152,0,660,660);
+  var g=el('g',{});
+  function add(t,a){var e=el(t,a);g.appendChild(e);return e;}
+  // outer shell
+  add('rect',{x:132,y:60,width:120,height:520,rx:16,fill:sur,stroke:ink,'stroke-width':2.5});
+  // formula body
+  add('rect',{x:146,y:214,width:92,height:352,rx:9,fill:acc,opacity:.20});
+  add('rect',{x:146,y:214,width:92,height:352,rx:9,fill:'none',stroke:acc,'stroke-width':1.5});
+  // piston
+  add('rect',{x:144,y:190,width:96,height:26,rx:5,fill:cv('--surface-3'),stroke:ink,'stroke-width':2.5});
+  add('path',{d:'M158 203h68',stroke:ink,'stroke-width':2});
+  // ratchet rack
+  add('line',{x1:192,y1:96,x2:192,y2:190,stroke:ink,'stroke-width':2.5});
+  for(var i=0;i<9;i++){add('path',{d:'M186 '+(102+i*10)+'l12 0l-12 6z',fill:ink,opacity:.55});}
+  // dose chamber
+  add('rect',{x:158,y:96,width:68,height:34,rx:6,fill:'none',stroke:acc,'stroke-width':2,'stroke-dasharray':'4 3'});
+  // one-way valve
+  add('path',{d:'M164 148l28 16l28-16',fill:'none',stroke:ink,'stroke-width':2.5,'stroke-linejoin':'round'});
+  // feed slot + roller
+  add('rect',{x:150,y:62,width:84,height:20,rx:6,fill:cv('--surface-3'),stroke:ink,'stroke-width':2.5});
+  add('path',{d:'M160 62v-14M192 62v-14M224 62v-14',stroke:acc,'stroke-width':2.5,'stroke-linecap':'round'});
+  // pierce foil
+  add('line',{x1:146,y1:566,x2:238,y2:566,stroke:ink,'stroke-width':2,'stroke-dasharray':'5 4'});
+  var lbl=el('text',{x:192,y:414,fill:ink,'font-size':16,'text-anchor':'middle','font-family':'Familjen Grotesk, sans-serif','font-weight':700,'letter-spacing':'2'});lbl.textContent='C150';g.appendChild(lbl);
+  var lbl2=el('text',{x:192,y:434,fill:mut,'font-size':11,'text-anchor':'middle','font-family':'IBM Plex Mono, monospace'});lbl2.textContent='150 ml · SPF 50+';g.appendChild(lbl2);
+  s.appendChild(g);
+  var calls=[
+    [192,54,'To roller feed'],
+    [192,113,'Dose chamber · 1.4 ml'],
+    [192,158,'One-way valve'],
+    [192,203,'Driven piston'],
+    [192,140,''],
+    [200,300,'150 ml tinted emulsion'],
+    [192,566,'Foil seal, pierced on insertion']
+  ];
+  calls.filter(function(c){return c[2];}).forEach(function(c,i){
+    var right=i%2===0;
+    s.appendChild(el('line',{x1:c[0],y1:c[1],x2:right?300:84,y2:c[1],stroke:mut,'stroke-width':1}));
+    s.appendChild(el('circle',{cx:c[0],cy:c[1],r:2.5,fill:mut}));
+    txt(s,right?306:78,c[1]+4,c[2],{anchor:right?'start':'end',size:12,fill:mut});
+  });
+  // ratchet callout
+  s.appendChild(el('line',{x1:192,y1:140,x2:84,y2:140,stroke:mut,'stroke-width':1}));
+  txt(s,78,144,'Ratchet rack · one detent per press',{anchor:'end',size:12,fill:mut});
+  host.appendChild(s);
+}
+
+function mockSeq(){
+  var host=document.getElementById('mk-seq');host.innerHTML='';
+  var ink=cv('--ink'), mut=cv('--muted'), acc=cv('--c1'), sur=cv('--surface'), burn=cv('--c2');
+  var s=svg(820,300);
+  var steps=[
+    {x:40,t:'1 · APPLY',op:.55,gap:true,cap:'Tint lays down where the roller has been'},
+    {x:300,t:'2 · CHECK',op:.55,gap:true,miss:true,cap:'The gap is visible while it can still be fixed'},
+    {x:560,t:'3 · SET',op:.06,gap:false,cap:'Film fades clear in ≈60 seconds'}
+  ];
+  steps.forEach(function(st){
+    var x=st.x;
+    // torso / back silhouette
+    var back='M'+(x+60)+' 78 q-30 4 -38 34 l-10 52 q-2 14 10 16 l8 -44 l4 96 q0 12 14 12 l50 0 q14 0 14 -12 l4 -96 l8 44 q12 -2 10 -16 l-10 -52 q-8 -30 -38 -34 q-8 -6 -26 0 z';
+    s.appendChild(el('path',{d:back,fill:cv('--surface-3'),stroke:ink,'stroke-width':2,'stroke-linejoin':'round'}));
+    // coverage — one applied area, with a soft roller edge
+    var cov=el('path',{d:'M'+(x+32)+' 106 q48 -18 96 0 l6 84 q-54 -12 -108 0 z',fill:acc,opacity:st.op});
+    s.appendChild(cov);
+    [124,142,160,178].forEach(function(yy){
+      s.appendChild(el('line',{x1:x+38,y1:yy,x2:x+122,y2:yy,stroke:acc,'stroke-width':1,opacity:st.op*0.5}));
+    });
+    if(st.miss){
+      s.appendChild(el('ellipse',{cx:x+108,cy:172,rx:16,ry:20,fill:cv('--surface-3')}));
+      s.appendChild(el('ellipse',{cx:x+108,cy:172,rx:16,ry:20,fill:'none',stroke:burn,'stroke-width':2,'stroke-dasharray':'4 3'}));
+      s.appendChild(el('line',{x1:x+124,y1:160,x2:x+168,y2:132,stroke:burn,'stroke-width':1.2}));
+      txt(s,x+172,132,'missed',{size:9.5,fill:burn,weight:600});
+    }
+    txt(s,x+80,44,st.t,{anchor:'middle',size:10.5,fill:acc,weight:600});
+    txt(s,x+80,268,st.cap,{anchor:'middle',size:9.5,fill:mut,mono:false});
+  });
+  [270,530].forEach(function(x){
+    s.appendChild(el('path',{d:'M'+x+' 150l14 0M'+(x+8)+' 145l6 5l-6 5',stroke:mut,'stroke-width':1.6,fill:'none','stroke-linecap':'round','stroke-linejoin':'round'}));
+  });
+  host.appendChild(s);
+}
+
+function mockCarton(id,opts){
+  var host=document.getElementById(id);host.innerHTML='';
+  var ink=cv('--ink'), mut=cv('--muted'), acc=cv('--c1'), sur=cv('--surface'), rl=cv('--rule-strong');
+  var s=svg(400,450);
+  var g=el('g',{});
+  function add(t,a){var e=el(t,a);g.appendChild(e);return e;}
+  var X=44,W=250,Y=48,H=364, R=X+W;
+  // box front, side and top panels
+  add('rect',{x:X,y:Y,width:W,height:H,fill:sur,stroke:ink,'stroke-width':2.5});
+  add('path',{d:'M'+R+' '+Y+'l44 -24v'+H+'l-44 24z',fill:cv('--surface-3'),stroke:ink,'stroke-width':2.5,'stroke-linejoin':'round'});
+  add('path',{d:'M'+X+' '+Y+'l44 -24h'+W+'l-44 24z',fill:cv('--surface-2'),stroke:ink,'stroke-width':2.5,'stroke-linejoin':'round'});
+  add('rect',{x:X,y:Y,width:W,height:9,fill:acc});
+  var PX=X+26;
+  // wordmark
+  var w=el('text',{x:PX,y:Y+80,fill:ink,'font-size':42,'font-family':'Familjen Grotesk, sans-serif','font-weight':700,'letter-spacing':'8'});w.textContent='PALE';g.appendChild(w);
+  var sub=el('text',{x:PX+2,y:Y+100,fill:mut,'font-size':7.5,'font-family':'IBM Plex Mono, monospace','letter-spacing':'1.1'});sub.textContent=opts.sub;g.appendChild(sub);
+  add('line',{x1:PX,y1:Y+116,x2:R-26,y2:Y+116,stroke:rl,'stroke-width':1});
+  // product silhouette
+  var cx=X+W/2;
+  if(opts.tool){
+    add('rect',{x:cx-24,y:Y+148,width:48,height:16,rx:8,fill:'none',stroke:ink,'stroke-width':2});
+    add('rect',{x:cx-10,y:Y+170,width:20,height:112,rx:6,fill:'none',stroke:ink,'stroke-width':2});
+    add('rect',{x:cx-7,y:Y+188,width:14,height:44,rx:3,fill:acc,opacity:.3});
+  }else{
+    add('rect',{x:cx-40,y:Y+150,width:34,height:132,rx:8,fill:acc,opacity:.22,stroke:acc,'stroke-width':1.6});
+    add('rect',{x:cx+6,y:Y+150,width:34,height:132,rx:8,fill:acc,opacity:.22,stroke:acc,'stroke-width':1.6});
+  }
+  // claim block, two lines, clear of the badge
+  opts.claim.forEach(function(line,i){
+    var t=el('text',{x:PX,y:Y+312+i*17,fill:ink,'font-size':12.5,'font-family':'Familjen Grotesk, sans-serif','font-weight':600});
+    t.textContent=line;g.appendChild(t);
+  });
+  var c2=el('text',{x:PX,y:Y+348,fill:mut,'font-size':7.5,'font-family':'IBM Plex Mono, monospace','letter-spacing':'.5'});c2.textContent=opts.spec;g.appendChild(c2);
+  // SPF badge, top right of the front panel
+  add('rect',{x:R-72,y:Y+296,width:56,height:40,rx:4,fill:acc});
+  var sp=el('text',{x:R-44,y:Y+318,fill:'#fff','font-size':17,'text-anchor':'middle','font-family':'Familjen Grotesk, sans-serif','font-weight':700});sp.textContent='50+';g.appendChild(sp);
+  var sp2=el('text',{x:R-44,y:Y+330,fill:'rgba(255,255,255,.86)','font-size':6.5,'text-anchor':'middle','font-family':'IBM Plex Mono, monospace','letter-spacing':'.7'});sp2.textContent='VERY HIGH';g.appendChild(sp2);
+  s.appendChild(g);
+  host.appendChild(s);
+}
+
+/* =========== scrollspy =========== */
+function spy(){
+  var links=[].slice.call(document.querySelectorAll('.rail a'));
+  var secs=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));});
+  function upd(){
+    var y=scrollY+140, best=0;
+    secs.forEach(function(s,i){if(s&&s.offsetTop<=y)best=i;});
+    links.forEach(function(a,i){a.classList.toggle('on',i===best);});
+  }
+  addEventListener('scroll',upd,{passive:true});upd();
+}
+
+function drawAll(){
+  chDose();chGender();chTam();chPrice();chSeason();chMap();chPnl();
+  fmtIcons();mockTool();mockCart();mockSeq();
+  mockCarton('mk-carton',{sub:'R1 · SUN PROTECTION INSTRUMENT',tool:true,claim:['Meters the dose.','Reaches your back.'],spec:'320–520 MM · 1.4 ML PER PRESS'});
+  mockCarton('mk-refill',{sub:'C150 CARTRIDGE · TWIN PACK',tool:false,claim:['Two cartridges.','One holiday each.'],spec:'2 × 150 ML · FITS EVERY R1'});
+}
+scoreTable();drawAll();spy();
+addEventListener('resize',function(){clearTimeout(window.__rz);window.__rz=setTimeout(drawAll,180);});
+})();
+</script>
