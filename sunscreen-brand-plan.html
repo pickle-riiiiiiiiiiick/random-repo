@@ -198,6 +198,39 @@ dl.spec dd{margin:0; padding:9px 0; border-bottom:1px solid var(--rule); font-fa
 .mock-cap{font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-top:12px; text-align:center}
 .svg-ink{fill:var(--ink)} .svg-line{stroke:var(--ink); fill:none} .svg-muted{fill:var(--muted)}
 
+/* ---------- format workups ---------- */
+.fmt{background:var(--surface); border:1px solid var(--rule); margin:20px 0; box-shadow:var(--shadow)}
+.fmt.sel{border-color:var(--accent); border-width:2px}
+.fmt-hd{display:flex; gap:12px; align-items:baseline; flex-wrap:wrap; padding:16px 20px 12px; border-bottom:1px solid var(--rule)}
+.fmt-hd .rk{font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted)}
+.fmt.sel .fmt-hd .rk{color:var(--accent)}
+.fmt-hd h4{margin:0; font-size:17px; flex:1 1 auto; min-width:180px}
+.fmt-hd .sc{font-family:var(--mono); font-size:12px; font-weight:600; color:var(--ink-2); white-space:nowrap}
+.fmt.sel .fmt-hd .sc{color:var(--accent)}
+.fmt-bd{display:grid; grid-template-columns:1fr; gap:0}
+@media (min-width:820px){.fmt-bd{grid-template-columns:minmax(280px,.86fr) 1.14fr}}
+.fmt-dia{padding:18px 20px; border-bottom:1px solid var(--rule); background:var(--surface-2); overflow-x:auto; display:flex; flex-direction:column; justify-content:center}
+@media (min-width:820px){.fmt-dia{border-bottom:0; border-right:1px solid var(--rule)}}
+.fmt-dia svg{display:block; width:100%; height:auto}
+.fmt-dia .dcap{font-family:var(--mono); font-size:9px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-top:10px; text-align:center}
+.fmt-txt{padding:18px 20px}
+.fmt-txt p{font-size:14.5px; line-height:1.58; margin:0 0 .85em; color:var(--ink-2)}
+.fmt-txt p:last-child{margin:0}
+.fmt-txt b{color:var(--ink)}
+.fmt-meta{display:grid; grid-template-columns:auto 1fr; border-top:1px solid var(--rule); margin-top:14px; font-size:13px}
+.fmt-meta dt{font-family:var(--mono); font-size:9.5px; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); padding:8px 16px 8px 0; border-bottom:1px solid var(--rule); white-space:nowrap}
+.fmt-meta dd{margin:0; padding:8px 0; border-bottom:1px solid var(--rule); font-family:var(--sans); font-size:13px; color:var(--ink-2)}
+.fmt-meta dd b{color:var(--ink)}
+.cogs{width:100%; border-collapse:collapse; margin:10px 0 0; font-family:var(--mono); font-size:11.5px; min-width:0}
+.cogs td{padding:3.5px 0; border:0; color:var(--muted); line-height:1.4}
+.cogs td:last-child{text-align:right; font-variant-numeric:tabular-nums; color:var(--ink-2)}
+.cogs tr.t td{border-top:1px solid var(--rule-strong); font-weight:600; color:var(--ink); padding-top:6px}
+.verdict{font-size:14px; padding:10px 14px; margin-top:14px; border-left:2px solid var(--rule-strong); background:var(--surface-2)}
+.verdict.kill{border-left-color:var(--burn)}
+.verdict.keep{border-left-color:var(--accent)}
+.verdict b{font-family:var(--mono); font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; display:block; margin-bottom:3px; color:var(--muted)}
+.verdict.kill b{color:var(--burn)} .verdict.keep b{color:var(--accent)}
+
 /* ---------- misc ---------- */
 .toggle{
   position:fixed; top:14px; right:14px; z-index:50; width:34px; height:34px; border-radius:50%;
@@ -482,55 +515,152 @@ html{scroll-behavior:smooth}
     </table>
   </div>
 
-  <h3>The eight, in detail</h3>
-  <div class="cards">
-    <div class="card" style="border-color:var(--accent); border-width:2px">
-      <span class="tag" style="color:var(--accent)">01 · Selected — 27/30</span>
+  <h3>The eight, worked up</h3>
+  <div class="measure">
+    <p>Each option carries its mechanism, a named precedent and supply route, a bill-of-materials build, tooling and prototype cost, and the time to a first user test. Cost figures are modelled planning numbers, not quotations.<sup><a href="#s35">35</a></sup></p>
+  </div>
+
+  <div class="fmt sel">
+    <div class="fmt-hd">
+      <span class="rk">01 · Selected</span>
       <h4>Cartridge applicator tool</h4>
-      <p>Telescoping handle, swappable roller head, mechanically metered sealed cartridge. Fixes all three failures at once and is the only option that fixes reach.</p>
-      <p><b>Precedent:</b> razor handle-and-blade, insulin pen metering, paint roller. <b>COGS:</b> ~€6.20 hardware, ~€3.40 cartridge. <b>Risk:</b> hardware price is a barrier to trial.</p>
+      <span class="sc">27/30</span>
     </div>
-    <div class="card">
-      <span class="tag">02 · Fallback — 22/30</span>
+    <div class="fmt-bd">
+      <div class="fmt-dia"><div id="dia1"></div><div class="dcap">Ratchet → piston → valve → roller</div></div>
+      <div class="fmt-txt">
+        <p><b>Mechanism.</b> A thumb trigger advances a ratcheted piston one detent. The piston drives a sealed cartridge, displacing 1.4 ml through a one-way valve into a roller feed slot. The roller lays the emulsion down as an even film; a mechanical counter decrements so the user knows how many presses remain in the zone dose.</p>
+ <p><b>Why it wins.</b> It is the only one of the eight that attacks all three failures simultaneously — metering fixes dose, the telescoping handle fixes reach, and the object itself fixes the identity problem. It is also the only one with a durable-plus-consumable architecture, which is where the recurring margin lives.</p>
+        <table class="cogs"><tbody><tr><td>Body and grip mouldings</td><td>€1.85</td></tr><tr><td>Ratchet and spring assembly</td><td>€1.40</td></tr><tr><td>Roller head assembly</td><td>€1.25</td></tr><tr><td>Anodised extension tube</td><td>€1.05</td></tr><tr><td>Assembly and QC</td><td>€0.65</td></tr><tr class="t"><td>Hardware subtotal</td><td>€6.20</td></tr><tr><td>Emulsion, 155 g at €15/kg</td><td>€2.33</td></tr><tr><td>Cartridge mouldings</td><td>€0.70</td></tr><tr><td>Foil seal</td><td>€0.07</td></tr><tr><td>Fill, label, pack</td><td>€0.30</td></tr><tr class="t"><td>Cartridge subtotal</td><td>€3.40</td></tr></tbody></table>
+        <dl class="fmt-meta"><dt>Precedent</dt><dd>Gillette and Harry's cartridge razors; insulin-pen ratchet metering; paint roller and extension pole</dd><dt>Supply route</dt><dd>European or Asian personal-care device moulder, plus a separate sun care contract filler for cartridges</dd><dt>Tooling</dt><dd>≈€78,000 across five tools</dd><dt>Prototype</dt><dd>≈€22,000 to a functional metering mule</dd><dt>To first user test</dt><dd>≈14 weeks</dd><dt>Killer risk</dt><dd>Ratchet jams in sand, salt or heat — destroys the premise</dd></dl>
+        <div class="verdict keep"><b>Selected</b>Proceed — but only after the €34 hardware price test in §15 clears. Tooling is the point of no return.</div>
+      </div>
+    </div>
+  </div>
+  <div class="fmt">
+    <div class="fmt-hd">
+      <span class="rk">02 · Fallback</span>
       <h4>Single-dose pods</h4>
-      <p>One pod, one correct dose, in a pocket carrier. Kills under-application with no moving parts and no tooling risk, and travels perfectly.</p>
-      <p><b>Why not:</b> no answer to the back, no hardware moat, and trivially copied by an incumbent within a season. <b>Held as the fallback</b> if hardware price testing fails.</p>
+      <span class="sc">22/30</span>
     </div>
-    <div class="card">
-      <span class="tag">07 · 20/30</span>
-      <h4>Applicator mitt</h4>
-      <p>A shaped mitt or long-strap back applicator, lifted straight from self-tanning. Cheap, fast, no regulatory novelty, solves reach.</p>
-      <p><b>Why not:</b> it does not meter, so it fixes the second-most-important problem while leaving the first untouched. Also reads as a beauty accessory. Viable as a low-cost accessory SKU.</p>
+    <div class="fmt-bd">
+      <div class="fmt-dia"><div id="dia2"></div><div class="dcap">Pod → tear → one full dose</div></div>
+      <div class="fmt-txt">
+        <p><b>Mechanism.</b> A thermoformed pod holds exactly one correct zone dose. Twist or tear the neck, squeeze the whole contents out, apply by hand. No judgement is involved, and there is no way to under-dose without visibly leaving product in the pod.</p>
+ <p><b>Why it scores well.</b> It solves the primary failure — dose — as completely as the applicator does, with no moving parts, no tooling risk and no hardware price barrier. It travels better than anything else on this list.</p>
+ <p><b>Why it is not the hero.</b> No answer to the back, no hardware moat, and an incumbent with an existing thermoform line could match it in a single season. A good product and a bad defensible position.</p>
+        <table class="cogs"><tbody><tr><td>Emulsion, 12 g</td><td>€0.18</td></tr><tr><td>Thermoformed pod</td><td>€0.09</td></tr><tr><td>Lidding foil</td><td>€0.03</td></tr><tr><td>Fill and seal</td><td>€0.06</td></tr><tr class="t"><td>Per pod</td><td>€0.36</td></tr><tr><td>Wallet and carton, 14-pod pack</td><td>€0.85</td></tr><tr class="t"><td>14-pod pack total</td><td>€5.89</td></tr></tbody></table>
+        <dl class="fmt-meta"><dt>Precedent</dt><dd>Nespresso capsules; contact-lens blisters; hotel Eco Pods and compostable monodose sachets<sup><a href="#s13">13</a></sup></dd><dt>Supply route</dt><dd>Existing European monodose contract packers — no bespoke line needed</dd><dt>Tooling</dt><dd>≈€26,000 — thermoform tool plus carton</dd><dt>Prototype</dt><dd>≈€7,000</dd><dt>To first user test</dt><dd>≈8 weeks — by far the fastest of the eight</dd><dt>Killer risk</dt><dd>Commoditised within a year; also a plastic-waste story that is hard to defend</dd></dl>
+        <div class="verdict keep"><b>Verdict</b>Hold as the live fallback. If hardware trial conversion misses, this ships in a quarter on a fraction of the capital.</div>
+      </div>
     </div>
-    <div class="card">
-      <span class="tag">04 · 19/30</span>
+  </div>
+  <div class="fmt">
+    <div class="fmt-hd">
+      <span class="rk">03</span>
+      <h4>Applicator mitt or back strap</h4>
+      <span class="sc">20/30</span>
+    </div>
+    <div class="fmt-bd">
+      <div class="fmt-dia"><div id="dia3"></div><div class="dcap">Load → draw across back</div></div>
+      <div class="fmt-txt">
+        <p><b>Mechanism.</b> A shaped foam-and-textile mitt, or a long strap with an absorbent pad, loaded from a normal bottle and drawn across the back like a towel. Straight from the self-tanning aisle, where the identical problem was solved a decade ago.</p>
+ <p><b>Why it scores well.</b> Cheapest and fastest of the eight, no regulatory novelty whatsoever, and it genuinely solves reach. The behaviour is already proven — people buy tanning mitts specifically to do their own backs.</p>
+ <p><b>Why it is not the hero.</b> It does not meter. It fixes the second-most-important failure and leaves the most important one untouched, and a textile mitt reads unmistakably as a beauty accessory rather than as equipment.</p>
+        <table class="cogs"><tbody><tr><td>Foam and textile laminate</td><td>€0.55</td></tr><tr><td>Strap and buckle</td><td>€0.35</td></tr><tr><td>Cut and sew</td><td>€0.40</td></tr><tr><td>Pack</td><td>€0.15</td></tr><tr class="t"><td>Total</td><td>€1.45</td></tr></tbody></table>
+        <dl class="fmt-meta"><dt>Precedent</dt><dd>Self-tan application mitts; long-handled back scrubbers; shoe-polish applicators</dd><dt>Supply route</dt><dd>Standard textile and foam converters; no cosmetic manufacturing involved</dd><dt>Tooling</dt><dd>≈€6,000 — die and pattern only</dd><dt>Prototype</dt><dd>≈€2,000</dd><dt>To first user test</dt><dd>≈5 weeks</dd><dt>Killer risk</dt><dd>Zero defensibility — this is a sewing pattern, not a product</dd></dl>
+        <div class="verdict keep"><b>Verdict</b>Not the hero — but ship it as a €9 accessory alongside the R1. It costs almost nothing and lifts basket size.</div>
+      </div>
+    </div>
+  </div>
+  <div class="fmt">
+    <div class="fmt-hd">
+      <span class="rk">04</span>
       <h4>Metered device with UV sensor</h4>
-      <p>Electronic dosing plus real UV-exposure tracking telling him when to reapply. The strongest gadget pull of the eight and the best data story.</p>
-      <p><b>Why not:</b> batteries, water ingress, sand, and a bill of materials several times the R1's, for a benefit a printed dose counter mostly delivers. Revisit as a v3 premium tier.</p>
+      <span class="sc">19/30</span>
     </div>
-    <div class="card">
-      <span class="tag">05 · 17/30</span>
+    <div class="fmt-bd">
+      <div class="fmt-dia"><div id="dia4"></div><div class="dcap">Pump + UV sensor → readout</div></div>
+      <div class="fmt-txt">
+        <p><b>Mechanism.</b> An electric pump doses precisely on a button press while an onboard UV sensor integrates real exposure. A display reports how much protection remains and when to reapply, turning a guess into a readout.</p>
+ <p><b>Why it scores well.</b> By far the strongest gadget pull for our male buyer, and the only option that generates data — which would make the reapplication claim self-evidencing rather than argued.</p>
+ <p><b>Why it is not the hero.</b> The bill of materials is roughly three times the R1 for a benefit a printed mechanical counter mostly delivers. Batteries, water ingress and fine sand are exactly the conditions consumer electronics fail in, and the tooling and certification bill is an order of magnitude larger.</p>
+        <table class="cogs"><tbody><tr><td>Pump and motor</td><td>€3.20</td></tr><tr><td>UV sensor</td><td>€1.80</td></tr><tr><td>MCU and PCB</td><td>€2.60</td></tr><tr><td>Battery and charging</td><td>€2.40</td></tr><tr><td>Sealed housing</td><td>€4.10</td></tr><tr><td>Display</td><td>€1.90</td></tr><tr><td>Assembly and test</td><td>€2.30</td></tr><tr class="t"><td>Total</td><td>€18.30</td></tr></tbody></table>
+        <dl class="fmt-meta"><dt>Precedent</dt><dd>L'Oréal My Skin Track UV; wearable sensor hardware; electric-toothbrush pressure sensors</dd><dt>Supply route</dt><dd>Consumer-electronics ODM plus separate cosmetic filling — two supply chains, two quality systems</dd><dt>Tooling</dt><dd>≈€165,000 including electronics NRE</dd><dt>Prototype</dt><dd>≈€95,000</dd><dt>To first user test</dt><dd>≈40 weeks</dd><dt>Killer risk</dt><dd>IP67 sealing against fine sand; battery disposal rules; retail price above €90</dd></dl>
+        <div class="verdict kill"><b>Verdict</b>Shelve as a v3 premium tier once an install base exists. Wrong first product — too slow, too expensive, too fragile.</div>
+      </div>
+    </div>
+  </div>
+  <div class="fmt">
+    <div class="fmt-hd">
+      <span class="rk">05</span>
       <h4>Leave-on shower application</h4>
-      <p>Applied like a body wash in the shower before leaving, rinsing off the carrier and leaving the filter film. Genuinely solves reach and habit — you already wash your own back.</p>
-      <p><b>Why not:</b> substantivity through rinsing is a severe formulation problem, and any residual-film claim is hard to evidence under ISO water-resistance protocols.</p>
+      <span class="sc">17/30</span>
     </div>
-    <div class="card">
-      <span class="tag">06 · 17/30</span>
+    <div class="fmt-bd">
+      <div class="fmt-dia"><div id="dia5"></div><div class="dcap">Shower → rinse → residual film</div></div>
+      <div class="fmt-txt">
+        <p><b>Mechanism.</b> Applied in the shower like a body wash before leaving. The carrier rinses away and a substantive filter film stays bonded to the skin. It piggybacks on a habit that already exists and that already involves washing one's own back.</p>
+ <p><b>Why it scores well.</b> The best behavioural insight of the eight. Nobody has to remember anything, nobody has to be asked, and reach is solved by an action people already perform daily.</p>
+ <p><b>Why it is not the hero.</b> The formulation problem is severe. Depositing a uniform, photostable film at an effective density from a rinse-off vehicle is not settled science, and any residual-film claim would have to survive ISO water-resistance protocols never designed for it. This is a research programme, not a product plan.</p>
+        <table class="cogs"><tbody><tr><td>Emulsion, 258 g at €19/kg</td><td>€4.90</td></tr><tr><td>Bottle and pump</td><td>€0.55</td></tr><tr><td>Label and pack</td><td>€0.22</td></tr><tr class="t"><td>Total, 250 ml</td><td>€5.67</td></tr></tbody></table>
+        <dl class="fmt-meta"><dt>Precedent</dt><dd>Rinse-off conditioning polymers in haircare; substantive antimicrobial surgical scrubs; in-shower moisturisers</dd><dt>Supply route</dt><dd>Bespoke development with a specialist deposition-polymer house</dd><dt>Tooling</dt><dd>≈€14,000 — stock bottle, custom cap</dd><dt>Prototype</dt><dd>≈€4,000 in packaging, but €120,000+ and open-ended in formulation</dd><dt>To first user test</dt><dd>≈12 weeks to a sample; unknown to a compliant SPF claim</dd><dt>Killer risk</dt><dd>Deposition may simply never reach an effective, even film density</dd></dl>
+        <div class="verdict kill"><b>Verdict</b>Park as a research bet. If the deposition chemistry is ever solved it beats everything here — but it cannot be scheduled.</div>
+      </div>
+    </div>
+  </div>
+  <div class="fmt">
+    <div class="fmt-hd">
+      <span class="rk">06</span>
       <h4>Colour-indicating mousse</h4>
-      <p>A whipped mousse that goes on visibly tinted and fades. Fast to market, no hardware, immediately legible benefit.</p>
-      <p><b>Why not:</b> it is a formula, not a system — no recurring hardware lock-in, existing prior art on the tint,<sup><a href="#s14">14</a></sup> and still applied by hand. Retained as the <em>tint technology inside</em> the R1 cartridge rather than as its own product.</p>
+      <span class="sc">17/30</span>
     </div>
-    <div class="card">
-      <span class="tag">03 · 14/30</span>
+    <div class="fmt-bd">
+      <div class="fmt-dia"><div id="dia6"></div><div class="dcap">Foamer → tinted film → fades</div></div>
+      <div class="fmt-txt">
+        <p><b>Mechanism.</b> A whipped mousse from a foamer, tinted so coverage is visible on application and fading to clear as it sets. Low friction, fast to market, and a benefit that demonstrates itself in a three-second video.</p>
+ <p><b>Why it scores well.</b> The quickest route to a differentiated product with no hardware and no device risk.</p>
+ <p><b>Why it is not the hero.</b> Two hard problems. It is a formula rather than a system, so there is no recurring lock-in and nothing stopping a major from copying it. And it is <b>already taken</b> — Sweden's Evy Technology sells a patented mousse sunscreen made in Sweden into exactly our target region,<sup><a href="#s29">29</a></sup> while US 6,290,936 covers the disappearing-colour indicator.<sup><a href="#s14">14</a></sup></p>
+        <table class="cogs"><tbody><tr><td>Emulsion, 150 ml</td><td>€2.20</td></tr><tr><td>Can, valve, actuator</td><td>€0.95</td></tr><tr><td>Propellant</td><td>€0.18</td></tr><tr><td>Label and pack</td><td>€0.20</td></tr><tr class="t"><td>Total</td><td>€3.53</td></tr></tbody></table>
+        <dl class="fmt-meta"><dt>Precedent</dt><dd>Evy Technology mousse, Sweden<sup><a href="#s29">29</a></sup>; tinted surgical skin prep; hair-colour developers</dd><dt>Supply route</dt><dd>Standard European aerosol or foamer filler</dd><dt>Tooling</dt><dd>≈€18,000 — actuator and cap</dd><dt>Prototype</dt><dd>≈€6,000</dd><dt>To first user test</dt><dd>≈10 weeks</dd><dt>Killer risk</dt><dd>Occupied by an incumbent patent holder in our own home region</dd></dl>
+        <div class="verdict keep"><b>Verdict</b>Rejected as a standalone product, retained as a component — the tint technology goes inside the C150 cartridge.</div>
+      </div>
+    </div>
+  </div>
+  <div class="fmt">
+    <div class="fmt-hd">
+      <span class="rk">07</span>
       <h4>Dry activated sheets</h4>
-      <p>Compressed dry sheets, each a measured dose, activated with water or sweat. Plastic-free, liquid-free, unrestricted in hand luggage, and radically different on shelf.</p>
-      <p><b>Why not:</b> the hardest formulation risk of the eight. Achieving a uniform, photostable film at 2 mg/cm² from a dry substrate is unproven, and SPF testing would likely fail first pass.</p>
+      <span class="sc">14/30</span>
     </div>
-    <div class="card">
-      <span class="tag">08 · 10/30</span>
+    <div class="fmt-bd">
+      <div class="fmt-dia"><div id="dia7"></div><div class="dcap">Dry sheet + water → wet film</div></div>
+      <div class="fmt-txt">
+        <p><b>Mechanism.</b> A compressed nonwoven sheet carries a dry-loaded filter system. Water or sweat activates it and the sheet is wiped across the skin, transferring one measured dose. No liquid, no bottle, no hand-luggage restriction.</p>
+ <p><b>Why it scores well.</b> Radically different on shelf, plastic-light, and the dose is inherently fixed by what the substrate carries. The most genuinely novel idea of the eight.</p>
+ <p><b>Why it is not the hero.</b> It carries the worst technical risk on the list. Getting a uniform, photostable film at anything near 2 mg/cm² off a dry substrate and onto skin is unproven, transfer efficiency is likely to be both low and variable, and an ISO 24444 panel would probably fail first pass — at roughly €25,000 a sample.<sup><a href="#s19">19</a></sup></p>
+        <table class="cogs"><tbody><tr><td>Nonwoven substrate</td><td>€0.04</td></tr><tr><td>Loaded filter system</td><td>€0.21</td></tr><tr><td>Converting</td><td>€0.08</td></tr><tr><td>Sachet</td><td>€0.05</td></tr><tr class="t"><td>Per sheet</td><td>€0.38</td></tr></tbody></table>
+        <dl class="fmt-meta"><dt>Precedent</dt><dd>Compressed face-mask tablets; dry shampoo sheets; dissolvable toiletry sheets</dd><dt>Supply route</dt><dd>Nonwoven converter plus impregnation trials — no established sun care supplier does this</dd><dt>Tooling</dt><dd>≈€40,000 in converting-line trials</dd><dt>Prototype</dt><dd>≈€35,000 in substrate and loading trials</dd><dt>To first user test</dt><dd>≈26 weeks, with a high probability of technical failure</dd><dt>Killer risk</dt><dd>Transfer efficiency and film uniformity may never reach a compliant SPF</dd></dl>
+        <div class="verdict kill"><b>Verdict</b>Rejected for launch. Revisit only if someone else proves dry-substrate SPF transfer works.</div>
+      </div>
+    </div>
+  </div>
+  <div class="fmt">
+    <div class="fmt-hd">
+      <span class="rk">08</span>
       <h4>Wearable patch or clip-on reservoir</h4>
-      <p>A body-worn reservoir dispensing continuously, or a patch releasing filters over time.</p>
-      <p><b>Why not:</b> transdermal-adjacent delivery moves the product toward a medicinal classification in the EU, filters are surface-active by design, and there is no credible path to even coverage. Rejected outright.</p>
+      <span class="sc">10/30</span>
+    </div>
+    <div class="fmt-bd">
+      <div class="fmt-dia"><div id="dia8"></div><div class="dcap">Reservoir → pump → patch</div></div>
+      <div class="fmt-txt">
+        <p><b>Mechanism.</b> A body-worn reservoir feeds product continuously through a micro-pump, or an adhesive patch elutes filters over time — protection as something worn rather than applied.</p>
+ <p><b>Why it was considered.</b> It is the only idea that removes the application event altogether, which would solve reapplication compliance outright.</p>
+ <p><b>Why it fails.</b> Three independent reasons, any one fatal. Timed-release delivery to skin pushes the product toward a medicinal or medical-device classification in the EU rather than a cosmetic one — a different regulatory universe. UV filters work as a surface film, so a point source cannot distribute them. And there is no credible mechanism for covering a torso from a single emitter.</p>
+        <table class="cogs"><tbody><tr><td>Reservoir</td><td>€1.60</td></tr><tr><td>Micro-pump</td><td>€4.80</td></tr><tr><td>Tubing and manifold</td><td>€1.20</td></tr><tr><td>Patch and adhesive</td><td>€0.45</td></tr><tr><td>Battery</td><td>€1.90</td></tr><tr><td>Housing</td><td>€2.30</td></tr><tr class="t"><td>Total</td><td>€12.25</td></tr></tbody></table>
+        <dl class="fmt-meta"><dt>Precedent</dt><dd>Insulin pumps; transdermal patches; wearable insect-repellent diffusers</dd><dt>Supply route</dt><dd>Medical-device contract manufacturer — outside cosmetic supply chains entirely</dd><dt>Tooling</dt><dd>≈€140,000</dd><dt>Prototype</dt><dd>≈€70,000</dd><dt>To first user test</dt><dd>≈44 weeks, before any regulatory determination</dd><dt>Killer risk</dt><dd>Likely reclassification out of cosmetics; no path to even coverage</dd></dl>
+        <div class="verdict kill"><b>Verdict</b>Rejected outright. The regulatory reclassification alone ends it before the physics does.</div>
+      </div>
     </div>
   </div>
 
@@ -767,28 +897,113 @@ html{scroll-behavior:smooth}
   <div class="eyebrow">11 — Global comparables</div>
   <div class="measure">
     <h2>What the rest of the world already proved</h2>
-    <p>Deliberately not a US-and-Europe list. The instructive precedents for format sit in Asia, the precedents for ritual sit in Australia, and the precedent for the business model does not sit in sun care at all.</p>
+    <p>Deliberately not a US-and-Europe list. Global sun care reached roughly <b>USD 18bn in retail value in 2025</b>, compounding at about 11% a year since 2020.<sup><a href="#s21">21</a></sup> The instructive precedents for format sit in Asia, the precedents for ritual sit in Australia, the precedents for affordability sit in Latin America and India — and the precedent for the business model does not sit in sun care at all.</p>
   </div>
 
+  <h3>The market map</h3>
   <div class="tw">
     <table>
-      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 9 · Comparable set — challengers, incumbents, and the model we are actually copying</caption>
-      <thead><tr><th>Brand</th><th>Home</th><th>Position</th><th class="num">Typical price</th><th>The transferable lesson</th></tr></thead>
+      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 9 · Sun care by market — size, character, and what it teaches</caption>
+      <thead><tr><th>Market</th><th class="num">Category size</th><th>Character</th><th>Read-across</th></tr></thead>
       <tbody>
-        <tr><td class="name">Riemann P20</td><td>Denmark</td><td>Mechanical claim — one application, ten hours<sup><a href="#s11">11</a></sup></td><td class="num">€22 / 200ml</td><td><b>The closest analogue.</b> Nordic customers already pay a premium for a claim about application behaviour rather than formula.</td></tr>
-        <tr><td class="name">Vacation Inc.</td><td>United States</td><td>Retro humour, nostalgia, scent-led</td><td class="num">€24 / 177ml</td><td>Profitable, >$21.2m raised, revenue projected to roughly double to ~$80m.<sup><a href="#s17">17</a></sup> Proof that voice alone can build a sun care brand — and that it is now a crowded lane.</td></tr>
-        <tr><td class="name">Ultra Violette</td><td>Australia</td><td>"Skinscreen" — SPF as skincare</td><td class="num">€38 / 50ml</td><td>Took $10m from Aria Growth Partners and entered 592 Sephora doors at $22–40.<sup><a href="#s18">18</a></sup> Reframing the category changes the price ceiling.</td></tr>
-        <tr><td class="name">Naked Sundays</td><td>Australia</td><td>Reapplication-first, mists and sticks</td><td class="num">€26 / 100ml</td><td>~$33m net sales projected.<sup><a href="#s18">18</a></sup> A whole brand built on the reapplication problem — adjacent to ours, and evidence the wedge works.</td></tr>
-        <tr><td class="name">Bondi Sands</td><td>Australia</td><td>Mass-accessible sun and tan</td><td class="num">€14 / 150ml</td><td>Acquired by Kao in 2023. Strategic buyers are actively acquiring in this category, which matters for exit.</td></tr>
-        <tr><td class="name">Anessa</td><td>Japan</td><td>Technical performance, daily use</td><td class="num">€28 / 60ml</td><td>No.1 sun care brand in Asia by retail value.<sup><a href="#s9">9</a></sup> Sun care sustains premium pricing when sold as engineering, not indulgence.</td></tr>
-        <tr><td class="name">Beauty of Joseon</td><td>South Korea</td><td>Format-led — sticks, cushions, pads</td><td class="num">€12 / 50ml</td><td>Format is the product.<sup><a href="#s8">8</a></sup> Korean sun sticks exist because they solved carrying and reapplying, not filtering.</td></tr>
-        <tr><td class="name">La Roche-Posay Anthelios</td><td>France</td><td>Dermatological, pharmacy channel</td><td class="num">€24 / 200ml</td><td>The credibility benchmark the instigator already trusts. This is who we must sound as rigorous as.</td></tr>
-        <tr><td class="name">Nivea Sun</td><td>Germany</td><td>Mass incumbent</td><td class="num">€11 / 200ml</td><td>The default in every target market and the real competitor. Beiersdorf can copy any formula in a season — but not a hardware install base.</td></tr>
-        <tr><td class="name">Cancer Council</td><td>Australia</td><td>Institutional, public-health</td><td class="num">€10 / 200ml</td><td>Ritual and infrastructure — dispensers at pools, schools, worksites — is what produces 400–500ml per capita.<sup><a href="#s10">10</a></sup></td></tr>
-        <tr class="hero"><td class="name">Harry's</td><td>United States</td><td>Handle-and-cartridge grooming</td><td class="num">€2.30 / blade</td><td><b>The model we are actually copying.</b> ~77% gross margin on refills, 42% subscription attach at activation, 3.1 refills per customer per year, ~$850–950m revenue.<sup><a href="#s12">12</a></sup></td></tr>
-        <tr><td class="name">Bulldog / Estrid</td><td>UK / Sweden</td><td>Male- and gender-first personal care</td><td class="num">€8–16</td><td>Men enter avoided categories through objects that look like equipment and language that refuses to be earnest.</td></tr>
+        <tr><td class="name">Global</td><td class="num">≈$18.0bn</td><td>11% CAGR 2020–25<sup><a href="#s21">21</a></sup></td><td>A growing category, not a defensive one. Capital is available.</td></tr>
+        <tr><td class="name">Europe</td><td class="num">≈$4.24bn</td><td>Holiday-led, SPF 50+ ≈40% of sun protection<sup><a href="#s16">16</a></sup></td><td>Our TAM. High SPF is already normalised, so the differentiator cannot be the number.</td></tr>
+        <tr><td class="name">China</td><td class="num">RMB 27.5bn</td><td>Contracted 7.8% in 2025<sup><a href="#s22">22</a></sup></td><td>Even huge markets shrink. Thai challenger Mistine overtook Anessa online at ≈RMB1.9/ml — price and positioning beat incumbency.<sup><a href="#s22">22</a></sup></td></tr>
+        <tr><td class="name">South Korea</td><td class="num">≈$747m</td><td>Daily-use, format-led<sup><a href="#s23">23</a></sup></td><td>Cosmetics exports hit $10.2bn in 2024, up 20.3%.<sup><a href="#s24">24</a></sup> Format innovation is an export industry.</td></tr>
+        <tr><td class="name">India</td><td class="num">≈$543m</td><td>6.1% CAGR to 2033, online +10.1%<sup><a href="#s25">25</a></sup></td><td>Fastest-forming new category. Sachets and small formats do the trial work.</td></tr>
+        <tr><td class="name">Brazil</td><td class="num">≈$246m</td><td>120–150 ml per capita<sup><a href="#s10">10</a></sup></td><td>Against Australia's 400–500 ml. The gap is distribution and unit price, not desire.</td></tr>
+        <tr><td class="name">Latin America</td><td class="num">—</td><td>Value tier at $2–5 per 100 ml<sup><a href="#s26">26</a></sup></td><td>The global price floor. Useful as the outer bound on what a consumable can cost.</td></tr>
+        <tr><td class="name">Middle East &amp; Africa</td><td class="num">≈$0.49bn</td><td>Fastest regional CAGR ≈6.0%<sup><a href="#s27">27</a></sup></td><td>Premium pricing available where sun is framed as a threat rather than a pleasure.</td></tr>
+        <tr class="hero"><td class="name">Sunscreen sticks (global, all markets)</td><td class="num">≈$220m</td><td>8.1% CAGR to 2030<sup><a href="#s28">28</a></sup></td><td><b>The single most useful number here.</b> The most successful format innovation of the last decade is a $220m niche inside an $18bn category — about 1.2%. Format innovation earns a premium slice, not the market.</td></tr>
       </tbody>
     </table>
+  </div>
+
+  <div class="note risk">
+    <h4>What the stick number means for us</h4>
+    <p>Sun sticks are the format success story everyone cites, and after a decade they are roughly <b>1.2% of global sun care</b>.<sup><a href="#s28">28</a></sup> That is a useful corrective to our own thesis: a new application format does not take a category, it carves a defensible premium niche inside it. Our year-three SOM of €11.5m against a €1.83bn TAM is <b>0.6%</b> — below what sticks achieved globally, which is the right side of that benchmark to be on. Any plan built on the format going mainstream should be discounted accordingly.</p>
+  </div>
+
+  <h3>The brands</h3>
+  <div class="tw">
+    <table>
+      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 10 · Comparable set — 25 brands across nine markets</caption>
+      <thead><tr><th>Brand</th><th>Home</th><th>Position</th><th class="num">Typical price</th><th>Scale, where public</th><th>The transferable lesson</th></tr></thead>
+      <tbody>
+        <tr><td colspan="6" style="background:var(--surface-2);font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)">Northern European — our direct shelf</td></tr>
+        <tr class="hero"><td class="name">Riemann P20</td><td>Denmark</td><td>Mechanical claim — one application, ten hours<sup><a href="#s11">11</a></sup></td><td class="num">€22 / 200ml</td><td>Private; Nordic travel-retail fixture since 1979</td><td><b>The closest analogue.</b> Nordic customers already pay a premium for a claim about application behaviour rather than formula.</td></tr>
+        <tr><td class="name">Evy Technology</td><td>Sweden</td><td>Patented mousse, sensitive skin, made in Sweden<sup><a href="#s29">29</a></sup></td><td class="num">€26 / 100ml</td><td>Private, niche, pharmacy-led</td><td><b>Our alternative format 06 already exists.</b> A Swedish mousse brand proves the format works and is defensible — and that it stays a niche rather than becoming a system.</td></tr>
+        <tr><td class="name">Nivea Sun (Beiersdorf)</td><td>Germany</td><td>Mass incumbent, the default</td><td class="num">€11 / 200ml</td><td>Group €9.85bn 2025; Nivea €5.53bn, sun care named a growth driver<sup><a href="#s30">30</a></sup></td><td>The real competitor. Can copy any formula in a season — but not a hardware install base.</td></tr>
+        <tr><td class="name">La Roche-Posay Anthelios</td><td>France</td><td>Dermatological, pharmacy channel</td><td class="num">€24 / 200ml</td><td>Brand targeting €3bn; &gt;15 products sold every second<sup><a href="#s31">31</a></sup></td><td>The credibility benchmark the instigator already trusts. We must sound this rigorous.</td></tr>
+        <tr><td class="name">Avène / Pierre Fabre</td><td>France</td><td>Sensitive-skin dermocosmetic</td><td class="num">€20 / 100ml</td><td>Part of Pierre Fabre dermocosmetics</td><td>Pharmacist recommendation is a real acquisition channel in the Nordics and worth buying into.</td></tr>
+        <tr><td class="name">Garnier Ambre Solaire</td><td>France</td><td>Mass, family-led</td><td class="num">€12 / 200ml</td><td>L'Oréal consumer division</td><td>Owns the supermarket price anchor our cartridge is judged against.</td></tr>
+        <tr><td colspan="6" style="background:var(--surface-2);font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)">Challengers — the funded cohort</td></tr>
+        <tr><td class="name">Supergoop</td><td>United States</td><td>SPF as everyday skincare</td><td class="num">€32 / 50ml</td><td>Blackstone majority at $600–700m valuation; sales ≈$250m, +65%<sup><a href="#s32">32</a></sup></td><td><b>The exit comparable.</b> Category-creation multiples are available to whoever reframes sun care rather than reformulating it.</td></tr>
+        <tr><td class="name">Vacation Inc.</td><td>United States</td><td>Retro humour, scent-led</td><td class="num">€24 / 177ml</td><td>&gt;$21.2m raised; profitable; revenue projected to ≈$80m<sup><a href="#s17">17</a></sup></td><td>Voice alone can build a sun care brand — and that lane is now crowded, which is why ours is mechanism.</td></tr>
+        <tr><td class="name">Ultra Violette</td><td>Australia</td><td>"Skinscreen"</td><td class="num">€38 / 50ml</td><td>$10m from Aria Growth Partners; 592 Sephora doors at $22–40<sup><a href="#s18">18</a></sup></td><td>Reframing the category changes the price ceiling.</td></tr>
+        <tr><td class="name">Naked Sundays</td><td>Australia</td><td>Reapplication-first — mists, sticks</td><td class="num">€26 / 100ml</td><td>≈$33m net sales projected, US ≈$8.5m<sup><a href="#s18">18</a></sup></td><td>A whole brand on the reapplication problem — adjacent to ours, and evidence the wedge works.</td></tr>
+        <tr><td class="name">Bondi Sands</td><td>Australia</td><td>Mass-accessible sun and tan</td><td class="num">€14 / 150ml</td><td>Acquired by Kao, 2023</td><td>Strategic buyers are actively acquiring here. Matters for exit.</td></tr>
+        <tr><td class="name">Standard Procedure</td><td>Australia</td><td>Unisex, design-led, surf-adjacent</td><td class="num">€20 / 100ml</td><td>Private, VC-backed cohort</td><td>Closest to a male-neutral aesthetic without becoming a "men's" brand — a trap we should avoid too.</td></tr>
+        <tr><td class="name">Sun Bum</td><td>United States</td><td>Beach lifestyle, scent-led</td><td class="num">€16 / 177ml</td><td>≈$50m revenue; acquired by S.C. Johnson 2019<sup><a href="#s33">33</a></sup></td><td>The realistic exit floor: a beloved brand with no mechanism sells for trade multiples, not category-creation ones.</td></tr>
+        <tr><td class="name">Cancer Council</td><td>Australia</td><td>Institutional public-health</td><td class="num">€10 / 200ml</td><td>Charity-owned, licensed manufacture</td><td>Ritual and infrastructure — dispensers at pools, schools, worksites — is what produces 400–500 ml per capita.<sup><a href="#s10">10</a></sup></td></tr>
+        <tr><td colspan="6" style="background:var(--surface-2);font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)">Asia — where format is the product</td></tr>
+        <tr><td class="name">Anessa (Shiseido)</td><td>Japan</td><td>Technical performance, daily use</td><td class="num">€28 / 60ml</td><td>No.1 sun care brand in Asia by retail value<sup><a href="#s9">9</a></sup></td><td>Sun care sustains premium pricing when sold as engineering, not indulgence.</td></tr>
+        <tr><td class="name">Bioré UV (Kao)</td><td>Japan</td><td>Mass technical — Aqua Rich watery essence</td><td class="num">€12 / 70ml</td><td>Kao consumer division</td><td>A cult global following built purely on <em>texture</em>. Sensory experience is a real moat in a category people dislike using.</td></tr>
+        <tr><td class="name">Beauty of Joseon</td><td>South Korea</td><td>Format-led — sticks, cushions, pads</td><td class="num">€12 / 50ml</td><td>Global No.1 K-beauty suncare brand in online sales, Euromonitor 2025<sup><a href="#s34">34</a></sup></td><td>Format is the product.<sup><a href="#s8">8</a></sup> Korean sun sticks solved carrying and reapplying, not filtering.</td></tr>
+        <tr><td class="name">Round Lab</td><td>South Korea</td><td>Ingredient-story, gentle daily</td><td class="num">€14 / 50ml</td><td>Goodai Global portfolio<sup><a href="#s34">34</a></sup></td><td>K-beauty's export machine turns a domestic format win into global distribution within about two years.</td></tr>
+        <tr><td class="name">Mistine</td><td>Thailand</td><td>Value-technical, anti-tanning claim</td><td class="num">≈€0.05 / ml</td><td>Overtook Anessa as top-selling sunscreen online in China, H1 2023<sup><a href="#s22">22</a></sup></td><td><b>The most underrated comparable here.</b> A Thai value brand beat the Japanese category leader in China on price plus a sharper claim. Incumbency is not protection.</td></tr>
+        <tr><td class="name">Winona / Proya</td><td>China</td><td>Sensitive-skin science; social-first</td><td class="num">€18 / 50ml</td><td>Top-10 domestic sunscreen ranks<sup><a href="#s22">22</a></sup></td><td>Domestic challengers took shelf from global majors inside five years, almost entirely through social proof.</td></tr>
+        <tr><td colspan="6" style="background:var(--surface-2);font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)">Emerging — the affordability lesson</td></tr>
+        <tr><td class="name">Lakmé Sun Expert</td><td>India</td><td>Mass, defending against entrants with sticks and sprays<sup><a href="#s25">25</a></sup></td><td class="num">€4 / 50ml</td><td>Hindustan Unilever</td><td>Even incumbents now defend share with <em>format</em>, not formula. Confirms the direction of travel.</td></tr>
+        <tr><td class="name">Minimalist / Foxtale</td><td>India</td><td>Science-forward D2C challengers<sup><a href="#s25">25</a></sup></td><td class="num">€7 / 50ml</td><td>India sunscreen ≈$543m, online +10.1% CAGR<sup><a href="#s25">25</a></sup></td><td>Transparent-formulation D2C works in sun care at a fraction of Western price points.</td></tr>
+        <tr><td class="name">Sundown / Natura</td><td>Brazil</td><td>Mass and direct-selling</td><td class="num">€8 / 200ml</td><td>Mass brands ≈40% of Brazilian volume<sup><a href="#s26">26</a></sup></td><td>Direct selling still moves enormous sun care volume. A human recommending it beats a shelf.</td></tr>
+        <tr><td colspan="6" style="background:var(--surface-2);font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)">Outside sun care — the model we are actually copying</td></tr>
+        <tr class="hero"><td class="name">Harry's</td><td>United States</td><td>Handle-and-cartridge grooming</td><td class="num">€2.30 / blade</td><td>≈77% refill gross margin, 42% subscription attach, 3.1 refills/customer/yr, ≈$850–950m revenue<sup><a href="#s12">12</a></sup></td><td><b>The operating benchmark.</b> Every number in our §14 model is measured against these.</td></tr>
+        <tr><td class="name">Dollar Shave Club</td><td>United States</td><td>Subscription-first grooming</td><td class="num">€6 / month</td><td>Acquired by Unilever, $1bn, 2016</td><td>Subscription built the valuation — and the post-acquisition decline shows what happens when the hardware is not actually better.</td></tr>
+        <tr><td class="name">Nespresso</td><td>Switzerland</td><td>Machine-and-capsule</td><td class="num">€0.45 / capsule</td><td>Nestlé division</td><td>Consumers will buy hardware to unlock a consumable, and will tolerate lock-in if the consumable is genuinely good.</td></tr>
+        <tr><td class="name">Bulldog / Estrid</td><td>UK / Sweden</td><td>Male- and gender-first personal care</td><td class="num">€8–16</td><td>Bulldog acquired by Edgewell</td><td>Men enter avoided categories through objects that look like equipment and language that refuses to be earnest.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>The five that matter most</h3>
+  <div class="cards">
+    <div class="card">
+      <span class="tag">Read 01 · The analogue</span>
+      <h4>Riemann P20 — proof of the wedge</h4>
+      <p>A Danish brand that has sold since 1979 on a mechanical promise: one application, ten hours.<sup><a href="#s11">11</a></sup> Not a formula story, not a lifestyle. It commands roughly double the Nivea price in the same Nordic aisle.</p>
+      <p><b>What it proves:</b> our exact customer already pays a premium for a claim about <em>application behaviour</em>. <b>What it warns:</b> after forty-odd years it is still a niche, not a category leader. A behavioural claim buys margin, not dominance.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Read 02 · The exit</span>
+      <h4>Supergoop — the ceiling</h4>
+      <p>Reframed sunscreen as everyday skincare rather than beach equipment, reached about $250m in sales growing 65%, and sold majority control to Blackstone at a $600–700m valuation.<sup><a href="#s32">32</a></sup></p>
+      <p><b>What it proves:</b> category <em>reframing</em> — which is precisely what "instrument, not cosmetic" is — earns the highest multiples in this sector. Sun Bum, beloved but mechanically ordinary, exited at around $50m of revenue to a trade buyer.<sup><a href="#s33">33</a></sup> The gap between those two outcomes is the difference between a new frame and a nice brand.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Read 03 · The warning</span>
+      <h4>Mistine — incumbency is not protection</h4>
+      <p>A Thai value brand overtook Anessa, the Asian category leader, to become the top-selling sunscreen online in China, on roughly RMB1.9/ml and a sharper anti-tanning claim.<sup><a href="#s22">22</a></sup></p>
+      <p><b>What it proves:</b> a clearer claim at a better price displaces an entrenched leader fast. That cuts both ways — it is our route in against Nivea, and it is exactly how someone will come for us.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Read 04 · The format ceiling</span>
+      <h4>Sun sticks — a $220m lesson</h4>
+      <p>The decade's celebrated format innovation is a ≈$220m global market growing 8.1%, inside an ≈$18bn category.<sup><a href="#s28">28</a></sup><sup><a href="#s21">21</a></sup></p>
+      <p><b>What it proves:</b> format innovation reliably wins a premium niche and reliably fails to win the category. Plan and capitalise for roughly 1% of TAM, not 10%. Our model already does.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Read 05 · The operating model</span>
+      <h4>Harry's — the numbers to beat</h4>
+      <p>≈77% gross margin on refills, 42% subscription attach at activation, 3.1 refills per customer per year, on ≈$850–950m revenue, with owned blade manufacturing in Germany.<sup><a href="#s12">12</a></sup></p>
+      <p><b>What it proves:</b> the architecture works at scale. <b>What it warns:</b> 3.1 refills a year is a beard. A holiday is 1.8 at best, which is the single structural reason our LTV:CAC in §14 lands at 1.74:1 rather than 3:1. We are copying the model into a lower-frequency category and must price and capitalise for that.</p>
+    </div>
+    <div class="card">
+      <span class="tag">Read 06 · The one already doing it</span>
+      <h4>Evy Technology — the format is taken</h4>
+      <p>A Swedish patented mousse sunscreen, made in Sweden, sold on sensitive-skin credentials through pharmacy.<sup><a href="#s29">29</a></sup></p>
+      <p><b>What it proves:</b> alternative format 06 in §6 is not hypothetical — someone in our own region already built it, patented it, and stayed small. That is a strong argument for the applicator over the mousse, and a reminder to run freedom-to-operate against Nordic patents specifically.</p>
+    </div>
   </div>
 
   <figure>
@@ -797,11 +1012,10 @@ html{scroll-behavior:smooth}
       <span class="chip mod">Modelled</span>
     </div>
     <div class="fig-body"><div id="ch-price"></div></div>
-    <figcaption>Prices are typical European retail, converted and rounded; face-format products are excluded because their per-ml pricing (Ultra Violette ≈ €76/100ml, Anessa ≈ €47/100ml) compresses the body scale. <b>The C150 cartridge lands at €7.33 per 100ml</b> — below every premium body sunscreen and only marginally above supermarket mass. The premium sits in the hardware and the system, not in the consumable, which is exactly how the razor model is supposed to feel.</figcaption>
+    <figcaption>Typical European retail, converted and rounded. Face-format products are excluded because their per-ml pricing (Ultra Violette ≈€76/100ml, Anessa ≈€47/100ml) compresses the body scale; the Latin American value tier sits at $2–5 per 100 ml<sup><a href="#s26">26</a></sup> and Mistine lower still. <b>The C150 cartridge lands at €7.33 per 100ml</b> — below every premium body sunscreen and only marginally above supermarket mass. The premium sits in the hardware and the system, not the consumable, which is exactly how the razor model should feel.</figcaption>
   </figure>
 </section>
 
-<!-- ============ 12 GTM ============ -->
 <section id="gtm">
   <div class="eyebrow">12 — Go to market</div>
   <div class="measure">
@@ -896,7 +1110,7 @@ html{scroll-behavior:smooth}
   <h3>Unit economics</h3>
   <div class="tw">
     <table>
-      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 10 · First-year customer, and the three-year contribution <span class="chip mod" style="margin-left:8px">Modelled</span></caption>
+      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 11 · First-year customer, and the three-year contribution <span class="chip mod" style="margin-left:8px">Modelled</span></caption>
       <thead><tr><th>Line</th><th class="num">Year 1</th><th class="num">Repeat year</th><th>Note</th></tr></thead>
       <tbody>
         <tr><td class="name">Revenue per customer</td><td class="num">€61.60</td><td class="num">€39.60</td><td>Y1: R1 €34 + one twin-pack €22 + 35% attach of a €16 accessory. Repeat: 1.8 twin-packs</td></tr>
@@ -917,7 +1131,7 @@ html{scroll-behavior:smooth}
 
   <div class="tw">
     <table>
-      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 11 · What has to be true to reach 3:1 <span class="chip mod" style="margin-left:8px">Sensitivity</span></caption>
+      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 12 · What has to be true to reach 3:1 <span class="chip mod" style="margin-left:8px">Sensitivity</span></caption>
       <thead><tr><th>Scenario</th><th class="num">Y2 repeat</th><th class="num">Packs/yr</th><th class="num">CAC</th><th class="num">3-yr LTV</th><th class="num">LTV:CAC</th></tr></thead>
       <tbody>
         <tr><td class="name">Base case</td><td class="num">45%</td><td class="num">1.8</td><td class="num">€28</td><td class="num">€48.74</td><td class="num">1.74</td></tr>
@@ -946,7 +1160,7 @@ html{scroll-behavior:smooth}
 
   <div class="tw">
     <table>
-      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 12 · P&amp;L, € millions <span class="chip mod" style="margin-left:8px">Modelled</span></caption>
+      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 13 · P&amp;L, € millions <span class="chip mod" style="margin-left:8px">Modelled</span></caption>
       <thead><tr><th>Line</th><th class="num">Year 1</th><th class="num">Year 2</th><th class="num">Year 3</th></tr></thead>
       <tbody>
         <tr><td class="name">New customers</td><td class="num">22,000</td><td class="num">58,000</td><td class="num">112,000</td></tr>
@@ -1037,6 +1251,21 @@ html{scroll-behavior:smooth}
       <li id="s18">Beauty Independent, on Naked Sundays' Ulta partnership and Australian sun care expansion, including Ultra Violette's $10m Aria Growth Partners investment and Sephora distribution. <a href="https://www.beautyindependent.com/ulta-beauty-partnership-naked-sundays-australian-sun-care-brand-expanding-stateside/">beautyindependent.com</a></li>
       <li id="s19">Pissavini M et al., <i>Are there alternatives to the traditional in-vivo SPF test (ISO 24444)?</i> Int J Cosmet Sci, 2025 — ALT-SPF consortium cost data. <a href="https://onlinelibrary.wiley.com/doi/10.1111/ics.70026?af=R">onlinelibrary.wiley.com</a></li>
       <li id="s20">Tourism Analytics, Netherlands residents outbound international trips. <a href="https://tourismanalytics.com/netherlandsoutbound.html">tourismanalytics.com</a></li>
+      <li id="s21">Global sun care retail value and 2020–25 CAGR, as cited in Euromonitor-derived reporting on K-beauty suncare. <a href="https://www.prnewswire.co.uk/news-releases/beauty-of-joseon-named-global-no1-k-beauty-suncare-brand-in-online-sales-by-euromonitor-international-302793842.html">prnewswire.co.uk</a></li>
+      <li id="s22">ChemLinked, <i>Key Trends to Observe in China's Sunscreen Market</i> and <i>An Overview of China's Sunscreen Market and Regulation</i> — market value, 2025 contraction, Mistine and domestic brand performance. <a href="https://cosmetic.chemlinked.com/news/report/key-trends-to-observe-in-chinas-sunscreen-market">cosmetic.chemlinked.com</a></li>
+      <li id="s23">South Korea sun care market sizing. <a href="https://www.grandviewresearch.com/industry-analysis/south-korea-sun-care-cosmetics-market-report">grandviewresearch.com</a>; <a href="https://www.marknteladvisors.com/research-library/south-korea-sun-care-products-market-report.html">marknteladvisors.com</a></li>
+      <li id="s24">BeautyMatter, <i>K-Beauty's Export Boom Is No Longer a Trend Story</i> — Korean cosmetics exports $10.2bn in 2024, +20.3%. <a href="https://beautymatter.com/articles/k-beautys-export-boom-is-no-longer-a-trend-story">beautymatter.com</a></li>
+      <li id="s25">India sunscreen market size, growth and brand dynamics. <a href="https://www.imarcgroup.com/india-sunscreen-market">imarcgroup.com</a>; <a href="https://www.grandviewresearch.com/industry-analysis/india-sunscreen-market-report">grandviewresearch.com</a></li>
+      <li id="s26">Latin America and Mexico sun care market structure, price tiers and brand share. <a href="https://www.expertmarketresearch.com/reports/latin-america-sun-care-products-market">expertmarketresearch.com</a>; <a href="https://www.indexbox.io/store/mexico-sun-care-market-analysis-forecast-size-trends-and-insights/">indexbox.io</a></li>
+      <li id="s27">Cognitive Market Research, <i>Middle East and Africa Sunscreen Industry Report 2025</i>. <a href="https://www.cognitivemarketresearch.com/regional-analysis/middle-east-and-africa-sunscreen-market-report">cognitivemarketresearch.com</a></li>
+      <li id="s28">Deep Market Insights, <i>Sunscreen Stick Market Size, Demand &amp; Growth Report to 2030</i>. <a href="https://deepmarketinsights.com/report/sunscreen-stick-market-research-report">deepmarketinsights.com</a></li>
+      <li id="s29">Evy Technology — Swedish patented sunscreen mousse, product and company information. <a href="https://evytechnology.com/products/">evytechnology.com</a></li>
+      <li id="s30">Beiersdorf full-year results 2025 — group and Nivea revenue, sun care as a growth driver. <a href="https://www.beiersdorf.com/newsroom/press-information/all-press-releases/2026/03/02-full-year-results-2025-beiersdorf-grows-in-a-slowing-market-derma-outperforms">beiersdorf.com</a></li>
+      <li id="s31">Cosmetics Business, <i>La Roche-Posay's game plan to rule dermo-cosmetics and make €3 billion this year</i>. <a href="https://cosmeticsbusiness.com/la-roche-posay-to-rule-dermo-cosmetics-and-make-3-billion-this-year">cosmeticsbusiness.com</a></li>
+      <li id="s32">Blackstone Growth majority investment in Supergoop, valuation and sales. <a href="https://www.blackstone.com/news/press/blackstone-growth-bxg-announces-majority-investment-in-supergoop-category-creator-in-spf-innovation-and-everyday-sun-protection/">blackstone.com</a>; <a href="https://www.businessoffashion.com/articles/beauty/supergoops-plans-for-global-growth/">businessoffashion.com</a></li>
+      <li id="s33">Sun Bum revenue and 2019 acquisition by S.C. Johnson. <a href="https://pitchbook.com/profiles/company/181366-57">pitchbook.com</a>; <a href="https://www.crunchbase.com/organization/sun-bum">crunchbase.com</a></li>
+      <li id="s34">Beauty of Joseon named Global No.1 K-Beauty Suncare Brand in Online Sales, Euromonitor International, 2025 global online retail sales. <a href="https://www.prnewswire.co.uk/news-releases/beauty-of-joseon-named-global-no1-k-beauty-suncare-brand-in-online-sales-by-euromonitor-international-302793842.html">prnewswire.co.uk</a></li>
+      <li id="s35">Bill-of-materials, tooling and prototype cost estimates for the alternative formats are modelled from the injection-moulding benchmarks at <a href="#s15">15</a>, bulk emulsion pricing, and published contract-packing rates for stick-pack and sachet lines. Treat as planning figures pending supplier quotation.</li>
     </ol>
     <div class="end">PALE · Venture dossier v1.0 · Prepared August 2026 · All financial figures modelled</div>
   </div>
@@ -1340,6 +1569,172 @@ function fmtIcons(){
   });
 }
 
+/* =========== mechanism diagrams for the eight formats =========== */
+function diagrams(){
+  var ink=cv('--ink-2'), acc=cv('--c1'), mut=cv('--muted'), sur=cv('--surface'), s3=cv('--surface-3'), burn=cv('--c2');
+  function mk(id,fn){
+    var host=document.getElementById(id); if(!host)return; host.innerHTML='';
+    var s=svg(340,168);
+    var g=el('g',{});
+    function add(t,a){var e=el(t,a);g.appendChild(e);return e;}
+    function lab(x,y,t,c){var e=el('text',{x:x,y:y,fill:c||mut,'font-size':8.5,'text-anchor':'middle','font-family':'IBM Plex Mono, monospace','letter-spacing':'.4'});e.textContent=t;g.appendChild(e);}
+    function arrow(x,y,w){add('path',{d:'M'+x+' '+y+'h'+w+'M'+(x+w-5)+' '+(y-4)+'l5 4l-5 4',stroke:mut,'stroke-width':1.4,fill:'none','stroke-linecap':'round','stroke-linejoin':'round'});}
+    fn(add,lab,arrow);
+    s.appendChild(g); host.appendChild(s);
+  }
+  var base={fill:'none','stroke-width':1.8,'stroke-linecap':'round','stroke-linejoin':'round'};
+  function st(o,c){var r={};for(var k in base)r[k]=base[k];for(var k2 in o)r[k2]=o[k2];r.stroke=c||ink;return r;}
+
+  // 01 cartridge applicator — section through the metering path
+  mk('dia1',function(add,lab,arrow){
+    add('rect',st({x:18,y:62,width:196,height:52,rx:6}));
+    add('rect',{x:52,y:66,width:150,height:44,fill:acc,opacity:.20});
+    add('rect',st({x:26,y:66,width:24,height:44,rx:3},ink)); add('rect',{x:26,y:66,width:24,height:44,fill:s3,opacity:.9});
+    add('rect',st({x:26,y:66,width:24,height:44,rx:3},ink));
+    for(var i=0;i<6;i++)add('path',{d:'M'+(26+i*13)+' 58l11 0l-11 5z',fill:ink,opacity:.5});
+    add('path',st({d:'M8 88h14M17 83l5 5l-5 5'},acc));
+    lab(26,116,'press',acc);
+    add('path',st({d:'M214 74l14 14l-14 14'},ink));
+    lab(228,120,'valve');
+    add('circle',st({cx:274,cy:88,r:26},ink));
+    add('path',st({d:'M262 76a17 17 0 0 1 24 0'},acc));
+    add('path',st({d:'M286 76l0 -7M286 76l-7 0'},acc));
+    for(var j=0;j<4;j++)add('path',st({d:'M304 '+(74+j*9)+'h26'},acc));
+    lab(60,132,'metered 1.4 ml'); lab(274,132,'roller'); lab(316,58,'film');
+  });
+
+  // 02 single-dose pods
+  mk('dia2',function(add,lab,arrow){
+    add('path',st({d:'M30 66h44a8 8 0 0 1 8 8v40a8 8 0 0 1-8 8H30a8 8 0 0 1-8-8V74a8 8 0 0 1 8-8z'}));
+    add('rect',{x:26,y:70,width:52,height:48,fill:acc,opacity:.22});
+    add('path',st({d:'M40 66V54h24v12'}));
+    add('path',st({d:'M34 54h36','stroke-dasharray':'3 3'},burn));
+    lab(52,46,'tear',burn); lab(52,136,'one dose');
+    arrow(94,90,30);
+    add('path',st({d:'M158 62c14 18 22 28 22 38a22 22 0 0 1-44 0c0-10 8-20 22-38z'},acc));
+    add('path',{d:'M158 62c14 18 22 28 22 38a22 22 0 0 1-44 0c0-10 8-20 22-38z',fill:acc,opacity:.22});
+    lab(158,136,'12 g exactly');
+    arrow(192,90,30);
+    add('path',st({d:'M234 70h76v40h-76z'}));
+    add('rect',{x:234,y:70,width:76,height:40,fill:s3,opacity:.8});
+    add('path',st({d:'M234 70h76v40h-76z'}));
+    add('rect',{x:238,y:66,width:68,height:8,rx:4,fill:acc,opacity:.55});
+    lab(272,136,'applied by hand');
+  });
+
+  // 03 applicator mitt
+  mk('dia3',function(add,lab,arrow){
+    add('path',st({d:'M22 70h52a14 14 0 0 1 14 14v26a12 12 0 0 1-12 12H34a12 12 0 0 1-12-12z'}));
+    add('path',st({d:'M22 84H10a8 8 0 0 0 0 16h12'}));
+    add('rect',{x:26,y:74,width:58,height:16,rx:4,fill:acc,opacity:.3});
+    lab(50,138,'loaded pad');
+    arrow(98,92,26);
+    add('path',st({d:'M212 54q-22 3-28 25l-7 38q-1 10 8 12l6-32l3 70q0 9 10 9h36q10 0 10-9l3-70l6 32q9-2 8-12l-7-38q-6-22-28-25q-6-4-20 0z'}));
+    add('path',{d:'M186 84q26-10 52 0l4 34q-30-8-60 0z',fill:acc,opacity:.34});
+    add('path',st({d:'M150 78q-14 22 6 34'},acc));
+    add('path',st({d:'M156 112l-6 0l0-7'},acc));
+    lab(214,150,'reaches the back');
+  });
+
+  // 04 metered device + UV sensor
+  mk('dia4',function(add,lab,arrow){
+    add('circle',st({cx:38,cy:40,r:11},acc));
+    for(var a=0;a<8;a++){var r=a*Math.PI/4;add('path',st({d:'M'+(38+Math.cos(r)*15)+' '+(40+Math.sin(r)*15)+'l'+(Math.cos(r)*6)+' '+(Math.sin(r)*6)},acc));}
+    lab(38,74,'real UV');
+    add('rect',st({x:112,y:34,width:70,height:96,rx:9}));
+    add('rect',st({x:122,y:44,width:50,height:26,rx:3},acc));
+    lab(147,62,'12 min',acc);
+    add('circle',st({cx:147,cy:96,r:13}));
+    add('path',st({d:'M147 88v16M139 96h16'}));
+    add('path',st({d:'M62 46h44'},mut));
+    add('path',st({d:'M101 42l5 4l-5 4'},mut));
+    add('path',st({d:'M147 130v14'},acc));
+    add('path',st({d:'M143 139l4 5l4-5'},acc));
+    add('rect',{x:206,y:96,width:104,height:34,rx:4,fill:s3});
+    add('rect',st({x:206,y:96,width:104,height:34,rx:4}));
+    add('rect',{x:210,y:92,width:96,height:8,rx:4,fill:acc,opacity:.5});
+    add('path',st({d:'M188 100h14'},mut));
+    add('path',st({d:'M197 96l5 4l-5 4'},mut));
+    lab(147,158,'dose + sensor + readout');
+    lab(258,146,'skin');
+  });
+
+  // 05 leave-on shower
+  mk('dia5',function(add,lab,arrow){
+    add('path',st({d:'M56 30h56l-8 14H64z'}));
+    add('path',st({d:'M84 30V18h-30'}));
+    for(var i=0;i<5;i++)add('path',st({d:'M'+(70+i*10)+' 50v18M'+(75+i*10)+' 74v12'},acc));
+    lab(84,104,'carrier rinses');
+    arrow(132,86,28);
+    add('rect',{x:184,y:96,width:126,height:34,fill:s3});
+    add('rect',st({x:184,y:96,width:126,height:34}));
+    add('rect',{x:184,y:88,width:126,height:9,fill:acc,opacity:.6});
+    add('path',st({d:'M184 88h126'},acc));
+    lab(247,74,'filter film stays',acc);
+    lab(247,148,'skin');
+    add('path',st({d:'M196 60q10-10 20 0M232 60q10-10 20 0M268 60q10-10 20 0'},mut));
+  });
+
+  // 06 colour-indicating mousse
+  mk('dia6',function(add,lab,arrow){
+    add('path',st({d:'M24 46h30v-8h-30z'}));
+    add('path',st({d:'M20 46h38l-5 76H25z'}));
+    add('rect',{x:22,y:52,width:34,height:66,fill:acc,opacity:.2});
+    lab(39,138,'foamer');
+    arrow(72,84,24);
+    add('circle',st({cx:118,cy:70,r:11},acc)); add('circle',st({cx:134,cy:82,r:9},acc)); add('circle',st({cx:114,cy:88,r:8},acc));
+    lab(124,138,'mousse');
+    arrow(152,84,22);
+    add('rect',{x:186,y:64,width:52,height:44,fill:s3}); add('rect',st({x:186,y:64,width:52,height:44}));
+    add('rect',{x:190,y:68,width:44,height:36,fill:acc,opacity:.62});
+    lab(212,138,'tinted');
+    arrow(246,84,20);
+    add('rect',{x:274,y:64,width:52,height:44,fill:s3}); add('rect',st({x:274,y:64,width:52,height:44}));
+    add('rect',{x:278,y:68,width:44,height:36,fill:acc,opacity:.07});
+    lab(300,138,'faded clear');
+  });
+
+  // 07 dry activated sheets
+  mk('dia7',function(add,lab,arrow){
+    add('path',st({d:'M22 54h60v58H22z'}));
+    for(var i=0;i<4;i++)add('path',st({d:'M32 '+(66+i*12)+'h40'},mut));
+    lab(52,130,'dry sheet');
+    add('path',st({d:'M112 60c7 9 11 14 11 19a11 11 0 0 1-22 0c0-5 4-10 11-19z'},acc));
+    lab(112,102,'+ water',acc);
+    arrow(136,84,24);
+    add('path',st({d:'M172 54h60v58h-60z'}));
+    add('rect',{x:176,y:58,width:52,height:50,fill:acc,opacity:.28});
+    lab(202,130,'activated');
+    arrow(242,84,22);
+    add('rect',{x:274,y:66,width:52,height:40,fill:s3}); add('rect',st({x:274,y:66,width:52,height:40}));
+    add('rect',{x:278,y:62,width:44,height:7,rx:3,fill:acc,opacity:.4});
+    add('path',st({d:'M292 46l6 8l-6 8'},burn));
+    lab(300,132,'transfer?',burn);
+  });
+
+  // 08 wearable reservoir
+  mk('dia8',function(add,lab,arrow){
+    add('rect',st({x:22,y:56,width:44,height:60,rx:7}));
+    add('rect',{x:26,y:76,width:36,height:36,fill:acc,opacity:.24});
+    add('path',st({d:'M30 56V44h28v12'}));
+    lab(44,134,'reservoir');
+    add('circle',st({cx:106,cy:86,r:15}));
+    add('path',st({d:'M106 76v20M96 86h20'}));
+    lab(106,120,'pump');
+    add('path',st({d:'M66 86h24'},mut));
+    add('path',st({d:'M121 86h30q8 0 8 8v14'},mut));
+    add('ellipse',st({cx:160,cy:120,rx:16,ry:7},ink));
+    add('ellipse',{cx:160,cy:120,rx:16,ry:7,fill:acc,opacity:.3});
+    lab(160,142,'patch');
+    add('rect',{x:196,y:60,width:120,height:56,fill:s3}); add('rect',st({x:196,y:60,width:120,height:56}));
+    add('circle',{cx:212,cy:88,r:13,fill:acc,opacity:.5});
+    add('path',st({d:'M232 88h74','stroke-dasharray':'4 4'},burn));
+    var q=el('text',{x:274,y:80,fill:burn,'font-size':13,'text-anchor':'middle','font-family':'IBM Plex Mono, monospace','font-weight':600});q.textContent='?';add('g',{}).appendChild(q);
+    lab(272,110,'uneven',burn);
+    lab(256,142,'torso');
+  });
+}
+
 /* =========== product mockups =========== */
 function mockTool(){
   var host=document.getElementById('mk-tool');host.innerHTML='';
@@ -1539,7 +1934,7 @@ function spy(){
 
 function drawAll(){
   chDose();chGender();chTam();chPrice();chSeason();chMap();chPnl();
-  fmtIcons();mockTool();mockCart();mockSeq();
+  fmtIcons();diagrams();mockTool();mockCart();mockSeq();
   mockCarton('mk-carton',{sub:'R1 · SUN PROTECTION INSTRUMENT',tool:true,claim:['Meters the dose.','Reaches your back.'],spec:'320–520 MM · 1.4 ML PER PRESS'});
   mockCarton('mk-refill',{sub:'C150 CARTRIDGE · TWIN PACK',tool:false,claim:['Two cartridges.','One holiday each.'],spec:'2 × 150 ML · FITS EVERY R1'});
 }
