@@ -1,0 +1,64 @@
+# Weights for the Everyday AI Index.
+# Layer weights are normalised automatically, so they don't have to sum to exactly 1.
+
+default_profile = "everyday"
+
+# ---- Profiles -----------------------------------------------------------------
+
+[profiles.everyday]
+description = "Non-expert using AI through apps for work and life."
+layers = { A = 0.25, B = 0.35, C = 0.30, D = 0.10 }
+
+[profiles.power_user]
+description = "Uses projects, connectors and agents regularly."
+layers = { A = 0.30, B = 0.30, C = 0.30, D = 0.10 }
+
+[profiles.developer]
+description = "Codes through CLIs and IDEs."
+layers = { A = 0.35, B = 0.25, C = 0.30, D = 0.10 }
+# Overrides for Layer A slot weights (slots not listed keep their default).
+slot_weights = { A6 = 0.20, A8 = 0.20, A5 = 0.10 }
+# Overrides for Layer B dimension weights.
+harness_weights = { B8 = 0.02, B9 = 0.02, B1 = 0.22 }
+
+[profiles.budget_privacy]
+description = "Price-sensitive or must keep data under tight control."
+layers = { A = 0.20, B = 0.25, C = 0.30, D = 0.25 }
+strict_privacy = true   # a G1 "concern" counts as a fail
+
+# ---- Layer B: harness usability dimensions (scored 0-4 in harness_scores.csv) --
+
+[harness]
+B1 = { name = "Gets it done end-to-end", weight = 0.18 }
+B2 = { name = "Built-in tools", weight = 0.14 }
+B3 = { name = "Connects to your stuff", weight = 0.12 }
+B4 = { name = "Remembers context", weight = 0.12 }
+B5 = { name = "Recovers from mistakes", weight = 0.12 }
+B6 = { name = "Safe control", weight = 0.10 }
+B7 = { name = "Speed and reliability", weight = 0.10 }
+B8 = { name = "Works everywhere you are", weight = 0.06 }
+B9 = { name = "Low learning curve", weight = 0.06 }
+
+# ---- Layer C: personal battery -----------------------------------------------
+
+[personal]
+success_weight = 0.6      # outcome quality (0/1/2 per task, weighted by task importance)
+efficiency_weight = 0.4   # minutes of YOUR time per successful task (lower is better)
+
+# ---- Layer D: cost and friction ----------------------------------------------
+
+[cost]
+price_weight = 0.7
+limits_weight = 0.3        # limits_0to4 in setups.csv (4 = never hit a cap)
+price_smoothing_usd = 10   # stops a free tier from automatically scoring infinitely better
+
+# ---- Gates (multiply the final score) ----------------------------------------
+
+[gates]
+pass = 1.0
+concern = 0.85
+fail = 0.5
+# G3 honesty is derived from personal_results.csv (invented_source column)
+# when available: 0 tasks -> pass, 1-2 -> concern, 3+ -> fail.
+honesty_concern_at = 1
+honesty_fail_at = 3

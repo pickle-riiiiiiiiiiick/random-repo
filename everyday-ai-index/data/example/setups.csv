@@ -1,0 +1,6 @@
+setup_id,label,model_id,monthly_cost_usd,limits_0to4,g1_privacy,g2_reliability,g3_honesty,notes
+S1,Frontier closed model in its own full app,M1,20,3,pass,pass,,FICTIONAL example
+S2,High-benchmark open model in its own chat app,M2,0,2,concern,pass,,FICTIONAL example
+S3,Same open model in a strong third-party agent app,M2,15,3,pass,pass,,FICTIONAL example: same model as S2
+S4,Budget small model in a basic app,M3,8,3,pass,pass,,FICTIONAL example
+S5,Local open model on your laptop,M4,0,4,pass,pass,,FICTIONAL example: no personal tests yet

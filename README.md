@@ -18,3 +18,7 @@ Events are scraped from `https://pianocitymilano.it/programma/`. Venue coordinat
 ## Local viewing
 
 Open `index.html` directly in a browser — everything is inlined.
+
+## Also in this repo
+
+- [`everyday-ai-index/`](everyday-ai-index/): a method and scorer for rating AI tools on everyday usefulness (model + harness + your own blind tests), not just leaderboard scores.

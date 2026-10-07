@@ -1,0 +1,165 @@
+# Layer A: capability SLOTS and the benchmarks that currently fill them.
+#
+# Slots are permanent: they describe a capability a daily user cares about.
+# Benchmarks are replaceable. When one meets a retirement rule, set its status
+# to "retired" and promote a candidate. Slot weights stay put, so scores remain
+# comparable across years.
+#
+# Scale types (how a raw value becomes 0-100 relative to the best in the field):
+#   ratio          value / best * 100                  (percent-style scores, higher is better)
+#   inverse_ratio  best / value * 100                  (lower is better, e.g. hallucination rate)
+#   elo            200 * P(beats the best setup)       (Arena-style ratings; the best = 100)
+#   log            100 - 25 * doublings behind best    (time horizons; 4 doublings behind = 0)
+
+last_reviewed = "2026-10-07"
+
+[retirement_rules]
+saturation_top_score = 0.90       # top setup above this fraction of max -> saturated
+noise_margin_points = 2.0         # top 3 within this many points -> no longer discriminates
+max_staleness_months = 6          # not re-run on new models for this long -> stale
+reject_vendor_only = true         # only vendor-reported numbers -> not eligible
+adoption_max_top_score = 0.70     # a NEW benchmark should have headroom when adopted
+
+[slots.A1]
+name = "Knowledge-work deliverables"
+why = "Memos, spreadsheets, plans, analyses judged by experts against human work."
+weight = 0.20
+
+[slots.A2]
+name = "Doesn't make things up"
+why = "Non-experts can't easily catch errors; hallucinations cost the most time and trust."
+weight = 0.20
+
+[slots.A3]
+name = "Multi-step tool use with a person"
+why = "Follows rules, uses tools, stays on track through a conversation."
+weight = 0.15
+
+[slots.A4]
+name = "Long autonomous work"
+why = "How long a task it can carry to completion without rescue."
+weight = 0.15
+
+[slots.A5]
+name = "Human preference (style-controlled)"
+why = "Blind human votes on which answer is more helpful."
+weight = 0.15
+
+[slots.A6]
+name = "Computer and terminal agency"
+why = "Operating software, files and a computer on your behalf."
+weight = 0.10
+
+[slots.A7]
+name = "Long documents"
+why = "Reasoning over long PDFs, contracts, reports."
+weight = 0.05
+
+[slots.A8]
+name = "Real-repository coding"
+why = "Fixing real issues in real codebases. Weight 0 by default; the developer profile turns it on."
+weight = 0.0
+
+# ---- Benchmarks ---------------------------------------------------------------
+# id must match the benchmark_id column in public_scores.csv.
+
+[[benchmarks]]
+id = "gdpval_aa"
+slot = "A1"
+name = "GDPval-AA (independent re-run of OpenAI GDPval)"
+scale = "ratio"
+status = "active"
+source = "https://artificialanalysis.ai"
+
+[[benchmarks]]
+id = "gdpval"
+slot = "A1"
+name = "GDPval win-or-tie rate vs. human experts"
+scale = "ratio"
+status = "active"
+source = "https://openai.com/index/gdpval/"
+
+[[benchmarks]]
+id = "aa_omniscience_nonhalluc"
+slot = "A2"
+name = "AA-Omniscience non-hallucination rate"
+scale = "ratio"
+status = "active"
+source = "https://artificialanalysis.ai"
+
+[[benchmarks]]
+id = "hallucination_rate"
+slot = "A2"
+name = "Any independent hallucination rate (lower is better)"
+scale = "inverse_ratio"
+status = "candidate"
+
+[[benchmarks]]
+id = "tau_bench"
+slot = "A3"
+name = "tau2/tau3-bench (average across domains)"
+scale = "ratio"
+status = "active"
+source = "https://github.com/sierra-research/tau2-bench"
+
+[[benchmarks]]
+id = "metr_horizon_50_hours"
+slot = "A4"
+name = "METR 50% time horizon (hours)"
+scale = "log"
+status = "active"
+source = "https://metr.org/time-horizons/"
+
+[[benchmarks]]
+id = "lmarena_text_elo"
+slot = "A5"
+name = "LMArena text (style control)"
+scale = "elo"
+status = "active"
+source = "https://lmarena.ai"
+
+[[benchmarks]]
+id = "webdev_arena_elo"
+slot = "A5"
+name = "WebDev Arena"
+scale = "elo"
+status = "active"
+source = "https://lmarena.ai"
+
+[[benchmarks]]
+id = "terminal_bench"
+slot = "A6"
+name = "Terminal-Bench 2.x (best disclosed harness for the model)"
+scale = "ratio"
+status = "active"
+source = "https://www.tbench.ai"
+
+[[benchmarks]]
+id = "osworld_verified"
+slot = "A6"
+name = "OSWorld-Verified"
+scale = "ratio"
+status = "active"
+source = "https://os-world.github.io"
+
+[[benchmarks]]
+id = "aa_lcr"
+slot = "A7"
+name = "AA Long-Context Reasoning"
+scale = "ratio"
+status = "active"
+source = "https://artificialanalysis.ai"
+
+[[benchmarks]]
+id = "swe_bench_pro"
+slot = "A8"
+name = "SWE-bench Pro (contamination-resistant)"
+scale = "ratio"
+status = "active"
+source = "https://scale.com/leaderboard"
+
+# Deliberately excluded from scoring (academic ceilings; saturated or weak
+# predictors of daily usefulness). Listed so nobody re-adds them by accident.
+[excluded]
+benchmarks = ["MMLU", "MMLU-Pro", "GPQA Diamond", "AIME", "Humanity's Last Exam", "HumanEval"]
+reason = "Measure exam-style ceilings, not finished work; mostly saturated or contaminated."
