@@ -1,0 +1,16 @@
+# One edition = one run of the index, e.g. after a major model release.
+# Copy this folder (python3 publish/build.py new <slug>) and edit.
+
+number = 0
+date = "2026-10-07"
+trigger = "Worked example with fictional setups"   # what prompted this run, shown on the cover
+illustrative = true      # true = fictional data: every slide says "Source: illustrative data"
+profile = "everyday"     # weighting profile from config/weights.toml
+highlight = "S3"         # setup_id to highlight in red (default: the winner)
+
+# Cover and closing copy. Titles: six words or fewer, a claim, not a topic.
+headline = "The app moved the score"
+standfirst = "Five ways to get AI help, scored on what they get done for me, not on exam marks."
+ranking_title = "Who gets it done"
+takeaway = "Pick the app, then the model"
+takeaway_standfirst = "The same model scored 41 in one app and 74 in another. That gap is bigger than the gap between most models."

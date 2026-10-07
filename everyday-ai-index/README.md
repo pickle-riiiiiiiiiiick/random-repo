@@ -202,7 +202,19 @@ Rows 2 and 4 are the **same model** (identical Layer A). The harness alone moves
 
 ---
 
-## 7. Reading the result
+## 7. Publishing each edition
+
+Every time a major model ships:
+
+```bash
+python3 publish/build.py new <model-name>   # new edition folder, data copied from the last one
+# update the CSVs and edition.toml, run your tests
+python3 publish/build.py                    # carousels + web page
+```
+
+The results carousel (1080 × 1350 PDF for LinkedIn) is built from the scores, and the web page gains the new edition. Details are in `publish/README.md`.
+
+## 8. Reading the result
 
 - **Look at the layer breakdown, not just the total.** "High A, low B" means a strong model trapped in a weak product. Worth checking whether a better harness exists for it (e.g. a Chinese model through a good third-party agent app).
 - **Coverage below 70%** (⚠) means the score leans too heavily on missing data. It's ranked after fully evidenced setups. Treat it as provisional.
@@ -223,6 +235,9 @@ Rows 2 and 4 are the **same model** (identical Layer A). The harness alone moves
 | `data/example/*.csv` | Fictional example data |
 | `score.py` | Computes the index (Python 3.11+, no dependencies) |
 | `blind.py` | Anonymises and shuffles outputs for blind grading |
-| `tests/` | Tests for the scorer |
+| `editions/<NNN-slug>/` | One folder per run of the index: `edition.toml` plus the four CSVs |
+| `publish/` | Builds the LinkedIn carousel PDFs and the web page (see `publish/README.md`) |
+| `output/` | Generated PDFs, cover images, score tables and the web page |
+| `tests/` | Tests for the scorer and the publishing pipeline |
 
 Sources consulted (Oct 2026) are linked inline. Some secondary sources were the only ones reachable, so check headline numbers against the primary leaderboards before relying on them.

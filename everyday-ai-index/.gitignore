@@ -2,3 +2,4 @@ __pycache__/
 outputs/
 blinded/
 blinded_key.csv
+output/_build/
