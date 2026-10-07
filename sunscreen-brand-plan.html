@@ -266,6 +266,26 @@ section.tabfirst{padding-top:26px}
 .srcs li.hit{background:var(--accent-soft); outline:2px solid var(--accent-mid); outline-offset:4px}
 @media print{ [data-tab][hidden]{display:block!important} .tabbar,.rail,.toggle,.tabnext,.backlink{display:none!important} }
 
+/* ---------- v3: supplier directory ---------- */
+.filters{display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin:12px 0 0}
+.flab{font-family:var(--mono); font-size:9.5px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); min-width:52px}
+.fbtn{appearance:none; font-family:var(--mono); font-size:10.5px; letter-spacing:.04em; line-height:1.2; padding:6px 10px; border:1px solid var(--rule-strong); border-radius:2px; background:var(--surface); color:var(--ink-2); cursor:pointer}
+.fbtn:hover{border-color:var(--accent); color:var(--ink)}
+.fbtn[aria-pressed="true"]{background:var(--ink); border-color:var(--ink); color:var(--ground)}
+.dot{display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; flex:none}
+.fbtn .dot{vertical-align:0}
+.fsearch{flex:1 1 200px; max-width:360px; min-width:0; font-family:var(--sans); font-size:14px; padding:7px 10px; border:1px solid var(--rule-strong); border-radius:2px; background:var(--surface); color:var(--ink)}
+.fsearch:focus{outline:2px solid var(--accent); outline-offset:1px}
+.fcount{font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; color:var(--muted)}
+#dir td{font-size:12.5px}
+#dir td.name{white-space:normal}
+#dir td.name .where{display:block; font-weight:400; font-size:12px; color:var(--muted); margin-top:2px}
+#dir td.name a{display:inline-block; font-weight:400; font-size:11.5px; margin-top:3px; word-break:break-word}
+#dir tr.grp td{background:var(--surface-2); font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-2); padding:10px 14px; border-bottom:1px solid var(--rule-strong)}
+.fit{display:inline-flex; align-items:center; white-space:nowrap; font-family:var(--mono); font-size:10px; color:var(--ink-2); margin:0 8px 3px 0}
+#rfq td.num{color:var(--muted)}
+@media print{ .filters,#copyrfq{display:none!important} #dir tr[hidden]{display:table-row!important} }
+
 /* ---------- misc ---------- */
 .toggle{
   position:fixed; top:14px; right:14px; z-index:50; width:34px; height:34px; border-radius:50%;
@@ -329,7 +349,7 @@ html{scroll-behavior:smooth}
         <dt>Markets</dt><dd>10 Northern European, D2C first</dd>
         <dt>Concepts</dt><dd>A · R1 Applicator + C150 cartridge<br>B · Eau de Cologne SPF 50 — <a href="#cologne">new in v2</a></dd>
         <dt>Ask</dt><dd>€4.5m seed · 30-month runway</dd>
-        <dt>Prepared</dt><dd>August 2026 · v2 October 2026</dd>
+        <dt>Prepared</dt><dd>August 2026 · v3 October 2026</dd>
       </dl>
     </div>
   </div>
@@ -358,8 +378,9 @@ html{scroll-behavior:smooth}
   </div>
 
   <div class="note">
-    <h4>New in v2 — a second concept</h4>
+    <h4>New in v2 and v3</h4>
     <p>This version adds <b>Concept B: an SPF cologne</b> — a watery, cologne-grade sunscreen spray that rides a habit men already have instead of asking them to learn a new tool. <a href="#cologne">§10</a> researches it end to end, including who could make it and a head-to-head with the applicator, and recommends leading with it. The Concept A pages, brand, sizing, go-to-market and financials are still written for the applicator, and the Financials tab now carries a correction to the v1 financial model.</p>
+    <p><b>v3</b> splits the dossier into tabs and adds three pages to the Supply tab (<a href="#suppliers">§16</a>–<a href="#directory">§18</a>). They rank every European private-label maker found for an SPF sun water or SPF mousse, set out a sourcing route for each format, and include a filterable directory and a question list to send suppliers.</p>
   </div>
 </section>
 
@@ -614,7 +635,7 @@ html{scroll-behavior:smooth}
         <tr><td class="name">Minimalist / Foxtale</td><td>India</td><td>Science-forward D2C challengers<sup><a href="#s25">25</a></sup></td><td class="num">€7 / 50ml</td><td>India sunscreen ≈$543m, online +10.1% CAGR<sup><a href="#s25">25</a></sup></td><td>Transparent-formulation D2C works in sun care at a fraction of Western price points.</td></tr>
         <tr><td class="name">Sundown / Natura</td><td>Brazil</td><td>Mass and direct-selling</td><td class="num">€8 / 200ml</td><td>Mass brands ≈40% of Brazilian volume<sup><a href="#s26">26</a></sup></td><td>Direct selling still moves enormous sun care volume. A human recommending it beats a shelf.</td></tr>
         <tr><td colspan="6" style="background:var(--surface-2);font-family:var(--mono);font-size:9.5px;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)">Outside sun care — the model we are actually copying</td></tr>
-        <tr class="hero"><td class="name">Harry's</td><td>United States</td><td>Handle-and-cartridge grooming</td><td class="num">€2.30 / blade</td><td>≈77% refill gross margin, 42% subscription attach, 3.1 refills/customer/yr, ≈$850–950m revenue<sup><a href="#s12">12</a></sup></td><td><b>The operating benchmark.</b> Every number in our §17 model is measured against these.</td></tr>
+        <tr class="hero"><td class="name">Harry's</td><td>United States</td><td>Handle-and-cartridge grooming</td><td class="num">€2.30 / blade</td><td>≈77% refill gross margin, 42% subscription attach, 3.1 refills/customer/yr, ≈$850–950m revenue<sup><a href="#s12">12</a></sup></td><td><b>The operating benchmark.</b> Every number in our §19 model is measured against these.</td></tr>
         <tr><td class="name">Dollar Shave Club</td><td>United States</td><td>Subscription-first grooming</td><td class="num">€6 / month</td><td>Acquired by Unilever, $1bn, 2016</td><td>Subscription built the valuation — and the post-acquisition decline shows what happens when the hardware is not actually better.</td></tr>
         <tr><td class="name">Nespresso</td><td>Switzerland</td><td>Machine-and-capsule</td><td class="num">€0.45 / capsule</td><td>Nestlé division</td><td>Consumers will buy hardware to unlock a consumable, and will tolerate lock-in if the consumable is genuinely good.</td></tr>
         <tr><td class="name">Bulldog / Estrid</td><td>UK / Sweden</td><td>Male- and gender-first personal care</td><td class="num">€8–16</td><td>Bulldog acquired by Edgewell</td><td>Men enter avoided categories through objects that look like equipment and language that refuses to be earnest.</td></tr>
@@ -652,7 +673,7 @@ html{scroll-behavior:smooth}
       <span class="tag">Read 05 · The operating model</span>
       <h4>Harry's — the numbers to beat</h4>
       <p>≈77% gross margin on refills, 42% subscription attach at activation, 3.1 refills per customer per year, on ≈$850–950m revenue, with owned blade manufacturing in Germany.<sup><a href="#s12">12</a></sup></p>
-      <p><b>What it proves:</b> the architecture works at scale. <b>What it warns:</b> 3.1 refills a year is a beard. A holiday is 1.8 at best, which is the single structural reason our LTV:CAC in §17 lands at 1.74:1 rather than 3:1. We are copying the model into a lower-frequency category and must price and capitalise for that.</p>
+      <p><b>What it proves:</b> the architecture works at scale. <b>What it warns:</b> 3.1 refills a year is a beard. A holiday is 1.8 at best, which is the single structural reason our LTV:CAC in §19 lands at 1.74:1 rather than 3:1. We are copying the model into a lower-frequency category and must price and capitalise for that.</p>
     </div>
     <div class="card">
       <span class="tag">Read 06 · The one already doing it</span>
@@ -787,7 +808,7 @@ html{scroll-behavior:smooth}
  <p><b>Why it wins.</b> It is the only one of the eight that attacks all three failures simultaneously — metering fixes dose, the telescoping handle fixes reach, and the object itself fixes the identity problem. It is also the only one with a durable-plus-consumable architecture, which is where the recurring margin lives.</p>
         <table class="cogs"><tbody><tr><td>Body and grip mouldings</td><td>€1.85</td></tr><tr><td>Ratchet and spring assembly</td><td>€1.40</td></tr><tr><td>Roller head assembly</td><td>€1.25</td></tr><tr><td>Anodised extension tube</td><td>€1.05</td></tr><tr><td>Assembly and QC</td><td>€0.65</td></tr><tr class="t"><td>Hardware subtotal</td><td>€6.20</td></tr><tr><td>Emulsion, 155 g at €15/kg</td><td>€2.33</td></tr><tr><td>Cartridge mouldings</td><td>€0.70</td></tr><tr><td>Foil seal</td><td>€0.07</td></tr><tr><td>Fill, label, pack</td><td>€0.30</td></tr><tr class="t"><td>Cartridge subtotal</td><td>€3.40</td></tr></tbody></table>
         <dl class="fmt-meta"><dt>Precedent</dt><dd>Gillette and Harry's cartridge razors; insulin-pen ratchet metering; paint roller and extension pole</dd><dt>Supply route</dt><dd>European or Asian personal-care device moulder, plus a separate sun care contract filler for cartridges</dd><dt>Tooling</dt><dd>≈€78,000 across five tools</dd><dt>Prototype</dt><dd>≈€22,000 to a functional metering mule</dd><dt>To first user test</dt><dd>≈14 weeks</dd><dt>Killer risk</dt><dd>Ratchet jams in sand, salt or heat — destroys the premise</dd></dl>
-        <div class="verdict keep"><b>Selected</b>Proceed — but only after the €34 hardware price test in §18 clears. Tooling is the point of no return.</div>
+        <div class="verdict keep"><b>Selected</b>Proceed — but only after the €34 hardware price test in §20 clears. Tooling is the point of no return.</div>
       </div>
     </div>
   </div>
@@ -892,7 +913,7 @@ html{scroll-behavior:smooth}
       <div class="fmt-txt">
         <p><b>Mechanism.</b> A compressed nonwoven sheet carries a dry-loaded filter system. Water or sweat activates it and the sheet is wiped across the skin, transferring one measured dose. No liquid, no bottle, no hand-luggage restriction.</p>
  <p><b>Why it scores well.</b> Radically different on shelf, plastic-light, and the dose is inherently fixed by what the substrate carries. The most genuinely novel idea of the eight.</p>
- <p><b>Why it is not the hero.</b> It carries the worst technical risk on the list. Getting a uniform, photostable film at anything near 2 mg/cm² off a dry substrate and onto skin is unproven, transfer efficiency is likely to be both low and variable, and an ISO 24444 panel would probably fail first pass — at roughly €25,000 a sample.<sup><a href="#s19">19</a></sup></p>
+ <p><b>Why it is not the hero.</b> It carries the worst technical risk on the list. Getting a uniform, photostable film at anything near 2 mg/cm² off a dry substrate and onto skin is unproven, transfer efficiency is likely to be both low and variable, and an ISO 24444 panel would probably fail first pass — and each rerun costs about $2,000 and several weeks.<sup><a href="#s79">79</a></sup></p>
         <table class="cogs"><tbody><tr><td>Nonwoven substrate</td><td>€0.04</td></tr><tr><td>Loaded filter system</td><td>€0.21</td></tr><tr><td>Converting</td><td>€0.08</td></tr><tr><td>Sachet</td><td>€0.05</td></tr><tr class="t"><td>Per sheet</td><td>€0.38</td></tr></tbody></table>
         <dl class="fmt-meta"><dt>Precedent</dt><dd>Compressed face-mask tablets; dry shampoo sheets; dissolvable toiletry sheets</dd><dt>Supply route</dt><dd>Nonwoven converter plus impregnation trials — no established sun care supplier does this</dd><dt>Tooling</dt><dd>≈€40,000 in converting-line trials</dd><dt>Prototype</dt><dd>≈€35,000 in substrate and loading trials</dd><dt>To first user test</dt><dd>≈26 weeks, with a high probability of technical failure</dd><dt>Killer risk</dt><dd>Transfer efficiency and film uniformity may never reach a compliant SPF</dd></dl>
         <div class="verdict kill"><b>Verdict</b>Rejected for launch. Revisit only if someone else proves dry-substrate SPF transfer works.</div>
@@ -1079,7 +1100,7 @@ html{scroll-behavior:smooth}
     <div class="card">
       <span class="tag">Constraint 06 · Testing</span>
       <h4>Lock the scent before the SPF test</h4>
-      <p>SPF is measured on the finished, scented formula. Change the accord afterwards and it is a new formula — and a new in vivo test at roughly €25,000.<sup><a href="#s19">19</a></sup> Run three months of stability and photostability with the accord in the base first.</p>
+      <p>SPF is measured on the finished, scented formula. Change the accord afterwards and it is a new formula — and a new in vivo test, about $2,000 and some six weeks away.<sup><a href="#s79">79</a></sup> Run three months of stability and photostability with the accord in the base first.</p>
     </div>
   </div>
 
@@ -1176,7 +1197,7 @@ html{scroll-behavior:smooth}
         <tr class="hero"><td class="name">Accord + filters</td><td>Symrise (Germany)</td><td>A major fragrance house that also makes UV filters under the Neo Heliopan name — scent and SPF chemistry under one roof<sup><a href="#s65">65</a></sup></td><td>A sun-safe accord in two strengths, pre-screened against its own filter systems</td></tr>
         <tr><td class="name">Accord + filters</td><td>dsm-firmenich (Switzerland / Netherlands)</td><td>Firmenich perfumery plus PARSOL, which it calls the world's broadest UV-filter range, and a dedicated sun-care sensory panel<sup><a href="#s65">65</a></sup></td><td>The same brief — run both, keep the better accord</td></tr>
         <tr><td class="name">Accord, start-up scale</td><td>Expressions Parfumées (Grasse) · CPL Aromas (UK, est. 1971) · Evolution Fragrance House</td><td>Big houses have volume minimums a start-up may not meet; these work with small brands. Evolution quotes no development fee and a 150-unit fine-fragrance minimum<sup><a href="#s66">66</a></sup></td><td>The stage-1 plain cologne; expect $2,000–15,000 for a custom brief<sup><a href="#s66">66</a></sup></td></tr>
-        <tr><td class="name">Formula + fill · EU sun</td><td>Fareva (France) · Valquer (Spain) · Cosmewax (Spain) · SystemKosmetik (Germany)</td><td>Existing EU sun-care capacity. Fareva runs 41 sites and makes both fragrance and sun care; Valquer does spray formats from 1,000 units<sup><a href="#s67">67</a></sup><sup><a href="#s37">37</a></sup></td><td>An existing invisible-spray SPF 50 base, the ISO 24444 report behind it, and a compatibility run with the accord</td></tr>
+        <tr><td class="name">Formula + fill · EU sun</td><td>Laboratori Sabatel (Italy) · Valquer (Spain) · Fareva (France) · Cosmewax (Spain)</td><td>Existing EU sun-care capacity. Fareva runs 41 sites and makes both fragrance and sun care; Valquer does spray formats from 1,000 units; Sabatel lists a transparent SPF spray from about 200. <a href="#suppliers">§16</a> ranks every EU candidate<sup><a href="#s67">67</a></sup><sup><a href="#s37">37</a></sup><sup><a href="#s90">90</a></sup></td><td>An existing invisible-spray SPF 50 base, the ISO 24444 report behind it, and a compatibility run with the accord</td></tr>
         <tr><td class="name">Formula + fill · fragrance</td><td>ICR (Lodi, Italy)</td><td>Prestige fragrance filler for Dolce &amp; Gabbana, DKNY, Guess, Tommy Hilfiger and Roberto Cavalli, with dedicated bulk-alcohol rooms<sup><a href="#s67">67</a></sup></td><td>Alcohol-phase compounding and flacon fill, paired with a sun formulator for the SPF base</td></tr>
         <tr><td class="name">Formula + fill · Korea</td><td>Kolmar Korea · Cosmax (factory in Italy)</td><td>The sunscreen specialists: Kolmar runs a dedicated UV research institute and makes for Beauty of Joseon and d'Alba; Cosmax is the largest ODM by output and can make in the EU<sup><a href="#s67">67</a></sup></td><td>A proven sun-mist platform re-filtered to EU Annex VI and made at Cosmax Italy</td></tr>
         <tr><td class="name">Flacon pump</td><td>Aptar (France)</td><td>PZ Advance: 0.19 ml dose designed for sun care, full-plastic and recyclable<sup><a href="#s62">62</a></sup></td><td>Samples for dose and spray-pattern trials</td></tr>
@@ -1192,7 +1213,7 @@ html{scroll-behavior:smooth}
     <h4>The three calls to make first</h4>
     <ol class="tight" style="margin-bottom:0">
       <li><b>Symrise</b> — one brief covers the accord and its compatibility with the filters. Fragrance houses normally keep the formula and sell you the oil, so negotiate exclusivity and continuity of supply up front.</li>
-      <li><b>Fareva or Valquer</b> — ask for an existing EU invisible-spray SPF 50 base and the ISO 24444 report behind it. That is the base the accord goes into.</li>
+      <li><b>Sabatel, Valquer or Fareva</b> — ask for an existing EU invisible-spray SPF 50 base and the ISO 24444 report behind it, with written rights to use it (<a href="#sourcing">§17</a>). That is the base the accord goes into.</li>
       <li><b>Aptar and ASM</b> — dose and spray-pattern samples for the flacon pump and the body can. The speed alternative to all three is <b>Kolmar Korea or Cosmax's Italian plant</b>, which can bring a proven sun-mist platform.</li>
     </ol>
   </div>
@@ -1250,11 +1271,11 @@ html{scroll-behavior:smooth}
       </tbody>
     </table>
   </div>
-  <p class="measure" style="font-size:14px;color:var(--muted)">Margins here are calculated on price after VAT — the correct basis, at about 22% blended across the year-one markets (19% in Germany to 25% in the Nordics).<sup><a href="#s78">78</a></sup> They are lower than the margins shown for Concept A in §11 and §17, which were calculated on consumer prices including VAT; §17 now carries a correction. Component costs are modelled planning figures, not quotations.<sup><a href="#s77">77</a></sup></p>
+  <p class="measure" style="font-size:14px;color:var(--muted)">Margins here are calculated on price after VAT — the correct basis, at about 22% blended across the year-one markets (19% in Germany to 25% in the Nordics).<sup><a href="#s78">78</a></sup> They are lower than the margins shown for Concept A in §11 and §19, which were calculated on consumer prices including VAT; §19 now carries a correction. Component costs are modelled planning figures, not quotations.<sup><a href="#s77">77</a></sup></p>
 
   <h3>Staging Concept B</h3>
   <div class="measure">
-    <p>The staging logic from §15 carries over with one change that matters. The SPF test is the expensive step, and the scent is the riskiest assumption — so the scent ships first, <b>without SPF</b>, as a plain eau de cologne. Vacation and Sun Bum went from sunscreen to perfume; this runs the same move in reverse.</p>
+    <p>The staging logic from §15 carries over with one change that matters. The SPF formula is the slow, costly step — development, three months of stability, then testing — and the scent is the riskiest assumption — so the scent ships first, <b>without SPF</b>, as a plain eau de cologne. Vacation and Sun Bum went from sunscreen to perfume; this runs the same move in reverse.</p>
   </div>
   <div class="tw">
     <table>
@@ -1263,12 +1284,12 @@ html{scroll-behavior:smooth}
       <tbody>
         <tr><td class="name">0 · Proof of demand</td><td class="num">0</td><td class="num">€3,000</td><td class="num">—</td><td>Landing page and price ladder for a €48 SPF cologne; the scent described, not sampled</td><td>≥1.4% conversion at €48 — the same bar as Concept A</td></tr>
         <tr><td class="name">1 · The accord, no SPF</td><td class="num">300</td><td class="num">≈€15,000</td><td class="num">≈€9.50</td><td>The chosen direction as a plain eau de cologne, via a low-minimum fragrance filler and stock packaging</td><td>Sells through in eight weeks at about €45; in blind tests at least half of men prefer it to their own cologne</td></tr>
-        <tr><td class="name">2 · SPF Cologne</td><td class="num">3,000</td><td class="num">≈€48,000</td><td class="num">≈€8.40</td><td>Formula on a contract manufacturer's base; ISO 24444 and 24443; stability with the accord; sunscreen CPSR</td><td>SPF holds with the accord first time; 3,000 sell through in one season; 30% of buyers come back for a refill or a second flacon</td></tr>
-        <tr><td class="name">3 · Body spray and refills</td><td class="num">25,000+</td><td class="num">≈€60,000</td><td class="num">€5.04–7.05</td><td>Second SPF and water-resistance test, bag-on-valve set-up and minimums, refill line</td><td>The range the brand is built on</td></tr>
+        <tr><td class="name">2 · SPF Cologne</td><td class="num">3,000</td><td class="num">≈€22,000</td><td class="num">≈€8.40</td><td>Formula on a contract manufacturer's base; ISO 24444 and 24443; stability with the accord; sunscreen CPSR</td><td>SPF holds with the accord first time; 3,000 sell through in one season; 30% of buyers come back for a refill or a second flacon</td></tr>
+        <tr><td class="name">3 · Body spray and refills</td><td class="num">25,000+</td><td class="num">≈€29,000</td><td class="num">€5.04–7.05</td><td>Second SPF and water-resistance test, bag-on-valve set-up and minimums, refill line</td><td>The range the brand is built on</td></tr>
       </tbody>
     </table>
   </div>
-  <p class="measure">Fixed cost to a full range is about <b>€126,000 against about €160,000</b> for the applicator — similar money, different risk. Concept B spends it testing a formula rather than tooling a mechanism, and its riskiest assumption — will men wear the scent? — is answered in stage 1 for about €15,000. The catch: Concept A's first sunscreen could borrow a stock formula's SPF data; Concept B's cannot, because adding the accord makes it a new formula.</p>
+  <p class="measure">Fixed cost to a full range is about <b>€69,000 against about €134,000</b> for the applicator — roughly half the money, and a different kind of risk. Concept B spends it testing a formula rather than tooling a mechanism, and its riskiest assumption — will men wear the scent? — is answered in stage 1 for about €15,000. The catch: Concept A's first sunscreen could borrow a stock formula's SPF data; Concept B's cannot, because adding the accord makes it a new formula — though at commercial prices that costs thousands, not tens of thousands.<sup><a href="#s79">79</a></sup></p>
 
   <h3>Concept A or Concept B</h3>
   <div class="tw">
@@ -1284,7 +1305,7 @@ html{scroll-behavior:smooth}
         <tr><td class="name">Seasonality</td><td>73% of revenue May to August</td><td>Daily wear plus Christmas and Father's Day — flatter</td><td><span class="edge">B</span></td></tr>
         <tr><td class="name">Price ceiling</td><td>Cartridge at €7.33 per 100 ml</td><td>€48 per 100 ml in the flacon</td><td><span class="edge">B</span></td></tr>
         <tr><td class="name">Gross margin, net of VAT</td><td>62–66%</td><td>79–89%</td><td><span class="edge">B</span></td></tr>
-        <tr><td class="name">Fixed cost to a full range</td><td>≈€160,000</td><td>≈€126,000</td><td><span class="edge">B</span></td></tr>
+        <tr><td class="name">Fixed cost to a full range</td><td>≈€134,000</td><td>≈€69,000</td><td><span class="edge">B</span></td></tr>
         <tr><td class="name">Technical risk</td><td>A ratchet in sand, salt and heat</td><td>Accord–filter compatibility, phototoxic materials, alcohol sting, flammable fill</td><td><span class="edge">—</span></td></tr>
         <tr><td class="name">Defensibility</td><td>Mechanism IP and an install base</td><td>Scent and brand only — though Sol de Janeiro shows a signature scent can carry a ≈€885m brand</td><td><span class="edge">A</span></td></tr>
         <tr><td class="name">Competition</td><td>An empty quadrant</td><td>SLAM at the bottom; Sol de Janeiro, Lancaster and Dior could move down to men</td><td><span class="edge">A</span></td></tr>
@@ -1320,7 +1341,7 @@ html{scroll-behavior:smooth}
         <tr><td class="name">§5 Market sizing</td><td>Adds a second wallet: men's fragrance, which analysts put at about $5.1bn in Europe in 2025, on top of sun protection<sup><a href="#s74">74</a></sup></td></tr>
         <tr><td class="name">§14 Go to market</td><td>Gifting moves to the centre — Christmas and Father's Day. Perfumeries and travel retail become natural channels, and Nordic travel retail already stocks Riemann P20</td></tr>
         <tr><td class="name">§15 Supply</td><td>No tooling; the four stages above replace the device stages</td></tr>
-        <tr><td class="name">§17 Financials</td><td>Must be rebuilt: higher margin, flatter seasonality, a different CAC — and the VAT correction</td></tr>
+        <tr><td class="name">§19 Financials</td><td>Must be rebuilt: higher margin, flatter seasonality, a different CAC — and the VAT correction</td></tr>
       </tbody>
     </table>
   </div>
@@ -1537,7 +1558,7 @@ html{scroll-behavior:smooth}
   <div class="measure">
     <h2>Rent the supply chain, then buy it back</h2>
     <p>The goal is to start with almost no fixed cost and a fat variable cost, then deliberately trade one for the other as each assumption survives contact with real buyers. Every euro of tooling spent before the €34 price test clears is a euro bet on an unvalidated belief.</p>
-    <p>There <em>is</em> a Gelato for personal care. <b>Blanka</b> and <b>SelfNamed</b> run genuine print-on-demand beauty — zero MOQ, order one unit at a time, roughly $39–149 a month for the platform, with 450+ ready-to-brand products.<sup><a href="#s36">36</a></sup> You can launch a skincare brand this week with no inventory at all.</p>
+    <p>There <em>is</em> a Gelato for personal care. <b>Blanka</b> and <b>SelfNamed</b> run genuine print-on-demand beauty — zero MOQ, order one unit at a time, roughly $39–149 a month for the platform, with 450+ ready-to-brand products.<sup><a href="#s36">36</a></sup> You can launch a skincare brand this week with no inventory at all. For sunscreen sold in the EU, though, only Selfnamed qualifies, and only with a cream and a stick (<a href="#suppliers">§16</a>).<sup><a href="#s85">85</a></sup></p>
     <p>It will not work for this product, and it is worth being precise about why. Those platforms sell <b>stock formulas in stock packaging</b>. The R1's entire thesis is a proprietary metering device — and tooling is, by definition, a fixed cost that cannot be made variable. So the honest answer is not "find a zero-MOQ supplier". It is to <b>split the supply chain in two and run each half on its own clock.</b></p>
   </div>
 
@@ -1545,8 +1566,8 @@ html{scroll-behavior:smooth}
     <div class="card">
       <span class="tag">Wet side · can be near-zero fixed</span>
       <h4>Formula and filling</h4>
-      <p>European private-label sun care starts at MOQ <b>1,000–3,000 units</b> and is competitive from about 1,000 per reference.<sup><a href="#s37">37</a></sup> SystemKosmetik in Germany works to a 3,000 MOQ on a turnkey basis — materials, manufacture, fill, QC and registration support.<sup><a href="#s37">37</a></sup></p>
-      <p><b>The critical unlock:</b> take a manufacturer's <em>existing</em> SPF 50+ stock formula and you inherit its ISO 24444 and 24443 test data. That defers roughly <b>€25,000 per SPF sample</b><sup><a href="#s19">19</a></sup> until you have a reason to own a bespoke formula.</p>
+      <p>European contract sun care is competitive from about <b>1,000 units</b> per reference,<sup><a href="#s37">37</a></sup> but Italian and German micro-labs will label a stock SPF cream, milk or spray from <b>3 to 50 units</b> (<a href="#suppliers">§16</a>).<sup><a href="#s88">88</a></sup> Valquer in Spain will even act as Responsible Person and register the product on CPNP in its own name.<sup><a href="#s90">90</a></sup></p>
+      <p><b>The critical unlock:</b> take a manufacturer's <em>existing</em> SPF 50+ stock formula and you inherit its ISO 24444 and 24443 test data, provided the supplier grants written access to the reports for that exact formula in that exact pack. No supplier publishes them, so ask first (<a href="#sourcing">§17</a>). That defers formula development and testing until you have a reason to own a bespoke formula. Testing itself is cheaper than often claimed: a commercial in vivo SPF test lists at about <b>$1,900–2,100</b>, or $2,500–3,400 with water resistance.<sup><a href="#s79">79</a></sup></p>
     </div>
     <div class="card">
       <span class="tag">Dry side · cannot be zero fixed</span>
@@ -1565,7 +1586,7 @@ html{scroll-behavior:smooth}
         <tr><td class="name">0 · Proof of demand</td><td class="num">0</td><td class="num">€3,000</td><td class="num">—</td><td>No product. Landing page, price ladder, real payment intent, waitlist.</td><td>≥1.4% conversion at €34 — the same threshold that decides the format in §9</td></tr>
         <tr><td class="name">1 · Founders' run</td><td class="num">300</td><td class="num">€11,400</td><td class="num">€23.55</td><td>MJF 3D-printed handle and head, stock airless cartridge, white-label SPF 50+ on the manufacturer's own SPF data, hand assembly, self-shipped</td><td>≥60% of buyers reorder a cartridge within 12 months; zero mechanism failures in the field</td></tr>
         <tr><td class="name">2 · Bridge run</td><td class="num">3,000</td><td class="num">€26,200</td><td class="num">€11.00</td><td>Aluminium bridge tooling, contract assembly, contract fill at 3,000 MOQ, 3PL on a pay-per-pick basis</td><td>CAC under €30 sustained across a full season; 3,000 units sell through in one summer</td></tr>
-        <tr><td class="name">3 · Own the stack</td><td class="num">50,000</td><td class="num">€119,400</td><td class="num">€9.60</td><td>Hardened steel tooling, bespoke formula with our own ISO 24444 and 24443 data, dedicated cartridge line, full 3PL</td><td>This is the §17 model — the point at which the business is the business</td></tr>
+        <tr><td class="name">3 · Own the stack</td><td class="num">50,000</td><td class="num">€93,400</td><td class="num">€9.60</td><td>Hardened steel tooling, bespoke formula with our own ISO 24444 and 24443 data, dedicated cartridge line, full 3PL</td><td>This is the §19 model — the point at which the business is the business</td></tr>
       </tbody>
     </table>
   </div>
@@ -1580,7 +1601,7 @@ html{scroll-behavior:smooth}
       <span><i style="background:var(--c4)"></i>Fixed cost, amortised over the stage's own run</span>
       <span><i style="background:var(--c1)"></i>Variable cost per unit</span>
     </div>
-    <figcaption>The shape of the whole strategy in one chart. Fixed commitment rises roughly tenfold from stage 1 to stage 3, while <b>total cost per unit falls from €61.55 to €11.99</b> and the fixed share collapses from 62% to 20%. <b>Stage 1 is deliberately underwater</b> — at €34 it loses about €27 a unit, and that is the correct decision: 300 units is roughly €8,000 of tuition to learn whether anyone wants this, against €119,400 committed before a single customer if you tooled up first.</figcaption>
+    <figcaption>The shape of the whole strategy in one chart. Fixed commitment rises roughly eightfold from stage 1 to stage 3, while <b>total cost per unit falls from €61.55 to €11.47</b> and the fixed share collapses from 62% to 16%. <b>Stage 1 is deliberately underwater</b> — at €34 it loses about €27 a unit, and that is the correct decision: 300 units is roughly €8,000 of tuition to learn whether anyone wants this, against €93,400 committed before a single customer if you tooled up first.</figcaption>
   </figure>
 
   <h3>Unit cost, stage by stage</h3>
@@ -1606,7 +1627,7 @@ html{scroll-behavior:smooth}
     <ul class="tight" style="margin-bottom:0">
       <li><b>EU Responsible Person</b> — £3,500–6,000 a year, renewed annually, and legally mandatory before anything is placed on the EU market.<sup><a href="#s39">39</a></sup> Outsourceable to a compliance firm, but not avoidable.</li>
       <li><b>Cosmetic Product Safety Report</b> — €400–600 for a simple product but <b>€2,000+ for a sunscreen</b>, because UV filter toxicology and SPF substantiation both have to be assessed.<sup><a href="#s39">39</a></sup> CPNP notification itself is free.</li>
-      <li><b>SPF testing, eventually</b> — roughly €25,000 per sample for in vivo ISO 24444.<sup><a href="#s19">19</a></sup> Riding a manufacturer's stock formula defers this, it does not delete it. The day you want a bespoke filter system, the bill arrives.</li>
+      <li><b>SPF testing, eventually</b> — about $1,900–2,100 per in vivo ISO 24444 test at commercial list prices, $2,500–3,400 with water resistance.<sup><a href="#s79">79</a></sup> The widely quoted €25,000 is a research-consortium average, not a lab price.<sup><a href="#s19">19</a></sup> Riding a manufacturer's stock formula defers this, it does not delete it. The day you want a bespoke filter system, the bill arrives.</li>
     </ul>
   </div>
 
@@ -1622,7 +1643,7 @@ html{scroll-behavior:smooth}
       <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 20 · Named routes to market for each half of the supply chain</caption>
       <thead><tr><th>Need</th><th>Stage 1 route</th><th>Stage 2–3 route</th><th>Note</th></tr></thead>
       <tbody>
-        <tr><td class="name">Formula and fill</td><td>Blanka / SelfNamed for a stock SPF as a pure test<sup><a href="#s36">36</a></sup></td><td>SystemKosmetik (DE), Valquer (ES), or an equivalent EU turnkey filler<sup><a href="#s37">37</a></sup></td><td>Insist on inheriting existing SPF test data at stage 1 — that is the whole point of starting here</td></tr>
+        <tr><td class="name">Formula and fill</td><td>Selfnamed's clear SPF 50 stick as a pure brand test. Blanka has no SPF and no EU paperwork<sup><a href="#s85">85</a></sup><sup><a href="#s86">86</a></sup></td><td>Sabatel (IT) or Valquer (ES) for a sun water; Romar (ES), Biofarma (IT) or Dermcos (DE) for a foam. See <a href="#suppliers">§16</a><sup><a href="#s90">90</a></sup><sup><a href="#s92">92</a></sup></td><td>Insist on inheriting existing SPF test data at stage 1 — that is the whole point of starting here</td></tr>
         <tr><td class="name">Device parts</td><td>MJF nylon via a service bureau — Protolabs Network or equivalent<sup><a href="#s38">38</a></sup></td><td>Aluminium bridge tool, then hardened steel with a personal-care moulder<sup><a href="#s38">38</a></sup></td><td>Design for the bridge tool from day one so stage 2 is a port, not a redesign</td></tr>
         <tr><td class="name">Compliance</td><td>Outsourced EU Responsible Person<sup><a href="#s39">39</a></sup></td><td>Same, expanded as the range grows</td><td>Never bring this in-house before stage 3; it is cheap to rent and expensive to staff</td></tr>
         <tr><td class="name">Fulfilment</td><td>Self-ship from a spare room</td><td>3PL on seasonal terms, then annual</td><td>The monthly minimum is the trap, not the pick fee</td></tr>
@@ -1633,18 +1654,340 @@ html{scroll-behavior:smooth}
 
   <div class="note">
     <h4>What the staging actually buys</h4>
-    <p>Reaching stage 3 without staging costs <b>€119,400 committed before a single customer</b>. Staged, the same destination costs <b>€3,000 to learn whether anyone clicks</b>, then €11,400 to learn whether they reorder, then €26,200 to learn whether it scales — with a genuine stop after each. Roughly <b>88% of the eventual fixed commitment is deferred behind evidence</b>, and the two most likely failure modes in this plan (nobody pays €34 for hardware; the ratchet dies in sand) both surface for under €15,000.</p>
+    <p>Reaching stage 3 without staging costs <b>€93,400 committed before a single customer</b>. Staged, the same destination costs <b>€3,000 to learn whether anyone clicks</b>, then €11,400 to learn whether they reorder, then €26,200 to learn whether it scales — with a genuine stop after each. Roughly <b>85% of the eventual fixed commitment is deferred behind evidence</b>, and the two most likely failure modes in this plan (nobody pays €34 for hardware; the ratchet dies in sand) both surface for under €15,000.</p>
   </div>
 </section>
 
 <section id="suppliers" data-tab="supply">
   <div class="eyebrow">16 — Private-label suppliers</div>
-  <!-- SUPPLIERS-CONTENT -->
-  <div class="measure" data-placeholder="1"><h2>Private-label suppliers for SPF mousse and sun water</h2><p>Directory of European white-label manufacturers in preparation.</p></div>
+  <div class="measure">
+    <h2>Nobody sells a ready-made SPF mousse or sun water at low MOQ</h2>
+    <p>This page answers one question: which European private-label makers could put our name on an SPF foam like Evy's, or on a watery SPF 50 like Lancaster's Sun Protective Water? Suppliers are ranked by how close each comes to Gelato: no minimum, one unit at a time, shipped straight to the customer. We checked more than 120 companies in 17 European countries, including the UK, Switzerland and Turkey, plus the North American and global dropship platforms.<sup><a href="#s80">80</a></sup> The headline is negative, and it shapes everything after it. <b>We found no European supplier advertising a stock SPF mousse or a stock SPF 50 sun water, with test data, at low MOQ. No zero-MOQ platform offers either format.</b></p>
+    <p>What does exist is a ladder. One platform works like Gelato for sunscreen, but only for a cream and a stick. About a dozen Italian, German and Austrian labs will label a fixed SPF cream, milk or spray from 3 to 50 units. One Italian lab lists a transparent SPF spray from about two hundred units. Every company shown to hold an SPF foam makes aerosols at industrial scale and publishes no minimum order.</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="v a">1</div><div class="k">Gelato-style platform in the EU that sells any SPF: Selfnamed, Riga<sup><a href="#s85">85</a></sup></div></div>
+    <div class="stat"><div class="v">3 units</div><div class="k">lowest published MOQ for an SPF 50+ product, from Fast Cosmetics in Italy<sup><a href="#s88">88</a></sup></div></div>
+    <div class="stat"><div class="v">~200</div><div class="k">lowest MOQ for a transparent SPF spray, from Laboratori Sabatel near Rome<sup><a href="#s90">90</a></sup></div></div>
+    <div class="stat"><div class="v b">0</div><div class="k">suppliers found publishing an MOQ for a stock SPF mousse<sup><a href="#s92">92</a></sup></div></div>
+    <div class="stat"><div class="v">~$2k</div><div class="k">commercial in vivo SPF test, not the €25k often quoted<sup><a href="#s79">79</a></sup></div></div>
+  </div>
+
+  <div class="note risk">
+    <h4>Read every number on this page as a lead, not a quote</h4>
+    <p>The research environment's network blocked direct access to supplier websites. Every MOQ, price and capability below therefore comes from search-engine extracts of the linked pages, plus directories and a few listicles written by competitors.<sup><a href="#s80">80</a></sup> Some pages are one to four years old. <b>Confirm each figure in writing before relying on it.</b> "n/p" means not published, so ask.</p>
+  </div>
+
+  <h3>Two formats, two supply chains</h3>
+  <div class="cards">
+    <div class="card">
+      <span class="tag">Sun water · a lab job, hundreds of units</span>
+      <h4>Lancaster's "water" is a shaken lotion</h4>
+      <p>Harrods quotes the label: <b>"Bi-phase formula, shake well to blend thoroughly."</b> The SPF 30 ingredient list starts with water and dicaprylyl carbonate, a light emollient, and Coty makes it in Monaco.<sup><a href="#s84">84</a></sup> So it is neither an aerosol nor alcohol-based, and any mid-sized sun lab could build one in a pump spray.</p>
+      <p><b>The catch is testing.</b> The new non-human (in vitro) SPF method, ISO 23675, covers only emulsions and single-phase alcohol products. A bi-phase water therefore probably still needs ISO 24444 testing on human volunteers (in vivo).<sup><a href="#s93">93</a></sup></p>
+    </div>
+    <div class="card">
+      <span class="tag">Mousse · a filler job, likely thousands of units</span>
+      <h4>Evy's mousse is a flammable aerosol</h4>
+      <p>H&amp;M's Danish listing for Evy SPF 50 warns <b>"extremely flammable aerosol"</b>, and one reviewer reports customs confiscating shipments.<sup><a href="#s81">81</a></sup> Every European SPF mousse we examined is an emulsion pressurised with butane, propane or isobutane in a metal can.</p>
+      <p><b>Bag-on-valve cannot foam.</b> In a bag-on-valve can, compressed air pushes the product out of a sealed pouch. As the Spanish filler Proersa puts it, "mousses need the gas". The only can-free route is a post-foaming gel, which means a new formula with its own SPF test.<sup><a href="#s83">83</a></sup> A true aerosol also brings flammability labelling and dangerous-goods limits on parcel shipping. Minimums on cans, valves and actuators probably run into the thousands.</p>
+    </div>
+  </div>
+
+  <h3>The Gelato question</h3>
+  <div class="measure">
+    <p><b>Selfnamed is the only Gelato for sunscreen in Europe.</b> Its legal name is Cosmetics NORD SIA, and it is based in Riga. You design the labels and boxes, and it will "dropship one bottle at a time" through Shopify or WooCommerce. It holds the Responsible Person role (the legal owner of a cosmetic's compliance), and its formulas are already notified on CPNP, the EU's cosmetics notification portal. The free tier has no monthly fee. A Pro plan is shown at $29 a month for 15% off dropship orders, though Selfnamed's own pages also show $34.<sup><a href="#s85">85</a></sup></p>
+    <p>Its sun range is a mineral SPF 30 face and body cream, a tinted mineral SPF 30, and an SPF 50 stick in tinted and clear versions. <b>It has no mousse, no spray and no sun water</b>, and a zinc-based formula is poorly suited to a clear spray.<sup><a href="#s85">85</a></sup> There is also a legal catch. Selfnamed's own help pages warn that relabelling a product under your own name and address makes you the Responsible Person, so its paperwork may not carry over.<sup><a href="#s85">85</a></sup> For PALE, the clear SPF 50 stick is a zero-inventory way to test the name and the customer on face, ears and nose. It does not test the hero format.</p>
+  </div>
+
+  <div class="tw">
+    <table>
+      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 21 · The other zero-MOQ platforms fail on SPF or EU compliance, and the nearest EU alternatives are not dropshippers</caption>
+      <thead><tr><th>Platform</th><th>Base</th><th>Why it does not fit</th></tr></thead>
+      <tbody>
+        <tr><td class="name">Blanka</td><td>Canada · Texas</td><td>No sun category, and it "does not provide EU-specific regulatory documentation, such as CPNP". Charges $25.99 flat-rate shipping to the UK and France and does not ship to Spain<sup><a href="#s86">86</a></sup></td></tr>
+        <tr><td class="name">Supliful</td><td>US</td><td>Sells no SPF, and its skincare cannot ship outside the US<sup><a href="#s86">86</a></sup></td></tr>
+        <tr><td class="name">viaGlamour · Jubile · DR.HC · Rapid Fulfillment</td><td>Canada · US</td><td>Zero minimums, but no EU Responsible Person<sup><a href="#s86">86</a></sup></td></tr>
+        <tr><td class="name">CJ Dropshipping · EPROLO</td><td>Global</td><td>Branded packaging from one unit on generic stock, which is not compliant private label for an SPF product<sup><a href="#s86">86</a></sup></td></tr>
+        <tr><td class="name">Fast Cosmetics</td><td>Italy</td><td>Nearest semi-Gelato with SPF 50+: order online from 3 units, free delivery in 7–10 working days. You hold and ship the stock<sup><a href="#s88">88</a></sup></td></tr>
+        <tr><td class="name">Options Ltd</td><td>UK</td><td>12-unit minimum with Shopify, Wix and WooCommerce dropshipping, but no SPF confirmed. Since Brexit it would also need an EU Responsible Person<sup><a href="#s80">80</a></sup></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="measure"><h3>Why sunscreen stays off print-on-demand</h3><p>No platform states these reasons in writing. The evidence points to four:</p></div>
+  <ol class="keylist">
+    <li><span class="k">1</span><span><b>US drug rules.</b> Most of the platforms are American, and in the US any SPF claim makes the product an over-the-counter drug.<sup><a href="#s87">87</a></sup></span></li>
+    <li><span class="k">2</span><span><b>Per-formula testing.</b> Each SPF test applies to one exact formula. At Meine-Eigenmarke, a German micro-lab, SPF 30 starts at 30 units but SPF 50 at 500.<sup><a href="#s89">89</a></sup></span></li>
+    <li><span class="k">3</span><span><b>Liability.</b> The brand on the label carries the risk, and regulators are checking. The EU's 2025 JACOP market-surveillance sweep targeted sun products. In Australia, one zinc base that tested in the 20s against a 50+ claim was traced to 31 brands.<sup><a href="#s87">87</a></sup></span></li>
+    <li><span class="k">4</span><span><b>Logistics.</b> Aerosols are dangerous goods, and a spray device changes the dose delivered.<sup><a href="#s83">83</a></sup></span></li>
+  </ol>
+
+  <figure>
+    <div class="fig-head">
+      <div><span class="fig-num">Figure 10 · Sourced</span><h4>The MOQ ladder: lowest published minimum for a sun product, by supplier</h4></div>
+      <span class="chip src">Sourced</span>
+    </div>
+    <div class="fig-body"><div id="ch-moq"></div></div>
+    <div class="legend">
+      <span><i style="background:var(--c1)"></i>Sun-water lead (transparent or "water" SPF)</span>
+      <span><i style="background:var(--c4)"></i>SPF in another format: cream, milk, stick or opaque spray</span>
+      <span><i style="background:var(--c5)"></i>Holds an SPF foam: no minimum published</span>
+    </div>
+    <figcaption>Log scale. Both target formats sit at the expensive end. The nearest transparent SPF spray starts at about 200 units, and the nearest SPF 50 "sun water" pump at about 1,000. <b>No company holding an SPF foam publishes a minimum at all.</b> SPF 50 usually costs a step up: Meine-Eigenmarke's line runs from 30 units at SPF 30 to 500 at SPF 50. Bars show the published range where a supplier gives one.<sup><a href="#s80">80</a></sup></figcaption>
+  </figure>
+
+  <h3>Ranked shortlist</h3>
+  <div class="tw">
+    <table>
+      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 22 · Top picks per tier. Tiers run from lowest MOQ to highest; within a tier, picks are ranked by fit: SPF 50 for fair skin, closeness to foam or sun water, and regulatory support</caption>
+      <thead><tr><th>Tier</th><th>Supplier</th><th>Closest match to the brief</th><th class="num">Published MOQ</th><th>Why it ranks here</th></tr></thead>
+      <tbody>
+        <tr class="hero"><td class="name">1 · Zero MOQ</td><td>Selfnamed (LV)</td><td>Clear SPF 50 stick; mineral SPF 30 cream</td><td class="num">1</td><td>The only EU-compliant print-on-demand platform with any SPF; Responsible Person and CPNP included<sup><a href="#s85">85</a></sup></td></tr>
+        <tr><td class="name">2 · Micro</td><td>Cosmetica Conto Terzi (IT)</td><td>Stock SPF 50 as a spray, cream or oil</td><td class="num">25</td><td>SPF 50 spray at micro scale, with a published lot price of €100–200 per 25 pieces<sup><a href="#s88">88</a></sup></td></tr>
+        <tr><td class="name">2 · Micro</td><td>Fast Cosmetics (IT)</td><td>SPF 50+ body milk and face cream</td><td class="num">3</td><td>Lowest MOQ with SPF 50+; delivery in 7–10 days<sup><a href="#s88">88</a></sup></td></tr>
+        <tr><td class="name">2 · Micro</td><td>Laboratori Italiani (IT)</td><td>"Sun tanning water with sun filters"</td><td class="num">12</td><td>The only micro-MOQ "water". SPF not shown; it arranges SPF and UVA tests<sup><a href="#s88">88</a></sup></td></tr>
+        <tr><td class="name">2 · Micro</td><td>Cosmacon / Tojo (DE)</td><td>"SPF 50 Fresh"</td><td class="num">25–100</td><td>Published fees, including €150 per product for CPNP notification<sup><a href="#s89">89</a></sup></td></tr>
+        <tr><td class="name">2 · Micro</td><td>Meine-Eigenmarke (DE)</td><td>SPF 30 cream or spray</td><td class="num">30</td><td>A spray at micro scale, but only at SPF 30; SPF 50 needs 500<sup><a href="#s89">89</a></sup></td></tr>
+        <tr class="hero"><td class="name">3 · Low</td><td>Laboratori Sabatel (IT)</td><td>"Transparent" SPF spray</td><td class="num">~200</td><td>The closest stock sun water, though its catalogue and its 2026 news disagree on whether SPF 50 is available<sup><a href="#s90">90</a></sup></td></tr>
+        <tr><td class="name">3 · Low</td><td>Cosmiko (UK)</td><td>SPF 50 cream in an airless pack</td><td class="num">250</td><td>A clear SPF 50, but a cream, and UK-based so it needs an EU Responsible Person<sup><a href="#s95">95</a></sup></td></tr>
+        <tr><td class="name">3 · Low</td><td>Made By Nature Labs (BG)</td><td>SPF 50 sun milk</td><td class="num">500</td><td>EU-made SPF 50 at 500<sup><a href="#s95">95</a></sup></td></tr>
+        <tr class="hero"><td class="name">4 · Contract</td><td>Valquer (ES)</td><td>SPF 50 "Agua Solar" pump spray</td><td class="num">~1,000</td><td>"No mandatory minimum". Acts as Responsible Person and registers on CPNP in its own name<sup><a href="#s90">90</a></sup></td></tr>
+        <tr><td class="name">4 · Contract</td><td>Macosgroup (IT)</td><td>Light SPF spray</td><td class="num">n/p</td><td>The only supplier found that bundles certified SPF tests, the product file (PIF), the safety assessment and CPNP<sup><a href="#s91">91</a></sup></td></tr>
+        <tr><td class="name">4 · Contract</td><td>Zetaphar (IT)</td><td>"Acqua solare spray"</td><td class="num">n/p</td><td>A stock "sun water" in a contract line; base not stated<sup><a href="#s90">90</a></sup></td></tr>
+        <tr><td class="name">4 · Contract</td><td>ALPOL (FR)</td><td>SPF 50+ hybrids, mostly organic filters</td><td class="num">~5,000</td><td>Sun division since 2015, with ready-to-market white-label formulas. MOQ from a listicle only<sup><a href="#s91">91</a></sup></td></tr>
+        <tr class="hero"><td class="name">5 · Aerosol</td><td>Romar Global Care (ES)</td><td>Own Agrado SPF 50+ mousse and SPF 50+ mist</td><td class="num">n/p</td><td>The only company found holding both an SPF 50+ mousse and an SPF 50+ mist<sup><a href="#s92">92</a></sup></td></tr>
+        <tr><td class="name">5 · Aerosol</td><td>Biofarma, San Pietro Viminario (IT)</td><td>Sun mousse, bag-on-valve, classic aerosol</td><td class="num">n/p</td><td>The only contract plant that explicitly lists sun mousse<sup><a href="#s92">92</a></sup></td></tr>
+        <tr><td class="name">5 · Aerosol</td><td>Dermcos (DE)</td><td>Named maker of a German drugstore SPF 50+ foam</td><td class="num">n/p</td><td>Has made an SPF foam for retail; handles CPNP and the product file<sup><a href="#s92">92</a></sup></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="measure" style="font-size:14px;color:var(--muted)">Every supplier found, with formats, MOQ, regulatory support and links, is in the filterable directory in <a href="#directory">§18</a>.</p>
+</section>
+
+<section id="sourcing" data-tab="supply">
+  <div class="eyebrow">17 — Sourcing routes</div>
+  <div class="measure">
+    <h2>Build the sun water first; treat the mousse as a capital project</h2>
+    <p>The two formats need different suppliers and different budgets, so they should not share a launch plan. Minimum order size is not the real limit. <b>Micro-MOQ white label works for sunscreen only because a lab has already paid for an SPF report on one fixed formula in one fixed pack.</b> Both target formats sit where such reports are rarest. The sun water is device-dependent and bi-phase, so it is probably still tested on people. The mousse is a flammable aerosol, and the tested bases sit inside retailers' own-label supply chains.</p>
+  </div>
+
+  <div class="cards">
+    <div class="card">
+      <span class="tag">Sun water · recommended route</span>
+      <h4>Find a lab that already has a clear SPF spray</h4>
+      <ol class="tight">
+        <li><b>Shortlist three suppliers with a clear spray in stock.</b>
+          <ul class="tight" style="margin:6px 0 0">
+            <li><b>Laboratori Sabatel</b>, near Rome: a catalogue "transparent spray" at SPF 15, 30 and 50, from about 200 units. Its April 2026 news says the transparent type tops out at SPF 30, so make it prove SPF 50 with reports.</li>
+            <li><b>Valquer</b>, Toledo: its own SPF 50 "Agua Solar" pump spray. It acts as Responsible Person and works best from about 1,000 units.</li>
+            <li><b>Zetaphar</b>: an "acqua solare spray" in its contract line.<sup><a href="#s90">90</a></sup></li>
+          </ul>
+        </li>
+        <li><b>Compare textures cheaply in parallel.</b> Try Laboratori Italiani's "sun tanning water" (12 units), Cosmetica Conto Terzi's SPF 50 spray (25 pieces) and Meine-Eigenmarke's SPF 30 spray (30 units).<sup><a href="#s88">88</a></sup><sup><a href="#s89">89</a></sup></li>
+        <li><b>If no stock base passes, go custom</b> with a sun formulator that works with organic filters: ALPOL, SofIA, Macosgroup, Dermcos (which holds a transparent-sunscreen patent) or Bios Line (which has made a clear, alcohol-based SPF 50).<sup><a href="#s91">91</a></sup></li>
+        <li><b>Budget for testing on people, and use a pump.</b> Expect ISO 24444 testing at about $2,000, plus UVA and any water-resistance test.<sup><a href="#s79">79</a></sup> A pump also avoids the aerosol shipping rules.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <span class="tag">Mousse · recommended route</span>
+      <h4>License a tested SPF foam rather than develop one</h4>
+      <ol class="tight">
+        <li><b>Ask the companies that already hold SPF foams, in this order:</b>
+          <ol class="tight" style="margin:6px 0 0">
+            <li>Romar Global Care, which makes the Agrado SPF 50+ mousse;</li>
+            <li>Biofarma's San Pietro Viminario plant, which lists sun mousse;</li>
+            <li>Dermcos, maker of Müller's Lavozon LSF 50+ foam;</li>
+            <li>whoever fills the identical Swedish pharmacy solmousse sold by Apotea and Hjärtat;</li>
+            <li>Evy itself.<sup><a href="#s92">92</a></sup><sup><a href="#s82">82</a></sup></li>
+          </ol>
+        </li>
+        <li><b>If none will license, go custom with two partners.</b> Pair a sun formulator (ALPOL, SofIA, Macosgroup, or Cosmoya for in vitro screening) with a filler that holds a flammable-aerosol permit and will take small runs, such as Aerochem, Proersa or Everton.<sup><a href="#s92">92</a></sup></li>
+        <li><b>Keep a fallback without a can.</b> artefactum lists a "non-aerosol foam technology" next to its private-label sun range. A whipped "crème mousse" in a tube avoids the can altogether.<sup><a href="#s91">91</a></sup></li>
+        <li><b>Plan it as a capital project.</b> Expect:
+          <ul class="tight" style="margin:6px 0 0">
+            <li>component minimums probably in the thousands;</li>
+            <li>dangerous-goods shipping to the Nordics;</li>
+            <li>SPF and UVA tests on the foam as it comes out of the can;</li>
+            <li>about 12 months of development, or 12–18 at some labs.<sup><a href="#s88">88</a></sup><sup><a href="#s94">94</a></sup></li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="note">
+    <h4>How this updates the staged plan in §15</h4>
+    <p>The wet side of the supply chain now has a concrete ladder with three stages:</p>
+    <ul class="tight">
+      <li><b>Stage 0:</b> Selfnamed's clear SPF 50 stick under the PALE name, with zero inventory, to test the brand and the customer.</li>
+      <li><b>Stage 1:</b> the sun water as the hero product, at 200–1,000 units from Sabatel or Valquer.</li>
+      <li><b>Stage 2:</b> the mousse, only once volume justifies a can line.</li>
+    </ul>
+    <p>§15's starting assumption that EU sun-care private label begins at 1,000–3,000 units was too high for creams. Italian and German micro-labs go down to 3–50 units. It was about right for the formats PALE actually wants.</p>
+  </div>
+
+  <h3>Fixed costs suppliers actually publish</h3>
+  <div class="tw">
+    <table>
+      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 23 · Published fixed-cost benchmarks for going to market with a white-label cosmetic</caption>
+      <thead><tr><th>Item</th><th class="num">Published figure</th><th>Who</th></tr></thead>
+      <tbody>
+        <tr><td class="name">CPNP notification, pre-developed SKU</td><td class="num">€150 per product</td><td>Cosmacon<sup><a href="#s94">94</a></sup></td></tr>
+        <tr><td class="name">Turnkey white-label fee incl. CPNP and dossier</td><td class="num">€350 per product</td><td>Labo Heme<sup><a href="#s94">94</a></sup></td></tr>
+        <tr><td class="name">Custom development</td><td class="num">€1,500–5,000</td><td>Meine-Eigenmarke, "including all tests and approvals" (not SPF-specific)<sup><a href="#s94">94</a></sup></td></tr>
+        <tr><td class="name">Custom development plus approval</td><td class="num">≈€1,500 + €1,495</td><td>Cosmacon, per product<sup><a href="#s94">94</a></sup></td></tr>
+        <tr><td class="name">Minimum investment, 1,000-unit skincare project</td><td class="num">€7,000</td><td>Prom Cosmetics (not sun care)<sup><a href="#s94">94</a></sup></td></tr>
+        <tr><td class="name">In vivo SPF test, ISO 24444</td><td class="num">$1,945–2,127</td><td>Commercial list price<sup><a href="#s79">79</a></sup></td></tr>
+        <tr><td class="name">In vitro SPF test</td><td class="num">$529</td><td>Commercial list price; probably not valid for a bi-phase water<sup><a href="#s79">79</a></sup><sup><a href="#s93">93</a></sup></td></tr>
+        <tr><td class="name">Lead time, stock vs custom formula</td><td class="num">6–10 wks vs 3–6 mo</td><td>Cleansery<sup><a href="#s94">94</a></sup></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>What a supplier's SPF report is worth to you</h3>
+  <div class="measure">
+    <p>In the EU a sunscreen is a cosmetic, but SPF is a measured claim that must be proven on the finished product. A white-label SPF product is only "low fixed cost" if three things hold:</p>
+    <ul class="tight">
+      <li>the supplier owns a test report on the exact formula;</li>
+      <li>the report covers the exact dispenser you will sell;</li>
+      <li>the supplier gives you written rights to use it.</li>
+    </ul>
+    <p><b>No supplier in this research publishes such reports for its stock formulas, so ask about them first.</b> The rules below are standard EU practice. No primary source spelled them out, so confirm them with a safety assessor.</p>
+  </div>
+  <div class="tw">
+    <table>
+      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 24 · When a brand can rely on a supplier's existing SPF data</caption>
+      <thead><tr><th>Situation</th><th>Can you reuse the supplier's SPF data?</th></tr></thead>
+      <tbody>
+        <tr><td class="name">Identical formula, pack and dispenser, with written access</td><td><b>Usually yes.</b> This is how white label works. Ask for a batch certificate showing it matches the tested formula</td></tr>
+        <tr><td class="name">Tested to ISO 24444 before the in vitro methods</td><td><b>Yes.</b> No retest is required<sup><a href="#s93">93</a></sup></td></tr>
+        <tr><td class="name">Fragrance, colour or any ingredient changed</td><td><b>No.</b> Expect a retest or a documented justification. This matters for a scented sun water (§10)</td></tr>
+        <tr><td class="name">Same bulk moved into an aerosol or turned into a mousse</td><td><b>No.</b> As dispensed it is a new product, and it needs new SPF and UVA tests</td></tr>
+        <tr><td class="name">Same base sold to many brands</td><td><b>Allowed</b>, but each brand carries the risk if the base underperforms. In Australia, one base sold under 31 brands tested in the 20s against a 50+ claim<sup><a href="#s87">87</a></sup></td></tr>
+        <tr><td class="name">One old report and no batch control</td><td><b>Weak.</b> Spain's medicines agency, AEMPS, has asked companies to withdraw products whose SPF did not hold up<sup><a href="#s87">87</a></sup></td></tr>
+        <tr><td class="name">Platform product relabelled under your own name</td><td><b>You become the Responsible Person</b>, and the platform's certifications may not carry over<sup><a href="#s85">85</a></sup></td></tr>
+        <tr><td class="name">Same formula sold in the US</td><td><b>No.</b> There SPF products are drugs, and brands run separate EU and US formulas<sup><a href="#s87">87</a></sup></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note">
+    <h4>The claim rules any supplier report must clear</h4>
+    <p>Commission Recommendation 2006/647/EC sets the rules.<sup><a href="#s93">93</a></sup></p>
+    <ul class="tight">
+      <li><b>Minimum UVA protection:</b> at least one-third of the labelled SPF.</li>
+      <li><b>Critical wavelength:</b> at least 370 nm.</li>
+      <li><b>Labelling steps:</b> a measured SPF between 30 and 50 is labelled 30, and <b>"SPF 50+" needs a measured SPF of at least 60</b>.</li>
+      <li><b>Banned claims:</b> "sunblock" and "total protection".</li>
+    </ul>
+    <p>Results vary between labs, most of all at SPF 50 and above, so an SPF 50+ claim needs headroom. Cosmetics Europe's June 2025 Recommendation No. 26 prefers the new in vitro and hybrid methods, ISO 23675 and 23698. Neither is validated for water resistance, and in 2026 both are still used mostly in R&amp;D.<sup><a href="#s93">93</a></sup></p>
+  </div>
+
+  <h3>Seventeen questions for every supplier</h3>
+  <div class="measure"><p>Send these with the first enquiry. The answers to questions 1–4 decide whether a white-label route is cheap or just looks cheap. <button type="button" class="fbtn" id="copyrfq" style="margin-left:6px">Copy as email</button> <span class="fcount" id="copyok" aria-live="polite"></span></p></div>
+  <div class="tw">
+    <table id="rfq">
+      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 25 · Supplier request for quotation</caption>
+      <thead><tr><th class="num">#</th><th>Question</th><th>Why it matters</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1</td><td>Which stock SPF 50 or 50+ formulas do you hold today as (a) a foam or mousse, or (b) a bi-phase or transparent spray? Please send the full ingredient list (INCI) and a sample.</td><td>Confirms a ready format exists before any development fee</td></tr>
+        <tr><td class="num">2</td><td>For that exact formula, which reports exist: SPF by ISO 24444 (or 23675 / 23698), UVA-PF and critical wavelength by ISO 24443, and water resistance in vivo? Which lab, what date, and what measured mean SPF?</td><td>"SPF 50+" needs a measured SPF of at least 60</td></tr>
+        <tr><td class="num">3</td><td>Was the test run on the product as dispensed, from the same can, valve, actuator or pump I would buy?</td><td>A different dispenser changes the dose delivered</td></tr>
+        <tr><td class="num">4</td><td>Will you grant a written letter of access so I can cite those reports in my product file (PIF)? Will your safety assessor sign the safety report (CPSR) for my label?</td><td>Without access, the brand pays for new testing</td></tr>
+        <tr><td class="num">5</td><td>Who is the Responsible Person on my label, you or my company? Who notifies CPNP and holds the product file, and at what cost?</td><td>Valquer and Selfnamed take this role; most suppliers expect the brand to</td></tr>
+        <tr><td class="num">6</td><td>Which changes (fragrance, colour, pack, fill size, claim) would trigger retesting?</td><td>Defines how far the stock dossier stretches</td></tr>
+        <tr><td class="num">7</td><td>What is the minimum for bulk, for filled units, and for each component (can, valve, actuator, pump, label, box)? Is there a smaller first order?</td><td>Aerosol component minimums often exceed filling minimums</td></tr>
+        <tr><td class="num">8</td><td>What is the unit price at your MOQ, at 1,000 and at 5,000? What are the one-off fees for setup, printing, development and notification, and who pays for testing?</td><td>Few suppliers publish any price</td></tr>
+        <tr><td class="num">9</td><td>Is the formula exclusive to me, or sold to other brands, and how many?</td><td>Shared bases spread failure risk across brands</td></tr>
+        <tr><td class="num">10</td><td>Will each batch come with a certificate of analysis (CoA) confirming it matches the tested formula? Do you re-verify SPF periodically?</td><td>Market surveillance looks for batch-to-batch SPF drift</td></tr>
+        <tr><td class="num">11</td><td>What stability, compatibility and shelf-life data exist in the final pack?</td><td>Needed for the safety report</td></tr>
+        <tr><td class="num">12</td><td>For aerosols or alcohol sprays: what is the flammability and dangerous-goods class, and can single units go by parcel to Sweden, Norway, Denmark and Finland?</td><td>Evy shipments have been confiscated at customs</td></tr>
+        <tr><td class="num">13</td><td>Which UV filters do you use? Is the formula free of octocrylene and compliant with the current list of authorised filters?</td><td>Filters decide clarity, claims and future-proofing</td></tr>
+        <tr><td class="num">14</td><td>Is the formula within ISO 23675's scope (an emulsion or a single-phase alcohol product), so the cheaper in vitro SPF test could be used?</td><td>Bi-phase products probably need in vivo tests</td></tr>
+        <tr><td class="num">15</td><td>What are the lead times for a first order and for reorders?</td><td>Benchmarks: 6–8 weeks for aerosols; 6–10 weeks for a stock formula, 3–6 months for a custom one</td></tr>
+        <tr><td class="num">16</td><td>Can you hold stock and ship single orders to consumers or to my third-party logistics (3PL) provider, with Shopify integration?</td><td>Among SPF suppliers found, only Selfnamed dropships to consumers</td></tr>
+        <tr><td class="num">17</td><td>Can you send your current ISO 22716 GMP certificate?</td><td>Some directory listings show certificates that have lapsed</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="directory" data-tab="supply">
+  <div class="eyebrow">18 — Supplier directory</div>
+  <div class="measure">
+    <h2>Every European private labeler found, in one filterable table</h2>
+    <p>The directory has five tiers, sorted from the most Gelato-like to the most industrial:</p>
+    <ol class="tight">
+      <li>zero-MOQ dropship platforms;</li>
+      <li>micro-MOQ labs, under about 100 units;</li>
+      <li>low-MOQ labs, 100–1,000 units;</li>
+      <li>contract manufacturers;</li>
+      <li>the aerosol and bag-on-valve fillers who are the route to a mousse.</li>
+    </ol>
+    <p>"Fit" shows how close each one comes to the brief. Labs with no confirmed SPF product are included because they could be holding a formula they do not advertise. <b>No supplier in this directory publishes the ISO reports for its stock formulas.</b><sup><a href="#s80">80</a></sup></p>
+  </div>
+
+  <div class="filters" role="group" aria-label="Filter the supplier directory">
+    <span class="flab">Tier</span>
+    <button type="button" class="fbtn" data-f="t" data-v="" aria-pressed="true">All</button>
+    <button type="button" class="fbtn" data-f="t" data-v="1" aria-pressed="false">1 · Zero MOQ</button>
+    <button type="button" class="fbtn" data-f="t" data-v="2" aria-pressed="false">2 · Under 100</button>
+    <button type="button" class="fbtn" data-f="t" data-v="3" aria-pressed="false">3 · 100–1,000</button>
+    <button type="button" class="fbtn" data-f="t" data-v="4" aria-pressed="false">4 · Contract</button>
+    <button type="button" class="fbtn" data-f="t" data-v="5" aria-pressed="false">5 · Aerosol</button>
+  </div>
+  <div class="filters" role="group" aria-label="Filter by fit">
+    <span class="flab">Fit</span>
+    <button type="button" class="fbtn" data-f="k" data-v="" aria-pressed="true">Any</button>
+    <button type="button" class="fbtn" data-f="k" data-v="w" aria-pressed="false"><i class="dot" style="background:var(--c1)"></i>Sun-water lead</button>
+    <button type="button" class="fbtn" data-f="k" data-v="f" aria-pressed="false"><i class="dot" style="background:var(--c5)"></i>Foam or aerosol</button>
+    <button type="button" class="fbtn" data-f="k" data-v="s" aria-pressed="false"><i class="dot" style="background:var(--c4)"></i>Other SPF</button>
+    <button type="button" class="fbtn" data-f="k" data-v="x" aria-pressed="false"><i class="dot" style="background:var(--rule-strong)"></i>SPF unconfirmed</button>
+  </div>
+  <div class="filters">
+    <label class="flab" for="dirq">Search</label>
+    <input id="dirq" class="fsearch" type="search" placeholder="Name, country, format…" autocomplete="off">
+    <span class="fcount" id="dircount" aria-live="polite"></span>
+  </div>
+
+  <div class="tw" style="margin-top:14px">
+    <table id="dir" style="min-width:860px">
+      <colgroup><col style="width:19%"><col style="width:13%"><col style="width:22%"><col style="width:11%"><col style="width:15%"><col style="width:20%"></colgroup>
+      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 26 · European private-label sun care directory <span class="chip src" style="margin-left:8px">Sourced</span></caption>
+      <thead><tr><th>Supplier</th><th>MOQ</th><th>Sun formats offered</th><th>Fit</th><th>Responsible Person / CPNP</th><th>Notes</th></tr></thead>
+      <tbody id="dirbody"></tbody>
+    </table>
+  </div>
+
+  <h3>Reference products and leads to trace</h3>
+  <div class="measure"><p>Contract makers already hold tested SPF foams, under other brands' names. The cheapest research step in this whole plan is to read the "Tillverkad av/för" (made by/for) line on a Swedish pharmacy solmousse can. If it names the same filler as Evy, PALE's most direct route to an Evy-class product is a Nordic supplier that no directory lists.</p></div>
+  <div class="tw">
+    <table>
+      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 27 · Existing foams and sun waters, who makes them, and the next step</caption>
+      <thead><tr><th>Product</th><th>Format</th><th>Maker or owner</th><th>Next step</th></tr></thead>
+      <tbody>
+        <tr><td class="name">Evy Sunscreen Mousse SPF 50</td><td>Hydrocarbon aerosol mousse</td><td>Evy Technology, Sweden. One retail listing names "Celsus Sweden AB, Torsby" (unverified)<sup><a href="#s81">81</a></sup></td><td>Ask Evy directly about OEM or licensing</td></tr>
+        <tr class="hero"><td class="name">Hjärtat Solmousse SPF 30 · Apotea Solskyddsmousse SPF 30</td><td>Butane/isobutane aerosol; identical ingredient lists</td><td>Swedish pharmacy own labels<sup><a href="#s82">82</a></sup></td><td>Read the maker line on the cans; approach the filler</td></tr>
+        <tr><td class="name">Veidec Sun Mousse SPF 50</td><td>200 ml aluminium aerosol, workplace channel</td><td>Veidec AB, an industrial supplier in Sweden<sup><a href="#s82">82</a></sup></td><td>Ask Veidec who fills it</td></tr>
+        <tr><td class="name">Lavozon Kids Sonnenschaum LSF 50+</td><td>200 ml foam, €4.76</td><td>Dermcos named as maker<sup><a href="#s82">82</a></sup></td><td>Approach Dermcos</td></tr>
+        <tr><td class="name">sunozon Sonnenschaum LSF 50 · Sundance Sonnenschaum Kids LSF 50</td><td>Aerosol foams, from €4.99 per 200 ml</td><td>Rossmann and dm own labels; fillers undisclosed<sup><a href="#s82">82</a></sup></td><td>Check the cans for the filler</td></tr>
+        <tr><td class="name">Agrado Mousse Facial Solar SPF 50+ · Bruma Facial SPF 50+</td><td>75 ml mousse; aerosol mist</td><td>Romar Global Care, Spain<sup><a href="#s92">92</a></sup></td><td>Ask about white label</td></tr>
+        <tr><td class="name">Rituals foaming sun protection SPF 50</td><td>200 ml foam, about €19</td><td>Rituals<sup><a href="#s82">82</a></sup></td><td>Price benchmark</td></tr>
+        <tr><td class="name">Lancaster Sun Protective Water SPF 50</td><td>Bi-phase spray, 150 ml</td><td>Coty Lancaster, Monaco<sup><a href="#s84">84</a></sup></td><td>Format benchmark</td></tr>
+        <tr><td class="name">Krème Eau Solaire Fraîche SPF 50 · Sunsave Brume Solaire Invisible SPF 50</td><td>Bi-phase; transparent mist; both made in France</td><td>Makers not identified<sup><a href="#s96">96</a></sup></td><td>Trace the French fillers</td></tr>
+        <tr><td class="name">SVR Sun Secure Eau Solaire SPF 50+</td><td>Sun water, €32.90 for 200 ml</td><td>SVR; maker not identified<sup><a href="#s96">96</a></sup></td><td>Price benchmark</td></tr>
+        <tr><td class="name">Nature's Solare Spray Trasparente SPF 50</td><td>Alcohol-based clear spray</td><td>Bios Line, Italy<sup><a href="#s91">91</a></sup></td><td>Ask whether it makes it for third parties</td></tr>
+        <tr><td class="name">Valquer Sun Valisol SPF 50 "Agua Solar"</td><td>300 ml pump spray</td><td>Valquer, Spain<sup><a href="#s90">90</a></sup></td><td>Request the ingredient list, texture and white-label terms</td></tr>
+        <tr><td class="name">AVA, Paese and AA SPF 50 face mists · Clochee UV Spray SPF 50+</td><td>Mists; Clochee is an aerosol</td><td>Polish brand owners; makers unknown<sup><a href="#s96">96</a></sup></td><td>Trace the Polish fillers</td></tr>
+      </tbody>
+    </table>
+  </div>
 </section>
 
 <section id="financials" data-tab="financials">
-  <div class="eyebrow">17 — Financials</div>
+  <div class="eyebrow">19 — Financials</div>
   <div class="measure">
     <h2>Good gross margin, honest payback problem</h2>
     <p>Every figure below is modelled. The assumptions are exposed in full so they can be attacked individually rather than defended as a package.</p>
@@ -1659,7 +2002,7 @@ html{scroll-behavior:smooth}
   <h3>Unit economics</h3>
   <div class="tw">
     <table>
-      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 21 · First-year customer, and the three-year contribution <span class="chip mod" style="margin-left:8px">Modelled</span></caption>
+      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 28 · First-year customer, and the three-year contribution <span class="chip mod" style="margin-left:8px">Modelled</span></caption>
       <thead><tr><th>Line</th><th class="num">Year 1</th><th class="num">Repeat year</th><th>Note</th></tr></thead>
       <tbody>
         <tr><td class="name">Revenue per customer</td><td class="num">€61.60</td><td class="num">€39.60</td><td>Y1: R1 €34 + one twin-pack €22 + 35% attach of a €16 accessory. Repeat: 1.8 twin-packs</td></tr>
@@ -1680,7 +2023,7 @@ html{scroll-behavior:smooth}
 
   <div class="tw">
     <table>
-      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 22 · What has to be true to reach 3:1 <span class="chip mod" style="margin-left:8px">Sensitivity</span></caption>
+      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 29 · What has to be true to reach 3:1 <span class="chip mod" style="margin-left:8px">Sensitivity</span></caption>
       <thead><tr><th>Scenario</th><th class="num">Y2 repeat</th><th class="num">Packs/yr</th><th class="num">CAC</th><th class="num">3-yr LTV</th><th class="num">LTV:CAC</th></tr></thead>
       <tbody>
         <tr><td class="name">Base case</td><td class="num">45%</td><td class="num">1.8</td><td class="num">€28</td><td class="num">€48.74</td><td class="num">1.74</td></tr>
@@ -1695,7 +2038,7 @@ html{scroll-behavior:smooth}
   <h3>Three-year P&amp;L</h3>
   <figure>
     <div class="fig-head">
-      <div><span class="fig-num">Figure 10 · Modelled</span><h4>Revenue, gross profit and EBITDA</h4></div>
+      <div><span class="fig-num">Figure 11 · Modelled</span><h4>Revenue, gross profit and EBITDA</h4></div>
       <span class="chip mod">Modelled</span>
     </div>
     <div class="fig-body"><div id="ch-pnl"></div></div>
@@ -1709,7 +2052,7 @@ html{scroll-behavior:smooth}
 
   <div class="tw">
     <table>
-      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 23 · P&amp;L, € millions <span class="chip mod" style="margin-left:8px">Modelled</span></caption>
+      <caption class="fig-num" style="text-align:left;padding:14px 14px 10px">Table 30 · P&amp;L, € millions <span class="chip mod" style="margin-left:8px">Modelled</span></caption>
       <thead><tr><th>Line</th><th class="num">Year 1</th><th class="num">Year 2</th><th class="num">Year 3</th></tr></thead>
       <tbody>
         <tr><td class="name">New customers</td><td class="num">22,000</td><td class="num">58,000</td><td class="num">112,000</td></tr>
@@ -1738,13 +2081,13 @@ html{scroll-behavior:smooth}
     <div class="stat"><div class="v">€1.30m</div><div class="k">peak inventory &amp; working capital</div></div>
   </div>
   <div class="measure">
-    <p>The round funds cumulative operating losses of €2.76m, peak net working capital of €1.30m — this is a physical-goods business with a seasonal inventory build ahead of every summer — and €0.44m of contingency. Tooling and first-round ISO 24444 and 24443 testing sit inside year-one product spend; commercial in vivo SPF testing is genuinely expensive, with consortium data putting a single SPF sample at around €25,000.<sup><a href="#s19">19</a></sup></p>
+    <p>The round funds cumulative operating losses of €2.76m, peak net working capital of €1.30m — this is a physical-goods business with a seasonal inventory build ahead of every summer — and €0.44m of contingency. Tooling and first-round ISO 24444 and 24443 testing sit inside year-one product spend; commercial in vivo SPF tests list at about $1,900–3,400 each depending on water-resistance claims, so testing is a modest line next to tooling.<sup><a href="#s79">79</a></sup></p>
     <p><b>Milestones this round must buy:</b> validated hardware price elasticity before tooling is cut; production tooling and a 50,000-unit first run; full CPSR and CPNP notification; 22,000 year-one customers across five markets; and a signed Nordic pharmacy listing to open year two.</p>
   </div>
 </section>
 
 <section id="risks" data-tab="financials">
-  <div class="eyebrow">18 — Risks</div>
+  <div class="eyebrow">20 — Risks</div>
   <div class="measure"><h2>What actually goes wrong</h2></div>
   <div class="tw">
     <table>
@@ -1774,7 +2117,7 @@ html{scroll-behavior:smooth}
 </section>
 
 <section id="sources" data-tab="sources">
-  <div class="eyebrow">19 — Sources</div>
+  <div class="eyebrow">21 — Sources</div>
   <div class="measure">
     <p style="font-size:14.5px;color:var(--muted)">Figures marked <span class="chip src">Sourced</span> trace to the references below. Figures marked <span class="chip mod">Modelled</span> are our own estimates built on stated assumptions and should be treated as planning figures, not findings. Market-research aggregator values vary materially between publishers; where they disagree, the more conservative figure has been used.</p>
     <ol class="srcs">
@@ -1813,7 +2156,7 @@ html{scroll-behavior:smooth}
       <li id="s33">Sun Bum revenue and 2019 acquisition by S.C. Johnson. <a href="https://pitchbook.com/profiles/company/181366-57">pitchbook.com</a>; <a href="https://www.crunchbase.com/organization/sun-bum">crunchbase.com</a></li>
       <li id="s34">Beauty of Joseon named Global No.1 K-Beauty Suncare Brand in Online Sales, Euromonitor International, 2025 global online retail sales. <a href="https://www.prnewswire.co.uk/news-releases/beauty-of-joseon-named-global-no1-k-beauty-suncare-brand-in-online-sales-by-euromonitor-international-302793842.html">prnewswire.co.uk</a></li>
       <li id="s36">Blanka — zero-MOQ private label and print-on-demand beauty platform (<a href="https://blankabrand.com/">blankabrand.com</a>); SelfNamed — ready-made private label with zero MOQ and dropship integrations (<a href="https://www.blog.selfnamed.com/business/top-10-private-label-skincare-manufacturers-in-europe">selfnamed.com</a>).</li>
-      <li id="s37">Private-label sun care minimum order quantities and European turnkey contract manufacture, including SystemKosmetik's 3,000-unit MOQ. <a href="https://sblcomp.com/top-10-german-cosmetic-manufacturers/">sblcomp.com</a>; <a href="https://info.valquer.com/en/cosmetic-manufacturer/sunscreen/">valquer.com</a>; <a href="https://www.ausmetics.com/top-private-label-sunscreen-manufacturers/">ausmetics.com</a></li>
+      <li id="s37">Private-label sun care minimum order quantities and European turnkey contract manufacture, <a href="https://sblcomp.com/top-10-german-cosmetic-manufacturers/">sblcomp.com</a>; <a href="https://info.valquer.com/en/cosmetic-manufacturer/sunscreen/">valquer.com</a>; <a href="https://www.ausmetics.com/top-private-label-sunscreen-manufacturers/">ausmetics.com</a></li>
       <li id="s38">Aluminium bridge tooling versus hardened steel production tooling — cost, lead time and cycle life; and MJF 3D printing for tooling-free low-volume production. <a href="https://www.protolabs.com/resources/blog/aluminum-vs-steel-tooling/">protolabs.com</a>; <a href="https://www.rapiddirect.com/blog/aluminum-injection-molding/">rapiddirect.com</a>; <a href="https://www.hubs.com/3d-printing/mjf/">hubs.com</a></li>
       <li id="s39">EU Responsible Person annual cost and Cosmetic Product Safety Report pricing, including the sunscreen-specific UV filter assessment uplift. <a href="https://phoenixcosmeticsafety.com/pages/eu-responsible-person">phoenixcosmeticsafety.com</a>; <a href="https://globalcosmeticregs.com/guides/eu/get-cpsr-cost-certification-requirements">globalcosmeticregs.com</a>; <a href="https://www.certifiedcosmetics.com/blog/start-a-business/step-by-step-guide-to-start-selling-sunscreens-on-the-eu-market/">certifiedcosmetics.com</a></li>
       <li id="s40">European 3PL pricing structures — pick fees, monthly minimums, pallet storage, and the gap between quoted and realised cost per order. <a href="https://flexlogistics.eu/how-to-read-a-3pl-quote-the-line-items-that-hide-the-real-cost-of-eu-fulfillment/">flexlogistics.eu</a>; <a href="https://3plguys.com/articles/cosmetics-3pl-pricing-guide">3plguys.com</a></li>
@@ -1853,8 +2196,26 @@ html{scroll-behavior:smooth}
       <li id="s74">Men's perfume market size and European share, 2025 — analyst estimate. <a href="https://deepmarketinsights.com/report/men-perfume-market-research-report">deepmarketinsights.com</a></li>
       <li id="s75">EU airport liquids rules in 2026. <a href="https://www.euronews.com/2025/07/25/eu-airports-set-to-ditch-100ml-liquid-limit-for-hand-baggage">euronews.com</a>; <a href="https://euroweeklynews.com/2026/02/02/goodbye-100ml-rule-where-europes-airports-now-let-you-fly-with-full-size-liquids/">euroweeklynews.com</a></li>
       <li id="s76">Refillable fragrance — market size and luxury adoption. <a href="https://www.archivemarketresearch.com/reports/refillable-perfume-bottles-103675">archivemarketresearch.com</a></li>
-      <li id="s77">Concept B component costs are modelled from the fragrance-concentrate price ranges at <a href="#s70">70</a>, the pump, bag-on-valve and packaging guidance at <a href="#s62">62</a>–<a href="#s64">64</a> and <a href="#s68">68</a>, and the emulsion pricing used for Concept A. Fixed costs use the SPF-testing cost at <a href="#s19">19</a> and the fragrance-development ranges at <a href="#s66">66</a>. Planning figures, not quotations.</li>
+      <li id="s77">Concept B component costs are modelled from the fragrance-concentrate price ranges at <a href="#s70">70</a>, the pump, bag-on-valve and packaging guidance at <a href="#s62">62</a>–<a href="#s64">64</a> and <a href="#s68">68</a>, and the emulsion pricing used for Concept A. Fixed costs use the commercial SPF-testing prices at <a href="#s79">79</a> and the fragrance-development ranges at <a href="#s66">66</a>. Planning figures, not quotations.</li>
       <li id="s78">Standard VAT rates in Europe, 2026. <a href="https://hellotax.com/blog/vat-rates-in-europe/">hellotax.com</a>; <a href="https://www.vatupdate.com/2026/07/25/global-vat-rates-by-country-2026-standard-and-reduced-rates/">vatupdate.com</a></li>
+      <li id="s79">Commercial SPF test list prices — in vivo ISO 24444 about $1,945–2,127; sweat- and water-resistance variants about $2,493–3,370 with turnaround up to 40 days; in vitro about $529. <a href="https://www.certifiedcosmetics.com/product/spf-testing/spf-test-sun-protection-factor/">certifiedcosmetics.com</a>; <a href="https://www.certifiedcosmetics.com/product/spf-testing/very-water-resistance-spf-laboratory-test-in-vivo-sun-protection-factor/">certifiedcosmetics.com</a>; <a href="https://www.certifiedcosmetics.com/product/efficacy-testing/skin-testing/spf-laboratory-test-in-vitro-sun-protection-factor/">certifiedcosmetics.com</a></li>
+      <li id="s80">European private-label sun care supplier research, October 2026. Supplier websites could not be opened from the research environment, so every supplier fact comes from search-engine extracts of the linked pages, plus directories (wlw, Europages, Kompass, Cosmetic Valley) and some competitor-written listicles. Every MOQ, price and capability is a lead to confirm in writing. Per-claim citations for all entries are in <i>reports/EU private label sun care suppliers.md</i> in this repository. Options Ltd: <a href="https://www.blog.selfnamed.com/business/best-private-label-cosmetics-manufacturers-in-uk">blog.selfnamed.com</a>; directory overviews: <a href="https://wonnda.com/magazine/european-sunscreen-manufacturers-for-private-label/">wonnda.com</a>; <a href="https://www.wlw.de/de/suche/kosmetische-sonnenschutzmittel">wlw.de</a></li>
+      <li id="s81">Evy Technology SPF mousse: an "extremely flammable aerosol", customs confiscations, maker attribution and wholesale resale. <a href="https://www2.hm.com/da_dk/productpage.1113971001.html">hm.com</a>; <a href="https://labmuffin.com/top-sunscreens-2024-part-2-european-sunscreens/">labmuffin.com</a>; <a href="https://www.boozt.com/is/is/evy-technology/sunscreen-mousse-spf-30_27624580">boozt.com</a>; <a href="https://www.qogita.com/brands/evy/">qogita.com</a></li>
+      <li id="s82">Retailer own-label SPF foams and their makers: Hjärtat and Apotea solmousse, Veidec, Rossmann sunozon, dm Sundance, Müller Lavozon (Dermcos), Rituals; Swedish 2026 rankings. <a href="https://www.skincarisma.com/products/hjartats/solmousse-spf30-oparfymerad/ingredient_list">skincarisma.com</a>; <a href="https://skinsort.com/products/hjartats/solmousse-spf30-oparfymerad/dupes">skinsort.com</a>; <a href="https://www.apotea.se/apotea-solskyddsmousse-spf-30-75-ml">apotea.se</a>; <a href="https://media.trenois.com/static/mousse-ecran-solaire-spf50_vei042_fiche-technique.pdf">trenois.com</a>; <a href="https://www.rossmann.de/pflege-und-duft-sunozon-classic-sonnenschaum-lsf-50/p/4305615827551">rossmann.de</a>; <a href="https://www.codecheck.info/p/kosmetik/babypflege/sonnenschutz/sundance-sonnenschaum-kids-lsf-50.html">codecheck.info</a>; <a href="https://www.mueller.de/p/lavozon-kids-sonnenschaum-lsf-50-PPN3031682/">mueller.de</a>; <a href="https://www.rituals.com/es-es/the-ritual-of-karma-foaming-sun-protection-spf-50-200ml-1119979.html">rituals.com</a>; <a href="https://www.testkompassen.se/kategorier/skonhet/hudvard/solskyddsmousse">testkompassen.se</a></li>
+      <li id="s83">Aerosol versus bag-on-valve for foams: Proersa ("mousses need the gas"), Wear Valley post-foaming gels, ASM component minimums. <a href="https://www.proersa.com/fra/conditionnement-aerosols-ecologiques/">proersa.com</a>; <a href="https://bama.co.uk/member-companies/view/wv-associates-ltd-trading-as-wear-valley-aerosols">bama.co.uk</a>; <a href="https://www.aerosol-service.com/en/bedingungenimpressum/alb/">aerosol-service.com</a></li>
+      <li id="s84">Lancaster Sun Protective Water: bi-phase "shake well" label, ingredient lists and Coty Lancaster manufacture in Monaco. <a href="https://harrods.com/en-se/p/lancaster-sun-beauty-sun-protective-water-spf-50-150ml-000000000007214547">harrods.com</a>; <a href="https://us.lookfantastic.com/lancaster-sun-protective-water-spf30-150ml/12383001.html">lookfantastic.com</a>; <a href="https://eu.lookfantastic.com/p/lancaster-sun-beauty-sun-protective-water-spf50-150ml/15844264/">lookfantastic.com (EU)</a>; <a href="https://es.panjiva.com/Coty-Lancaster-S-A-M/89202003">panjiva.com</a></li>
+      <li id="s85">Selfnamed (Cosmetics NORD SIA, Riga): dropship model, pricing, Responsible Person and CPNP, relabelling liability, SPF line-up. <a href="https://apps.shopify.com/selfnamed-cosmetics-on-demand">apps.shopify.com</a>; <a href="https://www.selfnamed.com/en/pricing">selfnamed.com/pricing</a>; <a href="https://help.selfnamed.com/en/articles/10034150-who-is-the-responsible-person">help.selfnamed.com (RP)</a>; <a href="https://help.selfnamed.com/en/articles/10034189-are-selfnamed-products-registered-at-cpnp-and-have-pif-documentation">help.selfnamed.com (CPNP)</a>; <a href="https://help.selfnamed.com/en/articles/10031773-can-there-be-issues-with-specific-product-claims">help.selfnamed.com (claims)</a>; <a href="https://www.blog.selfnamed.com/beauty/product-lineup-2025">blog.selfnamed.com</a></li>
+      <li id="s86">Other zero-MOQ platforms and their limits for EU sunscreen. <a href="https://faq.blankabrand.com/en/articles/11956170-can-products-be-legally-sold-in-the-european-union-eu">Blanka FAQ</a>; <a href="https://faq.blankabrand.com/en/articles/4880229-how-much-does-shipping-cost">Blanka shipping</a>; <a href="https://help.supliful.com/en/articles/5660488-how-to-set-up-shipping-rates-in-shopify">Supliful</a>; <a href="https://apps.shopify.com/viaglamour-start-your-makeup-line">viaGlamour</a>; <a href="https://drhc-cosmetics.com/pages/yours-private-label-dropshipping">DR.HC</a>; <a href="https://cjdropshipping.com/customPackaging">CJ Dropshipping</a>; <a href="https://apps.shopify.com/eprolo">EPROLO</a></li>
+      <li id="s87">Why SPF stays off print-on-demand: US OTC-drug status, per-formula testing economics, EU JACOP 2025 sun-product surveillance, AEMPS SPF withdrawals, the Australian 31-brand zinc base. <a href="https://www.fda.gov/drugs/understanding-over-counter-medicines/questions-and-answers-fda-announces-new-requirements-over-counter-otc-sunscreen-products-marketed-us">fda.gov</a>; <a href="https://www.compliancegate.com/dropshipping-product-safety-compliance-risks/">compliancegate.com</a>; <a href="https://www.pap.pl/sites/default/files/2026-07/JACOP%202025%20-%20REPORT.pdf">JACOP 2025 report</a>; <a href="https://www.aemps.gob.es/informa/notasInformativas/cosmeticos-cuidado-personal/2021/Informe_AEMPS-an%C3%A1lisis_FPS_de_productos_solares.pdf?x39768=">aemps.gob.es</a>; <a href="https://www.russh.com/zinc-sunscreens-fail-testing-abc-investigation/">russh.com</a></li>
+      <li id="s88">Italian micro-MOQ sun labs: Cosmetica Conto Terzi, Fast Cosmetics, Laboratori Italiani, Licofarma, Cosmoderma. <a href="https://cosmeticacontoterzi.com/come-funziona/">cosmeticacontoterzi.com</a>; <a href="https://www.fastcosmetics.it/prodotti-solari-con-il-tuo-logo/">fastcosmetics.it</a>; <a href="https://www.labitaliani.it/white-lable-skincare/">labitaliani.it</a>; <a href="https://www.licofarma.com/en/face-cosmetics-contract-manufacturing">licofarma.com</a>; <a href="https://www.cosmoderma.it/produzione-creme-solari-conto-terzi">cosmoderma.it</a></li>
+      <li id="s89">German and Austrian micro-MOQ labs: Cosmacon / Tojo, Meine-Eigenmarke (SPF 30 from 30 units, SPF 50 from 500), Private Skin Lab. <a href="https://www.cosmacon.de/private-label-kosmetikprodukte-anbieten/">cosmacon.de</a>; <a href="https://www.tojocosmetics.de/en/home/">tojocosmetics.de</a>; <a href="https://www.meine-eigenmarke.de/fuspflege/kosmetikprodukte/">meine-eigenmarke.de</a>; <a href="https://www.privateskinlab1.com/">privateskinlab1.com</a></li>
+      <li id="s90">Sun-water leads: Laboratori Sabatel transparent sprays (catalogue, April 2026 news, FAQ), Zetaphar "acqua solare spray", Valquer (no mandatory minimum, acts as Responsible Person, "Agua Solar" spray). <a href="https://www.laboratorisabatel.com/prodotti-solari-conto-terzi.asp">laboratorisabatel.com</a>; <a href="https://www.laboratorisabatel.com/notizia.asp?idComunicazione=160">Sabatel news</a>; <a href="https://www.laboratorisabatel.com/domande-cosmetici-conto-terzi.asp">Sabatel FAQ</a>; <a href="https://www.zetapharbiolaboratories.it/linea-solari-conto-terzi/">zetapharbiolaboratories.it</a>; <a href="https://info.valquer.com/fabricante-cosmeticos/solares/">valquer.com (ES)</a>; <a href="https://info.valquer.com/en/cosmetic-manufacturer/">valquer.com (EN)</a>; <a href="https://www.martamasi.com/valquer-protector-solar-corporal-spf50-alta-proteccion-e-hidratacion-300-ml.html">martamasi.com</a></li>
+      <li id="s91">Custom sun formulators: Macosgroup, ALPOL, SofIA Cosmétiques, Bios Line (Nature's transparent SPF 50), artefactum (non-aerosol foam), Ashland transparent starting formulas. <a href="https://www.macosgroup.it/produzione-solari-conto-terzi/">macosgroup.it</a>; <a href="https://alpol-cosmetique.com/en/our-support/">alpol-cosmetique.com</a>; <a href="https://www.premiumbeautynews.com/en/alpol-cosmetique-advances-hybrid,28163">premiumbeautynews.com</a>; <a href="https://www.lejournaldesentreprises.com/article/sofia-cosmetiques-veut-repondre-au-danger-des-cremes-solaires-1794766">lejournaldesentreprises.com</a>; <a href="https://www.natures.it/en/prodotti/transparent-sun-spray-spf-50-isolari/">natures.it</a>; <a href="https://www.europages.de/ARTEFACTUM-GMBH/00000005311420-001.html">europages.de</a>; <a href="https://www.cosmeticsandtoiletries.com/formulating/category/suncare/182201641.html">cosmeticsandtoiletries.com</a></li>
+      <li id="s92">SPF foam holders and aerosol fillers: Romar Global Care / Agrado, Biofarma San Pietro Viminario, Dermcos, Proersa, Everton, Aerochem. <a href="https://romarglobalcare.com/en/fabricantes-productos-en-aerosol/">romarglobalcare.com</a>; <a href="https://www.primor.eu/es_ic/agrado-mousse-facial-solar-spf50-55127.html">primor.eu</a>; <a href="https://www.biofarmagroup.com/stabilimenti/san-pietro-viminario">biofarmagroup.com</a>; <a href="https://www.dermcos.de/">dermcos.de</a>; <a href="https://www.proersa.com/">proersa.com</a>; <a href="https://everton.it/en/bag-on-valve/">everton.it</a>; <a href="https://fr.kompass.com/a/conditionnement-et-remplissage-d-aerosols/2299001/">kompass.com</a></li>
+      <li id="s93">EU sunscreen claim rules and test methods: Recommendation 2006/647/EC; ISO 23675 scope (emulsions and single-phase alcohol products, not water resistance); Cosmetics Europe Recommendation No. 26 (June 2025); no retest for ISO 24444 data; inter-lab variability at SPF 50+. <a href="https://eur-lex.europa.eu/eli/reco/2006/647/oj/eng">eur-lex.europa.eu</a>; <a href="https://www.obelis.net/news/stricter-labelling-principles-for-sunscreens-in-europe/">obelis.net</a>; <a href="https://hamilton.com.pl/en/spf-without-volunteers-the-cosmetics-market-is-taking-a-new-direction/">hamilton.com.pl</a>; <a href="https://cosmeticobs.com/en/articles/news-34/cosmetics-europe-publishes-recommendation-no26-on-the-use-of-alternative-methods-to-iso-244442019-6468">cosmeticobs.com</a>; <a href="https://www.intertek.com/blog/2025/08-04-eu-regulations-for-sunscreen-products/">intertek.com</a>; <a href="https://www.certifiedcosmetics.com/blog/regulatory-news/alternative-spf-methods-in-2026-industry-adoption-and-regulatory-reality/">certifiedcosmetics.com</a>; <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7540522/">ncbi.nlm.nih.gov</a></li>
+      <li id="s94">Published fixed costs and lead times for white label: Cosmacon, Labo Heme, Meine-Eigenmarke, Prom Cosmetics, Cleansery, Laboratoire Ophylor. <a href="https://www.cosmacon.de/private-label-kosmetikprodukte-anbieten/">cosmacon.de</a>; <a href="https://labo-heme.net/marque-blanche">labo-heme.net</a>; <a href="https://www.meine-eigenmarke.de/kosten-ablaeufe-eigenmarke/">meine-eigenmarke.de</a>; <a href="https://www.promcosmetics.com/private-label/">promcosmetics.com</a>; <a href="https://www.cleansery.com/private-label-cosmetics-production">cleansery.com</a>; <a href="https://www.laboratoire-ophylor.com/lancer-sa-marque-cosmetique-sur-mesure-ou-en-marque-blanche/">laboratoire-ophylor.com</a></li>
+      <li id="s95">Low-MOQ and contract SPF makers: Cosmiko, Propos'Nature, Made By Nature Labs, CarasaLab, Clover Cosmetics, Cosmetize, Elya Kozmetik. <a href="https://cosmiko.co.uk/get-started-private-label-cosmetics/">cosmiko.co.uk</a>; <a href="https://www.propos-nature.com/pages/marque-blanche">propos-nature.com</a>; <a href="https://madebynaturelabs.com/de/pages/private-label">madebynaturelabs.com</a>; <a href="https://carasalab.com/en/private-label-cosmetics/">carasalab.com</a>; <a href="https://privatelabelscosmetics.com/">privatelabelscosmetics.com</a>; <a href="https://cosmetize.nl/product/suncare/sprays/">cosmetize.nl</a>; <a href="https://www.elyakozmetik.com/fason-gunes-kremi-uretimi-hakkinda-her-sey/">elyakozmetik.com</a></li>
+      <li id="s96">Sun-water and SPF-mist reference products: Krème, Sunsave, SVR, Caudalie, Vichy, Polish SPF 50 mists. <a href="https://kreme-paris.com/products/eau-solaire-spf-50">kreme-paris.com</a>; <a href="https://www.pharmavance.com/product-page/brume-solaire-invisible">pharmavance.com</a>; <a href="https://www.marionnaud.fr/soin-corps/solaires/protection/sun-secure-eau-solaire-tres-haute-protection-spf50-laboratoire-svr/p/BP_102087160">marionnaud.fr</a>; <a href="https://www.skinlovers.com/en-eu/products/caudalie-vinosun-protect-sun-water-spf50-150ml">skinlovers.com</a>; <a href="https://easyfarma.it/vichy-capital-soleil-acqua-solare-protettiva-idratante-spf-50-200-ml/">easyfarma.it</a>; <a href="https://gemini.pl/ava-niewidzialna-ultralekka-mgielka-ochronna-spf-50-75-ml-0124024">gemini.pl</a>; <a href="https://leki.pl/?p=572656">leki.pl</a></li>
       <li id="s35">Bill-of-materials, tooling and prototype cost estimates for the alternative formats are modelled from the injection-moulding benchmarks at <a href="#s15">15</a>, bulk emulsion pricing, and published contract-packing rates for stick-pack and sachet lines. Treat as planning figures pending supplier quotation.</li>
     </ol>
     <div class="end">PALE · Venture dossier v2.0 · October 2026 · All financial figures modelled</div>
@@ -2051,7 +2412,7 @@ function chSupply(){
   var data=[
     {k:'Stage 1',n:'300 units',fixed:38.00,varc:23.55,note:'MJF print, stock parts'},
     {k:'Stage 2',n:'3,000 units',fixed:8.73,varc:11.00,note:'Aluminium bridge tool'},
-    {k:'Stage 3',n:'50,000 units',fixed:2.39,varc:9.60,note:'Steel tool, own formula'}
+    {k:'Stage 3',n:'50,000 units',fixed:1.87,varc:9.60,note:'Steel tool, own formula'}
   ];
   var W=680,H=330,L=56,R=112,T=22,B=52, pw=W-L-R, ph=H-T-B;
   var s=svg(W,H), max=70;
@@ -2772,14 +3133,243 @@ function spy(){
   else showTab(TABS[0].id,{noHash:true});
 }
 
+/* =========== v3 · supplier directory (§ suppliers) =========== */
+// [name, country, tier, MOQ, sun formats, fit (w sun water · f foam/aerosol · s other SPF · x SPF unconfirmed), RP / CPNP, notes, url, top pick]
+var DIR=[
+ ['Selfnamed (Cosmetics NORD SIA)','Latvia, Riga',1,'1 unit','Mineral SPF 30 face and body cream; tinted mineral SPF 30; SPF 50 stick, tinted or clear','s','Acts as RP; formulas already notified on CPNP. Relabelling under your own name and address makes you the RP','Shopify and WooCommerce dropship, one unit at a time, from the EU. Free plan pays per order; Pro $29/mo for 15% off (also shown as $34)','https://www.selfnamed.com/en/private-label-products',1],
+ ['Blanka','Canada (warehouse in Texas)',1,'0','No SPF','x','Provides no CPNP documentation','Shopify dropship from North America; $25.99 flat shipping to UK and France; does not serve Spain; plans from $39/mo','https://faq.blankabrand.com/en/articles/11956170-can-products-be-legally-sold-in-the-european-union-eu'],
+ ['Supliful','US, Denver',1,'0','No SPF','x','None; skincare ships to the US only','Shopify dropship, US only','https://help.supliful.com/en/articles/5660488-how-to-set-up-shipping-rates-in-shopify'],
+ ['viaGlamour','Canada',1,'0','SPF not checked','x','FDA-oriented; no EU RP stated','About $50/mo; ships worldwide','https://apps.shopify.com/viaglamour-start-your-makeup-line'],
+ ['Jubile','US, California',1,'0 (one reviewer: 5 units before a logo)','SPF not checked','x','None stated','Ships from the US and Canada','https://apps.shopify.com/jubilee'],
+ ['DR.HC “YOURS”','US',1,'1 unit','SPF not checked','x','None stated','Ships in 1–3 business days; reported $120/mo membership (unverified)','https://drhc-cosmetics.com/pages/yours-private-label-dropshipping'],
+ ['Rapid Fulfillment','US',1,'0','SPF not checked','x','None stated','Dropship; no monthly membership','https://rapidfulfillment.com/pages/rapid-private-label'],
+ ['CJ Dropshipping','China / global',1,'Branded packaging from 1 unit','Generic stock; SPF unverified','x','None confirmed','50+ warehouses including some in the EU','https://cjdropshipping.com/customPackaging'],
+ ['EPROLO','Global',1,'“Custom branding without MOQ”','Generic stock; SPF unverified','x','None confirmed','US and UK warehouses (per listicles)','https://apps.shopify.com/eprolo'],
+ ['Hertwill','EU / US',1,'n/a','Resells existing brands; not private label','x','n/a','EU and US warehouses','https://apps.shopify.com/hertwill'],
+ ['WeDropz','Germany',1,'n/p','SPF not stated','x','n/p','Ready-made dropship shop with your logo and packaging','https://wedropz.de/products/dropshipping-kosmetik'],
+
+ ['Cosmetica Conto Terzi (Novaderm lab)','Italy, Foggia',2,'25 pcs on stock formula and pack; custom 200–300','SPF 15/30/50 as oil, cream or spray; after-sun','s','n/p','€100–200 per 25-piece lot (≈€4–8 a unit); ISO 22716 and 9001 certified','https://cosmeticacontoterzi.com/come-funziona/'],
+ ['Fast Cosmetics','Italy',2,'3 pcs with label; 50–100 for direct UV print','SPF 50+ face cream; SPF 50+ body milk; after-sun; tanning oil without filter','s','n/p','Buy online and send the logo after; free delivery in 7–10 working days. Its “up to 4 hours” claim needs review','https://www.fastcosmetics.it/prodotti-solari-con-il-tuo-logo/'],
+ ['Laboratori Italiani','Italy',2,'12 units per SKU; about 30 days','10-item solar range incl. “sun tanning water with sun filters” (SPF not shown)','w','n/p','€13.00–14.90 + VAT (unclear what it covers); arranges SPF and UVA tests at accredited labs','https://www.labitaliani.it/white-lable-skincare/'],
+ ['Cosmacon / Tojo Cosmetics','Germany, Schenefeld',2,'25–100 (pages conflict)','SPF 30/50 incl. “SPF 50 Fresh” and “SPF 50 Glow”; octocrylene-free; water-resistant options','s','Handles CPNP notification at €150 per product; RP role unconfirmed','€49.95 label fee; no development cost on 290+ stock formulas; custom ≈€1,500 + €1,495 approval','https://www.cosmacon.de/private-label-kosmetikprodukte-anbieten/'],
+ ['Meine-Eigenmarke','Germany',2,'SPF 30 from 30; SPF 50 from 500','“SonnenschutzBasic LSF 30” cream or spray; 50/100 ml; refills','s','n/p','€85 print setup; custom €1,500–5,000; 2–5 weeks','https://www.meine-eigenmarke.de/fuspflege/kosmetikprodukte/'],
+ ['Licofarma','Italy, Galatina (Lecce)',2,'“No minimum” for first-time entrants (page about 4 years old)','SPF 6–50+ creams, spray milks, oils and lotions for face, kids, hair and lips','s','n/p','Contract manufacturer','https://www.licofarma.com/en/sun-care-products-contract-manufacturing'],
+ ['Cosmoderma','Italy, near Bologna (partner plants)',2,'25 pcs (general small-batch page)','SPF 15–50+; after-sun; accelerators; self-tan mousse','s','n/p','Works with labs on ISO 24444 and 16217; about 12 months to develop a new sunscreen','https://www.cosmoderma.it/produzione-creme-solari-conto-terzi'],
+ ['Cosmetificio','Italy',2,'24 pcs label only; 100 fully customised','“Linea solari”, high protection','s','n/p','Stock formulas','https://www.cosmetificio.it/cosmetici-packaging-personalizzato.php'],
+ ['Private Skin Lab','Austria, Salzburg',2,'50 pcs','SPF 30 cream with aloe after-sun gel (directory listing)','s','n/p','Custom small-batch manufacture','https://www.privateskinlab1.com/'],
+ ['Cosmetico Facile (BeautyLab)','Italy',2,'3 pcs; 3–4 day turnaround','SPF 15 spray; SPF 30; after-sun','s','n/p','Fixed formula; only the packaging is customisable','https://www.cosmeticofacile.it/spray-solare-protezione-15-personalizzabile/'],
+ ['Options Ltd','UK',2,'12 units','SPF not confirmed','x','UK-based: needs an EU RP','Dropship; Shopify, Wix and WooCommerce integration','https://www.blog.selfnamed.com/business/best-private-label-cosmetics-manufacturers-in-uk'],
+ ['My Private Label','Germany',2,'25 per product','SPF not confirmed','x','n/p','','https://www.my-private-label.de/'],
+ ['IC Individual Cosmetics','Germany',2,'25','Listed in a German sunscreen-maker directory','x','n/p','','https://www.wlw.de/de/suche/kosmetische-sonnenschutzmittel'],
+ ['MLNT Lab','n/p',2,'50','SPF not confirmed','x','n/p','','https://wonnda.com/magazine/private-label-skincare-manufacturers-europe/'],
+ ['Oomylab','France',2,'50 on the first order, then none','SPF not confirmed','x','n/p','Over 95% natural','https://www.oomylab.com/marque-blanche/'],
+ ['Cosmétique Marque Blanche','France (south)',2,'20 per product','SPF not confirmed','x','n/p','30% off from 500 units','https://cosmetique-marque-blanche.fr/'],
+ ['Labo Heme','France',2,'Depends on formula','SPF not confirmed','x','€350 per product including CPNP and product dossier','2–3 months','https://labo-heme.net/marque-blanche'],
+ ['LABESP','Spain, Alcoy',2,'Stock items from 1 unit','SPF not confirmed','x','n/p','Fills for EU clients only','https://labesp.com/en/manufacturing-options'],
+ ['Natural Spa Factory','UK',2,'n/p','SPF not confirmed','x','UK-based: needs an EU RP','Private label with dropshipping','https://www.naturalspafactoryuk.com/'],
+ ['Skincare Formulation Lab','UK',2,'Micro-batch','SPF not confirmed','x','UK-based: needs an EU RP','Stock or formulation-only','https://www.skincareformulationlab.co.uk/'],
+ ['Auna Vegan','Poland',2,'One-unit trial order','SPF not confirmed','x','n/p','','https://aunavegan.com/pl/i/PRIVATE-LABEL/41'],
+ ['Bydgoska Wytwórnia Mydła','Poland',2,'No minimum (handmade)','SPF not confirmed','x','n/p','','https://bydgoskawytworniamydla.pl/wspolpraca-kontaktowa'],
+ ['Riviera','Austria',2,'About 25 L for creams','SPF not confirmed','x','n/p','','https://www.riviera.at/leistungen/private-label/'],
+
+ ['Laboratori Sabatel','Italy, province of Rome',3,'“A couple of hundred” per product; 2026 formulas aimed at medium and large batches','“Transparent” sprays 55/S–57/S (SPF 15/30/50 per catalogue); emulsions, creams and milks to SPF 50+; reef-friendly line','w','n/p','Contract only; microbiological analysis per batch. Its April 2026 news says the transparent type tops out at SPF 30, so resolve this first','https://www.laboratorisabatel.com/prodotti-solari-conto-terzi.asp',1],
+ ['Cosmiko','UK',3,'250 per product; bulk from 25 kg','Invisible SPF 50 cream (100 ml airless); SPF 50 face cream; SPF 30 day cream','s','UK-based: needs an EU RP','Handles boxes, labels, containers and filling','https://cosmiko.co.uk/get-started-private-label-cosmetics/'],
+ ['Propos\'Nature','France, Provence',3,'300','Organic SPF 50 cream; SPF 50+ mineral spray-cream (opaque)','s','n/p','About 300 white-label formulas, but its SPF may be own-brand only; about 2 months per project','https://www.propos-nature.com/pages/marque-blanche'],
+ ['Made By Nature Labs','Bulgaria',3,'500','SPF 30/50 body lotions; SPF 50 sun milk, 150 ml','s','n/p','','https://madebynaturelabs.com/products/sunscreen-moisturizing-milk-50-spf-150ml'],
+ ['KHK','Germany, Hürth',3,'“Small quantities” (no figure)','SPF 20/30/50 sticks for face and lips; push-up stick in FSC card','s','n/p','Custom hot-fill','https://www.wlw.com/en/company/khk-gmbh-646891'],
+ ['SORELLE','Poland',3,'From 100','SPF not confirmed','x','n/p','','https://przemyslkosmetyczny.pl/firmy/private-label/'],
+ ['Laboratoires Easy Bio','France',3,'500 per product','SPF not confirmed','x','n/p','','https://www.laboratoires-easybio.com/marque-blanche/'],
+ ['Relina','Bulgaria',3,'500','SPF not confirmed','x','n/p','','https://wonnda.com/magazine/private-label-skincare-manufacturers-europe/'],
+ ['Prom Cosmetics','Portugal, Porto de Mós',3,'White label 500; private label 1,000–1,500','SPF not confirmed','x','Handles Infarmed and CPNP','€7,000 minimum investment; about 90 days','https://www.promcosmetics.com/private-label/'],
+ ['Metro Private Label','n/p',3,'From 500','SPF not confirmed','x','Safety report, PIF and CPNP via EU partners','','https://www.metroprivatelabel.com/eu-skincare-01/'],
+
+ ['Valquer Laboratorios','Spain, Villaminaya (Toledo)',4,'No mandatory minimum; best from 1,000 per product','Spray and cream for face, body and hair; own SPF 30/50 300 ml pump sprays incl. “Agua Solar”; after-sun','w','Registers on CPNP and acts as RP in its own name','Turnkey on about 90% of projects. Whether “Agua Solar” is clear or milky is unconfirmed','https://info.valquer.com/en/cosmetic-manufacturer/sunscreen/',1],
+ ['Macosgroup','Italy',4,'“Pilot batches” to industrial','SPF 30/50+ cream; light sun spray; stick; water-resistant and natural options','w','CPNP notification offered','Bundles certified SPF tests, safety assessment, PIF and challenge tests','https://www.macosgroup.it/produzione-solari-conto-terzi/'],
+ ['Zetaphar Bio Laboratories','Italy (Milan area)',4,'Bulk minimum 50 kg; finished goods n/p','“Acqua solare spray”; sprays SPF 6–50; creams; after-sun','w','n/p','Stock line plus R&D on request; base (alcohol or water) not stated','https://www.zetapharbiolaboratories.it/linea-solari-conto-terzi/'],
+ ['Bios Line','Italy, Padua province',4,'n/p','Own Nature’s range incl. an alcohol-based transparent SPF 50 spray for wet skin; creams, fluid sprays, stick','w','n/p','Did contract work per an older directory; whether it makes for third parties now is unconfirmed','https://www.natures.it/en/prodotti/transparent-sun-spray-spf-50-isolari/'],
+ ['ALPOL Cosmétique','France, Château-Gaillard (Ain)',4,'About 5,000 (third-party listicle only)','Facial SPF 30–50+; SPF 50+ sticks; 2026 SPF 50+ hybrids with mostly organic filters; 250+ adaptable formulas','w','“From marketing brief to launch”; RP and CPNP not stated','Sun division since 2015; ready-to-market, adapted or bespoke formulas','https://alpol-cosmetique.com/en/our-support/'],
+ ['SofIA Cosmétiques','France, Carros (near Nice)',4,'n/p','Very high protection sun products, 35% of its business','w','n/p','Private label since 1989','https://www.lejournaldesentreprises.com/article/sofia-cosmetiques-veut-repondre-au-danger-des-cremes-solaires-1794766'],
+ ['Cosmoya','France, Canéjan (near Bordeaux)',4,'n/p','Sun formulation lab founded 2021; no own plant confirmed','s','Regulatory affairs offered','In-house in vitro SPF measurement','https://www.cosmetic-valley.com/en/annuaire-entreprises/cosmoya'],
+ ['CarasaLab','Spain, Oiartzun (Gipuzkoa)',4,'1,000 per product (a third party says bulk from 50 L)','SPF 15–50+ wholesale and custom; reef-safe filter options','s','n/p','New, adapted or client formula','https://carasalab.com/en/sunscreen-lab-manufacturer/'],
+ ['artefactum','Germany, Rudolstadt',4,'n/p','Private-label sun incl. “Solar Facial Invisible Protection” and “Hydra Sunscreen SPF 50+”','fw','n/p','The only non-aerosol foam lead found: “Advanced Non-Aerosol Foam Technology”','https://www.europages.de/ARTEFACTUM-GMBH/00000005311420-001.html'],
+ ['Jiabi Lab','Italy, Parabiago (Milan)',4,'n/p (calls itself a small-batch specialist)','“Expert Sun Line” SPF 10–50+, 100 ml','s','n/p','','https://jiabilab.com/produzione-conto-terzi-protezione-solare/'],
+ ['Solimè','Italy, Cavriago (Reggio Emilia)',4,'“Large and small batches”','Own creams, sprays, lip balms, scented waters, after-sun; Remargin SPF 30','s','n/p','In-house tests, then accredited external labs; free samples','https://www.solime.it/pages/conto-terzi'],
+ ['CiEsse','Italy, Trani',4,'“Production minimums not high”','Sun and after-sun among 1,000+ base formulas','s','n/p','In-house UV screen printing with no setup cost and no MOQ','https://www.ciesse.eu/privatelabel.html'],
+ ['Clover Cosmetics','Poland',4,'1,000 pcs or 25 kg','SPF 30 and SPF 50 body care','s','n/p','','https://privatelabelscosmetics.com/'],
+ ['Cosmetize','Netherlands, Harderwijk',4,'Sprays from 2,500 × 200 ml (a testimonial says 1,000)','Natural and mineral stock creams, sprays, sticks, after-sun, oils','s','n/p','Checks SPF, water resistance and stability before filling; does not serve private individuals','https://cosmetize.nl/product/suncare/sprays/'],
+ ['Frisson','Netherlands, Flevoland',4,'n/p','Sunscreen among creams, lotions and oils; sprays in-house','s','n/p','3–4 weeks production','https://www.frisson.nl/private-label/'],
+ ['Steinfels Swiss','Switzerland, Winterthur',4,'n/p','Sun protection line; 1,000+ base formulas; fills 10–5,000 ml','s','Outside the EU: needs an EU RP','Logistics service','https://www.steinfels-swiss.ch/de/cosmetics-and-home-care/'],
+ ['Cosmetic Service','Germany, Eppertshausen',4,'n/p','“Comprehensive sun care range”; sun stick','s','Regulatory consulting','Private label, white label, bespoke, contract filling','https://www.europages.de/COSMETIC-SERVICE-GMBH/00000005312346-001.html'],
+ ['Werner Schneider','Germany, Bad Tölz',4,'n/p','Sunscreen products','s','n/p','Warehouse logistics','https://wlw.de/de/firmen/kosmetische-sonnenschutzmittel'],
+ ['Fareva','France, Tournon-sur-Rhône',4,'n/p (large volume)','Sun products; aerosols, tubes, bottles, jars','s','n/p','Has aerosol capacity; no SPF foam found','https://www.cosmetic-valley.com/en/annuaire-entreprises/fareva-corporate-france'],
+ ['Innovi (Anjac group)','France, Layrac',4,'n/p','Sun products','s','n/p','Formulation and manufacturing','https://www.premiumbeautynews.com/fr/anjac-health-beauty-poursuit-son,14346'],
+ ['ABC Texture','France',4,'n/p','Sun care listed as a specialty','s','ISO 22716 plant','','https://abctexture.com/'],
+ ['Alphanova Santé','France, Le Pradet',4,'n/p','Own sun line; starting contract manufacturing','s','n/p','','https://www.lejournaldesentreprises.com/article/de-la-sous-traitance-au-fait-maison-alphanova-internalise-sa-production-2132773'],
+ ['Laboratorios Magriña','Spain, Barcelona area',4,'n/p','Sun care (directory listings)','s','n/p','Private label and contract','https://www.gcimagazine.com/home/company/22765534/laboratorios-magrina-sl'],
+ ['Cosmewax','Spain, Jerez and Sagunt',4,'“Flexible” (a competitor’s claim)','Creams, lotions, sprays','s','n/p','OEM and ODM','https://www.alimarket.es/nonfood/noticia_amp/365442/cosmewax-crece-a-doble-digito-apoyada-en-la-internacionalizacion-y-la-innovacion'],
+ ['Fancystage','Portugal, Trofa',4,'Quotation required','Sunscreen, after-sun, self-tan (directories)','s','n/p','','https://findmymanufacturer.com/manufacturer/fancystage/'],
+ ['Group55','UK, Chorley',4,'n/p','“Sun Care & Self Tan” service line','s','UK-based: needs an EU RP; offers testing and compliance','Formulation to fulfilment','https://open.endole.co.uk/insight/brand/94115-group55'],
+ ['Equalan Pharma','Poland, Białystok',4,'n/p','“Ochrona SPF” (SPF protection) category','s','n/p','In-house testing, labelling and packing','https://equalanpharma.eu/produkcja-kontraktowa/'],
+ ['Cleansery','Poland',4,'n/p','SPF products with UV filters','s','n/p','6–10 weeks on a stock formula, 3–6 months custom','https://www.cleansery.com/private-label-cosmetics-production'],
+ ['Aii','Poland',4,'n/p','Sun creams','s','n/p','','https://www.poland-export.com/category/137-cosmetics-and-personal-care-products.html'],
+ ['COS Lab Private Label','Poland, Kraków',4,'n/p','Possibly SPF creams, aerosol balms and mists (uncertain attribution)','s','n/p','','https://aleo.com/pl/firma/cos-lab-private-label-spolka-z-ograniczona-odpowiedzialnoscia-krakow'],
+ ['Simelia','Greece',4,'n/p','Sunscreens and after-suns','s','n/p','OEM private label','https://www.simelia.gr/en'],
+ ['Propharm Cosmetics','Greece, Kilkis',4,'n/p','Sunscreen in its face-care range','s','n/p','','https://www.propharm.com.gr/en/private-label-products'],
+ ['MADIS','Greece, Heraklion',4,'n/p','Sun care (competitor listicle)','s','n/p','','https://xiranskincare.com/top-8-private-label-cosmetic-manufacturers-in-greece/'],
+ ['Alchemist Labs','Greece, Koropi',4,'n/p','Sunscreen cream; self-tanning lotion','s','n/p','','https://wonnda.com/magazine/european-sunscreen-manufacturers-for-private-label/'],
+ ['Elya Kozmetik','Turkey, Istanbul',4,'1,000 (a directory says 1,000–5,000)','SPF 15–50+; mineral and chemical filters; water-resistant variants','s','Outside the EU: the EU importer becomes the RP','35–50 days from formula to shelf','https://www.elyakozmetik.com/fason-gunes-kremi-uretimi-hakkinda-her-sey/'],
+ ['SCK Zeta Kimya','Turkey, Istanbul',4,'n/p','Sunscreen','s','EU importer is the RP; provides EU export documents','Samples in 7 days','https://sckzetakimya.com/en/private-label-cosmetics-turkey/'],
+ ['Alin Global Healthcare','Turkey',4,'n/p','Contract sunscreen','s','EU importer is the RP','','https://www.alinglobalhealthcare.com/haberdetay/fason-gunes-kremi-uretimi'],
+ ['Bulut Kozmetik','Turkey',4,'n/p','Sunscreen for your brand','s','EU importer is the RP','','https://bulutkozmetik.com.tr/markaniza-ozel-gunes-kremi-uretimi/'],
+ ['IGN · ELAN Kimya · Humay · Sheamona','Turkey (IGN: Izmir, office in Tallinn)',4,'n/p','Sun care OEM (listicles and Europages)','s','EU importer is the RP','','https://xiranskincare.com/top-10-private-label-cosmetic-manufacturers-in-turkey/'],
+ ['Mann & Schröder','Germany, Siegelsbach',4,'n/p (retail volumes)','Retailer house-brand sun care','s','n/p','Private label for drugstores and discounters','https://www.mann-schroeder.de/en/private-labels/'],
+ ['Emil Kiessling','Germany, Georgensgmünd',4,'n/p (retail volumes)','Sun protection private label, e.g. Sun D\'Or','s','n/p','Existing or client formulas','https://www.emil-kiessling.de/en/'],
+ ['Win Cosmetic (Dalli group)','Germany, Flörsheim-Dalsheim',4,'n/p (retail volumes)','Retailer sun care, e.g. Lidl Cien Sun','s','n/p','The group includes an aerosol filler','https://www.chemie.de/firmen/1039007/win-cosmetic-gmbh-co-kg.html'],
+ ['SystemKosmetik','Germany, Münster',4,'Batches 30–4,000 kg (the often-cited 3,000-unit MOQ was not found)','Sun care per a third-party listicle only','s','n/p','Full-range private label','https://www.systemkosmetik.com/de/dienstleistungen-de/private-label'],
+ ['Mibelle Group','Switzerland, Buchs AG',4,'n/p (large accounts)','Suncare range (UK arm)','s','Outside the EU: needs an EU RP','Contract and private label','https://www.packagingbirmingham.com/exhibitors/mibelle-ltd-241248/'],
+ ['BelCoPhar','Belgium, Antwerp',4,'n/p','Sunscreen “on request” (third-party list only)','s','n/p','Private label and contract','https://www.belcophar.com/en'],
+ ['Cosmoproject (Ancorotti group)','Italy, Sorbolo Mezzani (Parma)',4,'n/p','Sun fluid emulsions (older listings)','s','n/p','Contract','https://www.europages.co.uk/COSMOPROJECT-SRL/SEAC000540563-001.html'],
+
+ ['Romar Global Care (Agrado)','Spain, Sagunto plant (Valencia)',5,'n/p (plant rated over 180M units a year)','Own Agrado SPF 50+ facial mousse (75 ml; pack type unconfirmed); award-winning SPF 50+ aerosol facial mist; creams','f','n/p','Custom formulas for brands and retailer own labels. The only company found holding both an SPF mousse and an SPF aerosol mist','https://romarglobalcare.com/en/fabricantes-productos-en-aerosol/',1],
+ ['Biofarma Group, San Pietro Viminario plant','Italy, Padua province',5,'n/p','Sun lines in bag-on-valve, classic aerosol, mousse, cream and serum; solid sun stick','f','n/p','Contract developer (CDMO); the only contract plant explicitly listing sun mousse; its bag-on-valve takes lipo-alcoholic formulas','https://www.biofarmagroup.com/en/manufacturing-sites/san-pietro-viminario'],
+ ['Dermcos','Germany, Walldorf',5,'n/p','Named maker of Müller’s Lavozon Kids Sonnenschaum LSF 50+; patent on a transparent high-UVA sunscreen','fw','Prepares safety reports, CPNP notifications and PIFs','A small developer that probably subcontracts production','https://www.dermcos.de/'],
+ ['Proersa Aerosoles','Spain, Sant Esteve Sesrovires (Barcelona)',5,'n/p; lead time 6–8 weeks','Aerosol sun spray (a “star product”); bag-on-valve sunscreens; shaving foam; self-tan','f','n/p','Turnkey or filling only. Says bag-on-valve cannot foam; reports sun mousse in high demand each season','https://www.proersa.com/blog/fabricacion-de-aerosoles-cosmeticos/'],
+ ['Everton','Italy, Povegliano Veronese (Verona)',5,'n/p','Bag-on-valve sun cream, suntan oil and sunscreen; aerosol hair mousse; spray waters','f','Safety assessment, PIF and CPNP notification','Foam in hair products only so far','https://everton.it/en/bag-on-valve/'],
+ ['Cosmosol','Italy, Mulazzano (Lodi)',5,'n/p','Sun not confirmed','f','n/p','Bag-on-valve (50M a year) and aerosols (25M a year), formulas made per client','https://www.cosmosol.com/en/about-us/'],
+ ['Wear Valley Aerosols','UK, County Durham',5,'n/p','Lists suncare as a key bag-on-valve sector','f','UK-based: needs an EU RP','Started with post-foaming gels, the bag-on-valve route to a foam','https://bama.co.uk/member-companies/view/wv-associates-ltd-trading-as-wear-valley-aerosols'],
+ ['Toyo Deutsche Aerosol (TDA)','Germany, Neutraubling',5,'n/p','Cleanroom filling of gases, liquids, gels, creams and foams; two-chamber “The Dual”','f','n/p','Calls bag-on-valve “the standard for sun-protection products”','https://www.gcimagazine.com/home/company/21169794/toyo-deutsche-aerosol-tda'],
+ ['ASM Aerosol-Service','Switzerland, Möhlin',5,'Batches 1–4,000 L (pharma section)','No sun reference; standard and two-compartment aerosols, bag-on-valve','f','Outside the EU; GMP and ISO 22716','Customer can supply its own bulk, but bears the component suppliers’ MOQs','https://www.aerosol-service.com/en/bedingungenimpressum/alb/'],
+ ['Aerochem (Gazechim group)','France, Béziers',5,'“Small to large runs” (unquantified)','Aerosol formulation and filling; no SPF found','f','n/p','The only aerosol filler explicitly offering small runs','https://fr.kompass.com/a/conditionnement-et-remplissage-d-aerosols/2299001/'],
+ ['Interspray (Fareva group)','France, Neuvic',5,'n/p','Hair mousses, lacquers, gels, creams; no sun found','f','n/p','Four aerosol lines','https://industrie.usinenouvelle.com/fiche/etablissement/interspray-59583259'],
+ ['Laboratoires Chemineau (Anjac)','France, Vouvray',5,'n/p','Aerosols, sprays, liquids, semi-solids; no sun found','f','n/p','Holds a permit for flammable aerosol filling; pharma-grade','https://app.qualifyze.com/directory/supplier/laboratoires-chemineau-986d06c2'],
+ ['Ardepharm · Aerolub · MJ Conditionnement · Laboratoire M Line','France',5,'n/p','Aerosol formulation and filling; no sun found','f','n/p','Aerolub offers bag-in-can with non-flammable propellants','https://fr.kompass.com/a/conditionnement-et-remplissage-d-aerosols/2299001/'],
+ ['ESES · IGEPAK','Spain, Zaragoza (ESES)',5,'n/p','Personal-care aerosols incl. bag-on-valve; no sun found','f','n/p','ESES over 30M units a year','https://www.parispackagingweek.com/en/exhibitor/eugenio-santos-envasados-y-servicios-s-l-eses/'],
+ ['TOSVAR · Elysée Cosmétiques','Italy (near Milan); France',5,'n/p','Cosmetic aerosols; no sun found','f','n/p','80M+ and about 120M units a year','https://www.parispackagingweek.com/en/?p=262492'],
+ ['SICA · Farmol','Italy (Farmol: Comun Nuovo, Bergamo)',5,'n/p','Contract aerosols 20–500 g incl. bag-on-valve (SICA); deodorant and shaving foam (Farmol); no sun found','f','n/p','','https://www.sicanett.com/confezionamento-terzi/'],
+ ['kdc/one Swallowfield','UK',5,'n/p','Aerosol sprays, mousses, bag-on-valve, bag-in-can; sun not confirmed','f','UK-based: needs an EU RP','','https://bama.co.uk/member-companies/view/40'],
+ ['Paragon Nordic · Unaro Nordic','Sweden, Vallentuna; Norway, Skarnes',5,'n/p','A listicle claims sprayable sunscreens and mousses (unverified)','f','n/p','Scandinavian aerosol maker: a possible Nordic mousse lead','https://craft.co/paragon-nordic'],
+ ['Aerosol Service','Poland',5,'n/p','Mini-sprays, cans 50–1,000 ml, bag-on-valve; SPF not confirmed','f','n/p','Private label on its own non-exclusive recipes; supplies retail chains','https://aerosol.pl/en/'],
+ ['WATS · Aurena Laboratories','Poland; Sweden',5,'n/p','Aerosol producer with private label (WATS); sterile bag-on-valve (Aurena); no SPF found','f','n/p','','https://przemyslkosmetyczny.pl/firmy/private-label/'],
+ ['Aerochemica · FRIKE · Graichen · PACA · AVT · European Aerosols · Ferdinand Grebien · aeronova','Germany',5,'n/p','Aerosol and bag-on-valve contract filling; no sun found','f','n/p','FRIKE calls bag-on-valve its “first choice” for cosmetics; Aerochemica offers storage and shipping','https://aerochemica.de/ueber-uns/faq-aerosolabfuellung/'],
+ ['Coster Tecnologie Speciali','Italy, Calceranica al Lago (Trento)',5,'n/a','Valves, actuators and filling machines; not a filler','f','n/a','Its brochure lists sunscreens among products its machines fill','https://www.coster.com/wp-content/uploads/2017/10/Coster-Aerosol-Filling-Technology.pdf']
+];
+var FIT={w:['--c1','Sun water'],f:['--c5','Foam / aerosol'],s:['--c4','Other SPF'],x:['--rule-strong','SPF unconfirmed']};
+var TIER={1:'1 · Zero MOQ',2:'2 · Under 100',3:'3 · 100–1,000',4:'4 · Contract',5:'5 · Aerosol'};
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+var TIERH={1:'Tier 1 · Zero-MOQ, print-on-demand and dropship platforms',2:'Tier 2 · Micro-MOQ white label, under about 100 units',3:'Tier 3 · Low-MOQ white label and contract, 100–1,000 units',4:'Tier 4 · Contract manufacturers, 1,000+ units or MOQ not published',5:'Tier 5 · SPF foam holders and aerosol or bag-on-valve fillers'};
+function dirTable(){
+  var body=document.getElementById('dirbody'); if(!body)return;
+  var h='', last=0;
+  DIR.forEach(function(r){
+    if(r[2]!==last){last=r[2]; h+='<tr class="grp" data-g="'+r[2]+'"><td colspan="6">'+TIERH[r[2]]+'</td></tr>';}
+    var host=r[8].replace(/^https?:\/\/(www2?\.)?/,'').split('/')[0];
+    var fit=r[5].split('').map(function(k){return '<span class="fit"><i class="dot" style="background:var('+FIT[k][0]+')"></i>'+FIT[k][1]+'</span>';}).join('');
+    var hay=[r[0],r[1],r[3],r[4],r[6],r[7],TIER[r[2]]].concat(r[5].split('').map(function(k){return FIT[k][1];})).join(' ').toLowerCase();
+    h+='<tr'+(r[9]?' class="hero"':'')+' data-t="'+r[2]+'" data-k="'+r[5]+'" data-q="'+esc(hay).replace(/"/g,'&quot;')+'">'+
+      '<td class="name">'+esc(r[0])+'<span class="where">'+esc(r[1])+'</span><a href="'+esc(r[8])+'">'+esc(host)+'</a></td>'+
+      '<td>'+esc(r[3])+'</td><td>'+esc(r[4])+'</td><td>'+fit+'</td><td>'+esc(r[6])+'</td><td>'+esc(r[7]||'—')+'</td></tr>';
+  });
+  body.innerHTML=h;
+  var st={t:'',k:'',q:''}, all=[].slice.call(body.rows), rows=all.filter(function(tr){return !tr.classList.contains('grp');}), grps=all.filter(function(tr){return tr.classList.contains('grp');}), cnt=document.getElementById('dircount');
+  function apply(){
+    var n=0, per={};
+    rows.forEach(function(tr){
+      var ok=(!st.t||tr.getAttribute('data-t')===st.t)&&(!st.k||tr.getAttribute('data-k').indexOf(st.k)>=0)&&(!st.q||tr.getAttribute('data-q').indexOf(st.q)>=0);
+      tr.hidden=!ok; if(ok){n++; per[tr.getAttribute('data-t')]=1;}
+    });
+    grps.forEach(function(g){g.hidden=!per[g.getAttribute('data-g')];});
+    cnt.textContent=n?'Showing '+n+' of '+rows.length+' entries':'No entries match; clear a filter';
+  }
+  [].forEach.call(document.querySelectorAll('.fbtn[data-f]'),function(b){
+    b.addEventListener('click',function(){
+      var f=b.getAttribute('data-f');
+      [].forEach.call(document.querySelectorAll('.fbtn[data-f="'+f+'"]'),function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});
+      st[f]=b.getAttribute('data-v'); apply();
+    });
+  });
+  document.getElementById('dirq').addEventListener('input',function(e){st.q=e.target.value.trim().toLowerCase(); apply();});
+  apply();
+}
+function copyRfq(){
+  var b=document.getElementById('copyrfq'); if(!b)return;
+  b.addEventListener('click',function(){
+    var qs=[].map.call(document.querySelectorAll('#rfq tbody tr'),function(tr){return tr.cells[0].textContent+'. '+tr.cells[1].textContent;});
+    var t='Hello,\n\nWe are launching a sun-care brand for fair-skinned Northern European men and are looking for a white-label partner for an SPF 50 sun water (bi-phase or transparent pump spray) and/or an SPF 50 foam. Could you answer the questions below?\n\n'+qs.join('\n\n')+'\n\nThank you,\n';
+    var ok=document.getElementById('copyok');
+    function done(m){ok.textContent=m; setTimeout(function(){ok.textContent='';},2600);}
+    function fallback(){var ta=document.createElement('textarea'); ta.value=t; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select();
+      var r=false; try{r=document.execCommand('copy');}catch(e){} document.body.removeChild(ta); done(r?'Copied':'Copy blocked here; select the table instead');}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){done('Copied');},fallback);} else fallback();
+  });
+}
+
+/* =========== FIG · MOQ ladder =========== */
+function chMoq(){
+  var host=document.getElementById('ch-moq'); if(!host)return; host.innerHTML='';
+  var data=[
+    {n:'Selfnamed',c:'LV',lo:1,k:'s',t:'SPF 50 stick, SPF 30 cream; dropship'},
+    {n:'Fast Cosmetics',c:'IT',lo:3,k:'s',t:'SPF 50+ milk and face cream'},
+    {n:'Cosmetico Facile',c:'IT',lo:3,k:'s',t:'SPF 15 spray'},
+    {n:'Laboratori Italiani',c:'IT',lo:12,k:'w',t:'“Sun tanning water”, SPF not shown'},
+    {n:'Cosmetificio',c:'IT',lo:24,hi:100,k:'s',t:'24 label-only, 100 fully customised'},
+    {n:'Cosmetica Conto Terzi',c:'IT',lo:25,k:'s',t:'SPF 50 spray, cream or oil'},
+    {n:'Cosmacon / Tojo',c:'DE',lo:25,hi:100,k:'s',t:'“SPF 50 Fresh”; pages conflict on 25 or 100'},
+    {n:'Meine-Eigenmarke',c:'DE',lo:30,hi:500,k:'s',t:'SPF 30 from 30; SPF 50 from 500'},
+    {n:'Private Skin Lab',c:'AT',lo:50,k:'s',t:'SPF 30 cream'},
+    {n:'Laboratori Sabatel',c:'IT',lo:200,k:'w',t:'“Transparent” spray; SPF 50 to be confirmed'},
+    {n:'Cosmiko',c:'UK',lo:250,k:'s',t:'Invisible SPF 50 cream'},
+    {n:"Propos'Nature",c:'FR',lo:300,k:'s',t:'Mineral SPF 50+ spray-cream'},
+    {n:'Made By Nature Labs',c:'BG',lo:500,k:'s',t:'SPF 50 sun milk'},
+    {n:'Valquer',c:'ES',lo:1000,k:'w',t:'SPF 50 “Agua Solar” pump; no mandatory minimum'},
+    {n:'CarasaLab',c:'ES',lo:1000,k:'s',t:'Custom SPF 15–50+'},
+    {n:'Clover Cosmetics',c:'PL',lo:1000,k:'s',t:'SPF 30 and 50'},
+    {n:'Cosmetize',c:'NL',lo:1000,hi:2500,k:'s',t:'Mineral sprays; 2,500 published, 1,000 per a testimonial'},
+    {n:'ALPOL',c:'FR',lo:5000,k:'w',t:'Organic-filter SPF 50+; MOQ from a listicle'},
+    {n:'Romar Global Care',c:'ES',np:1,k:'f',t:'Agrado SPF 50+ mousse and mist'},
+    {n:'Biofarma',c:'IT',np:1,k:'f',t:'Sun mousse, bag-on-valve, aerosol'},
+    {n:'Dermcos',c:'DE',np:1,k:'f',t:'Lavozon Kids LSF 50+ foam'}
+  ];
+  var col={w:'--c1',s:'--c4',f:'--c5'};
+  var W=760,L=196,T=34,rh=21,B=30,X1=620,NP=700,H=T+data.length*rh+B;
+  var s=svg(W,H), lx=function(v){return L+Math.log10(v)/4*(X1-L);};
+  var bands=[[1,100,'Micro · under 100'],[100,1000,'Low · 100–1,000'],[1000,10000,'Contract · 1,000+']];
+  bands.forEach(function(b,i){
+    if(i%2===0) s.appendChild(el('rect',{x:lx(b[0]),y:T-8,width:lx(b[1])-lx(b[0]),height:data.length*rh+8,fill:cv('--surface-2')}));
+    txt(s,(lx(b[0])+lx(b[1]))/2,T-16,b[2].toUpperCase(),{anchor:'middle',size:9});
+  });
+  s.appendChild(el('rect',{x:NP-36,y:T-8,width:72,height:data.length*rh+8,fill:cv('--surface-2')}));
+  txt(s,NP,T-16,'NOT PUBLISHED',{anchor:'middle',size:9});
+  [1,3,10,30,100,300,1000,3000,10000].forEach(function(g){
+    s.appendChild(el('line',{x1:lx(g),y1:T-8,x2:lx(g),y2:T+data.length*rh,stroke:cv('--rule'),'stroke-width':1}));
+    txt(s,lx(g),T+data.length*rh+16,g>=1000?(g/1000)+',000':String(g),{anchor:'middle',size:10});
+  });
+  data.forEach(function(d,i){
+    var y=T+i*rh+rh/2, c=cv(col[d.k]);
+    var lab=txt(s,L-12,y+4,d.n+' ',{anchor:'end',size:11.5,fill:cv('--ink'),mono:false});
+    var sp=el('tspan',{fill:cv('--muted'),'font-family':'IBM Plex Mono, monospace','font-size':9.5}); sp.textContent=d.c; lab.appendChild(sp);
+    var tip='<b>'+d.n+' ('+d.c+')</b><br>'+(d.np?'MOQ not published':'MOQ '+d.lo.toLocaleString('en-GB')+(d.hi?'–'+d.hi.toLocaleString('en-GB'):''))+' · '+d.t;
+    if(d.np){
+      var h=el('circle',{cx:NP,cy:y,r:5,fill:cv('--surface'),stroke:c,'stroke-width':2}); s.appendChild(h); bind(h,tip);
+      txt(s,NP+11,y+3.5,'n/p',{size:10,fill:cv('--muted')});
+      return;
+    }
+    if(d.hi) s.appendChild(el('line',{x1:lx(d.lo),y1:y,x2:lx(d.hi),y2:y,stroke:c,'stroke-width':3,'stroke-linecap':'round'}));
+    var x=lx(d.hi||d.lo);
+    if(d.hi){var a=el('circle',{cx:lx(d.lo),cy:y,r:5,fill:c,stroke:cv('--surface'),'stroke-width':1.5}); s.appendChild(a); bind(a,tip);}
+    var p=el('circle',{cx:x,cy:y,r:5,fill:c,stroke:cv('--surface'),'stroke-width':1.5}); s.appendChild(p); bind(p,tip);
+    txt(s,x+10,y+3.5,(d.lo>=1000?d.lo.toLocaleString('en-GB'):d.lo)+(d.hi?'–'+d.hi.toLocaleString('en-GB'):''),{size:10,fill:cv('--ink-2')});
+  });
+  host.appendChild(s);
+}
+
 function drawAll(){
   chDose();chGender();chTam();chPrice();chSeason();chMap();chPnl();chSupply();
-  chScentPrice();chOilLoad();mockLineup();
+  chScentPrice();chOilLoad();chMoq();mockLineup();
   fmtIcons();diagrams();mockTool();mockCart();mockSeq();
   mockCarton('mk-carton',{sub:'R1 · SUN PROTECTION INSTRUMENT',tool:true,claim:['Meters the dose.','Reaches your back.'],spec:'320–520 MM · 1.4 ML PER PRESS'});
   mockCarton('mk-refill',{sub:'C150 CARTRIDGE · TWIN PACK',tool:false,claim:['Two cartridges.','One holiday each.'],spec:'2 × 150 ML · FITS EVERY R1'});
 }
-scoreTable();drawAll();spy();
+scoreTable();dirTable();copyRfq();drawAll();spy();
 addEventListener('resize',function(){clearTimeout(window.__rz);window.__rz=setTimeout(drawAll,180);});
 })();
 </script>
