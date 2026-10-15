@@ -241,6 +241,22 @@ No representative multi-country ranking of purchase drivers is publicly availabl
 
 **North America** is the most politically charged market. It combines fluoride-free momentum, TikTok Shop whitening, beauty-retail expansion and Chinese brushes on Amazon. It is also where Colgate, Kenvue and Waterpik all reported weakness in 2025.
 
+## Funding and exits: devices raised the money, brands got bought
+
+Venture money in oral care went mostly to toothbrush and device start-ups, while the large exits went to consumable brands (and one water flosser) that were already selling in mass retail. **quip** raised about USD 40m (2018–19) and a USD 100m Series B (2021) before a much smaller ~USD 16m round in 2024 ([PitchBook](https://pitchbook.com/profiles/company/107722-81)). **Burst** had USD 20m before an undisclosed Series C led by Goldman Sachs in 2020 ([TechCrunch](https://techcrunch.com/?p=1984560)); **Willo** raised USD 17m; **Oclean** an RMB 100m Series C (2024) ([pedaily](https://news.pedaily.cn/i-medical-health/40/)); **SURI** £8m; **Y-Brush** about €6m before receivership; **Amabrush** €3–5m crowdfunded before insolvency. Among consumables, **900.care** raised €31m ([Maddyness](https://www.maddyness.com/2024/03/26/900-care-leve-21-millions-deuros-pour-atteindre-100-millions-deuros-de-revenus-dici-trois-ans/)), **Spotlight** about €15.5m including €3.5m from ~450 Invisalign dentists, and **Canban** grew with ByteDance backing to a Hong Kong IPO filing in 2026; the tablet brands crowdfunded small sums (Smyle ~€1.4m, Georganics £0.38m), and **Bite** and **Hismile** were bootstrapped.
+
+| Deal | Year | Price | Source |
+|---|---|---|---|
+| Kimberly-Clark buys Kenvue (Listerine) | 2025–26, pending | ~USD 48.7bn | [Cosmetics Design Europe](https://www.cosmeticsdesign-europe.com/Article/2025/11/04/kimberly-clark-to-acquire-kenvue-in-487b-deal) |
+| Church & Dwight buys Waterpik (~USD 265m sales) | 2017 | ~USD 1bn | [C&D 8-K](https://www.sec.gov/Archives/edgar/data/0000313927/000119312517228910/d426675dex991.htm) |
+| Church & Dwight buys TheraBreath | 2021 | USD 580m | [C&D 10-K](https://www.sec.gov/Archives/edgar/data/313927/000156459022005528/chd-10k_20211231.htm) |
+| Colgate buys Hello | 2020 | ~USD 351m (reported) | [Inc.](https://www.inc.com/magazine/202304/kevin-j-ryan/how-avoiding-an-exit-strategy-led-hello-products-to-a-351-million-sale.html) |
+| Colgate buys 84% of Tom's of Maine | 2006 | ~USD 100m | [Colgate 10-Q](https://www.sec.gov/Archives/edgar/data/0000021665/000119312506214534/d10q.htm) |
+| BioSyent buys Oral Science | 2026 | USD 25.5m | research notes |
+| Dabur buys Meswak; Sunstar buys Playbrush; Biotech Dental buys Y-Brush | 2005; 2021; 2025 | undisclosed | research notes |
+
+No large acquisition of a format-led start-up or of a DTC toothbrush brand by P&G, Philips or Colgate was found. Public-market routes were mixed: Haleon (2022) and Kenvue (2023) listed as incumbents, Saky's 2022 Hong Kong filing showed heavy losses, usmile's IPO reportedly failed in 2025, and Bruush was delisted from Nasdaq.
+
 ## Re-check of the earlier toothpaste-formats figures
 
 The earlier toothpaste-formats report rested on the same kinds of sources. Its key figures were re-checked against this round's notes, with the following results.
